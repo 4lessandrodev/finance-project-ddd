@@ -22,7 +22,7 @@
 
 - User: Aggregate
 - id: Value Object
-- email: Value Object
-- password: Value Object
+- email: Value Object - Ok
+- password: Value Object - Ok
 - ip: Value Object
 - acceptedAt: Value Object
