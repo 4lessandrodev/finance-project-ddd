@@ -3,7 +3,7 @@ export abstract class BaseDomainEntity {
     public createdAt?: Date,
     public updatedAt?: Date,
     public isDeleted?: boolean,
-    public deletedAt?: Date,
+    public deletedAt?: Date | null,
   ) {
     this.createdAt = createdAt ?? new Date();
     this.updatedAt = updatedAt ?? new Date();

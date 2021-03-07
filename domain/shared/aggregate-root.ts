@@ -1,7 +1,7 @@
-import { Entity } from './';
-import { IDomainEvent } from './';
-import { DomainEvents } from './';
-import { UniqueEntityID } from './';
+import { Entity } from './entity';
+import { DomainEvents } from './events/domain-events';
+import { IDomainEvent } from './events/IDomainEvent';
+import { UniqueEntityID } from './unique-entity-id';
 
 export abstract class AggregateRoot<T> extends Entity<T> {
   private _domainEvents: IDomainEvent[] = [];
@@ -33,9 +33,9 @@ export abstract class AggregateRoot<T> extends Entity<T> {
     const domainEventClass = Reflect.getPrototypeOf(domainEvent);
     console.info(
       '[Domain Event Created]:',
-      thisClass.constructor.name,
+      thisClass?.constructor.name,
       '==>',
-      domainEventClass.constructor.name,
+      domainEventClass?.constructor.name,
     );
   }
 }

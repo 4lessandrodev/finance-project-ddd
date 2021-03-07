@@ -1,5 +1,4 @@
-import { BaseDomainEntity } from './';
-import { UniqueEntityID } from './';
+import { BaseDomainEntity, UniqueEntityID } from './index';
 
 const isEntity = (v: any): v is Entity<any> => {
   return v instanceof Entity;
@@ -20,10 +19,6 @@ export abstract class Entity<T extends BaseDomainEntity> {
 
   get updatedAt(): Date {
     return this.props.updatedAt ?? new Date();
-  }
-
-  get deletedAt(): Date | null {
-    return this.props.deletedAt;
   }
 
   get isDeleted(): boolean {
