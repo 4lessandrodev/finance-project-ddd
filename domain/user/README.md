@@ -20,9 +20,9 @@
 
 ### Structure
 
-User: Aggregate
-id: Value Object
-email: Value Object
-password: Value Object
-ip: Value Object
-acceptedAt: Value Object
+- User: Aggregate
+- id: Value Object
+- email: Value Object
+- password: Value Object
+- ip: Value Object
+- acceptedAt: Value Object
