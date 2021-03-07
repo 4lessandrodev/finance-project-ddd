@@ -17,7 +17,7 @@ export class EmailValueObject extends ValueObject<EmailValueObjectProps> {
   public static create(email: string): Result<EmailValueObject> {
     const isValidEmail = isEmail(email);
     if (!isValidEmail) {
-      Result.fail<EmailValueObject>('Invalid Email');
+      return Result.fail<EmailValueObject>('Invalid Email');
     }
     return Result.ok<EmailValueObject>(
       new EmailValueObject({
