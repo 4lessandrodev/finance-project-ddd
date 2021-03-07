@@ -1,4 +1,6 @@
-import { AggregateRoot, UniqueEntityID, IDomainEvent } from '../index';
+import { AggregateRoot } from '../aggregate-root';
+import { UniqueEntityID } from '../unique-entity-id';
+import { IDomainEvent } from './IDomainEvent';
 
 export class DomainEvents {
   private static handlersMap: any = {};

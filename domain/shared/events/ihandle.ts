@@ -1,5 +1,5 @@
 /* eslint-disable  */
-import { IDomainEvent } from '../index';
+import { IDomainEvent } from './IDomainEvent';
 
 export interface IHandle<IDomainEvent> {
   setupSubscriptions(): void;
