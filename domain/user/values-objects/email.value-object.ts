@@ -21,7 +21,7 @@ export class EmailValueObject extends ValueObject<EmailValueObjectProps> {
     }
     return Result.ok<EmailValueObject>(
       new EmailValueObject({
-        value: email,
+        value: email.toLocaleLowerCase(),
       }),
     );
   }
