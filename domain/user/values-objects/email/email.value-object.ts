@@ -1,4 +1,4 @@
-import { Result, ValueObject } from '../../shared';
+import { Result, ValueObject } from '../../../shared';
 import isEmail from 'validator/lib/isEmail';
 
 export interface EmailValueObjectProps {
@@ -16,9 +16,11 @@ export class EmailValueObject extends ValueObject<EmailValueObjectProps> {
 
   public static create(email: string): Result<EmailValueObject> {
     const isValidEmail = isEmail(email);
+
     if (!isValidEmail) {
       return Result.fail<EmailValueObject>('Invalid Email');
     }
+
     return Result.ok<EmailValueObject>(
       new EmailValueObject({
         value: email.toLocaleLowerCase(),
