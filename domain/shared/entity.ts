@@ -1,4 +1,5 @@
-import { BaseDomainEntity, UniqueEntityID } from './index';
+import { UniqueEntityID } from './unique-entity-id';
+import { BaseDomainEntity } from './base-domain-entity';
 
 const isEntity = (v: any): v is Entity<any> => {
   return v instanceof Entity;

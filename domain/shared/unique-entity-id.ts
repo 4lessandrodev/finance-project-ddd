@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { Identifier } from '.';
+import { Identifier } from './identifier';
 
 /**
  * @param id is optional as string.
