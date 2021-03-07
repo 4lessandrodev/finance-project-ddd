@@ -67,7 +67,7 @@ Entradas e Saídas de capital.
 
 ## Demo animada
 
-Gif do prototipo feito no figma
+Gif do protótipo feito no figma
 
 [![figma](./readme/demo.gif 'figma')](https://www.figma.com/proto/szD8Gs6el1sBSCTcyjPtub/modelagem-controle-financeiro?node-id=21%3A1111&scaling=scale-down 'figma')
 

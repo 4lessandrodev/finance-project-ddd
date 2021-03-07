@@ -13,4 +13,10 @@ describe('email-value-object.ts', () => {
     expect(email.isFailure).toBe(true);
     expect(email.error).toBe('Invalid Email');
   });
+
+  it('should return a lowercase email string', () => {
+    const email = EmailValueObject.create('VALID_mAil@doMain.com');
+
+    expect(email.getResult().value).toBe('valid_mail@domain.com');
+  });
 });
