@@ -26,3 +26,14 @@
 - password: Value Object - Ok
 - ip: Value Object
 - acceptedAt: Value Object
+
+### User Agent
+
+```json
+      "userAgent": {
+        "name": "firefox",
+        "version": "86.0.0",
+        "os": "Linux",
+        "type": "browser"
+      }
+```
