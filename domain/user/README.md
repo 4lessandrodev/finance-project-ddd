@@ -24,8 +24,8 @@
 - id: Value Object
 - email: Value Object - Ok
 - password: Value Object - Ok
-- ip: Value Object
-- acceptedAt: Value Object
+- ip: Value Object - Ok
+- acceptedAt: Value Object - Ok
 
 ### User Agent
 
