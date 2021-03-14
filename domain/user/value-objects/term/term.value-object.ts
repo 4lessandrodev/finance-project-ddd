@@ -5,7 +5,12 @@ import { IpValueObject } from '../ip/ip.value-object';
 export enum IOs {
   LINUX = 'LINUX',
   WINDOWS = 'WINDOWS',
-  MACOS = 'MACOS',
+  MAC = 'MAC',
+  IPHONE = 'IPHONE',
+  APPLE = 'APPLE',
+  MACINTOSH = 'MACINTOSH',
+  ANDROID = 'ANDROID',
+  IPAD = 'IPAD',
 }
 
 export interface IUserAgent {
