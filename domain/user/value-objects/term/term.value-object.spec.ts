@@ -17,7 +17,7 @@ describe('term.value-object', () => {
   const makeFakeTermProps = (props?: Partial<fakeTermProps>): fakeTermProps => {
     return {
       userAgent: {
-        name: props?.userAgent?.name ?? 'valid_name',
+        name: props?.userAgent?.name ?? 'firefox',
         os: props?.userAgent?.os ?? 'LINUX',
         type: props?.userAgent?.type ?? 'browser',
         version: props?.userAgent?.version ?? '86.0.0',
