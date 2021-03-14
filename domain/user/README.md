@@ -25,7 +25,7 @@
 ### Structure
 
 - User: Aggregate
-- id: Value Object
+- id: Value Object - Ok
 - email: Value Object - Ok
 - password: Value Object - Ok
 - ip: Value Object - Ok
