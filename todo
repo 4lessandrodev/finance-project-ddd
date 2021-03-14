@@ -1,0 +1,65 @@
+// Aggregate 
+
+BudgetBox:{
+    "id":"uuid",
+    "ownerId":"uuid",
+    "description": "valid_description", // Value Object
+    "balanceAvaliable": 1000,
+    "isPercentual": true, 
+    "budgetPercentage": 80, // Value Object
+    "transactionsIds": ["uuid", "uuid"],
+    "reasons": [{ // Entity
+        "id": "uuid"
+        "description": "valid_descripíont"
+    }],
+}
+
+
+// Aggregate 
+
+User:{
+    "id": "uuid",
+    "email": "example@mail.com", // Value Object
+    "password": "123456", // Value Object,
+    "totalBalanceAvaliable": 10.00,
+    "budgetBoxIds":["uuid", "uuid"],
+    "terms": [
+      { 
+        "ip": "120.06.09.011", // Value Object
+        "acceptedAt": "2021-01-01 10:00:00", // Value Object
+        "userAgent": { 
+            "name": "firefox",
+            "version": "86.0.0",
+            "os": "Linux",
+            "type": "browser"
+          }
+      }
+    ]
+}
+
+
+// Aggregate 
+
+Transaction:{
+    "userId": "uuid",
+    "totalValue": 100,
+    "reason": { // Entity
+        "id": "uuid"
+        "description": "valid_descripíont"
+    },
+    "paymentDate": "2021-01-01 10:00:00", // Value Object
+    "type": enum["Entrada", "Saida"] // Value Object
+    "status": enum["Pendente", "Concluído"], // Value Object
+    "note": "valid_description", // Value Object
+    "attachment": "url", // Value Object
+    "calculations":[
+        { 
+            "budgetBoxId":"uuid",
+            "Value":50
+        },
+        {
+            "budgetBoxId":"uuid",
+            "Value":50
+        }
+    ]
+}
