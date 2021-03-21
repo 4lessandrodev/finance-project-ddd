@@ -5,6 +5,7 @@ describe('userId.value-object', () => {
   it('should create a valid userId', () => {
     const userId = UserIdValueObject.create();
     expect(userId.isSuccess).toBe(true);
+    expect(userId.getResult().id.toValue).toBeDefined();
   });
 
   it('should create a valid userId with value', () => {
