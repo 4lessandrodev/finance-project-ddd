@@ -5,8 +5,8 @@
   "id": "uuid",
   "email": "example@mail.com",
   "password": "123456",
-  "budgetBoxIds":["uuid", "uuid"],
-  "totalBalanceAvaliable": 10.00,
+  "budgetBoxIds": ["uuid", "uuid"],
+  "totalBalanceAvaliable": 10.0,
   "terms": [
     {
       "ip": "120.06.09.011",
@@ -24,7 +24,7 @@
 
 ### Structure
 
-- User: Aggregate
+- User: Aggregate - Ok
 - id: Value Object - Ok
 - email: Value Object - Ok
 - password: Value Object - Ok
