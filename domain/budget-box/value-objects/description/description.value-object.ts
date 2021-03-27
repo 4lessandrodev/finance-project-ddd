@@ -1,4 +1,4 @@
-import { Result, ValueObject } from '../../shared';
+import { Result, ValueObject } from '../../../shared';
 
 export interface DescriptionValueObjectProps {
   value: string;
