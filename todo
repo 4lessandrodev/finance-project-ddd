@@ -7,34 +7,10 @@ BudgetBox:{
     "balanceAvaliable": 1000,
     "isPercentual": true, 
     "budgetPercentage": 80, // Value Object
-    "transactionsIds": ["uuid", "uuid"],
     "reasons": [{ // Entity
         "id": "uuid"
         "description": "valid_descripíont"
     }],
-}
-
-
-// Aggregate 
-
-User:{
-    "id": "uuid",
-    "email": "example@mail.com", // Value Object
-    "password": "123456", // Value Object,
-    "totalBalanceAvaliable": 10.00,
-    "budgetBoxIds":["uuid", "uuid"],
-    "terms": [
-      { 
-        "ip": "120.06.09.011", // Value Object
-        "acceptedAt": "2021-01-01 10:00:00", // Value Object
-        "userAgent": { 
-            "name": "firefox",
-            "version": "86.0.0",
-            "os": "Linux",
-            "type": "browser"
-          }
-      }
-    ]
 }
 
 
@@ -63,3 +39,5 @@ Transaction:{
         }
     ]
 }
+
+
