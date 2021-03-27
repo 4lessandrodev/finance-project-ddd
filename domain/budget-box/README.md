@@ -20,7 +20,8 @@
 ### Structure
 
 - BudgetBox: Aggregate
-- description: Value Object - Ok
+- reason-description: Value Object - Ok
+- budget-description: Value Object - Ok
 - budget-id: Value Object - Ok
 - budgetPercentage: Value Object - Ok
 - reason: Entity
