@@ -23,5 +23,6 @@
 - reason-description: Value Object - Ok
 - budget-description: Value Object - Ok
 - budget-id: Value Object - Ok
-- budgetPercentage: Value Object - Ok
-- reason: Entity
+- budget-percentage: Value Object - Ok
+- reason: Entity - Ok
+- reason-id: Value Object - Ok
