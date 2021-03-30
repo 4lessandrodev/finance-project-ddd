@@ -52,7 +52,7 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
     props: BudgetAggregateProps,
     id?: UniqueEntityID,
   ): Result<BudgetBoxAggregate> {
-    if (!props.isPercentual && props.budgetPercentage.value < 100) {
+    if (!props.isPercentual && props.budgetPercentage.value !== 100) {
       props.budgetPercentage = PercentageValueObject.create(100).getResult();
     }
 

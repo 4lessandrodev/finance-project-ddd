@@ -1,24 +1,8 @@
 // Aggregate 
 
-BudgetBox:{
-    "id":"uuid",
-    "ownerId":"uuid",
-    "description": "valid_description", // Value Object
-    "balanceAvaliable": 1000,
-    "isPercentual": true, 
-    "budgetPercentage": 80, // Value Object
-    "reasons": [{ // Entity
-        "id": "uuid"
-        "description": "valid_descripíont"
-    }],
-}
-
-
-// Aggregate 
-
 Transaction:{
     "userId": "uuid",
-    "totalValue": 100,
+    "totalValue": 100, //Dinamic calculations
     "reason": { // Entity
         "id": "uuid"
         "description": "valid_descripíont"
@@ -40,4 +24,8 @@ Transaction:{
     ]
 }
 
-
+type
+status
+note
+attachment
+calculations

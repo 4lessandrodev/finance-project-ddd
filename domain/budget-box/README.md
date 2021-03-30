@@ -19,7 +19,7 @@
 
 ### Structure
 
-- BudgetBox: Aggregate
+- BudgetBox: Aggregate - Ok
 - reason-description: Value Object - Ok
 - budget-description: Value Object - Ok
 - budget-id: Value Object - Ok
