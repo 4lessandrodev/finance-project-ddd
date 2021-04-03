@@ -1,4 +1,4 @@
-import { Entity, Result, UniqueEntityID } from '../../../shared';
+import { Entity, Result, UniqueEntityID } from '../..';
 
 export class ReasonIdValueObject extends Entity<any> {
   private constructor(id?: UniqueEntityID) {

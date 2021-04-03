@@ -1,5 +1,5 @@
 import { Result, ValueObject } from '../../../shared';
-import { AcceptedAtValueObject } from '../accepted-at/accepted-at.value-object';
+import { DateValueObject } from '../../../shared/common/date/date.value-object';
 import { IpValueObject } from '../ip/ip.value-object';
 
 export enum IOs {
@@ -22,7 +22,7 @@ export interface IUserAgent {
 
 export interface TermValueObjectProps {
   ip: IpValueObject;
-  acceptedAt: AcceptedAtValueObject;
+  acceptedAt: DateValueObject;
   userAgent: IUserAgent;
 }
 

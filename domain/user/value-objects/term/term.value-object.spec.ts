@@ -1,4 +1,4 @@
-import { AcceptedAtValueObject } from '../accepted-at/accepted-at.value-object';
+import { DateValueObject } from '../../../shared/common/date/date.value-object';
 import { IpValueObject } from '../ip/ip.value-object';
 import { TermValueObject } from './term.value-object';
 
@@ -30,7 +30,7 @@ describe('term.value-object', () => {
   it('should create a valid term', () => {
     const props = makeFakeTermProps();
     const term = TermValueObject.create({
-      acceptedAt: AcceptedAtValueObject.create(props.acceptedAt).getResult(),
+      acceptedAt: DateValueObject.create(props.acceptedAt).getResult(),
       ip: IpValueObject.create(props.ip).getResult(),
       userAgent: props.userAgent as any,
     });
@@ -49,7 +49,7 @@ describe('term.value-object', () => {
       },
     });
     const term = TermValueObject.create({
-      acceptedAt: AcceptedAtValueObject.create(props.acceptedAt).getResult(),
+      acceptedAt: DateValueObject.create(props.acceptedAt).getResult(),
       ip: IpValueObject.create(props.ip).getResult(),
       userAgent: props.userAgent as any,
     });
