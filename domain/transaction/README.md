@@ -26,6 +26,6 @@
 - transaction-type: Value Object (enum) - Ok
 - status: Value Object (enum) - Ok
 - note: Value Object - Ok
-- attachment: Value Object
+- attachment-path: Value Object - Ok
 - calculations: Value Object
 - paymentDate: Value Object - Ok
