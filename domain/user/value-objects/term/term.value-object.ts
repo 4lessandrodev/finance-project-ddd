@@ -1,4 +1,4 @@
-import { Result, ValueObject } from '../../../shared';
+import { ErrorMessages, Result, ValueObject } from '../../../shared';
 import { DateValueObject } from '../../../shared/common/date/date.value-object';
 import { IpValueObject } from '../ip/ip.value-object';
 
@@ -41,7 +41,9 @@ export class TermValueObject extends ValueObject<TermValueObjectProps> {
     );
 
     if (!isValidOs) {
-      return Result.fail<TermValueObject>('Invalid Os');
+      return Result.fail<TermValueObject>(
+        ErrorMessages.INVALID_OPERATIONAL_SYSTEM,
+      );
     }
     return Result.ok<TermValueObject>(new TermValueObject(props));
   }

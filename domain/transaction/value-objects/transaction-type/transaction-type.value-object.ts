@@ -1,4 +1,4 @@
-import { Result, ValueObject } from '../../../shared';
+import { ErrorMessages, Result, ValueObject } from '../../../shared';
 
 export enum validTransactionTypeEnum {
   'ENTRADA',
@@ -26,7 +26,9 @@ export class TransactionTypeValueObject extends ValueObject<TransactionTypeValue
       type.toUpperCase(),
     );
     if (!isValidEnumValue) {
-      return Result.fail<TransactionTypeValueObject>('Invalid option');
+      return Result.fail<TransactionTypeValueObject>(
+        ErrorMessages.INVALID_ENUM_TRANSACTION_TYPE,
+      );
     }
     return Result.ok<TransactionTypeValueObject>(
       new TransactionTypeValueObject({ value: type }),

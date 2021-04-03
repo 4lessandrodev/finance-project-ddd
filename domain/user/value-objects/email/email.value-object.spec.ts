@@ -1,3 +1,4 @@
+import { ErrorMessages } from '../../../shared';
 import { EmailValueObject } from './email.value-object';
 describe('email-value-object.ts', () => {
   it('should return a valid email', () => {
@@ -11,7 +12,7 @@ describe('email-value-object.ts', () => {
     const email = EmailValueObject.create('invalid_email');
 
     expect(email.isFailure).toBe(true);
-    expect(email.error).toBe('Invalid Email');
+    expect(email.error).toBe(ErrorMessages.INVALID_EMAIL);
   });
 
   it('should normalize email to lowercause', () => {

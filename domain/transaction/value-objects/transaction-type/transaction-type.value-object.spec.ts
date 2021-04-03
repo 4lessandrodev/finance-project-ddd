@@ -1,3 +1,4 @@
+import { ErrorMessages } from '../../../shared';
 import { TransactionTypeValueObject } from './transaction-type.value-object';
 
 describe('transaction-type.value-object', () => {
@@ -18,6 +19,6 @@ describe('transaction-type.value-object', () => {
     const result = TransactionTypeValueObject.create('INVALID_TYPE' as any);
 
     expect(result.isSuccess).toBe(false);
-    expect(result.error).toBe('Invalid option');
+    expect(result.error).toBe(ErrorMessages.INVALID_ENUM_TRANSACTION_TYPE);
   });
 });

@@ -1,3 +1,4 @@
+import { ErrorMessages } from '../../../shared';
 import { TransactionStatusValueObject } from './transaction-status.value-object';
 
 describe('transaction-status.value-object', () => {
@@ -18,6 +19,6 @@ describe('transaction-status.value-object', () => {
     const result = TransactionStatusValueObject.create('INVALID_STATUS' as any);
 
     expect(result.isSuccess).toBe(false);
-    expect(result.error).toBe('Invalid option');
+    expect(result.error).toBe(ErrorMessages.INVALID_ENUM_TRANSACTION_STATUS);
   });
 });

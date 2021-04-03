@@ -1,3 +1,4 @@
+import { ErrorMessages } from '../../../shared';
 import { BudgetDescriptionValueObject } from './budget-description.value-object';
 
 describe('description.value-object', () => {
@@ -20,7 +21,7 @@ describe('description.value-object', () => {
     const description = BudgetDescriptionValueObject.create(' ');
     expect(description.isFailure).toBe(true);
     expect(description.error).toBe(
-      'Invalid description lenght min 1 char and max 30 char',
+      ErrorMessages.INVALID_BUDGET_DESCRIPTION_LENGHT,
     );
   });
 
@@ -30,7 +31,7 @@ describe('description.value-object', () => {
     );
     expect(description.isFailure).toBe(true);
     expect(description.error).toBe(
-      'Invalid description lenght min 1 char and max 30 char',
+      ErrorMessages.INVALID_BUDGET_DESCRIPTION_LENGHT,
     );
   });
 });

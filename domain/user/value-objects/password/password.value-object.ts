@@ -1,4 +1,4 @@
-import { Result, ValueObject } from '../../../shared';
+import { ErrorMessages, Result, ValueObject } from '../../../shared';
 import { hashSync, compareSync } from 'bcrypt';
 const isEncryptPass = /\$2b\$\d\d\$[\s\S]{53}|{.}\b/gm;
 
@@ -41,7 +41,7 @@ export class PasswordValueObject extends ValueObject<PasswordValueObjectProps> {
 
       if (!isValidPasswordLength) {
         return Result.fail<PasswordValueObject>(
-          'Password must have min 3 char and max 20 char',
+          ErrorMessages.INVALID_PASSWORD_LENGHT,
         );
       }
     }

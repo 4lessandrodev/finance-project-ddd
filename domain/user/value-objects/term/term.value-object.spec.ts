@@ -1,3 +1,4 @@
+import { ErrorMessages } from '../../../shared';
 import { DateValueObject } from '../../../shared/common/date/date.value-object';
 import { IpValueObject } from '../ip/ip.value-object';
 import { TermValueObject } from './term.value-object';
@@ -55,6 +56,6 @@ describe('term.value-object', () => {
     });
 
     expect(term.isFailure).toBe(true);
-    expect(term.error).toBe('Invalid Os');
+    expect(term.error).toBe(ErrorMessages.INVALID_OPERATIONAL_SYSTEM);
   });
 });

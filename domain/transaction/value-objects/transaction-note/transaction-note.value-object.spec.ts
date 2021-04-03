@@ -1,3 +1,4 @@
+import { ErrorMessages } from '../../../shared';
 import { TransactionNoteValueObject } from './transaction-note.value-object';
 
 describe('transaction-note.value-object', () => {
@@ -13,6 +14,6 @@ describe('transaction-note.value-object', () => {
     Consectetur ipsam minus rerum non.`);
 
     expect(note.isSuccess).toBe(false);
-    expect(note.error).toBe('Note value should be less than 144 char');
+    expect(note.error).toBe(ErrorMessages.INVALID_TRANSACTION_NOTE_LENGHT);
   });
 });

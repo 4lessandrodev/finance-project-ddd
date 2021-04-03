@@ -1,4 +1,4 @@
-import { Result, ValueObject } from '../../../shared';
+import { ErrorMessages, Result, ValueObject } from '../../../shared';
 
 export interface ReasonDescriptionValueObjectProps {
   value: string;
@@ -20,7 +20,7 @@ export class ReasonDescriptionValueObject extends ValueObject<ReasonDescriptionV
       description.trim().length >= 1 && description.trim().length <= 20;
     if (!isValidLength) {
       return Result.fail<ReasonDescriptionValueObject>(
-        'Invalid description lenght min 1 char and max 20 char',
+        ErrorMessages.INVALID_REASON_DESCRIPTION_LENGHT,
       );
     }
     return Result.ok<ReasonDescriptionValueObject>(

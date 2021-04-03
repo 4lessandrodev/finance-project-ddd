@@ -1,4 +1,4 @@
-import { Result, ValueObject } from '../../../shared';
+import { ErrorMessages, Result, ValueObject } from '../../../shared';
 
 export interface TransactionNoteValueObjectProps {
   value: string;
@@ -17,7 +17,7 @@ export class TransactionNoteValueObject extends ValueObject<TransactionNoteValue
     const isValidLenght = note.length <= 144;
     if (!isValidLenght) {
       return Result.fail<TransactionNoteValueObject>(
-        'Note value should be less than 144 char',
+        ErrorMessages.INVALID_TRANSACTION_NOTE_LENGHT,
       );
     }
 

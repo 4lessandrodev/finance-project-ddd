@@ -1,4 +1,4 @@
-import { Result, ValueObject } from '../../../shared';
+import { ErrorMessages, Result, ValueObject } from '../../../shared';
 import isEmail from 'validator/lib/isEmail';
 
 export interface EmailValueObjectProps {
@@ -18,7 +18,7 @@ export class EmailValueObject extends ValueObject<EmailValueObjectProps> {
     const isValidEmail = isEmail(email);
 
     if (!isValidEmail) {
-      return Result.fail<EmailValueObject>('Invalid Email');
+      return Result.fail<EmailValueObject>(ErrorMessages.INVALID_EMAIL);
     }
 
     return Result.ok<EmailValueObject>(

@@ -1,4 +1,4 @@
-import { Result, ValueObject } from '../../../shared';
+import { ErrorMessages, Result, ValueObject } from '../../../shared';
 
 export interface PercentageValueObjectProps {
   value: number;
@@ -17,7 +17,9 @@ export class PercentageValueObject extends ValueObject<PercentageValueObjectProp
     const isValidRange = value >= 0 && value <= 100;
 
     if (!isValidRange) {
-      return Result.fail<PercentageValueObject>('Invalid Range Value');
+      return Result.fail<PercentageValueObject>(
+        ErrorMessages.INVALID_PERCENTAGE_VALUE,
+      );
     }
 
     return Result.ok<PercentageValueObject>(

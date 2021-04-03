@@ -1,5 +1,5 @@
 import { BudgetIdValueObject } from '../../../budget-box/value-objects';
-import { UniqueEntityID } from '../../../shared';
+import { ErrorMessages, UniqueEntityID } from '../../../shared';
 import { TransactionCalculationValueObject } from './transaction-calculations.value-object';
 
 describe('transaction-calculations.value-object', () => {
@@ -25,6 +25,8 @@ describe('transaction-calculations.value-object', () => {
       value: -100,
     });
     expect(calculation.isSuccess).toBe(false);
-    expect(calculation.error).toBe('Value should be positive');
+    expect(calculation.error).toBe(
+      ErrorMessages.INVALID_TRANSACTION_CALCULATION_VALUE,
+    );
   });
 });

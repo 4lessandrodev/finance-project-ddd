@@ -1,3 +1,4 @@
+import { ErrorMessages } from '../../../shared';
 import { IpValueObject } from './ip.value-object';
 
 describe('ip.value-object', () => {
@@ -12,6 +13,6 @@ describe('ip.value-object', () => {
     const ip = IpValueObject.create('invalid_ip');
 
     expect(ip.isFailure).toBe(true);
-    expect(ip.error).toBe('Invalid Ip');
+    expect(ip.error).toBe(ErrorMessages.INVALID_IP);
   });
 });

@@ -1,4 +1,4 @@
-import { Result, ValueObject } from '../../../shared';
+import { ErrorMessages, Result, ValueObject } from '../../../shared';
 
 export enum validTransactionStatusEnum {
   'PENDENTE',
@@ -26,7 +26,9 @@ export class TransactionStatusValueObject extends ValueObject<TransactionStatusV
       status.toUpperCase(),
     );
     if (!isValidEnumValue) {
-      return Result.fail<TransactionStatusValueObject>('Invalid option');
+      return Result.fail<TransactionStatusValueObject>(
+        ErrorMessages.INVALID_ENUM_TRANSACTION_STATUS,
+      );
     }
     return Result.ok<TransactionStatusValueObject>(
       new TransactionStatusValueObject({ value: status }),
