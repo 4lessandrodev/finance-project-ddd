@@ -1,8 +1,8 @@
 import { Result, ValueObject } from '../../../shared';
 
 export enum validTransactionStatusEnum {
-  'ENTRADA',
-  'SAIDA',
+  'PENDENTE',
+  'CONCLUIDO',
 }
 
 export type transactionStatus = keyof typeof validTransactionStatusEnum;
@@ -16,20 +16,20 @@ export class TransactionStatusValueObject extends ValueObject<TransactionStatusV
   }
 
   get value(): transactionStatus {
-    return this.props.value;
+    return this.props.value.toUpperCase() as transactionStatus;
   }
 
   public static create(
-    type: transactionStatus,
+    status: transactionStatus,
   ): Result<TransactionStatusValueObject> {
     const isValidEnumValue = Object.values(validTransactionStatusEnum).includes(
-      type.toUpperCase(),
+      status.toUpperCase(),
     );
     if (!isValidEnumValue) {
       return Result.fail<TransactionStatusValueObject>('Invalid option');
     }
     return Result.ok<TransactionStatusValueObject>(
-      new TransactionStatusValueObject({ value: type }),
+      new TransactionStatusValueObject({ value: status }),
     );
   }
 }
