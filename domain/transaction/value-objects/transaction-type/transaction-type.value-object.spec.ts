@@ -11,6 +11,7 @@ describe('transaction-type.value-object', () => {
     const result = TransactionTypeValueObject.create('saida' as any);
 
     expect(result.isSuccess).toBe(true);
+    expect(result.getResult().value).toBe('SAIDA');
   });
 
   it('should fail if provide an invalid transaction-type as string', () => {
