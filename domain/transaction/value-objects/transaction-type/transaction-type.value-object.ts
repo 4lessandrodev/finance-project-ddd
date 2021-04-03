@@ -16,7 +16,7 @@ export class TransactionTypeValueObject extends ValueObject<TransactionTypeValue
   }
 
   get value(): transactionType {
-    return this.props.value;
+    return this.props.value.toUpperCase() as transactionType;
   }
 
   public static create(
