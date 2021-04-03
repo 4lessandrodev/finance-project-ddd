@@ -23,7 +23,7 @@
 }
 ```
 
-- transaction-type: Value Object (enum)
+- transaction-type: Value Object (enum) - Ok
 - status: Value Object (enum)
 - note: Value Object
 - attachment: Value Object

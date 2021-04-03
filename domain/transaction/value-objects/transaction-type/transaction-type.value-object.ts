@@ -1,7 +1,13 @@
 import { Result, ValueObject } from '../../../shared';
 
+export enum validTransactionTypeEnum {
+  'ENTRADA',
+  'SAIDA',
+}
+
+export type transactionType = keyof typeof validTransactionTypeEnum;
 export interface TransactionTypeValueObjectProps {
-  value: 'ENTRADA' | 'SAIDA';
+  value: transactionType;
 }
 
 export class TransactionTypeValueObject extends ValueObject<TransactionTypeValueObjectProps> {
@@ -9,13 +15,21 @@ export class TransactionTypeValueObject extends ValueObject<TransactionTypeValue
     super(props);
   }
 
-  get value(): 'ENTRADA' | 'SAIDA' {
+  get value(): transactionType {
     return this.props.value;
   }
 
-  public static create(type: string): Result<TransactionTypeValueObject> {
+  public static create(
+    type: transactionType,
+  ): Result<TransactionTypeValueObject> {
+    const isValidEnumValue = Object.values(validTransactionTypeEnum).includes(
+      type.toUpperCase(),
+    );
+    if (!isValidEnumValue) {
+      return Result.fail<TransactionTypeValueObject>('Invalid option');
+    }
     return Result.ok<TransactionTypeValueObject>(
-      new TransactionTypeValueObject({ value: type as any }),
+      new TransactionTypeValueObject({ value: type }),
     );
   }
 }
