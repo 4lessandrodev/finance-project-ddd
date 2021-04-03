@@ -10,3 +10,4 @@ export * from './core/value-object';
 export * from './core/base-domain-entity';
 export * from './core/iuse-case';
 export * from './common/date/date.value-object';
+export * from './common/reason-id/reason-id.value-object';
