@@ -3,13 +3,13 @@
 ```json
 {
   "userId": "uuid",
-  "totalValue": 100, //Dinamic calculations
+  "totalValue": 100,
   "reasonId": "uuid",
-  "paymentDate": "2021-01-01 10:00:00", // Value Object
-  "transaction-type": "Entrada" | "Saida", // Value Object
-  "status": "Pendente" | "Concluído", // Value Object
-  "note": "valid_description", // Value Object
-  "attachment": "url", // Value Object
+  "paymentDate": "2021-01-01 10:00:00",
+  "transaction-type": "Entrada" | "Saida",
+  "status": "Pendente" | "Concluído",
+  "note": "valid_description",
+  "attachment": "url",
   "transaction-calculations": [
     {
       "budgetBoxId": "uuid",
