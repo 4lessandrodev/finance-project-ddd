@@ -10,7 +10,7 @@
   "status": "Pendente" | "Concluído", // Value Object
   "note": "valid_description", // Value Object
   "attachment": "url", // Value Object
-  "calculations": [
+  "transaction-calculations": [
     {
       "budgetBoxId": "uuid",
       "Value": 50
@@ -27,5 +27,5 @@
 - status: Value Object (enum) - Ok
 - note: Value Object - Ok
 - attachment-path: Value Object - Ok
-- calculations: Value Object
+- transaction-calculations: Value Object - Ok
 - paymentDate: Value Object - Ok
