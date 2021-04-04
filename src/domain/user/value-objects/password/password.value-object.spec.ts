@@ -7,7 +7,7 @@ describe('password.value-object', () => {
 
     expect(password.isSuccess).toBe(true);
     expect(password.getResult().value).toBe('123abc');
-    expect(password.getResult().isAlreadyEncrypt()).toBe(false);
+    expect(password.getResult().isAlreadyEncrypt).toBe(false);
   });
 
   it('should fail if password is not on range min 3 char and max 20 char', () => {
@@ -35,8 +35,42 @@ describe('password.value-object', () => {
 
   it('should create a valid password and encrypted after create', async () => {
     const password = PasswordValueObject.create('123abc');
-    expect(password.getResult().isAlreadyEncrypt()).toBe(false);
+    expect(password.getResult().isAlreadyEncrypt).toBe(false);
     await password.getResult().encryptPassWord();
-    expect(password.getResult().isAlreadyEncrypt()).toBe(true);
+    expect(password.getResult().isAlreadyEncrypt).toBe(true);
+  });
+
+  it('should compare an encripted password and return true if matches', async () => {
+    const password = PasswordValueObject.create('123abc');
+    expect(password.getResult().isAlreadyEncrypt).toBe(false);
+
+    const isEqualPlainText = await password
+      .getResult()
+      .comparePasswords('123abc');
+    expect(isEqualPlainText).toBe(true);
+
+    await password.getResult().encryptPassWord();
+    expect(password.getResult().isAlreadyEncrypt).toBe(true);
+    const isEqualEncrypted = await password
+      .getResult()
+      .comparePasswords('123abc');
+    expect(isEqualEncrypted).toBe(true);
+  });
+
+  it('should compare an encripted password and return false if does not match', async () => {
+    const password = PasswordValueObject.create('123abc');
+    expect(password.getResult().isAlreadyEncrypt).toBe(false);
+
+    const isEqualPlainText = await password
+      .getResult()
+      .comparePasswords('invalid_password');
+    expect(isEqualPlainText).toBe(false);
+
+    await password.getResult().encryptPassWord();
+    expect(password.getResult().isAlreadyEncrypt).toBe(true);
+    const isEqualEncrypted = await password
+      .getResult()
+      .comparePasswords('invalid_password');
+    expect(isEqualEncrypted).toBe(false);
   });
 });
