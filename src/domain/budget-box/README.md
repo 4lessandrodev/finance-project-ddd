@@ -3,11 +3,11 @@
 ```json
 {
   "id": "uuid",
-  "ownerId": "uuid",
+  "owner-id": "uuid",
   "description": "valid_description",
-  "balanceAvaliable": 1000,
-  "isPercentual": true,
-  "budgetPercentage": 80,
+  "balance-avaliable": 1000,
+  "is-percentual": true,
+  "budgetP-prcentage": 80,
   "reasons": [
     {
       "id": "uuid",
@@ -19,7 +19,7 @@
 
 ### Structure
 
-- BudgetBox: Aggregate - Ok
+- Budgetbox: Aggregate - Ok
 - reason-description: Value Object - Ok
 - budget-description: Value Object - Ok
 - budget-id: Value Object - Ok

@@ -2,21 +2,21 @@
 
 ```json
 {
-  "userId": "uuid",
-  "totalValue": 100,
+  "user-id": "uuid",
+  "total-value": 100,
   "reasonId": "uuid",
-  "paymentDate": "2021-01-01 10:00:00",
+  "payment-date": "2021-01-01 10:00:00",
   "transaction-type": "Entrada" | "Saida",
   "status": "Pendente" | "Concluído",
   "note": "valid_description",
   "attachment": "url",
   "transaction-calculations": [
     {
-      "budgetBoxId": "uuid",
+      "budgetbox-id": "uuid",
       "Value": 50
     },
     {
-      "budgetBoxId": "uuid",
+      "budgetbox-id": "uuid",
       "Value": 50
     }
   ]
@@ -28,4 +28,4 @@
 - note: Value Object - Ok
 - attachment-path: Value Object - Ok
 - transaction-calculations: Value Object - Ok
-- paymentDate: Value Object - Ok
+- payment-date: Value Object - Ok
