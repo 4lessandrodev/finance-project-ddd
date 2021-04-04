@@ -1,11 +1,14 @@
 import { ErrorMessages, Result, ValueObject } from '@shared/index';
 import { hashSync, compareSync } from 'bcrypt';
+import { PasswordInterface } from './interfaces/password.interface';
 const isEncryptPass = /\$2b\$\d\d\$[\s\S]{53}|{.}\b/gm;
 
 export interface PasswordValueObjectProps {
   value: string;
 }
-export class PasswordValueObject extends ValueObject<PasswordValueObjectProps> {
+export class PasswordValueObject
+  extends ValueObject<PasswordValueObjectProps>
+  implements PasswordInterface {
   private isEncrypted: boolean;
   private constructor(props: PasswordValueObjectProps, isEncrypted: boolean) {
     super(props);
@@ -16,7 +19,7 @@ export class PasswordValueObject extends ValueObject<PasswordValueObjectProps> {
     return this.props.value;
   }
 
-  isAlreadyEncrypt(): boolean {
+  get isAlreadyEncrypt(): boolean {
     return isEncryptPass.test(this.props.value);
   }
 
