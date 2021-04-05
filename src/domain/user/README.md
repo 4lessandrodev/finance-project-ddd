@@ -2,7 +2,7 @@
 
 ---
 
-Este é o agregado usuario que pode sua vez identificara a quem pertence os caixas e as transações.
+Este é o agregado usuário que por sua vez identificará a quem pertence os caixas e as transações.
 Para atender a nova lei do LGPD o usuário deve aceitar os termos ao se cadastrar na plataforma e/ou
 sempre quando houver uma alguma alteração no mesmo.
 
