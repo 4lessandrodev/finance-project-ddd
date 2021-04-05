@@ -1,3 +1,60 @@
-#TASKS TODO 
+#TASKS TODO INTERFACES
+☐ User repository interface
+☐ Budget box repository interface
+☐ Transaction repository interface
+
+#TASKS TODO USECASES  
+☐ Signup use case DTO
 ☐ Signup use case
+☐ Sigin use case DTO
 ☐ Sigin use case
+☐ Block user use case DTO
+☐ Block user use case 
+☐ Unblock user use case DTO
+☐ Unblock user use case 
+☐ Delete user use case DTO
+☐ Delete user use case 
+☐ Create a new budget box use case DTO
+☐ Create a new budget box use case 
+☐ Change budget box percentage use case DTO
+☐ Change budget box percentage use case 
+☐ Transform budget box on non percentage box use case DTO
+☐ Transform budget box on non percentage box use case
+☐ Transform a non percentage box on percentage box one use case DTO
+☐ Transform a non percentage box on percentage box one use case 
+☐ Add a new reason on a budget box use case DTO
+☐ Add a new reason on a budget box use case 
+☐ Change reason description use case DTO
+☐ Change reason description use case
+☐ Remove an reason from a budget box use case DTO
+☐ Remove an reason from a budget box use case  
+☐ Delete budget box use case DTO
+☐ Delete budget box use case 
+☐ Register a new "ENTRADA" use case DTO
+☐ Register a new "ENTRADA" use case
+☐ Register a new "SAIDA" use case DTO
+☐ Register a new "SAIDA" use case 
+☐ Upload a new attachment use case DTO
+☐ Upload a new attachment use case
+☐ Unregister a "ENTRADA" use case DTO
+☐ Unregister a "ENTRADA" use case 
+☐ Unregister a "SAIDA" use case DTO
+☐ Unregister a "SAIDA" use case
+☐ Move balance avaliable value from a box to another use case DTO
+☐ Move balance avaliable value from a box to another use case
+
+#TASKS TODO MAPPER
+☐ User mapper
+☐ Budget box mapper
+☐ Transaction mapper 
+
+#TASKS TODO REPOSITORY 
+☐ User repository 
+☐ Budget box repository
+☐ Transaction repository
+
+#TASKS TODO SCHEMAS 
+☐ User schema 
+☐ Transaction schema
+☐ Budget box reason schema
+☐ Budget box schema

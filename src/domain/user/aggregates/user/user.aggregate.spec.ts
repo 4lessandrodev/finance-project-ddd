@@ -75,9 +75,9 @@ describe('user.aggregate', () => {
     expect(userResult.isDeleted).toBeFalsy();
     expect(userResult.password.value).toBe('valid_password');
     expect(userResult.totalBalanceAvaliable).toBe(0);
-    expect(userResult.terms[0].value.acceptedAt.value).toBeDefined();
-    expect(userResult.terms[0].value.ip.value).toBe('45.192.110.42');
-    expect(userResult.terms[0].value.userAgent).toEqual({
+    expect(userResult.terms[0].terms.acceptedAt.value).toBeDefined();
+    expect(userResult.terms[0].terms.ip.value).toBe('45.192.110.42');
+    expect(userResult.terms[0].terms.userAgent).toEqual({
       name: 'firefox',
       os: 'LINUX',
       type: 'browser',

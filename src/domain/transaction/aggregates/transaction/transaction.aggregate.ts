@@ -5,14 +5,14 @@ import {
   Result,
   UniqueEntityID,
 } from '@shared/index';
-import { UserIdValueObject } from '@domain/user/value-objects';
 import {
   AttachmentPathValueObject,
   TransactionCalculationValueObject,
   TransactionNoteValueObject,
   TransactionStatusValueObject,
   TransactionTypeValueObject,
-} from '@domain/transaction/value-objects';
+  UserIdValueObject,
+} from '@domain/index';
 
 export interface TransactionAggregateProps {
   userId: UserIdValueObject;
@@ -27,9 +27,13 @@ export interface TransactionAggregateProps {
 
 export class TransactionAggregate extends AggregateRoot<TransactionAggregateProps> {
   private _totalValue: number;
-  private constructor(props: TransactionAggregateProps, id?: UniqueEntityID) {
+  private constructor(
+    props: TransactionAggregateProps,
+    total: number,
+    id?: UniqueEntityID,
+  ) {
     super(props, id);
-    this._totalValue = 0;
+    this._totalValue = total;
   }
 
   get totalValue(): number {
@@ -68,21 +72,20 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
     return this.props.attachment ?? null;
   }
 
-  private calculateTotal(): number {
-    const total = this.props.transactionCalculations.reduce(
-      (total, calc) => calc.calculation.value + total,
-      0,
-    );
-    this._totalValue = total;
-    return total;
-  }
-
   public static create(
     props: TransactionAggregateProps,
     id?: UniqueEntityID,
   ): Result<TransactionAggregate> {
-    const transaction = new TransactionAggregate(props, id);
-    transaction.calculateTotal();
-    return Result.ok<TransactionAggregate>(transaction);
+    /**
+     * total is calculated dinamicaly. Its the sum of calculation values
+     */
+    const total = props.transactionCalculations.reduce(
+      (total, calc) => calc.calculation.value + total,
+      0,
+    );
+
+    return Result.ok<TransactionAggregate>(
+      new TransactionAggregate(props, total, id),
+    );
   }
 }

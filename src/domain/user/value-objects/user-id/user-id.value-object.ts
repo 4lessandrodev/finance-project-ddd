@@ -1,4 +1,4 @@
-import { Entity, Result, UniqueEntityID } from '../../../shared';
+import { Entity, Result, UniqueEntityID } from '@shared/index';
 
 export class UserIdValueObject extends Entity<any> {
   private constructor(id?: UniqueEntityID) {

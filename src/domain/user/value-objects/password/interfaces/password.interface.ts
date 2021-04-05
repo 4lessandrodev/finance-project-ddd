@@ -1,4 +1,4 @@
 export interface PasswordInterface {
-  encryptPassWord: () => Promise<void>;
+  encryptPassword: () => Promise<void>;
   comparePasswords: (plainText: string) => Promise<boolean>;
 }

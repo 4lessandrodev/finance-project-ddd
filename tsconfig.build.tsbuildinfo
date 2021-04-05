@@ -1476,64 +1476,9 @@
         "signature": "8530e9a593e8573aa0f2e125a74805e4902b0dd8d0d815f0251ef3940e9b575c",
         "affectsGlobalScope": false
       },
-      "./src/domain/shared/common/error-messages/messages.ts": {
-        "version": "797ec6e4c38ae7315faf7ef0705b7c1df34915dd3559812eba8258b7b5614257",
-        "signature": "382796bd3a09653a25ab1752a1fefd3e14681bdab0676ed8af455da25f2854ce",
-        "affectsGlobalScope": false
-      },
-      "./src/domain/shared/index.ts": {
-        "version": "8d1a171a3529827a814f2c7409521e17497ebd80e2ee373211a802158c2966d7",
-        "signature": "8d1a171a3529827a814f2c7409521e17497ebd80e2ee373211a802158c2966d7",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/validator/index.d.ts": {
-        "version": "4538d6984fc78e9886c00aa0cc7910dd25dc7a82edf7935aaf2141a3683f1bbb",
-        "signature": "4538d6984fc78e9886c00aa0cc7910dd25dc7a82edf7935aaf2141a3683f1bbb",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/validator/lib/isEmail.d.ts": {
-        "version": "f23020970d02995b5bb608516cebb43655849d079cafeb839ff8c87d8fa8b8be",
-        "signature": "f23020970d02995b5bb608516cebb43655849d079cafeb839ff8c87d8fa8b8be",
-        "affectsGlobalScope": false
-      },
-      "./src/domain/user/value-objects/email/email.value-object.ts": {
-        "version": "8a061872c0364fef940d3fe28c04da6a71c954e427982e778fb7555787199f64",
-        "signature": "307692746dc75b35872bf7c164325936156474fb9b3fd697723028084e674ab2",
-        "affectsGlobalScope": false
-      },
-      "./src/domain/user/value-objects/ip/ip.value-object.ts": {
-        "version": "49a0f95e5c8c51e80c55c8189210577ef44557d4b0980e42b8abbf2a8f8ecffb",
-        "signature": "2b9288942a0034b2b174f8689ff8c5fefe7a403b1a753f110e3b3f374937e8e0",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/bcrypt/index.d.ts": {
-        "version": "18b9a9702d2fc7d3766b0c8124133c761ad25a9d767925005777eb2c2cd8aeba",
-        "signature": "18b9a9702d2fc7d3766b0c8124133c761ad25a9d767925005777eb2c2cd8aeba",
-        "affectsGlobalScope": false
-      },
-      "./src/domain/user/value-objects/password/password.value-object.ts": {
-        "version": "99ccd3e321033526cf3f0c76cf1ee8caf1bd0bd553974d6bd9db7376b9d447ed",
-        "signature": "6e6933908df8af3ecfa80ac890795cdc22ea98f672bbe837b090bff8b36d52e3",
-        "affectsGlobalScope": false
-      },
-      "./src/domain/user/value-objects/term/term.value-object.ts": {
-        "version": "2b17f5b0cb45ede54741f366ba7882a6214d888b8da22c462376a37b42f09180",
-        "signature": "fdb4b584f47fa736e4d95e93d34e0746461df596042b8f3cd30ff9d8af3af5e3",
-        "affectsGlobalScope": false
-      },
-      "./src/domain/user/value-objects/user-id/user-id.value-object.ts": {
-        "version": "df5f4a690c24e8d0c3028f7f6179d1646fa2e2ceff871f48aed8428ea867eab0",
-        "signature": "075853a8db560ef19d12e7c48692b58b2af9d8eb5ebf9ba99e4c0c0f3e6f554a",
-        "affectsGlobalScope": false
-      },
-      "./src/domain/user/value-objects/index.ts": {
-        "version": "5d3a483016da2072951d53846d84035641270fbc1750141648e44cb7e8ad25db",
-        "signature": "5d3a483016da2072951d53846d84035641270fbc1750141648e44cb7e8ad25db",
-        "affectsGlobalScope": false
-      },
       "./src/domain/budget-box/value-objects/budget-description/budget-description.value-object.ts": {
-        "version": "90a147280f5ef8a4565f0508fa711b6aba3649537e44e10d83290bfb3b752641",
-        "signature": "b0c343e3b5a8cb8923180e06634d7537c640bc1cb4238b7d5dc2df11e264ec97",
+        "version": "c319c8bc2a449ad0499ea8398e1b0613d9e12980c471b2b7f85c84afd91c2b80",
+        "signature": "c611b9886788b1a1ece70558e80ad84f0a0f0a2bd74dfc44ec55e73c2de2c3a9",
         "affectsGlobalScope": false
       },
       "./src/domain/budget-box/value-objects/budget-id/budget-id.value-object.ts": {
@@ -1542,13 +1487,13 @@
         "affectsGlobalScope": false
       },
       "./src/domain/budget-box/value-objects/percentage/percentage.value-object.ts": {
-        "version": "f9d4105ba4bb83783831b38417345e6b6825e7e7bcbc2a17d7f1cfc300143a73",
-        "signature": "34f512b5b5530fa826a6edab55d87ce157d7a8471f25e5f0535c7db38c4f1721",
+        "version": "c67dacbce0ae10bef38fb3ac8e64fedb3d847a06b592d86dfd56f4bbf1996bee",
+        "signature": "cb0678e59cafc2ca018ec714b21c384d426ac3c7c0e3b4f5686257b2471c7c38",
         "affectsGlobalScope": false
       },
       "./src/domain/budget-box/value-objects/reason-description/reason-description.value-object.ts": {
-        "version": "ded9dad3bc94005ceba123026131d05de6dfcab4fb896ac61e2937e2d9d91f60",
-        "signature": "7b3466e6dfa19a3058b8d660c276e7f3433b03d6a07e232879c3f1bac2902b9d",
+        "version": "0831804e6dfad251ffe2a3ae48607fe227e2328f282e68627559b6a9c4171cb9",
+        "signature": "bfaf3e31d421dcb138b638f1e1fb2e68f9555f680324fc0d41afb10c05550e29",
         "affectsGlobalScope": false
       },
       "./src/domain/budget-box/value-objects/index.ts": {
@@ -1556,24 +1501,9 @@
         "signature": "bf2f488091a621a7cfb70842fce9d75ca5ee2fc89edca18d0cbe6ee26c314448",
         "affectsGlobalScope": false
       },
-      "./src/domain/budget-box/entities/reason.domain-entity.ts": {
-        "version": "6ed44d24b8284c97dba5e87ffe79868eafdc71c68e2722ae200f5351a53904e7",
-        "signature": "f5ee92fb69018d853e4c716f834eadaa10c77ec841c345ef74c3fc4172042580",
-        "affectsGlobalScope": false
-      },
-      "./src/domain/budget-box/entities/index.ts": {
-        "version": "4e7463a899a35bc55faf7688badf674dfa03520160b0c61da8f66ae2a366068d",
-        "signature": "4e7463a899a35bc55faf7688badf674dfa03520160b0c61da8f66ae2a366068d",
-        "affectsGlobalScope": false
-      },
-      "./src/domain/budget-box/aggregates/budget-box/budget-box.aggregate.ts": {
-        "version": "b2f79e06bca34771e2c5f8f93dd8e4b4aafbf6d5b8761ef2c3ed41a062acb2d2",
-        "signature": "45e994830dab93c1980dc3ee7a3762fdecb174fdd14206b1f4d8ab9014359ad2",
-        "affectsGlobalScope": false
-      },
-      "./src/domain/budget-box/aggregates/index.ts": {
-        "version": "38c48ce5155c3a4544560b6a95a42cebb26b472eb6fc0a19be0009a8bf2f649a",
-        "signature": "38c48ce5155c3a4544560b6a95a42cebb26b472eb6fc0a19be0009a8bf2f649a",
+      "./node_modules/@types/validator/index.d.ts": {
+        "version": "4538d6984fc78e9886c00aa0cc7910dd25dc7a82edf7935aaf2141a3683f1bbb",
+        "signature": "4538d6984fc78e9886c00aa0cc7910dd25dc7a82edf7935aaf2141a3683f1bbb",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/validator/lib/isURL.d.ts": {
@@ -1582,18 +1512,18 @@
         "affectsGlobalScope": false
       },
       "./src/domain/transaction/value-objects/attachment-path/attachment-path.value-object.ts": {
-        "version": "dd4b5873264f6d92cfa198513821763fb77d493b51087cf6946c2cd62ddc28f7",
+        "version": "ef5637b3fde2d78cbc7d225a17657060396ef650478788b22047008b421a96a3",
         "signature": "ab9f9eaf2fdeed4dd61e5175bb110d387f6e318433997536196bd0fd422b05b9",
         "affectsGlobalScope": false
       },
       "./src/domain/transaction/value-objects/transaction-calculations/transaction-calculations.value-object.ts": {
-        "version": "40782bf0c85c7519285b94567b2e1bf4423af4ec267c98dc327f7a63fe8c137c",
-        "signature": "674150e39fe1c7b773d19af54f5c7035396e588b02708719915b41a7048f7eea",
+        "version": "917be3128e130c78f5a0a5656188be27430b90ddd2731161d5c304de7bb5401e",
+        "signature": "0a93b9420ddf5481287f4e90f6a789b85101e6ea0b99b27252b125ec84acc40d",
         "affectsGlobalScope": false
       },
       "./src/domain/transaction/value-objects/transaction-note/transaction-note.value-object.ts": {
-        "version": "095d4398730ae9845c5b69c88be67820aa5c747e1ca1ff1798b4e8b53526362e",
-        "signature": "3bf4a71ec74e29897c10140681340e11f436eb9b2acff1558f58a4d2b167bc52",
+        "version": "52ed5409b291456d6df7eb0c753ad05e5fec81cd5671f389ad209d4929888745",
+        "signature": "66f5788612a6296a5d2da1fd57f4881bee02387f97d5281724a96cb594d8ad4c",
         "affectsGlobalScope": false
       },
       "./src/domain/transaction/value-objects/transaction-status/transaction-status.value-object.ts": {
@@ -1611,9 +1541,84 @@
         "signature": "1bc08ea775a1109bd2819c6dda7762f7240776b3301ecf30044ce7bee9a6afea",
         "affectsGlobalScope": false
       },
+      "./node_modules/@types/validator/lib/isEmail.d.ts": {
+        "version": "f23020970d02995b5bb608516cebb43655849d079cafeb839ff8c87d8fa8b8be",
+        "signature": "f23020970d02995b5bb608516cebb43655849d079cafeb839ff8c87d8fa8b8be",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/user/value-objects/email/email.value-object.ts": {
+        "version": "038e99d59174e6c096c60113dc0369795385e532153238ec7b8e2778e6aa5c88",
+        "signature": "1b2107e9d7a366c2b545ad62e32f1c728752fb31d3b3d9c05e09938af9d92fa4",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/user/value-objects/ip/ip.value-object.ts": {
+        "version": "49a0f95e5c8c51e80c55c8189210577ef44557d4b0980e42b8abbf2a8f8ecffb",
+        "signature": "2b9288942a0034b2b174f8689ff8c5fefe7a403b1a753f110e3b3f374937e8e0",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/bcrypt/index.d.ts": {
+        "version": "18b9a9702d2fc7d3766b0c8124133c761ad25a9d767925005777eb2c2cd8aeba",
+        "signature": "18b9a9702d2fc7d3766b0c8124133c761ad25a9d767925005777eb2c2cd8aeba",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/user/value-objects/password/interfaces/password.interface.ts": {
+        "version": "eab360c887af2040d0ca63011b153fdc3d4c77675a53052d65465f9464b5791e",
+        "signature": "61a1213974068cbba54c840dca37020fa6d271d8e11e4413173c98be901cdf15",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/user/value-objects/password/password.value-object.ts": {
+        "version": "411abd11f9ba16c1b140311b0ad1bc047c4c6d02b57b044736690b5d84db7e7f",
+        "signature": "a936284167e74eccb80abdd39a259155336e677feb90794da1af461143af964b",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/user/value-objects/term/term.value-object.ts": {
+        "version": "850678365a2753e6da11e75602ee7e43c44dde7cfccab419fb40251476fb9e16",
+        "signature": "3dcb71efcb9c0a70ee7ab4553be6a3febd95848854cc986878ce4056bca60d43",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/user/value-objects/user-id/user-id.value-object.ts": {
+        "version": "87eb394d3ab0e865f8a2fd8c3c8a646f801f1ee095950eea699b574a8131d244",
+        "signature": "d74cc2892bec5869d985becaf01ebf7036f06d729393603640b66d2060791063",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/user/value-objects/index.ts": {
+        "version": "5d3a483016da2072951d53846d84035641270fbc1750141648e44cb7e8ad25db",
+        "signature": "5d3a483016da2072951d53846d84035641270fbc1750141648e44cb7e8ad25db",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/shared/common/error-messages/messages.ts": {
+        "version": "ef33bf206fb517d5f047f8f532f3688f9a79f1aec22ab211c5deac740b76101d",
+        "signature": "382796bd3a09653a25ab1752a1fefd3e14681bdab0676ed8af455da25f2854ce",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/shared/index.ts": {
+        "version": "8d1a171a3529827a814f2c7409521e17497ebd80e2ee373211a802158c2966d7",
+        "signature": "8d1a171a3529827a814f2c7409521e17497ebd80e2ee373211a802158c2966d7",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/budget-box/entities/reason.domain-entity.ts": {
+        "version": "6ed44d24b8284c97dba5e87ffe79868eafdc71c68e2722ae200f5351a53904e7",
+        "signature": "f5ee92fb69018d853e4c716f834eadaa10c77ec841c345ef74c3fc4172042580",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/budget-box/entities/index.ts": {
+        "version": "4e7463a899a35bc55faf7688badf674dfa03520160b0c61da8f66ae2a366068d",
+        "signature": "4e7463a899a35bc55faf7688badf674dfa03520160b0c61da8f66ae2a366068d",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/budget-box/aggregates/budget-box/budget-box.aggregate.ts": {
+        "version": "108933a5ac177ea73ef51f3f34d03d933803f7c362fdc093979c1cf54e9fc336",
+        "signature": "bd086ebab6d7f4a8d8f85ea5abec3d126bf0ccf5014f1ad5b4160ae6fbd9fdd7",
+        "affectsGlobalScope": false
+      },
+      "./src/domain/budget-box/aggregates/index.ts": {
+        "version": "38c48ce5155c3a4544560b6a95a42cebb26b472eb6fc0a19be0009a8bf2f649a",
+        "signature": "38c48ce5155c3a4544560b6a95a42cebb26b472eb6fc0a19be0009a8bf2f649a",
+        "affectsGlobalScope": false
+      },
       "./src/domain/transaction/aggregates/transaction/transaction.aggregate.ts": {
-        "version": "341e6165091f0bdcc79d81224d1fcd8bb4ba9b5cfdf59f966726a12d0d465560",
-        "signature": "778077208fd0474d042382fbb503f6cb4f7f4f6c433633f45d04630a34adb9e7",
+        "version": "f247807e9f5fcb7ad08fd02f1f91f12bc7660bcd0c6db34de74d0299c49c2277",
+        "signature": "848c5edd508cd96bb7b7ff2002a7bd39a2b1e68da028dd597e640f5c8bcb478d",
         "affectsGlobalScope": false
       },
       "./src/domain/transaction/aggregates/index.ts": {
@@ -4259,7 +4264,10 @@
         "./src/domain/shared/index.ts"
       ],
       "./src/domain/shared/common/error-messages/messages.ts": [
-        "./node_modules/date-fns/typings.d.ts"
+        "./node_modules/date-fns/typings.d.ts",
+        "./src/domain/budget-box/value-objects/index.ts",
+        "./src/domain/transaction/value-objects/index.ts",
+        "./src/domain/user/value-objects/index.ts"
       ],
       "./src/domain/shared/common/reason-id/reason-id.value-object.ts": [
         "./node_modules/date-fns/typings.d.ts",
@@ -4396,10 +4404,14 @@
         "./node_modules/date-fns/typings.d.ts",
         "./src/domain/shared/index.ts"
       ],
+      "./src/domain/user/value-objects/password/interfaces/password.interface.ts": [
+        "./node_modules/date-fns/typings.d.ts"
+      ],
       "./src/domain/user/value-objects/password/password.value-object.ts": [
         "./node_modules/@types/bcrypt/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./src/domain/shared/index.ts"
+        "./src/domain/shared/index.ts",
+        "./src/domain/user/value-objects/password/interfaces/password.interface.ts"
       ],
       "./src/domain/user/value-objects/term/term.value-object.ts": [
         "./node_modules/date-fns/typings.d.ts",
@@ -6532,7 +6544,8 @@
         "./src/domain/shared/index.ts"
       ],
       "./src/domain/user/value-objects/password/password.value-object.ts": [
-        "./src/domain/shared/index.ts"
+        "./src/domain/shared/index.ts",
+        "./src/domain/user/value-objects/password/interfaces/password.interface.ts"
       ],
       "./src/domain/user/value-objects/term/term.value-object.ts": [
         "./src/domain/shared/index.ts",
@@ -6975,6 +6988,7 @@
       "./src/domain/user/value-objects/email/email.value-object.ts",
       "./src/domain/user/value-objects/index.ts",
       "./src/domain/user/value-objects/ip/ip.value-object.ts",
+      "./src/domain/user/value-objects/password/interfaces/password.interface.ts",
       "./src/domain/user/value-objects/password/password.value-object.ts",
       "./src/domain/user/value-objects/term/term.value-object.ts",
       "./src/domain/user/value-objects/user-id/user-id.value-object.ts",

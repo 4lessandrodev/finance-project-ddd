@@ -4,7 +4,7 @@ import {
   ValueObject,
   DateValueObject,
 } from '@shared/index';
-import { IpValueObject } from '@domain/user/value-objects';
+import { IpValueObject } from '@domain/index';
 
 export enum IOs {
   LINUX = 'LINUX',
@@ -17,10 +17,12 @@ export enum IOs {
   IPAD = 'IPAD',
 }
 
+export type systemTypes = keyof typeof IOs;
+
 export interface IUserAgent {
   name: string;
   version: string;
-  os: keyof typeof IOs;
+  os: systemTypes;
   type: string;
 }
 
@@ -35,7 +37,7 @@ export class TermValueObject extends ValueObject<TermValueObjectProps> {
     super(props);
   }
 
-  get value(): TermValueObjectProps {
+  get terms(): TermValueObjectProps {
     return this.props;
   }
 

@@ -1,5 +1,7 @@
-import { BudgetIdValueObject } from '@domain/budget-box/value-objects';
+import { BudgetIdValueObject } from '@domain/index';
 import { ErrorMessages, Result, ValueObject } from '@shared/index';
+
+export const TRANSACTION_CALCULATION_MIN_VALUE = 0;
 
 interface calcultionProps {
   budgetBoxId: BudgetIdValueObject;
@@ -22,7 +24,7 @@ export class TransactionCalculationValueObject extends ValueObject<TransactionCa
   public static create(
     calculation: calcultionProps,
   ): Result<TransactionCalculationValueObject> {
-    const isValidValue = calculation.value >= 0;
+    const isValidValue = calculation.value >= TRANSACTION_CALCULATION_MIN_VALUE;
 
     if (!isValidValue) {
       return Result.fail<TransactionCalculationValueObject>(

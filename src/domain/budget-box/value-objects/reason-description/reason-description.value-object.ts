@@ -1,5 +1,7 @@
 import { ErrorMessages, Result, ValueObject } from '@shared/index';
 
+export const REASON_DESCRIPTION_MAX_LENGHT = 20;
+export const REASON_DESCRIPTION_MIN_LENGHT = 1;
 export interface ReasonDescriptionValueObjectProps {
   value: string;
 }
@@ -17,7 +19,8 @@ export class ReasonDescriptionValueObject extends ValueObject<ReasonDescriptionV
     description: string,
   ): Result<ReasonDescriptionValueObject> {
     const isValidLength =
-      description.trim().length >= 1 && description.trim().length <= 20;
+      description.trim().length >= REASON_DESCRIPTION_MIN_LENGHT &&
+      description.trim().length <= REASON_DESCRIPTION_MAX_LENGHT;
     if (!isValidLength) {
       return Result.fail<ReasonDescriptionValueObject>(
         ErrorMessages.INVALID_REASON_DESCRIPTION_LENGHT,

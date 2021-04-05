@@ -1,6 +1,9 @@
+export const PASSWORD_MIN_LENGHT = 3;
+export const PASSWORD_MAX_LENGHT = 20;
 import { ErrorMessages, Result, ValueObject } from '@shared/index';
 import { hashSync, compareSync } from 'bcrypt';
 import { PasswordInterface } from './interfaces/password.interface';
+const SALT = 10;
 const isEncryptPass = /\$2b\$\d\d\$[\s\S]{53}|{.}\b/gm;
 
 export interface PasswordValueObjectProps {
@@ -19,15 +22,19 @@ export class PasswordValueObject
     return this.props.value;
   }
 
-  get isAlreadyEncrypt(): boolean {
-    return isEncryptPass.test(this.props.value);
+  get isAlreadyEncrypted(): boolean {
+    return this.isEncrypted;
   }
 
-  async encryptPassWord(): Promise<void> {
-    this.props.value = hashSync(this.props.value, 10);
+  async encryptPassword(): Promise<void> {
+    this.props.value = hashSync(this.props.value, SALT);
     this.isEncrypted = true;
   }
-
+  /**
+   *
+   * @param plainText password not encrypted as string
+   * @returns `true` if match and `false` else not
+   */
   async comparePasswords(plainText: string): Promise<boolean> {
     if (this.isEncrypted) {
       return compareSync(plainText, this.props.value);
@@ -40,7 +47,8 @@ export class PasswordValueObject
 
     if (!isEncrypt) {
       const isValidPasswordLength =
-        password.length >= 3 && password.length <= 20;
+        password.length >= PASSWORD_MIN_LENGHT &&
+        password.length <= PASSWORD_MAX_LENGHT;
 
       if (!isValidPasswordLength) {
         return Result.fail<PasswordValueObject>(

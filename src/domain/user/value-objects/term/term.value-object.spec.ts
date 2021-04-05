@@ -35,7 +35,7 @@ describe('term.value-object', () => {
     });
 
     expect(term.isSuccess).toBe(true);
-    expect(term.getResult().value).toBe(term.getResult().value);
+    expect(term.getResult().terms).toBe(term.getResult().terms);
   });
 
   it('should fail if provide an invalid os', () => {

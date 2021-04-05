@@ -1,10 +1,10 @@
-import { BudgetIdValueObject } from '@domain/budget-box/value-objects';
 import { AggregateRoot, Result, UniqueEntityID } from '@shared/index';
 import {
   EmailValueObject,
   PasswordValueObject,
   TermValueObject,
-} from '@domain/user/value-objects';
+  BudgetIdValueObject,
+} from '@domain/index';
 
 export interface UserAggregateProps {
   email: EmailValueObject;
