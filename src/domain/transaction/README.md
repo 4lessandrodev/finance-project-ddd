@@ -1,5 +1,11 @@
 # Transaction - Aggregate
 
+---
+
+Este agregado identifica cada lançamento do usuário, seja entrada ou saída.
+O total deve ser a soma dos valores de cada item na lista de calculos da transação.
+Só pode haver dois tipos de lançamento: "Entrada" ou "Saida".
+
 ```json
 {
   "user-id": "uuid",

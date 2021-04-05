@@ -5,7 +5,7 @@
 Preciso de um sistema que gerencie minhas finanças.
 Entradas e Saídas de capital.
 
-    Eu faço a contabilidade de minhas finaças da seguinte forma:
+    Eu faço a contabilidade de minhas finanças da seguinte forma:
     Em uma planilha do excel tenho o controle de entradas e saídas de capital.
     Se é um recebimento de capital eu lanço como receita.
     Se é um pagamento de qualquer tipo de dívida eu lanço como despesa.
