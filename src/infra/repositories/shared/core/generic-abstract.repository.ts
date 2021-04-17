@@ -7,10 +7,11 @@ import { MapperInterface } from './interfaces/mapper.interface';
 
 export abstract class GenericAbstractRepository<
   TargetPersistence,
-  DomainAggreate
+  DomainAggreate,
+  ORM
 > implements GenericRepositoryInterface<TargetPersistence, DomainAggreate> {
   constructor(
-    protected readonly connection: ConnectionInterface<TargetPersistence>,
+    protected readonly connection: ConnectionInterface<TargetPersistence, ORM>,
     protected readonly mapper: MapperInterface<
       TargetPersistence,
       DomainAggreate
@@ -45,5 +46,9 @@ export abstract class GenericAbstractRepository<
   async exist(filter: FilterInterface): Promise<boolean> {
     const exist = await this.connection.find(filter);
     return !!exist;
+  }
+
+  orm(): ORM {
+    return this.connection.orm();
   }
 }
