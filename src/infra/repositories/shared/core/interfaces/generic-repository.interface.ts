@@ -7,7 +7,7 @@ export interface GenericRepositoryInterface<
   DomainAggregate
 > {
   save: (entity: TargetPersistence) => Promise<void>;
-  delete: () => Promise<void>;
-  find: (filter: FilterInterface) => Promise<DomainAggregate[]>;
+  delete: (id: string) => Promise<void>;
+  find: (filter: FilterInterface) => Promise<DomainAggregate[] | null>;
   exist: (filter: FilterInterface) => Promise<boolean>;
 }
