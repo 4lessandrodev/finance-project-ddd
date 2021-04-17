@@ -5,7 +5,9 @@ describe('accepted-at.value-object', () => {
     const acceptedAt = DateValueObject.create(new Date('2020-01-02 10:00:00'));
 
     expect(acceptedAt.isSuccess).toBe(true);
-    expect(acceptedAt.getResult().value).toBe('2020-01-02 10:00:00');
+    expect(acceptedAt.getResult().value).toEqual(
+      new Date('2020-01-02 10:00:00'),
+    );
   });
 
   it('should fail if provide an invalid date', () => {

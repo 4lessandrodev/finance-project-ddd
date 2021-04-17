@@ -1,5 +1,5 @@
 #TASKS TODO INTERFACES
-☐ User repository interface
+✔ User repository interface @done(21-04-17 13:34)
 ☐ Budget box repository interface
 ☐ Transaction repository interface
 
@@ -43,12 +43,18 @@
 ☐ Move balance avaliable value from a box to another use case DTO
 ☐ Move balance avaliable value from a box to another use case
 
+#TASKS TODO INFRA ENTITY INTERFACES
+✔ User interface @done(21-04-17 13:37)
+☐ Budget box interface
+☐ Transaction interface
+
 #TASKS TODO MAPPER
-☐ User mapper
+✔ User mapper @done(21-04-17 18:02)
 ☐ Budget box mapper
 ☐ Transaction mapper 
 
 #TASKS TODO REPOSITORY 
+✔ Generic repository @done(21-04-17 19:13)
 ☐ User repository 
 ☐ Budget box repository
 ☐ Transaction repository
