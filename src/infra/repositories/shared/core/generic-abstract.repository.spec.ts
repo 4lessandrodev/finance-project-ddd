@@ -3,12 +3,21 @@ import { ConnectionInterface } from './interfaces/connection.interface';
 import { MapperInterface } from './interfaces/mapper.interface';
 
 describe('generic-abstract.repository', () => {
+  // Define an ORM type
+  const ORM = {
+    findOne: () => 1,
+    findMany: () => [1, 2, 3],
+    exist: () => true,
+  };
+
+  type typeORM = typeof ORM;
   //
   // Mock connection
-  const connection: ConnectionInterface<any> = {
+  const connection: ConnectionInterface<any, typeORM> = {
     delete: jest.fn(),
     find: jest.fn(),
     save: jest.fn(),
+    orm: () => ORM,
   };
   // Mapper mock
   const mapper: MapperInterface<any, any> = {
@@ -16,7 +25,11 @@ describe('generic-abstract.repository', () => {
     toPersistence: jest.fn(),
   };
   //
-  const mockRepo = class mock extends GenericAbstractRepository<string, any> {};
+  const mockRepo = class mock extends GenericAbstractRepository<
+    string,
+    any,
+    typeORM
+  > {};
 
   it('should be definied', () => {
     const instance = new mockRepo(connection, mapper);
@@ -64,5 +77,12 @@ describe('generic-abstract.repository', () => {
 
     await instance.delete('valid_id');
     expect(connection.delete).toHaveBeenCalled();
+  });
+
+  it('should call orm method from connection', () => {
+    const instance = new mockRepo(connection, mapper);
+
+    const orm = instance.orm();
+    expect(orm.findOne()).toBe(1);
   });
 });
