@@ -14,10 +14,21 @@
     "strict": true,
     "baseUrl": "src",
     "paths": {
-      "@domain/*":["domain/*"],
-      "@shared-core/*":["domain/shared/core/*"],
-      "@shared-common/*":["domain/shared/common/*"],
-      "@shared/*":["domain/shared/*"]
+      "@domain/*": [
+        "domain/*"
+      ],
+      "@shared-core/*": [
+        "domain/shared/core/*"
+      ],
+      "@shared-common/*": [
+        "domain/shared/common/*"
+      ],
+      "@shared/*": [
+        "domain/shared/*"
+      ],
+      "@infra/*": [
+        "infra/*"
+      ]
     }
   }
 }

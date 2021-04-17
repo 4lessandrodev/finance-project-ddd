@@ -17,5 +17,6 @@ module.exports = {
     '@shared-core/(.*)': '<rootDir>/src/domain/shared/core/$1',
     '@shared-common/(.*)': '<rootDir>/src/domain/shared/common/$1',
     '@shared/(.*)': '<rootDir>/src/domain/shared/$1',
+    '@infra/(.*)': '<rootDir>/src/infra/$1',
   },
 };
