@@ -1,5 +1,5 @@
 import { Result, ValueObject } from '../..';
-import { format, isDate } from 'date-fns';
+import { isDate } from 'date-fns';
 
 export interface AcceptedAtValueObjectProps {
   value: Date;
@@ -10,8 +10,8 @@ export class DateValueObject extends ValueObject<AcceptedAtValueObjectProps> {
     super(props);
   }
 
-  get value(): string {
-    return format(this.props.value, 'yyyy-MM-dd hh:mm:ss');
+  get value(): Date {
+    return this.props.value;
   }
 
   public static create(date: Date): Result<DateValueObject> {

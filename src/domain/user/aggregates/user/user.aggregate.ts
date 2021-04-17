@@ -1,4 +1,9 @@
-import { AggregateRoot, Result, UniqueEntityID } from '@shared/index';
+import {
+  AggregateRoot,
+  BaseDomainEntity,
+  Result,
+  UniqueEntityID,
+} from '@shared/index';
 import {
   EmailValueObject,
   PasswordValueObject,
@@ -6,7 +11,7 @@ import {
   BudgetIdValueObject,
 } from '@domain/index';
 
-export interface UserAggregateProps {
+export interface UserAggregateProps extends BaseDomainEntity {
   email: EmailValueObject;
   password: PasswordValueObject;
   budgetBoxIds?: BudgetIdValueObject[];
@@ -37,6 +42,10 @@ export class UserAggregate extends AggregateRoot<UserAggregateProps> {
 
   get terms(): TermValueObject[] {
     return this.props.terms;
+  }
+
+  get deletedAt(): Date | undefined {
+    return this.props.deletedAt;
   }
 
   public static create(
