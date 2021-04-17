@@ -3,38 +3,47 @@ import {
   FilterInterface,
   GenericRepositoryInterface,
 } from './interfaces/generic-repository.interface';
+import { MapperInterface } from './interfaces/mapper.interface';
 
 export abstract class GenericAbstractRepository<
   TargetPersistence,
   DomainAggreate
 > implements GenericRepositoryInterface<TargetPersistence, DomainAggreate> {
   constructor(
-    private readonly connection: ConnectionInterface<TargetPersistence>,
-    private readonly mapper: any,
+    protected readonly connection: ConnectionInterface<TargetPersistence>,
+    protected readonly mapper: MapperInterface<
+      TargetPersistence,
+      DomainAggreate
+    >,
   ) {}
 
   async save(entity: TargetPersistence): Promise<void> {
-    console.log(entity);
-
-    return;
+    await this.connection.save(entity);
   }
 
-  async delete(): Promise<void> {
-    this.connection;
-    return;
+  async delete(id: string): Promise<void> {
+    const entityExist = await this.exist({ id });
+    if (entityExist) {
+      this.connection.delete(id);
+    }
   }
 
-  async find(filter: FilterInterface): Promise<DomainAggreate[]> {
-    console.log(filter);
+  async find(filter: FilterInterface): Promise<DomainAggreate[] | null> {
+    const foundRegisters = await this.connection.find(filter);
 
-    const target = [{ target: 'value' }];
-    this.mapper;
-    return (target as unknown) as DomainAggreate[];
+    if (!foundRegisters) {
+      return null;
+    }
+
+    const foundRegistersAsDomain = foundRegisters.map((register) =>
+      this.mapper.toDomain(register),
+    );
+
+    return foundRegistersAsDomain;
   }
 
   async exist(filter: FilterInterface): Promise<boolean> {
-    console.log(filter);
-
-    return true;
+    const exist = await this.connection.find(filter);
+    return !!exist;
   }
 }
