@@ -1,4 +1,4 @@
-export interface TermPersistence {
+export interface UserAgentPersistence {
   name: string;
   version: string;
   os: string;
@@ -8,5 +8,5 @@ export interface TermPersistence {
 export interface TermPersistence {
   ip: string;
   acceptedAt: string;
-  terms: TermPersistence;
+  userAgent: UserAgentPersistence;
 }
