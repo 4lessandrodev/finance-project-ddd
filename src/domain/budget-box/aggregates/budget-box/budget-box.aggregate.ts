@@ -16,6 +16,14 @@ export interface BudgetAggregateProps {
   budgetPercentage: PercentageValueObject;
   reasons: ReasonDomainEntity[];
 }
+/**
+  @var ownerId: `UserIdValueObject`
+  @var description: `BudgetDescriptionValueObject`
+  @var balanceAvaliable: `number`
+  @var isPercentual: `boolean`
+  @var budgetPercentage: `PercentageValueObject`
+  @var reasons: `ReasonDomainEntity[]`
+ */
 export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
   private constructor(props: BudgetAggregateProps, id?: UniqueEntityID) {
     super(props, id);

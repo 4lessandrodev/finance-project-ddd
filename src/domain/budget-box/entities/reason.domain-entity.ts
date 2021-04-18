@@ -10,6 +10,9 @@ export interface ReasonProps extends BaseDomainEntity {
   description: ReasonDescriptionValueObject;
 }
 
+/**
+ * @var description: `ReasonDescriptionValueObject`
+ */
 export class ReasonDomainEntity extends Entity<ReasonProps> {
   private constructor(props: ReasonProps, id?: UniqueEntityID) {
     super(props, id);

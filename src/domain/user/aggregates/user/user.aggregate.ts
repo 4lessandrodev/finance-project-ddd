@@ -19,6 +19,13 @@ export interface UserAggregateProps extends BaseDomainEntity {
   terms: TermValueObject[];
 }
 
+/**
+ * @var email: `EmailValueObject`
+ * @var password: `PasswordValueObject`
+ * @var budgetBoxIds?: `BudgetIdValueObject[]`
+ * @var totalBalanceAvaliable: `number`
+ * @var terms: `TermValueObject[]`
+ */
 export class UserAggregate extends AggregateRoot<UserAggregateProps> {
   private constructor(props: UserAggregateProps, id?: UniqueEntityID) {
     super(props, id);
