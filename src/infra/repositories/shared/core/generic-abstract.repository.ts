@@ -1,16 +1,40 @@
-import { ConnectionInterface } from './interfaces/connection.interface';
 import {
   FilterInterface,
+  ConnectionInterface,
   GenericRepositoryInterface,
-} from './interfaces/generic-repository.interface';
-import { MapperInterface } from './interfaces/mapper.interface';
+  MapperInterface,
+} from '@infra/repositories/shared';
 
+/**
+ * `UserPersistence` as Entity to persist on database and
+ * `DomainAggregate` as Aggregate Entity
+ * `ORM` as instance or connection or installed ORM
+ * @example UserPersistence from infra
+ * @example UserAggregate from domain
+ * @example ORM return method types `findOne` `finMany` ...
+ *
+ * @implements GenericRepositoryInterface
+ * @see GenericRepositoryInterface
+ */
 export abstract class GenericAbstractRepository<
   TargetPersistence,
-  DomainAggreate
-> implements GenericRepositoryInterface<TargetPersistence, DomainAggreate> {
+  DomainAggreate,
+  ORM
+> implements
+    GenericRepositoryInterface<TargetPersistence, DomainAggreate, ORM> {
+  /**
+   *
+   * @param connection instance of ORM connection
+   * @param mapper instance of entity mapper
+   *
+   * @example
+   * ConnectionInterface<TargetPersistence, ORM>,
+   *
+   * @example
+   * MapperInterface<TargetPersistence, DomainAggreate >,
+   */
   constructor(
-    protected readonly connection: ConnectionInterface<TargetPersistence>,
+    protected readonly connection: ConnectionInterface<TargetPersistence, ORM>,
     protected readonly mapper: MapperInterface<
       TargetPersistence,
       DomainAggreate
@@ -24,7 +48,7 @@ export abstract class GenericAbstractRepository<
   async delete(id: string): Promise<void> {
     const entityExist = await this.exist({ id });
     if (entityExist) {
-      this.connection.delete(id);
+      await this.connection.delete(id);
     }
   }
 
@@ -45,5 +69,9 @@ export abstract class GenericAbstractRepository<
   async exist(filter: FilterInterface): Promise<boolean> {
     const exist = await this.connection.find(filter);
     return !!exist;
+  }
+
+  orm(): ORM {
+    return this.connection.orm();
   }
 }

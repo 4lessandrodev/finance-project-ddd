@@ -11,8 +11,23 @@ import {
   TermValueObject,
 } from '@domain/user/value-objects';
 
+/**
+ * @description transform a entity from database on domain aggregate
+ * @implements MapperInterface
+ * @with `UserPersistence`
+ * @with `UserAggregate`
+ * @see MapperInterface
+ */
 export class UserMapper implements MapperInterface<Entity, UserAggregate> {
   //
+  /**
+   *
+   * @param target UserAggregate
+   * @returns UserPersistence
+   *
+   * @see UserAggregate
+   * @see UserPersistence
+   */
   toPersistence(target: UserAggregate): Entity {
     return {
       id: target.id.toString(),
@@ -32,6 +47,14 @@ export class UserMapper implements MapperInterface<Entity, UserAggregate> {
     };
   }
   //
+  /**
+   *
+   * @param target UserPersistence
+   * @returns UserAggregate
+   *
+   * @see UserPersistence
+   * @see UserAggregate
+   */
   toDomain(target: Entity): UserAggregate {
     return UserAggregate.create(
       {

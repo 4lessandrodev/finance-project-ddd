@@ -25,6 +25,16 @@ export interface TransactionAggregateProps {
   attachment?: AttachmentPathValueObject;
 }
 
+/**
+ * @var userId: `UserIdValueObject`
+ * @var reasonId: `ReasonIdValueObject`
+ * @var paymentDate: `DateValueObject`
+ * @var transactionType: `TransactionTypeValueObject`
+ * @var status: `TransactionStatusValueObject`
+ * @var transactionCalculations: `TransactionCalculationValueObject[]`
+ * @var note?: `TransactionNoteValueObject`
+ * @var attachment?: `AttachmentPathValueObject`
+ */
 export class TransactionAggregate extends AggregateRoot<TransactionAggregateProps> {
   private _totalValue: number;
   private constructor(
