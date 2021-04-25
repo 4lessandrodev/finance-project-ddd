@@ -1,8 +1,6 @@
-import { UserAggregate } from '@domain/user/aggregates';
 import { ConnectionInterface } from '@infra/repositories/shared';
 import {
   UserPersistence,
-  UserRepositoryInterface,
   UserMapper,
   UserRepository,
 } from '@infra/repositories/user';
@@ -23,11 +21,7 @@ describe('user.repository', () => {
   };
 
   // fake User repository
-  let userRepo: UserRepositoryInterface<
-    UserPersistence,
-    UserAggregate,
-    typeORM
-  >;
+  let userRepo: UserRepository;
 
   // Instatiate user repository
   beforeAll(() => {

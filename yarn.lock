@@ -5909,6 +5909,13 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
+types-ddd@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/types-ddd/-/types-ddd-0.0.3.tgz#60fc7742bf3498c6b55738e6cdd3d2591ba1331f"
+  integrity sha512-g2aZMzHJoi9Qm3RNlNCOBu6emFd6WbFpXqpOnjQqTOfnygMIvLDmZd1TLQ/PbnfAF+m72uAtAdfnePw2nnGrVg==
+  dependencies:
+    uuid "^8.3.2"
+
 typescript@4.1.5:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.5.tgz#123a3b214aaff3be32926f0d8f1f6e704eb89a72"

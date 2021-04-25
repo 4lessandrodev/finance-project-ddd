@@ -1,4 +1,5 @@
-import { Result, ValueObject, ErrorMessages } from '@shared/index';
+import { ErrorMessages } from '@shared/index';
+import { Result, ValueObject } from 'types-ddd';
 
 export const BUDGET_DESCRIPTION_MAX_LENGHT = 30;
 export const BUDGET_DESCRIPTION_MIN_LENGHT = 1;
