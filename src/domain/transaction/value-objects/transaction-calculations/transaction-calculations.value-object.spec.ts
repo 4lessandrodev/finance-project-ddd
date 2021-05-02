@@ -1,5 +1,6 @@
 import { BudgetIdValueObject } from '@domain/budget-box/value-objects';
-import { ErrorMessages, UniqueEntityID } from '@shared/index';
+import { ErrorMessages } from '@shared/index';
+import { UniqueEntityID } from 'types-ddd';
 import { TransactionCalculationValueObject } from './transaction-calculations.value-object';
 
 describe('transaction-calculations.value-object', () => {

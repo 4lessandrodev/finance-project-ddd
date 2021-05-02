@@ -1,5 +1,5 @@
 #TASKS TODO INTERFACES
-☐ User repository interface
+✔ User repository interface @started(21-05-02 14:55) @done(21-05-02 15:10) @lasted(15m30s)
 ☐ Budget box repository interface
 ☐ Transaction repository interface
 
@@ -54,7 +54,7 @@
 ☐ Transaction mapper 
 
 #TASKS TODO REPOSITORY 
-☐ User repository
+☐ User repository @started(21-05-02 15:10)
 ☐ Budget box repository
 ☐ Transaction repository
 

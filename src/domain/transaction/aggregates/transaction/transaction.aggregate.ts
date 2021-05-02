@@ -1,10 +1,5 @@
-import {
-  AggregateRoot,
-  DateValueObject,
-  ReasonIdValueObject,
-  Result,
-  UniqueEntityID,
-} from '@shared/index';
+import { AggregateRoot, Result, UniqueEntityID } from 'types-ddd';
+import { DateValueObject, ReasonIdValueObject } from '@shared/index';
 import {
   AttachmentPathValueObject,
   TransactionCalculationValueObject,
@@ -87,7 +82,7 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
     id?: UniqueEntityID,
   ): Result<TransactionAggregate> {
     /**
-     * total is calculated dinamicaly. Its the sum of calculation values
+     * total is calculated dynamically. Its the sum of calculation values
      */
     const total = props.transactionCalculations.reduce(
       (total, calc) => calc.calculation.value + total,

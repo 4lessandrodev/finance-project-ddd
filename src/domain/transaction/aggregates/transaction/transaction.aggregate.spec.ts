@@ -2,7 +2,6 @@ import {
   BudgetIdValueObject,
   ReasonIdValueObject,
 } from '@domain/budget-box/value-objects';
-import { UniqueEntityID } from '@shared/index';
 import { DateValueObject } from '@shared/index';
 import { UserIdValueObject } from '@domain/user/value-objects';
 import {
@@ -13,6 +12,7 @@ import {
   TransactionTypeValueObject,
 } from '@domain/transaction/value-objects';
 import { TransactionAggregate } from './transaction.aggregate';
+import { UniqueEntityID } from 'types-ddd';
 
 describe('transaction.aggregate', () => {
   it('should create a valid transaction', () => {

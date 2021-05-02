@@ -1,15 +1,16 @@
 import { BudgetIdValueObject } from '@domain/index';
-import { ErrorMessages, Result, ValueObject } from '@shared/index';
+import { ErrorMessages } from '@shared/index';
+import { Result, ValueObject } from 'types-ddd';
 
 export const TRANSACTION_CALCULATION_MIN_VALUE = 0;
 
-interface calcultionProps {
+interface calculationProps {
   budgetBoxId: BudgetIdValueObject;
   value: number;
 }
 
 export interface TransactionCalculationValueObjectProps {
-  calculation: calcultionProps;
+  calculation: calculationProps;
 }
 
 export class TransactionCalculationValueObject extends ValueObject<TransactionCalculationValueObjectProps> {
@@ -17,12 +18,12 @@ export class TransactionCalculationValueObject extends ValueObject<TransactionCa
     super(props);
   }
 
-  get calculation(): calcultionProps {
+  get calculation(): calculationProps {
     return this.props.calculation;
   }
 
   public static create(
-    calculation: calcultionProps,
+    calculation: calculationProps,
   ): Result<TransactionCalculationValueObject> {
     const isValidValue = calculation.value >= TRANSACTION_CALCULATION_MIN_VALUE;
 

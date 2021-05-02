@@ -18,5 +18,6 @@ module.exports = {
     '@shared-common/(.*)': '<rootDir>/src/domain/shared/common/$1',
     '@shared/(.*)': '<rootDir>/src/domain/shared/$1',
     '@infra/(.*)': '<rootDir>/src/infra/$1',
+    '@repo/(.*)': '<rootDir>/src/repo/$1',
   },
 };
