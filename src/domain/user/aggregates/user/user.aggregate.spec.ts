@@ -1,13 +1,13 @@
-import { BudgetIdValueObject } from '../../../budget-box/value-objects';
-import { UniqueEntityID } from '../../../shared';
+import { UserAggregate } from './user.aggregate';
+import { BudgetIdValueObject } from '@domain/budget-box/value-objects';
 import {
   DateValueObject,
   EmailValueObject,
   IpValueObject,
   PasswordValueObject,
   TermValueObject,
-} from '../../value-objects';
-import { UserAggregate } from './user.aggregate';
+} from '@domain/user/value-objects';
+import { UniqueEntityID } from 'types-ddd';
 
 describe('user.aggregate', () => {
   it('should create a valid user', () => {
