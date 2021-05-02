@@ -15,7 +15,7 @@ export interface UserAggregateProps extends BaseDomainEntity {
   email: EmailValueObject;
   password: PasswordValueObject;
   budgetBoxIds?: BudgetIdValueObject[];
-  totalBalanceAvaliable: number;
+  totalBalanceAvailable: number;
   terms: TermValueObject[];
 }
 
@@ -23,7 +23,7 @@ export interface UserAggregateProps extends BaseDomainEntity {
  * @var email: `EmailValueObject`
  * @var password: `PasswordValueObject`
  * @var budgetBoxIds?: `BudgetIdValueObject[]`
- * @var totalBalanceAvaliable: `number`
+ * @var totalBalanceAvailable: `number`
  * @var terms: `TermValueObject[]`
  */
 export class UserAggregate extends AggregateRoot<UserAggregateProps> {
@@ -43,8 +43,8 @@ export class UserAggregate extends AggregateRoot<UserAggregateProps> {
     return this.props.budgetBoxIds ?? [];
   }
 
-  get totalBalanceAvaliable(): number {
-    return this.props.totalBalanceAvaliable;
+  get totalBalanceAvailable(): number {
+    return this.props.totalBalanceAvailable;
   }
 
   get terms(): TermValueObject[] {

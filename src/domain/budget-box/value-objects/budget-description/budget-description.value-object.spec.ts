@@ -21,7 +21,7 @@ describe('description.value-object', () => {
     const description = BudgetDescriptionValueObject.create(' ');
     expect(description.isFailure).toBe(true);
     expect(description.error).toBe(
-      ErrorMessages.INVALID_BUDGET_DESCRIPTION_LENGHT,
+      ErrorMessages.INVALID_BUDGET_DESCRIPTION_LENGTH,
     );
   });
 
@@ -31,7 +31,7 @@ describe('description.value-object', () => {
     );
     expect(description.isFailure).toBe(true);
     expect(description.error).toBe(
-      ErrorMessages.INVALID_BUDGET_DESCRIPTION_LENGHT,
+      ErrorMessages.INVALID_BUDGET_DESCRIPTION_LENGTH,
     );
   });
 });

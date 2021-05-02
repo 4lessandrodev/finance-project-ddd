@@ -1,5 +1,5 @@
-export const PASSWORD_MIN_LENGHT = 3;
-export const PASSWORD_MAX_LENGHT = 20;
+export const PASSWORD_MIN_LENGTH = 3;
+export const PASSWORD_MAX_LENGTH = 20;
 import { ErrorMessages, Result, ValueObject } from '@shared/index';
 import { hashSync, compareSync } from 'bcrypt';
 import { PasswordInterface } from './interfaces/password.interface';
@@ -47,12 +47,12 @@ export class PasswordValueObject
 
     if (!isEncrypt) {
       const isValidPasswordLength =
-        password.length >= PASSWORD_MIN_LENGHT &&
-        password.length <= PASSWORD_MAX_LENGHT;
+        password.length >= PASSWORD_MIN_LENGTH &&
+        password.length <= PASSWORD_MAX_LENGTH;
 
       if (!isValidPasswordLength) {
         return Result.fail<PasswordValueObject>(
-          ErrorMessages.INVALID_PASSWORD_LENGHT,
+          ErrorMessages.INVALID_PASSWORD_LENGTH,
         );
       }
     }

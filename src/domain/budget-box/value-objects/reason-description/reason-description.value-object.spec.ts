@@ -21,17 +21,17 @@ describe('description.value-object', () => {
     const description = ReasonDescriptionValueObject.create(' ');
     expect(description.isFailure).toBe(true);
     expect(description.error).toBe(
-      ErrorMessages.INVALID_REASON_DESCRIPTION_LENGHT,
+      ErrorMessages.INVALID_REASON_DESCRIPTION_LENGTH,
     );
   });
 
-  it('should fail if provide long description (greatter than 20 char)', () => {
+  it('should fail if provide long description (greater than 20 char)', () => {
     const description = ReasonDescriptionValueObject.create(
-      'Invalid description lenght greatter than max 20 char',
+      'Invalid description length greater than max 20 char',
     );
     expect(description.isFailure).toBe(true);
     expect(description.error).toBe(
-      ErrorMessages.INVALID_REASON_DESCRIPTION_LENGHT,
+      ErrorMessages.INVALID_REASON_DESCRIPTION_LENGTH,
     );
   });
 });

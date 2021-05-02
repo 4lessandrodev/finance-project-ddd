@@ -14,6 +14,6 @@ describe('transaction-note.value-object', () => {
     Consectetur ipsam minus rerum non.`);
 
     expect(note.isSuccess).toBe(false);
-    expect(note.error).toBe(ErrorMessages.INVALID_TRANSACTION_NOTE_LENGHT);
+    expect(note.error).toBe(ErrorMessages.INVALID_TRANSACTION_NOTE_LENGTH);
   });
 });

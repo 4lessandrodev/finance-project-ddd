@@ -1,5 +1,5 @@
 #TASKS TODO INTERFACES
-✔ User repository interface @done(21-04-17 13:34)
+☐ User repository interface
 ☐ Budget box repository interface
 ☐ Transaction repository interface
 
@@ -44,23 +44,46 @@
 ☐ Move balance avaliable value from a box to another use case
 
 #TASKS TODO INFRA ENTITY INTERFACES
-✔ User interface @done(21-04-17 13:37)
+✔ User interface @started(21-05-02 13:32) @done(21-05-02 13:47) @lasted(15m35s)
 ☐ Budget box interface
 ☐ Transaction interface
 
 #TASKS TODO MAPPER
-✔ User mapper @done(21-04-17 18:02)
+☐ User mapper
 ☐ Budget box mapper
 ☐ Transaction mapper 
 
 #TASKS TODO REPOSITORY 
-✔ Generic repository @done(21-04-17 19:13)
-✔ User repository @done(21-04-17 21:15)
+☐ User repository
 ☐ Budget box repository
 ☐ Transaction repository
 
 #TASKS TODO SCHEMAS 
-☐ User schema 
+✔ User schema @done(21-05-02 13:49)
 ☐ Transaction schema
 ☐ Budget box reason schema
 ☐ Budget box schema
+
+#Configs
+✔ Install mongoose nest/mongoose @done(21-05-02 13:30)
+✔ Update types-ddd dependency @started(21-05-02 13:26) @done(21-05-02 13:27) @lasted(1m26s)
+✔ Refactor error message apply correct grammar @done(21-05-02 13:25)
+
+#Nest Modules 
+☐ Create user module 
+☐ Create user service
+☐ Create user graphql schema 
+☐ Create user mutation
+☐ Create user resolver
+
+☐ Create budgetBox module 
+☐ Create budgetBox service
+☐ Create budgetBox graphql schema 
+☐ Create budgetBox mutation
+☐ Create budgetBox resolver
+
+☐ Create transaction module 
+☐ Create transaction service
+☐ Create transaction graphql schema 
+☐ Create transaction mutation
+☐ Create transaction resolver

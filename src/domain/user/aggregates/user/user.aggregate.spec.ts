@@ -14,7 +14,7 @@ describe('user.aggregate', () => {
     const user = UserAggregate.create({
       email: EmailValueObject.create('valid_mail@domain.com').getResult(),
       password: PasswordValueObject.create('valid_password').getResult(),
-      totalBalanceAvaliable: 0,
+      totalBalanceAvailable: 0,
       budgetBoxIds: [
         BudgetIdValueObject.create(
           new UniqueEntityID('valid_id_1'),
@@ -44,7 +44,7 @@ describe('user.aggregate', () => {
     const user = UserAggregate.create({
       email: EmailValueObject.create('valid_mail@domain.com').getResult(),
       password: PasswordValueObject.create('valid_password').getResult(),
-      totalBalanceAvaliable: 0,
+      totalBalanceAvailable: 0,
       budgetBoxIds: [
         BudgetIdValueObject.create(
           new UniqueEntityID('valid_id_1'),
@@ -74,7 +74,7 @@ describe('user.aggregate', () => {
     expect(userResult.email.value).toBe('valid_mail@domain.com');
     expect(userResult.isDeleted).toBeFalsy();
     expect(userResult.password.value).toBe('valid_password');
-    expect(userResult.totalBalanceAvaliable).toBe(0);
+    expect(userResult.totalBalanceAvailable).toBe(0);
     expect(userResult.terms[0].terms.acceptedAt.value).toBeDefined();
     expect(userResult.terms[0].terms.ip.value).toBe('45.192.110.42');
     expect(userResult.terms[0].terms.userAgent).toEqual({
@@ -95,7 +95,7 @@ describe('user.aggregate', () => {
     const user = UserAggregate.create({
       email: EmailValueObject.create('valid_mail@domain.com').getResult(),
       password: PasswordValueObject.create('valid_password').getResult(),
-      totalBalanceAvaliable: 0,
+      totalBalanceAvailable: 0,
       terms: [
         TermValueObject.create({
           acceptedAt: DateValueObject.create(new Date()).getResult(),
@@ -118,7 +118,7 @@ describe('user.aggregate', () => {
       {
         email: EmailValueObject.create('valid_mail@domain.com').getResult(),
         password: PasswordValueObject.create('valid_password').getResult(),
-        totalBalanceAvaliable: 0,
+        totalBalanceAvailable: 0,
         budgetBoxIds: [
           BudgetIdValueObject.create(
             new UniqueEntityID('valid_id_1'),
