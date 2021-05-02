@@ -34,7 +34,7 @@ export class User {
   budgetBoxIds!: string[];
 
   @Prop({ type: Number, required: true, default: 0 })
-  totalBalanceAvailable!: string;
+  totalBalanceAvailable!: number;
 
   @Prop({ type: Array, required: true })
   terms!: Array<Term>;

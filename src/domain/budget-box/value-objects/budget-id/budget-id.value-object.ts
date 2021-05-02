@@ -1,4 +1,4 @@
-import { Entity, Result, UniqueEntityID } from '@shared/index';
+import { Entity, Result, UniqueEntityID } from 'types-ddd';
 
 export class BudgetIdValueObject extends Entity<any> {
   private constructor(id?: UniqueEntityID) {

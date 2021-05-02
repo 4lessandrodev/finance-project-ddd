@@ -1,15 +1,15 @@
 import {
-  AggregateRoot,
-  BaseDomainEntity,
-  Result,
-  UniqueEntityID,
-} from '@shared/index';
-import {
   EmailValueObject,
   PasswordValueObject,
   TermValueObject,
   BudgetIdValueObject,
 } from '@domain/index';
+import {
+  AggregateRoot,
+  BaseDomainEntity,
+  Result,
+  UniqueEntityID,
+} from 'types-ddd';
 
 export interface UserAggregateProps extends BaseDomainEntity {
   email: EmailValueObject;
