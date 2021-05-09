@@ -11,8 +11,6 @@ sempre quando houver uma alguma alteração no mesmo.
   "id": "uuid",
   "email": "example@mail.com",
   "password": "123456",
-  "budgetbox-ids": ["uuid", "uuid"],
-  "total-balance-avaliable": 10.0,
   "terms": [
     {
       "ip": "120.06.09.011",

@@ -7,7 +7,6 @@ import {
   TermValueObject,
 } from '@domain/user/value-objects';
 import { UniqueEntityID } from 'types-ddd/dist/src';
-import { BudgetIdValueObject } from '../../../domain';
 import { User } from '../entities/user.schema';
 import { UserMapper } from './user.mapper';
 
@@ -24,15 +23,6 @@ describe('user.mapper', () => {
       {
         email: EmailValueObject.create('valid_mail@domain.com').getResult(),
         password: PasswordValueObject.create('valid_password').getResult(),
-        totalBalanceAvailable: 0,
-        budgetBoxIds: [
-          BudgetIdValueObject.create(
-            new UniqueEntityID('valid_id_1'),
-          ).getResult(),
-          BudgetIdValueObject.create(
-            new UniqueEntityID('valid_id_2'),
-          ).getResult(),
-        ],
         terms: [
           TermValueObject.create({
             acceptedAt: DateValueObject.create(currentDate).getResult(),
@@ -53,7 +43,6 @@ describe('user.mapper', () => {
 
     // Create persistence user
     persistence = {
-      budgetBoxIds: ['valid_id_1', 'valid_id_2'],
       createdAt: currentDate,
       email: 'valid_mail@domain.com',
       id: 'valid_id',
@@ -70,7 +59,6 @@ describe('user.mapper', () => {
           },
         },
       ],
-      totalBalanceAvailable: 0,
       updatedAt: currentDate,
     };
   });

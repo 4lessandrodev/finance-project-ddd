@@ -5,7 +5,7 @@
 São os caixas financeiros os quais o usuário irá cadastrar e definir sua meta em percentual.
 Podendo também ser categorizado como um benefício.
 
-Caso este esteja defnido como benefício o percentual não pode ser diferente de 100%.
+Caso este esteja definido como benefício o percentual não pode ser diferente de 100%.
 
 A soma de todos os caixas cadastrados e definidos como percentual não pode ultrapassar 100%.
 bem como nenhum caixa percentual individual não pode ter a meta superior a 100%.
@@ -28,7 +28,7 @@ exemplo:
   "id": "uuid",
   "owner-id": "uuid",
   "description": "valid_description",
-  "balance-avaliable": 1000,
+  "balance-available": 1000,
   "is-percentual": true,
   "budget-percentage": 80,
   "reasons": [

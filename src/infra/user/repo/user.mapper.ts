@@ -1,4 +1,3 @@
-import { BudgetIdValueObject } from '@domain/budget-box/value-objects';
 import { IMapper, UniqueEntityID } from 'types-ddd';
 import { UserAggregate } from '@domain/user/aggregates';
 import { User } from '../entities/user.schema';
@@ -28,10 +27,6 @@ export class UserMapper implements IMapper<UserAggregate, User> {
             },
           }).getResult(),
         ),
-        totalBalanceAvailable: target.totalBalanceAvailable,
-        budgetBoxIds: target.budgetBoxIds.map((box) =>
-          BudgetIdValueObject.create(new UniqueEntityID(box)).getResult(),
-        ),
         createdAt: target.createdAt,
         updatedAt: target.updatedAt,
       },
@@ -44,8 +39,6 @@ export class UserMapper implements IMapper<UserAggregate, User> {
       id: target.id.toString(),
       email: target.email.value,
       password: target.password.value,
-      totalBalanceAvailable: target.totalBalanceAvailable,
-      budgetBoxIds: target.budgetBoxIds.map(({ id }) => id.toString()),
       createdAt: target.createdAt,
       updatedAt: target.updatedAt,
       terms: target.terms.map(({ terms }) => ({

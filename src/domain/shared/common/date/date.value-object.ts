@@ -1,5 +1,5 @@
-import { Result, ValueObject } from '../..';
 import { isDate } from 'date-fns';
+import { Result, ValueObject } from 'types-ddd';
 
 export interface AcceptedAtValueObjectProps {
   value: Date;

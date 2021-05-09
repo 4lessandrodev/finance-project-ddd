@@ -21,6 +21,10 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs/common": "^7.6.15",
+    "@nestjs/core": "^7.6.15",
+    "@nestjs/mongoose": "^7.2.4",
+    "@nestjs/platform-express": "^7.6.15",
     "bcrypt": "^5.0.1",
     "date-fns": "2.21.2",
     "module-alias": "^2.2.2",

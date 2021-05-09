@@ -1,4 +1,5 @@
-import { ErrorMessages, Result, ValueObject } from '@shared/index';
+import { ErrorMessages } from '@shared/index';
+import { Result, ValueObject } from 'types-ddd';
 const validateIpRegex = /\b(?:(?:2(?:[0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9])\.){3}(?:(?:2([0-4][0-9]|5[0-5])|[0-1]?[0-9]?[0-9]))\b/;
 
 export interface IpValueObjectProps {

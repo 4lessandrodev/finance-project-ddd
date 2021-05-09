@@ -1,7 +1,8 @@
 export const PASSWORD_MIN_LENGTH = 3;
 export const PASSWORD_MAX_LENGTH = 20;
-import { ErrorMessages, Result, ValueObject } from '@shared/index';
+import { ErrorMessages } from '@shared/index';
 import { hashSync, compareSync } from 'bcrypt';
+import { Result, ValueObject } from 'types-ddd';
 import { PasswordInterface } from './interfaces/password.interface';
 const SALT = 10;
 const isEncryptPass = /\$2b\$\d\d\$[\s\S]{53}|{.}\b/gm;

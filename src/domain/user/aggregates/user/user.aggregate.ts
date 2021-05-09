@@ -14,16 +14,12 @@ import {
 export interface UserAggregateProps extends BaseDomainEntity {
   email: EmailValueObject;
   password: PasswordValueObject;
-  budgetBoxIds?: BudgetIdValueObject[];
-  totalBalanceAvailable: number;
   terms: TermValueObject[];
 }
 
 /**
  * @var email: `EmailValueObject`
  * @var password: `PasswordValueObject`
- * @var budgetBoxIds?: `BudgetIdValueObject[]`
- * @var totalBalanceAvailable: `number`
  * @var terms: `TermValueObject[]`
  */
 export class UserAggregate extends AggregateRoot<UserAggregateProps> {
@@ -37,14 +33,6 @@ export class UserAggregate extends AggregateRoot<UserAggregateProps> {
 
   get password(): PasswordValueObject {
     return this.props.password;
-  }
-
-  get budgetBoxIds(): BudgetIdValueObject[] {
-    return this.props.budgetBoxIds ?? [];
-  }
-
-  get totalBalanceAvailable(): number {
-    return this.props.totalBalanceAvailable;
   }
 
   get terms(): TermValueObject[] {

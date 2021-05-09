@@ -1,4 +1,5 @@
-import { ErrorMessages, Result, ValueObject } from '@shared/index';
+import { ErrorMessages } from '@shared/index';
+import { Result, ValueObject } from 'types-ddd';
 import isEmail from 'validator/lib/isEmail';
 
 export interface EmailValueObjectProps {
