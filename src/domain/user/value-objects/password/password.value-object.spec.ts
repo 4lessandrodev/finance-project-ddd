@@ -1,5 +1,5 @@
 import { PasswordValueObject } from './password.value-object';
-import { hashSync } from 'bcrypt';
+import { hashSync, genSaltSync } from 'bcrypt';
 
 describe('password.value-object', () => {
   it('should create a valid password', () => {
@@ -26,7 +26,10 @@ describe('password.value-object', () => {
   });
 
   it('should create a valid encrypted password', async () => {
-    const encryptedPass = hashSync('123abc', 10);
+
+	const salt = genSaltSync();
+//  deepcode ignore HardcodedNonCryptoSecret: <it is only test>
+ const encryptedPass = hashSync('123abc', salt);
     const password = PasswordValueObject.create(encryptedPass);
 
     expect(password.isSuccess).toBe(true);

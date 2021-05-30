@@ -1,10 +1,9 @@
 export const PASSWORD_MIN_LENGTH = 3;
 export const PASSWORD_MAX_LENGTH = 20;
 import { ErrorMessages } from '@shared/index';
-import { hashSync, compareSync } from 'bcrypt';
+import { hashSync, compareSync, genSaltSync } from 'bcrypt';
 import { Result, ValueObject } from 'types-ddd';
 import { PasswordInterface } from './interfaces/password.interface';
-const SALT = 10;
 const isEncryptPass = /\$2b\$\d\d\$[\s\S]{53}|{.}\b/gm;
 
 export interface PasswordValueObjectProps {
@@ -28,7 +27,8 @@ export class PasswordValueObject
   }
 
   async encryptPassword(): Promise<void> {
-    this.props.value = hashSync(this.props.value, SALT);
+	const salt =  genSaltSync();
+    this.props.value = hashSync(this.props.value, salt);
     this.isEncrypted = true;
   }
   /**
