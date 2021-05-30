@@ -70,20 +70,20 @@
 ✔ Refactor error message apply correct grammar @done(21-05-02 13:25)
 
 #Nest Modules 
-☐ Create user module 
+✔ Create user module @done(21-05-30 11:44)
 ☐ Create user service
-☐ Create user graphql schema 
+✔ Create user graphql types @done(21-05-30 11:44)
 ☐ Create user mutation
-☐ Create user resolver
+✔ Create user resolver @done(21-05-30 11:44)
 
 ☐ Create budgetBox module 
 ☐ Create budgetBox service
-☐ Create budgetBox graphql schema 
+☐ Create budgetBox graphql types 
 ☐ Create budgetBox mutation
 ☐ Create budgetBox resolver
 
 ☐ Create transaction module 
 ☐ Create transaction service
-☐ Create transaction graphql schema 
+☐ Create transaction graphql types 
 ☐ Create transaction mutation
 ☐ Create transaction resolver
