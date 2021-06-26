@@ -71,9 +71,9 @@
 
 #Nest Modules 
 ✔ Create user module @done(21-05-30 11:44)
-☐ Create user service
+☐ Create user service @started(21-06-26 12:13)
 ✔ Create user graphql types @done(21-05-30 11:44)
-☐ Create user mutation
+☐ Create user mutation @started(21-06-26 12:13)
 ✔ Create user resolver @done(21-05-30 11:44)
 
 ☐ Create budgetBox module 

@@ -35,3 +35,12 @@ type UserType {
 type Query {
   users: [UserType!]!
 }
+
+type Mutation {
+  signup(SinuptInput: SinuptInput!): Boolean!
+}
+
+input SinuptInput {
+  email: String!
+  password: String!
+}

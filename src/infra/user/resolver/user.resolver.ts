@@ -1,12 +1,18 @@
-import { Query, Resolver } from "@nestjs/graphql";
+import { Inject } from '@nestjs/common';
+import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { SinuptInput } from '../inputs/signup.input';
 import { UserType } from "../types/user.type";
+import { UserService } from '../user.service';
 
-@Resolver(()=> UserType)
+@Resolver(() => UserType)
 export class UserResolver {
-	//constructor(){}
+	constructor (
+		@Inject(UserService)
+		private readonly userService: UserService
+	) { }
 
-	@Query(()=> [UserType])
-	async users():Promise<UserType[]>{
+	@Query(() => [UserType])
+	async users (): Promise<UserType[]> {
 
 		const user = new UserType();
 		user.email = 'valid_email@domain.com';
@@ -14,15 +20,34 @@ export class UserResolver {
 		user.terms = [];
 		user.terms.push({
 			acceptedAt: new Date(),
-			ip:'123.123.123',
-			userAgent:{
-				name:'firefox',
-				os:'LINUX',
-				type:'browser',
-				version:'86.01'
+			ip: '123.123.123',
+			userAgent: {
+				name: 'firefox',
+				os: 'LINUX',
+				type: 'browser',
+				version: '86.01'
 			}
-		})
-		
+		});
+
 		return [user];
 	}
+
+	@Mutation(() => Boolean)
+	async signup (@Args(SinuptInput.name) user: SinuptInput): Promise<boolean> {
+		const result = await this.userService.signup({
+			...user,
+			term:
+			{
+				acceptedAt: new Date(),
+				ip: '123.123.123',
+				userAgent: {
+					name: 'firefox',
+					os: 'LINUX',
+					type: 'browser',
+					version: '86.01'
+				}
+			}
+		});
+		return result.isSuccess;
+	};
 }

@@ -4,13 +4,12 @@ import { TermType } from "./term.type";
 @ObjectType()
 export class UserType {
 
-	@Field(()=> ID)
+	@Field(() => ID)
 	id!: string;
 
-	@Field(()=> [TermType], {nullable: true})
-	terms!:TermType[];
+	@Field(() => [TermType!]!, { nullable: true })
+	terms!: TermType[];
 
-	@Field(()=> String)
-	email!:string;
-
+	@Field(() => String!)
+	email!: string;
 }

@@ -1,37 +1,40 @@
 {
-  "compilerOptions": {
-    "module": "CommonJS",
-    "rootDir": "src",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ES2019",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "incremental": true,
-    "strict": true,
-    "baseUrl": "src",
-    "paths": {
-      "@domain/*": [
-        "domain/*"
-      ],
-      "@shared-core/*": [
-        "domain/shared/core/*"
-      ],
-      "@shared-common/*": [
-        "domain/shared/common/*"
-      ],
-      "@shared/*": [
-        "domain/shared/*"
-      ],
-      "@infra/*": [
-        "infra/*"
-      ],
-      "@repo/*": [
-        "repo/*"
-      ]
-    }
-  }
+	"compilerOptions": {
+		"module": "CommonJS",
+		"rootDir": "src",
+		"declaration": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"target": "ES2019",
+		"sourceMap": true,
+		"outDir": "./dist",
+		"incremental": true,
+		"strict": true,
+		"baseUrl": "src",
+		"paths": {
+			"@domain/*": [
+				"domain/*"
+			],
+			"@shared-core/*": [
+				"domain/shared/core/*"
+			],
+			"@shared-common/*": [
+				"domain/shared/common/*"
+			],
+			"@shared/*": [
+				"domain/shared/*"
+			],
+			"@infra/*": [
+				"infra/*"
+			],
+			"@repo/*": [
+				"repo/*"
+			],
+			"@app/*": [
+				"application/*"
+			]
+		}
+	}
 }
