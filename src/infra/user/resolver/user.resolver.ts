@@ -20,7 +20,7 @@ export class UserResolver {
 		user.terms = [];
 		user.terms.push({
 			acceptedAt: new Date(),
-			ip: '123.123.123',
+			ip: '123.123.123.123',
 			userAgent: {
 				name: 'firefox',
 				os: 'LINUX',
@@ -34,12 +34,13 @@ export class UserResolver {
 
 	@Mutation(() => Boolean)
 	async signup (@Args(SinuptInput.name) user: SinuptInput): Promise<boolean> {
-		const result = await this.userService.signup({
+		const success = true;
+		await this.userService.signup({
 			...user,
 			term:
 			{
 				acceptedAt: new Date(),
-				ip: '123.123.123',
+				ip: '123.123.123.123',
 				userAgent: {
 					name: 'firefox',
 					os: 'LINUX',
@@ -48,6 +49,6 @@ export class UserResolver {
 				}
 			}
 		});
-		return result.isSuccess;
+		return success;
 	};
 }

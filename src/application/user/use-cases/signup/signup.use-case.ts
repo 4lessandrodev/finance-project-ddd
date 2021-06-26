@@ -11,7 +11,7 @@ import {
 import { Inject } from '@nestjs/common';
 import { IUserRepository } from '@repo/user.repository.interface';
 
-export class SignUpUseCas implements IUseCase<SignUpDto, Result<void>> {
+export class SignUpUseCase implements IUseCase<SignUpDto, Result<void>> {
 	//
 	constructor (
 		@Inject('UserRepository') private readonly userRepo: IUserRepository,
@@ -79,6 +79,7 @@ export class SignUpUseCas implements IUseCase<SignUpDto, Result<void>> {
 
 			return Result.ok<void>();
 		} catch (error) {
+			console.log(error);
 			return Result.fail<void>('Internal Server Error on Signup Use Case');
 		}
 	}
