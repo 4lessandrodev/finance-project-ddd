@@ -20,6 +20,7 @@ module.exports = {
 		'@typescript-eslint/explicit-function-return-type': 'off',
 		'@typescript-eslint/explicit-module-boundary-types': 'off',
 		'@typescript-eslint/no-explicit-any': 'off',
+		"no-unused-vars": [ "error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false } ],
 		quotes: [ 'error', 'single' ],
 		indent: [ 2, "tab" ],
 		semi: [ 'error', 'always' ],
