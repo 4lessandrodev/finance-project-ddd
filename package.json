@@ -6,6 +6,7 @@
 	"private": true,
 	"license": "UNLICENSED",
 	"scripts": {
+		"stop:process": "lsof -i:3000 | awk '/node/{print $2}' | awk 'NR == 1' | xargs kill -9 ",
 		"prebuild": "rimraf dist",
 		"build": "nest build",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -21,11 +22,11 @@
 		"test:e2e": "jest --config ./test/jest-e2e.json"
 	},
 	"dependencies": {
-		"@nestjs/common": "^7.6.15",
-		"@nestjs/core": "^7.6.15",
+		"@nestjs/common": "^7.6.18",
+		"@nestjs/core": "^7.6.18",
 		"@nestjs/graphql": "^7.11.0",
 		"@nestjs/mongoose": "^7.2.4",
-		"@nestjs/platform-express": "^7.6.15",
+		"@nestjs/platform-express": "^7.6.18",
 		"apollo-server-express": "^2.25.2",
 		"bcrypt": "^5.0.1",
 		"date-fns": "2.22.1",
