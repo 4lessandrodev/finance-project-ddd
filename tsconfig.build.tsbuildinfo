@@ -4901,7 +4901,7 @@
         "affectsGlobalScope": false
       },
       "./src/domain/shared/core/events/ihandle.ts": {
-        "version": "575554165aac5608ca25505e9fcdcdd507e7e82e1c58e05dd35ad55a97b8a6fa",
+        "version": "8e931a188811909c321cca24c63e9bb16566e2af57a4e683ba8ea4d451759219",
         "signature": "c3ca96823ad2d520f20a156f4f691145784a408ed7f0eddc232ac4abb93828c7",
         "affectsGlobalScope": false
       },
@@ -17860,29 +17860,7 @@
       "./src/domain/shared/core/entity.ts",
       "./src/domain/shared/core/events/IDomainEvent.ts",
       "./src/domain/shared/core/events/domain-events.ts",
-      [
-        "./src/domain/shared/core/events/ihandle.ts",
-        [
-          {
-            "file": "./src/domain/shared/core/events/ihandle.ts",
-            "start": 22,
-            "length": 46,
-            "messageText": "'IDomainEvent' is declared but its value is never read.",
-            "category": 1,
-            "code": 6133,
-            "reportsUnnecessary": true
-          },
-          {
-            "file": "./src/domain/shared/core/events/ihandle.ts",
-            "start": 94,
-            "length": 14,
-            "messageText": "'IDomainEvent' is declared but its value is never read.",
-            "category": 1,
-            "code": 6133,
-            "reportsUnnecessary": true
-          }
-        ]
-      ],
+      "./src/domain/shared/core/events/ihandle.ts",
       "./src/domain/shared/core/identifier.ts",
       "./src/domain/shared/core/iuse-case.ts",
       "./src/domain/shared/core/result.ts",
