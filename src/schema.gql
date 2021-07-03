@@ -5,19 +5,8 @@
 type UserAgentType {
   name: String!
   version: String!
-  os: IOs!
+  os: String!
   type: String!
-}
-
-enum IOs {
-  LINUX
-  WINDOWS
-  MAC
-  IPHONE
-  APPLE
-  MACINTOSH
-  ANDROID
-  IPAD
 }
 
 type TermType {
@@ -43,4 +32,6 @@ type Mutation {
 input SinuptInput {
   email: String!
   password: String!
+  ip: String!
+  acceptedTerms: Boolean!
 }

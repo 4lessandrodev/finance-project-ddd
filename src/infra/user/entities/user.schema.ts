@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { systemTypes } from '@domain/user/value-objects';
 import { Document } from 'mongoose';
 
 // Terms interface
@@ -7,7 +6,7 @@ import { Document } from 'mongoose';
 export interface IUserAgent {
 	name: string;
 	version: string;
-	os: systemTypes;
+	os: string;
 	type: string;
 }
 

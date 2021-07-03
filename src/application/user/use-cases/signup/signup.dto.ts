@@ -1,9 +1,7 @@
-import { systemTypes } from '@domain/user/value-objects';
-
 export interface UserAgent {
 	name: string;
 	version: string;
-	os: systemTypes;
+	os: string;
 	type: string;
 }
 

@@ -7,4 +7,10 @@ export class SinuptInput {
 
 	@Field(() => String!)
 	password!: string;
+
+	@Field(() => String!)
+	ip!: string;
+
+	@Field(() => Boolean!)
+	acceptedTerms!: boolean;
 }
