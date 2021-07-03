@@ -1,14 +1,14 @@
-import { Field, ObjectType, DateScalarMode } from "@nestjs/graphql";
+import { Field, ObjectType } from "@nestjs/graphql";
 import { UserAgentType } from "./user-agent.type";
 
 @ObjectType()
-export class TermType{
-	@Field(()=> String)
+export class TermType {
+	@Field(() => String)
 	ip!: string;
 
-	@Field(()=> String)
+	@Field(() => String)
 	acceptedAt!: Date;
 
-	@Field(()=> UserAgentType)
+	@Field(() => UserAgentType)
 	userAgent!: UserAgentType;
 }
