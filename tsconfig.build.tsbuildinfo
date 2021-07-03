@@ -3097,8 +3097,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/ws/index.d.ts": {
-        "version": "9a10439ce132d4f650d17564c408bcad6617081d54cd1c9723a109dad8568ce2",
-        "signature": "9a10439ce132d4f650d17564c408bcad6617081d54cd1c9723a109dad8568ce2",
+        "version": "e0cc96ad7d57e06d1b05a140393f07edebfe2994895e106061af2acf99b279c0",
+        "signature": "e0cc96ad7d57e06d1b05a140393f07edebfe2994895e106061af2acf99b279c0",
         "affectsGlobalScope": false
       },
       "./node_modules/eventemitter3/index.d.ts": {
@@ -3106,27 +3106,27 @@
         "signature": "0e58e6f3fa554921c7950ff344d6c299caf9260e4c78bf7c699a6b5a6d02e6bc",
         "affectsGlobalScope": false
       },
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/client.d.ts": {
+      "./node_modules/subscriptions-transport-ws/dist/client.d.ts": {
         "version": "3eb80f1addaca2a298abd6186a2cfe98567d88635f334a0f2415438ec5f2d3b7",
         "signature": "3eb80f1addaca2a298abd6186a2cfe98567d88635f334a0f2415438ec5f2d3b7",
         "affectsGlobalScope": false
       },
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/server.d.ts": {
+      "./node_modules/subscriptions-transport-ws/dist/server.d.ts": {
         "version": "10f0341d64269c4b7c5fb7c666a97d4a71249a09eb3b5adbbcd6794d4ccee9a4",
         "signature": "10f0341d64269c4b7c5fb7c666a97d4a71249a09eb3b5adbbcd6794d4ccee9a4",
         "affectsGlobalScope": false
       },
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/message-types.d.ts": {
+      "./node_modules/subscriptions-transport-ws/dist/message-types.d.ts": {
         "version": "c993b44ec48e09bf9e9b512941379656f9090ddf81f7ab61b4d8a6cdbe7ec409",
         "signature": "c993b44ec48e09bf9e9b512941379656f9090ddf81f7ab61b4d8a6cdbe7ec409",
         "affectsGlobalScope": false
       },
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/protocol.d.ts": {
+      "./node_modules/subscriptions-transport-ws/dist/protocol.d.ts": {
         "version": "54f323b0c25677fcd7dbb6541667f131e17bf49d48b6efdfed72ae71722fe8f5",
         "signature": "54f323b0c25677fcd7dbb6541667f131e17bf49d48b6efdfed72ae71722fe8f5",
         "affectsGlobalScope": false
       },
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/index.d.ts": {
+      "./node_modules/subscriptions-transport-ws/dist/index.d.ts": {
         "version": "7668c31fc1a0d6c5ee0ae1048d41f7232a56fbe18367929f78bd0c77303af11e",
         "signature": "7668c31fc1a0d6c5ee0ae1048d41f7232a56fbe18367929f78bd0c77303af11e",
         "affectsGlobalScope": false
@@ -3247,8 +3247,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/express-serve-static-core/index.d.ts": {
-        "version": "4881fd217f43f5bb1aedb124875448db8af1d5da1a25cd805946238d2f6038f7",
-        "signature": "4881fd217f43f5bb1aedb124875448db8af1d5da1a25cd805946238d2f6038f7",
+        "version": "b9b0f507c31eebe33faaee248ab994c77fc297b285283ae191797734957f4ac3",
+        "signature": "b9b0f507c31eebe33faaee248ab994c77fc297b285283ae191797734957f4ac3",
         "affectsGlobalScope": true
       },
       "./node_modules/@types/mime/index.d.ts": {
@@ -5176,7 +5176,7 @@
         "affectsGlobalScope": false
       },
       "./src/infra/user/services/decorators/get-useragent.decorator.ts": {
-        "version": "3036f6977895ec5ded88a3d366f71791d6b73a609f8083ab8f50b68b49234d14",
+        "version": "3ffab2a76f3ecfcff459f522152604c6c58a687880f0f31857ffdf74c7e9e721",
         "signature": "313ee2b289962e9c57d2e7f9161ff611cc0630bc756fec3b9a0e2f0d5ec38845",
         "affectsGlobalScope": false
       },
@@ -5326,8 +5326,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/istanbul-reports/index.d.ts": {
-        "version": "905c3e8f7ddaa6c391b60c05b2f4c3931d7127ad717a080359db3df510b7bdab",
-        "signature": "905c3e8f7ddaa6c391b60c05b2f4c3931d7127ad717a080359db3df510b7bdab",
+        "version": "f5638f7c2f12a9a1a57b5c41b3c1ea7db3876c003bab68e6a57afd6bcc169af0",
+        "signature": "f5638f7c2f12a9a1a57b5c41b3c1ea7db3876c003bab68e6a57afd6bcc169af0",
         "affectsGlobalScope": false
       },
       "./node_modules/jest-diff/build/cleanupSemantic.d.ts": {
@@ -5416,13 +5416,13 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/yargs-parser/index.d.ts": {
-        "version": "3bdd93ec24853e61bfa4c63ebaa425ff3e474156e87a47d90122e1d8cc717c1f",
-        "signature": "3bdd93ec24853e61bfa4c63ebaa425ff3e474156e87a47d90122e1d8cc717c1f",
+        "version": "f7e133b20ee2669b6c0e5d7f0cd510868c57cd64b283e68c7f598e30ce9d76d2",
+        "signature": "f7e133b20ee2669b6c0e5d7f0cd510868c57cd64b283e68c7f598e30ce9d76d2",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/yargs/index.d.ts": {
-        "version": "5a2a25feca554a8f289ed62114771b8c63d89f2b58325e2f8b7043e4e0160d11",
-        "signature": "5a2a25feca554a8f289ed62114771b8c63d89f2b58325e2f8b7043e4e0160d11",
+        "version": "09c4b2e2d3070239d563fc690f0cc5db04a2d9b66a23e61aef8b5274e3e9910c",
+        "signature": "09c4b2e2d3070239d563fc690f0cc5db04a2d9b66a23e61aef8b5274e3e9910c",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/zen-observable/index.d.ts": {
@@ -8622,12 +8622,12 @@
         "./node_modules/apollo-server-core/dist/playground.d.ts",
         "./node_modules/apollo-server-core/dist/plugin/index.d.ts",
         "./node_modules/apollo-server-core/node_modules/graphql-tools/dist/index.d.ts",
-        "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/index.d.ts",
         "./node_modules/apollo-server-plugin-base/dist/index.d.ts",
         "./node_modules/apollo-server-types/dist/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/graphql-extensions/dist/index.d.ts",
-        "./node_modules/graphql/index.d.ts"
+        "./node_modules/graphql/index.d.ts",
+        "./node_modules/subscriptions-transport-ws/dist/index.d.ts"
       ],
       "./node_modules/apollo-server-core/node_modules/graphql-tools/dist/Interfaces.d.ts": [
         "./node_modules/apollo-server-core/node_modules/graphql-tools/dist/schemaVisitor.d.ts",
@@ -8864,32 +8864,6 @@
       ],
       "./node_modules/apollo-server-core/node_modules/graphql-tools/dist/transforms/transforms.d.ts": [
         "./node_modules/apollo-server-core/node_modules/graphql-tools/dist/Interfaces.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/graphql/index.d.ts"
-      ],
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/client.d.ts": [
-        "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/eventemitter3/index.d.ts",
-        "./node_modules/graphql/execution/execute.d.ts",
-        "./node_modules/graphql/language/ast.d.ts"
-      ],
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/index.d.ts": [
-        "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/client.d.ts",
-        "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/message-types.d.ts",
-        "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/protocol.d.ts",
-        "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/server.d.ts",
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/message-types.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/protocol.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/server.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/ws/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/graphql/index.d.ts"
       ],
@@ -10738,6 +10712,32 @@
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/rxjs/dist/types/internal/observable/dom/WebSocketSubject.d.ts",
         "./node_modules/rxjs/dist/types/internal/observable/dom/webSocket.d.ts"
+      ],
+      "./node_modules/subscriptions-transport-ws/dist/client.d.ts": [
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/eventemitter3/index.d.ts",
+        "./node_modules/graphql/execution/execute.d.ts",
+        "./node_modules/graphql/language/ast.d.ts"
+      ],
+      "./node_modules/subscriptions-transport-ws/dist/index.d.ts": [
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/subscriptions-transport-ws/dist/client.d.ts",
+        "./node_modules/subscriptions-transport-ws/dist/message-types.d.ts",
+        "./node_modules/subscriptions-transport-ws/dist/protocol.d.ts",
+        "./node_modules/subscriptions-transport-ws/dist/server.d.ts"
+      ],
+      "./node_modules/subscriptions-transport-ws/dist/message-types.d.ts": [
+        "./node_modules/date-fns/typings.d.ts"
+      ],
+      "./node_modules/subscriptions-transport-ws/dist/protocol.d.ts": [
+        "./node_modules/date-fns/typings.d.ts"
+      ],
+      "./node_modules/subscriptions-transport-ws/dist/server.d.ts": [
+        "./node_modules/@types/node/http.d.ts",
+        "./node_modules/@types/node/index.d.ts",
+        "./node_modules/@types/ws/index.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/graphql/index.d.ts"
       ],
       "./node_modules/ts-morph/lib/ts-morph.d.ts": [
         "./node_modules/@ts-morph/common/lib/ts-morph-common.d.ts",
@@ -14684,32 +14684,6 @@
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/graphql/index.d.ts"
       ],
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/client.d.ts": [
-        "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/eventemitter3/index.d.ts",
-        "./node_modules/graphql/execution/execute.d.ts",
-        "./node_modules/graphql/language/ast.d.ts"
-      ],
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/index.d.ts": [
-        "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/client.d.ts",
-        "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/message-types.d.ts",
-        "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/protocol.d.ts",
-        "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/server.d.ts",
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/message-types.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/protocol.d.ts": [
-        "./node_modules/date-fns/typings.d.ts"
-      ],
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/server.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/ws/index.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/graphql/index.d.ts"
-      ],
       "./node_modules/apollo-server-env/dist/fetch.d.ts": [
         "./node_modules/@types/node/http.d.ts",
         "./node_modules/@types/node/https.d.ts",
@@ -16556,6 +16530,32 @@
         "./node_modules/rxjs/dist/types/internal/observable/dom/WebSocketSubject.d.ts",
         "./node_modules/rxjs/dist/types/internal/observable/dom/webSocket.d.ts"
       ],
+      "./node_modules/subscriptions-transport-ws/dist/client.d.ts": [
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/eventemitter3/index.d.ts",
+        "./node_modules/graphql/execution/execute.d.ts",
+        "./node_modules/graphql/language/ast.d.ts"
+      ],
+      "./node_modules/subscriptions-transport-ws/dist/index.d.ts": [
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/subscriptions-transport-ws/dist/client.d.ts",
+        "./node_modules/subscriptions-transport-ws/dist/message-types.d.ts",
+        "./node_modules/subscriptions-transport-ws/dist/protocol.d.ts",
+        "./node_modules/subscriptions-transport-ws/dist/server.d.ts"
+      ],
+      "./node_modules/subscriptions-transport-ws/dist/message-types.d.ts": [
+        "./node_modules/date-fns/typings.d.ts"
+      ],
+      "./node_modules/subscriptions-transport-ws/dist/protocol.d.ts": [
+        "./node_modules/date-fns/typings.d.ts"
+      ],
+      "./node_modules/subscriptions-transport-ws/dist/server.d.ts": [
+        "./node_modules/@types/node/http.d.ts",
+        "./node_modules/@types/node/index.d.ts",
+        "./node_modules/@types/ws/index.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "./node_modules/graphql/index.d.ts"
+      ],
       "./node_modules/ts-morph/lib/ts-morph.d.ts": [
         "./node_modules/@ts-morph/common/lib/ts-morph-common.d.ts",
         "./node_modules/date-fns/typings.d.ts"
@@ -17598,11 +17598,6 @@
       "./node_modules/apollo-server-core/node_modules/graphql-tools/dist/transforms/index.d.ts",
       "./node_modules/apollo-server-core/node_modules/graphql-tools/dist/transforms/transformSchema.d.ts",
       "./node_modules/apollo-server-core/node_modules/graphql-tools/dist/transforms/transforms.d.ts",
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/client.d.ts",
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/index.d.ts",
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/message-types.d.ts",
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/protocol.d.ts",
-      "./node_modules/apollo-server-core/node_modules/subscriptions-transport-ws/dist/server.d.ts",
       "./node_modules/apollo-server-env/dist/fetch.d.ts",
       "./node_modules/apollo-server-env/dist/index.d.ts",
       "./node_modules/apollo-server-env/dist/typescript-utility-types.d.ts",
@@ -17939,6 +17934,11 @@
       "./node_modules/rxjs/dist/types/operators/index.d.ts",
       "./node_modules/rxjs/dist/types/testing/index.d.ts",
       "./node_modules/rxjs/dist/types/webSocket/index.d.ts",
+      "./node_modules/subscriptions-transport-ws/dist/client.d.ts",
+      "./node_modules/subscriptions-transport-ws/dist/index.d.ts",
+      "./node_modules/subscriptions-transport-ws/dist/message-types.d.ts",
+      "./node_modules/subscriptions-transport-ws/dist/protocol.d.ts",
+      "./node_modules/subscriptions-transport-ws/dist/server.d.ts",
       "./node_modules/ts-morph/lib/ts-morph.d.ts",
       "./node_modules/types-ddd/dist/src/core/aggregate-root.d.ts",
       "./node_modules/types-ddd/dist/src/core/base-domain-entity.d.ts",
