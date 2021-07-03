@@ -4981,8 +4981,8 @@
         "affectsGlobalScope": false
       },
       "./src/domain/shared/common/error-messages/messages.ts": {
-        "version": "d233cb19088f56a8b1eaa1d9ecd5aaa1f4f9aedbe2976692ba893ec4afbb96f1",
-        "signature": "3386ae0b1f4a25b81f29a4cbfc88ad0969ddb207a34606237b3c9d60e2caf7ad",
+        "version": "9987305cb7584524741b2213985d639a57e67507ed828b36fed1817e0360b08e",
+        "signature": "65144a72267b6ab6b22dc11add92374a8e95858c483c90bbe792c48d70311531",
         "affectsGlobalScope": false
       },
       "./src/domain/shared/index.ts": {
@@ -5116,8 +5116,8 @@
         "affectsGlobalScope": false
       },
       "./src/domain/user/value-objects/term/term.value-object.ts": {
-        "version": "6fb250213bd43bbeb377b99ac264d89a034b4d6cbaae3d7652be45b8d1dc06db",
-        "signature": "540dcc180e879b60bccfe4c60ba2450747fc9a7b10776347c4e2c7ff98ffc1b4",
+        "version": "757a01fc117cf03282ccfe1982bccada1c2eedf7a777856657a08df63855571b",
+        "signature": "f25500f646699292ca43eb04a7ce0b53a68b0bf1907b25a2d76874dc6cd844c4",
         "affectsGlobalScope": false
       },
       "./src/domain/user/value-objects/user-id/user-id.value-object.ts": {
@@ -5136,7 +5136,7 @@
         "affectsGlobalScope": false
       },
       "./src/domain/user/aggregates/user/user.aggregate.ts": {
-        "version": "aa1ec70259d25ffbfea5c8c2930dc414c679bb81ce1774a8c5d7c98d3e4ff499",
+        "version": "0ff7630b0f01172b475fa179c7e5c5093c50d7431c2f544309cdfdab64f17256",
         "signature": "2a983c16ed82f13b97261c6b8f88331dc8be8f9317367eba47fe7e1fd7b686e8",
         "affectsGlobalScope": false
       },
@@ -5146,8 +5146,8 @@
         "affectsGlobalScope": false
       },
       "./src/application/user/use-cases/signup/signup.dto.ts": {
-        "version": "135c62d25b25426d59aaa8e137d50da0b8135f06469183a8fa1cec0a7bf78ba6",
-        "signature": "5aa1710a0d8528548f30abe5fae732c8a520ef5c510e1b9e71a8523ddd77787a",
+        "version": "dbdc061095cdf4f2c9761cdc9785e8b752917949c71923ceb7d77e0d6b2c4ab0",
+        "signature": "08ef51d3db5f799bcafca8f207c65b3e4a4ae88b450313b5dd77e7367a7b795b",
         "affectsGlobalScope": false
       },
       "./src/repo/user.repository.interface.ts": {
@@ -5161,13 +5161,23 @@
         "affectsGlobalScope": false
       },
       "./src/infra/user/inputs/signup.input.ts": {
-        "version": "c7cbf87b3598f7bacfcde9b724ec82dbdc9360384d0b89e1aaecec812f94215b",
-        "signature": "fb648669700180e31cfcb4c5b5198703955907769dfeb967a8f7e77ab39fd24e",
+        "version": "541dc5dcdaddcd210bbcea1a267e4242372581af75d76ad0abbe1e336ec23e7b",
+        "signature": "b30d981b555335feaf9fd5b0f37436c7737dceea6a6fd0b2d269cb5951f59e46",
         "affectsGlobalScope": false
       },
       "./src/infra/user/types/user-agent.type.ts": {
-        "version": "a5b194b73710c3059c7a0c646e25acdfe83cfe20b5936d79172789ae4f937665",
-        "signature": "d6181fb219d65a1b2c76f55d31a5f90ddf64c98edb750198ece3fa001de4823d",
+        "version": "e4e64d0216a6bf3632221f8ef98cc655b311bce5df3abbd058ca720048ed7f23",
+        "signature": "e02636e333a2f636079962ae31b3983810ab3528435b9caef5cae6909fdc223a",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/ua-parser-js/index.d.ts": {
+        "version": "c5e775cc64dcc3b16c41f28b9aee23bb2854792114ea49a8b2bdc35dc9549ca0",
+        "signature": "c5e775cc64dcc3b16c41f28b9aee23bb2854792114ea49a8b2bdc35dc9549ca0",
+        "affectsGlobalScope": false
+      },
+      "./src/infra/user/services/decorators/get-useragent.decorator.ts": {
+        "version": "3036f6977895ec5ded88a3d366f71791d6b73a609f8083ab8f50b68b49234d14",
+        "signature": "313ee2b289962e9c57d2e7f9161ff611cc0630bc756fec3b9a0e2f0d5ec38845",
         "affectsGlobalScope": false
       },
       "./src/infra/user/types/term.type.ts": {
@@ -5186,13 +5196,13 @@
         "affectsGlobalScope": false
       },
       "./src/infra/user/resolver/user.resolver.ts": {
-        "version": "cd60a07efba28b685f589dfddffadaa7be655f002fff68271d23e93e392f82f7",
-        "signature": "8f8ca2c793a229fc55108e7f5d6b65cdbee131f59f54ddd861c19a8c4ef5a37a",
+        "version": "dd4c64c526f5dbafbef9663be29632c2d3a6f89bda58918e8f7aa248322e8680",
+        "signature": "03789db32aae9f3474e4d65df37e03b9d73eae4d7dd4eeedea7b6c5b8559d565",
         "affectsGlobalScope": false
       },
       "./src/infra/user/entities/user.schema.ts": {
-        "version": "1390a2b5bc8b5fd8c2aef45dd34cad76acae104231bab13e310a9ca4fb2ad977",
-        "signature": "73fba0a44a254b2d7c3184ec835926e2c42f90702f65bdb951fb7ece36f45682",
+        "version": "2f19ad995aaca6ef1024edee98c64904bf2ac39d2562f52a4b072b3d7a4ec471",
+        "signature": "52772ce05b66fad3e2f3f6baf092c8da09581546d68d3f9146e370b5a9dcf97d",
         "affectsGlobalScope": false
       },
       "./src/infra/user/repo/user.mapper.ts": {
@@ -8325,6 +8335,9 @@
         "./node_modules/@types/superagent/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
+      "./node_modules/@types/ua-parser-js/index.d.ts": [
+        "./node_modules/date-fns/typings.d.ts"
+      ],
       "./node_modules/@types/uuid/index.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -10960,8 +10973,7 @@
         "./src/infra/user/user.module.ts"
       ],
       "./src/application/user/use-cases/signup/signup.dto.ts": [
-        "./node_modules/date-fns/typings.d.ts",
-        "./src/domain/user/value-objects/index.ts"
+        "./node_modules/date-fns/typings.d.ts"
       ],
       "./src/application/user/use-cases/signup/signup.use-case.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
@@ -11196,8 +11208,7 @@
       "./src/infra/user/entities/user.schema.ts": [
         "./node_modules/@nestjs/mongoose/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
-        "./node_modules/mongoose/index.d.ts",
-        "./src/domain/user/value-objects/index.ts"
+        "./node_modules/mongoose/index.d.ts"
       ],
       "./src/infra/user/inputs/signup.input.ts": [
         "./node_modules/@nestjs/graphql/index.d.ts",
@@ -11226,8 +11237,17 @@
         "./node_modules/@nestjs/graphql/index.d.ts",
         "./node_modules/date-fns/typings.d.ts",
         "./src/infra/user/inputs/signup.input.ts",
+        "./src/infra/user/services/decorators/get-useragent.decorator.ts",
+        "./src/infra/user/types/user-agent.type.ts",
         "./src/infra/user/types/user.type.ts",
         "./src/infra/user/user.service.ts"
+      ],
+      "./src/infra/user/services/decorators/get-useragent.decorator.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/graphql/index.d.ts",
+        "./node_modules/@types/ua-parser-js/index.d.ts",
+        "./node_modules/date-fns/typings.d.ts",
+        "./src/infra/user/types/user-agent.type.ts"
       ],
       "./src/infra/user/types/term.type.ts": [
         "./node_modules/@nestjs/graphql/index.d.ts",
@@ -11236,8 +11256,7 @@
       ],
       "./src/infra/user/types/user-agent.type.ts": [
         "./node_modules/@nestjs/graphql/index.d.ts",
-        "./node_modules/date-fns/typings.d.ts",
-        "./src/domain/user/value-objects/index.ts"
+        "./node_modules/date-fns/typings.d.ts"
       ],
       "./src/infra/user/types/user.type.ts": [
         "./node_modules/@nestjs/graphql/index.d.ts",
@@ -14133,6 +14152,9 @@
         "./node_modules/@types/superagent/index.d.ts",
         "./node_modules/date-fns/typings.d.ts"
       ],
+      "./node_modules/@types/ua-parser-js/index.d.ts": [
+        "./node_modules/date-fns/typings.d.ts"
+      ],
       "./node_modules/@types/uuid/index.d.ts": [
         "./node_modules/date-fns/typings.d.ts"
       ],
@@ -16758,9 +16780,6 @@
         "./node_modules/date-fns/typings.d.ts",
         "./node_modules/zen-observable-ts/lib/types.d.ts"
       ],
-      "./src/application/user/use-cases/signup/signup.dto.ts": [
-        "./src/domain/user/value-objects/index.ts"
-      ],
       "./src/application/user/use-cases/signup/signup.use-case.ts": [
         "./node_modules/types-ddd/dist/src/index.d.ts",
         "./src/application/user/use-cases/signup/signup.dto.ts",
@@ -16917,8 +16936,7 @@
         "./src/domain/shared/index.ts"
       ],
       "./src/infra/user/entities/user.schema.ts": [
-        "./node_modules/mongoose/index.d.ts",
-        "./src/domain/user/value-objects/index.ts"
+        "./node_modules/mongoose/index.d.ts"
       ],
       "./src/infra/user/repo/user.mapper.ts": [
         "./node_modules/types-ddd/dist/src/index.d.ts",
@@ -16935,14 +16953,12 @@
       ],
       "./src/infra/user/resolver/user.resolver.ts": [
         "./src/infra/user/inputs/signup.input.ts",
+        "./src/infra/user/types/user-agent.type.ts",
         "./src/infra/user/types/user.type.ts",
         "./src/infra/user/user.service.ts"
       ],
       "./src/infra/user/types/term.type.ts": [
         "./src/infra/user/types/user-agent.type.ts"
-      ],
-      "./src/infra/user/types/user-agent.type.ts": [
-        "./src/domain/user/value-objects/index.ts"
       ],
       "./src/infra/user/types/user.type.ts": [
         "./src/infra/user/types/term.type.ts"
@@ -17492,6 +17508,7 @@
       "./node_modules/@types/stack-utils/index.d.ts",
       "./node_modules/@types/superagent/index.d.ts",
       "./node_modules/@types/supertest/index.d.ts",
+      "./node_modules/@types/ua-parser-js/index.d.ts",
       "./node_modules/@types/uuid/index.d.ts",
       "./node_modules/@types/validator/index.d.ts",
       "./node_modules/@types/validator/lib/isEmail.d.ts",
@@ -18034,6 +18051,7 @@
       "./src/infra/user/repo/user.mapper.ts",
       "./src/infra/user/repo/user.repository.ts",
       "./src/infra/user/resolver/user.resolver.ts",
+      "./src/infra/user/services/decorators/get-useragent.decorator.ts",
       "./src/infra/user/types/term.type.ts",
       "./src/infra/user/types/user-agent.type.ts",
       "./src/infra/user/types/user.type.ts",

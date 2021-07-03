@@ -4,11 +4,14 @@
 ☐ Transaction repository interface
 
 #TASKS TODO USECASES  
-☐ Signup use case DTO
-☐ Signup use case
+✔ Signup use case DTO @done(21-07-03 12:30)
+✔ Signup use case @done(21-07-03 12:30)
+☐ Signup use case tests
 ☐ Sigin use case DTO
+☐ Sigin use case tests
 ☐ Sigin use case
 ☐ Block user use case DTO
+☐ Bloc user use case tests
 ☐ Block user use case 
 ☐ Unblock user use case DTO
 ☐ Unblock user use case 
@@ -43,6 +46,10 @@
 ☐ Move balance avaliable value from a box to another use case DTO
 ☐ Move balance avaliable value from a box to another use case
 
+#Decorators and security
+✔ GetUserAgent Decorator @done(21-07-03 14:02)
+☐ AuthGuard Decorator
+
 #TASKS TODO INFRA ENTITY INTERFACES
 ✔ User interface @started(21-05-02 13:32) @done(21-05-02 13:47) @lasted(15m35s)
 ☐ Budget box interface
@@ -71,9 +78,9 @@
 
 #Nest Modules 
 ✔ Create user module @done(21-05-30 11:44)
-☐ Create user service @started(21-06-26 12:13)
+✔ Create user service @done(21-07-03 12:29)
 ✔ Create user graphql types @done(21-05-30 11:44)
-☐ Create user mutation @started(21-06-26 12:13)
+✔ Create user mutation @done(21-07-03 12:29)
 ✔ Create user resolver @done(21-05-30 11:44)
 
 ☐ Create budgetBox module 

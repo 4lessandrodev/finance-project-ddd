@@ -1,20 +1,19 @@
 import {
-  EmailValueObject,
-  PasswordValueObject,
-  TermValueObject,
-  BudgetIdValueObject,
+	EmailValueObject,
+	PasswordValueObject,
+	TermValueObject,
 } from '@domain/index';
 import {
-  AggregateRoot,
-  BaseDomainEntity,
-  Result,
-  UniqueEntityID,
+	AggregateRoot,
+	BaseDomainEntity,
+	Result,
+	UniqueEntityID,
 } from 'types-ddd';
 
 export interface UserAggregateProps extends BaseDomainEntity {
-  email: EmailValueObject;
-  password: PasswordValueObject;
-  terms: TermValueObject[];
+	email: EmailValueObject;
+	password: PasswordValueObject;
+	terms: TermValueObject[];
 }
 
 /**
@@ -23,30 +22,30 @@ export interface UserAggregateProps extends BaseDomainEntity {
  * @var terms: `TermValueObject[]`
  */
 export class UserAggregate extends AggregateRoot<UserAggregateProps> {
-  private constructor(props: UserAggregateProps, id?: UniqueEntityID) {
-    super(props, id);
-  }
+	private constructor (props: UserAggregateProps, id?: UniqueEntityID) {
+		super(props, id);
+	}
 
-  get email(): EmailValueObject {
-    return this.props.email;
-  }
+	get email (): EmailValueObject {
+		return this.props.email;
+	}
 
-  get password(): PasswordValueObject {
-    return this.props.password;
-  }
+	get password (): PasswordValueObject {
+		return this.props.password;
+	}
 
-  get terms(): TermValueObject[] {
-    return this.props.terms;
-  }
+	get terms (): TermValueObject[] {
+		return this.props.terms;
+	}
 
-  get deletedAt(): Date | undefined {
-    return this.props.deletedAt;
-  }
+	get deletedAt (): Date | undefined {
+		return this.props.deletedAt;
+	}
 
-  public static create(
-    props: UserAggregateProps,
-    id?: UniqueEntityID,
-  ): Result<UserAggregate> {
-    return Result.ok<UserAggregate>(new UserAggregate(props, id));
-  }
+	public static create (
+		props: UserAggregateProps,
+		id?: UniqueEntityID,
+	): Result<UserAggregate> {
+		return Result.ok<UserAggregate>(new UserAggregate(props, id));
+	}
 }
