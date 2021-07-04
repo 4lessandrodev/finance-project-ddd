@@ -15,4 +15,5 @@ export interface SignUpDto {
 	email: string;
 	password: string;
 	term: Term;
+	acceptedTerms: boolean;
 }

@@ -19,6 +19,11 @@ export class SignUpUseCase implements IUseCase<SignUpDto, Result<void>> {
 
 	async execute (request: SignUpDto): Promise<Result<void>> {
 		//
+
+		if (!request.acceptedTerms) {
+			return Result.fail<void>('Terms must be accepted');
+		}
+
 		const emailOrError = EmailValueObject.create(request.email);
 		const passwordOrError = PasswordValueObject.create(request.password);
 

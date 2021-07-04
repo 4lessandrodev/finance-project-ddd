@@ -1,4 +1,4 @@
-import { Inject, NotAcceptableException } from '@nestjs/common';
+import { Inject } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { SinuptInput } from '../inputs/signup.input';
 import { GetUserAgent } from '../services/decorators/get-useragent.decorator';
@@ -39,10 +39,6 @@ export class UserResolver {
 		@Args(SinuptInput.name) user: SinuptInput,
 		@GetUserAgent() userAgent: UserAgentType): Promise<boolean> {
 		const success = true;
-		if (!user.acceptedTerms) {
-			throw new NotAcceptableException('Terms should be accepted');
-		}
-		console.log(userAgent);
 		await this.userService.signup({
 			...user,
 			term:
