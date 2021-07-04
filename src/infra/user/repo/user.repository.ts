@@ -16,17 +16,17 @@ export class UserRepository implements IUserRepository {
 	//
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	find (filter: Filter): Promise<UserAggregate[] | null> {
-		throw new Error('Method not implemented');
+		throw new Error(`Method not implemented for ${filter}`);
 	}
 	//
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	findOne (filter: Filter): Promise<UserAggregate | null> {
-		throw new Error('Method not implemented');
+		throw new Error(`Method not implemented for ${filter}`);
 	}
 	//
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	delete (filter: Filter): Promise<void> {
-		throw new Error('Method not implemented');
+		throw new Error(`Method not implemented for ${filter}`);
 	}
 
 	async exists (filter: Filter): Promise<boolean> {
