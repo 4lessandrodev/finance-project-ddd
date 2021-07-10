@@ -37,7 +37,7 @@
 		"reflect-metadata": "^0.1.13",
 		"rimraf": "^3.0.2",
 		"rxjs": "7.1.0",
-		"types-ddd": "0.0.9",
+		"types-ddd": "^0.0.9",
 		"ua-parser-js": "^0.7.28",
 		"uuid": "^8.3.2",
 		"validator": "13.6.0"

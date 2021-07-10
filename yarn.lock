@@ -7244,7 +7244,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-types-ddd@0.0.9:
+types-ddd@^0.0.9:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/types-ddd/-/types-ddd-0.0.9.tgz#fb67db95d131d89a4445b0013bc53e09670a7343"
   integrity sha512-2GqHdC22Y+XWLHvmOFPFPmv/46HP9fwB2VrYNGKodlBCLjgpRv69r0zTAc/6o4ctKhSzSaPe1++weT5ikJ1PKg==
@@ -7595,6 +7595,11 @@ ws@7.4.5:
   version "7.4.5"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.5.tgz#a484dd851e9beb6fdb420027e3885e8ce48986c1"
   integrity sha512-xzyu3hFvomRfXKH8vOFMU3OguG6oOvhXMo3xsGy3xWExqaM2dxBbVxuD99O7m3ZUFMvvscsZDqxfgMaRr/Nr1g==
+
+"ws@^5.2.0 || ^6.0.0 || ^7.0.0":
+  version "7.5.3"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.3.tgz#160835b63c7d97bfab418fc1b8a9fced2ac01a74"
+  integrity sha512-kQ/dHIzuLrS6Je9+uv81ueZomEwH0qVYstcAQ4/Z93K8zeko9gtAbttJWzoC5ukqXY1PpoouV3+VSOqEAFt5wg==
 
 ws@^7.4.5:
   version "7.5.1"

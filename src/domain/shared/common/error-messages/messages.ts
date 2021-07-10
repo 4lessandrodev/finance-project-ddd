@@ -20,5 +20,6 @@ export const ErrorMessages = {
 	INVALID_ENUM_TRANSACTION_STATUS: 'Invalid transaction enum status',
 	INVALID_ENUM_TRANSACTION_TYPE: 'Invalid transaction enum type',
 	INVALID_EMAIL: 'Invalid email',
-	INVALID_IP: 'Invalid ip'
+	INVALID_IP: 'Invalid ip',
+	INVALID_CREDENTIALS: 'Invalid Credentials'
 };
