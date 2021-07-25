@@ -6,7 +6,7 @@
 	"private": true,
 	"license": "UNLICENSED",
 	"scripts": {
-		"stop:process": "lsof -i:3000 | awk '/node/{print $2}' | awk 'NR == 1' | xargs kill -9 ",
+		"prestart:dev": "lsof -i:3000 | awk '/node/{print $2}' | awk 'NR == 1' | xargs -r kill -9 ",
 		"prebuild": "rimraf dist",
 		"build": "nest build",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -37,7 +37,7 @@
 		"reflect-metadata": "^0.1.13",
 		"rimraf": "^3.0.2",
 		"rxjs": "7.1.0",
-		"types-ddd": "^0.0.9",
+		"types-ddd": "^1.0.2",
 		"ua-parser-js": "^0.7.28",
 		"uuid": "^8.3.2",
 		"validator": "13.6.0"

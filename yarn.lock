@@ -7244,12 +7244,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-types-ddd@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/types-ddd/-/types-ddd-0.0.9.tgz#fb67db95d131d89a4445b0013bc53e09670a7343"
-  integrity sha512-2GqHdC22Y+XWLHvmOFPFPmv/46HP9fwB2VrYNGKodlBCLjgpRv69r0zTAc/6o4ctKhSzSaPe1++weT5ikJ1PKg==
-  dependencies:
-    uuid "^8.3.2"
+types-ddd@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/types-ddd/-/types-ddd-1.0.2.tgz#34716538dabab157c233d89f62cb82f27877b9cc"
+  integrity sha512-1HLPAukxI1nLIaiMncb4wD2tl7VuAiRzNN+lEWyQ0WVreb1hg12MRRZGgNfukqrYl5SFpXgn3iyFaQKPjYO05g==
 
 typescript@4.2.3:
   version "4.2.3"

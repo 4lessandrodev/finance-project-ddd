@@ -48,6 +48,7 @@
 
 #Decorators and security
 ✔ GetUserAgent Decorator @done(21-07-03 14:02)
+☐ GetIp Decorator
 ☐ AuthGuard Decorator
 
 #TASKS TODO INFRA ENTITY INTERFACES

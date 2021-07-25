@@ -1,6 +1,6 @@
 import { Inject } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { SinuptInput } from '../inputs/signup.input';
+import { SignupInput } from '../inputs/signup.input';
 import { GetUserAgent } from '../services/decorators/get-useragent.decorator';
 import { UserAgentType } from '../types/user-agent.type';
 import { UserType } from "../types/user.type";
@@ -36,7 +36,7 @@ export class UserResolver {
 
 	@Mutation(() => Boolean)
 	async signup (
-		@Args(SinuptInput.name) user: SinuptInput,
+		@Args(SignupInput.name) user: SignupInput,
 		@GetUserAgent() userAgent: UserAgentType): Promise<boolean> {
 		const success = true;
 		await this.userService.signup({

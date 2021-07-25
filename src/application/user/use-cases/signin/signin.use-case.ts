@@ -6,13 +6,14 @@ import { Injectable, Inject } from '@nestjs/common';
 import { EmailValueObject, PasswordValueObject } from '@domain/user/value-objects';
 
 @Injectable()
-export class SingninUseCase implements IUseCase<SigninDto, Result<void>>{
+export class SigninUseCase implements IUseCase<SigninDto, Result<void>>{
 	constructor (
 		@Inject('UserRepository')
 		private readonly userRepo: IUserRepository
 	) { }
 
 	async execute (dto: SigninDto): Promise<Result<void>> {
+		
 		const { password, email } = dto;
 		const emailOrError = EmailValueObject.create(email);
 		const passwordOrError = PasswordValueObject.create(password);
@@ -29,7 +30,18 @@ export class SingninUseCase implements IUseCase<SigninDto, Result<void>>{
 			return Result.fail<void>(ErrorMessages.INVALID_CREDENTIALS);
 		}
 
-		console.log(this.userRepo);
+		const user = await this.userRepo.findOne({email});
+
+		if (!user){
+			return Result.fail<void>(ErrorMessages.INVALID_CREDENTIALS);
+		}
+
+		const isValidPassword = await user.password.comparePasswords(password);
+
+		if (!isValidPassword) {
+			return Result.fail<void>(ErrorMessages.INVALID_CREDENTIALS);
+		}
+
 		return Result.ok();
 	};
 }

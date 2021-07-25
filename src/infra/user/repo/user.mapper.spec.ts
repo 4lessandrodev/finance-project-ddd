@@ -6,7 +6,7 @@ import {
   PasswordValueObject,
   TermValueObject,
 } from '@domain/user/value-objects';
-import { UniqueEntityID } from 'types-ddd/dist/src';
+import { UniqueEntityID } from 'types-ddd';
 import { User } from '../entities/user.schema';
 import { UserMapper } from './user.mapper';
 
