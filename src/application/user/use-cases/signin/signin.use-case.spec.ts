@@ -85,7 +85,6 @@ describe('signin.use-case', () => {
 
 		const result = await useCase.execute({email: 'valid_email@domain.com', password: 'valid_password'});
 		expect(result.isSuccess).toBe(true);
-		console.log(result.getResult());
 		expect(result.getResult()).toEqual({token: "valid_token"});
 	})
 

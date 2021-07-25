@@ -1,7 +1,8 @@
-import { Inject } from '@nestjs/common';
+import { Inject, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { SignupInput } from '../inputs/signup.input';
 import { GetUserAgent } from '../services/decorators/get-useragent.decorator';
+import { JwtAuthGuard } from '../services/guards/jwt-auth.guard';
 import { UserAgentType } from '../types/user-agent.type';
 import { UserType } from "../types/user.type";
 import { UserService } from '../user.service';
@@ -14,6 +15,7 @@ export class UserResolver {
 	) { }
 
 	@Query(() => [UserType])
+	@UseGuards(JwtAuthGuard)
 	async users (): Promise<UserType[]> {
 
 		const user = new UserType();

@@ -29,26 +29,30 @@ export class SigninUseCase implements IUseCase<SigninDto, Result<JWTPayload>>{
 			return Result.fail<JWTPayload>(hasError.error.toString());
 		}
 
-		const existsUserForEmail = await this.userRepo.exists({ email });
+		try {
+			const existsUserForEmail = await this.userRepo.exists({ email });
 
-		if (!existsUserForEmail) {
-			return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
+			if (!existsUserForEmail) {
+				return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
+			}
+
+			const user = await this.userRepo.findOne({email});
+
+			const isValidPassword = await user?.password.comparePasswords(password);
+
+			if (!isValidPassword) {
+				return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
+			}
+
+			const token =  this.jwtService.sign({userId: user?.id.toString()});
+
+			return Result.ok<JWTPayload>({token});
+
+		} catch (error) {
+
+			return Result.fail<JWTPayload>('Internal Server Error on Signin Use Case');
+
 		}
-
-		const user = await this.userRepo.findOne({email});
-
-		if (!user){
-			return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
-		}
-
-		const isValidPassword = await user.password.comparePasswords(password);
-
-		if (!isValidPassword) {
-			return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
-		}
-
-		const token =  this.jwtService.sign({userId: user.id.toString()});
-
-		return Result.ok<JWTPayload>({token});
+		
 	};
 }
