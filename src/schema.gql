@@ -26,10 +26,10 @@ type Query {
 }
 
 type Mutation {
-  signup(SinuptInput: SinuptInput!): Boolean!
+  signup(SignupInput: SignupInput!): Boolean!
 }
 
-input SinuptInput {
+input SignupInput {
   email: String!
   password: String!
   ip: String!

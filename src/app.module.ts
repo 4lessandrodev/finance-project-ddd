@@ -12,8 +12,7 @@ import { MongoDbConfig, MongoURI } from './db/config';
 		//mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}
 		MongooseModule.forRoot(MongoURI, MongoDbConfig),
 		GraphQLModule.forRoot({
-			autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-			playground: true
+			autoSchemaFile: join(process.cwd(), 'src/schema.gql')
 		})
 	],
 })

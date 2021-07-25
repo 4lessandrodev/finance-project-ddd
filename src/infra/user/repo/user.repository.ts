@@ -1,5 +1,5 @@
 import { IUserRepository } from '@repo/user.repository.interface';
-import { Filter } from 'types-ddd/dist/src';
+import { Filter } from 'types-ddd';
 import { UserAggregate } from '@domain/user/aggregates';
 import { UserMapper } from './user.mapper';
 import { InjectModel } from '@nestjs/mongoose';
