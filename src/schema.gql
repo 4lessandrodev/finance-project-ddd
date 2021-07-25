@@ -9,6 +9,10 @@ type UserAgentType {
   type: String!
 }
 
+type JwtPayloadType {
+  token: String!
+}
+
 type TermType {
   ip: String!
   acceptedAt: String!
@@ -27,6 +31,7 @@ type Query {
 
 type Mutation {
   signup(SignupInput: SignupInput!): Boolean!
+  signin(SigninInput: SigninInput!): JwtPayloadType!
 }
 
 input SignupInput {
@@ -34,4 +39,9 @@ input SignupInput {
   password: String!
   ip: String!
   acceptedTerms: Boolean!
+}
+
+input SigninInput {
+  email: String!
+  password: String!
 }

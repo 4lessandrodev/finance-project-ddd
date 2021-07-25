@@ -48,12 +48,12 @@
 
 #Decorators and security
 ✔ GetUserAgent Decorator @done(21-07-03 14:02)
-☐ Create validate user service
-☐ Create jwtModule
-☐ Create JwtStrategy
-☐ Create JwtAuthGuard
+✔ Create validate user service @done(21-07-25 12:23)
+✔ Create jwtModule @done(21-07-25 12:22)
+✔ Create JwtStrategy @done(21-07-25 12:22)
+✔ Create JwtAuthGuard @done(21-07-25 12:22)
 ☐ GetIp Decorator
-☐ AuthGuard Decorator
+✔ AuthGuard Decorator @done(21-07-25 12:23)
 
 #TASKS TODO INFRA ENTITY INTERFACES
 ✔ User interface @started(21-05-02 13:32) @done(21-05-02 13:47) @lasted(15m35s)

@@ -18,10 +18,15 @@ export class UserRepository implements IUserRepository {
 	find (filter: Filter): Promise<UserAggregate[] | null> {
 		throw new Error(`Method not implemented for ${filter}`);
 	}
-	//
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	findOne (filter: Filter): Promise<UserAggregate | null> {
-		throw new Error(`Method not implemented for ${filter}`);
+	
+	async findOne (filter: Filter): Promise<UserAggregate | null> {
+		const foundUser = await this.conn.findOne(filter);
+
+		if (!foundUser) {
+			return null;
+		}
+
+		return this.mapper.toDomain(foundUser);
 	}
 	//
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars

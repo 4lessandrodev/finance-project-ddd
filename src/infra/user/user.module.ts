@@ -9,6 +9,7 @@ import { User, UserSchema } from './entities/user.schema';
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
 import { JwtStrategy } from "./services/strategies/jwt.strategy";
+import { SigninUseCase } from "@app/user/use-cases/signin/signin.use-case";
 
 @Module({
 	imports: [
@@ -32,6 +33,7 @@ import { JwtStrategy } from "./services/strategies/jwt.strategy";
 			useClass: UserRepository
 		},
 		SignUpUseCase,
+		SigninUseCase,
 		UserService,
 		UserResolver,
 		JwtStrategy,
