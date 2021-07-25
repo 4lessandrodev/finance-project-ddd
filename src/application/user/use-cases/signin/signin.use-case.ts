@@ -4,15 +4,20 @@ import { IUserRepository } from '@repo/user.repository.interface';
 import { SigninDto } from './signin.dto';
 import { Injectable, Inject } from '@nestjs/common';
 import { EmailValueObject, PasswordValueObject } from '@domain/user/value-objects';
+import { JWTPayload } from './jwt-payload.interface';
+import {JwtService} from '@nestjs/jwt'
 
 @Injectable()
-export class SigninUseCase implements IUseCase<SigninDto, Result<void>>{
+export class SigninUseCase implements IUseCase<SigninDto, Result<JWTPayload>>{
 	constructor (
 		@Inject('UserRepository')
-		private readonly userRepo: IUserRepository
+		private readonly userRepo: IUserRepository,
+
+		@Inject(JwtService)
+		private readonly jwtService: JwtService
 	) { }
 
-	async execute (dto: SigninDto): Promise<Result<void>> {
+	async execute (dto: SigninDto): Promise<Result<JWTPayload>> {
 		
 		const { password, email } = dto;
 		const emailOrError = EmailValueObject.create(email);
@@ -21,27 +26,29 @@ export class SigninUseCase implements IUseCase<SigninDto, Result<void>>{
 		const hasError = Result.combine([emailOrError, passwordOrError]);
 
 		if (hasError.isFailure) {
-			return Result.fail<void>(hasError.error.toString());
+			return Result.fail<JWTPayload>(hasError.error.toString());
 		}
 
 		const existsUserForEmail = await this.userRepo.exists({ email });
 
 		if (!existsUserForEmail) {
-			return Result.fail<void>(ErrorMessages.INVALID_CREDENTIALS);
+			return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
 		}
 
 		const user = await this.userRepo.findOne({email});
 
 		if (!user){
-			return Result.fail<void>(ErrorMessages.INVALID_CREDENTIALS);
+			return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
 		}
 
 		const isValidPassword = await user.password.comparePasswords(password);
 
 		if (!isValidPassword) {
-			return Result.fail<void>(ErrorMessages.INVALID_CREDENTIALS);
+			return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
 		}
 
-		return Result.ok();
+		const token =  this.jwtService.sign({userId: user.id.toString()});
+
+		return Result.ok<JWTPayload>({token});
 	};
 }

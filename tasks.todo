@@ -48,6 +48,10 @@
 
 #Decorators and security
 ✔ GetUserAgent Decorator @done(21-07-03 14:02)
+☐ Create validate user service
+☐ Create jwtModule
+☐ Create JwtStrategy
+☐ Create JwtAuthGuard
 ☐ GetIp Decorator
 ☐ AuthGuard Decorator
 
