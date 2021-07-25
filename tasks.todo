@@ -9,7 +9,7 @@
 ✔ Signup use case tests @done(21-07-04 12:34)
 ✔ Sigin use case DTO @done(21-07-10 14:53)
 ✔ Sigin use case tests @started(21-07-10 14:53) @done(21-07-25 00:26) @lasted(2w9h33m24s)
-☐ Sigin use case @started(21-07-10 14:53)
+✔ Sigin use case @started(21-07-10 14:53) @done(21-07-25 15:12) @lasted(2w1d19m4s)
 ☐ Block user use case DTO
 ☐ Bloc user use case tests
 ☐ Block user use case 
@@ -52,8 +52,10 @@
 ✔ Create jwtModule @done(21-07-25 12:22)
 ✔ Create JwtStrategy @done(21-07-25 12:22)
 ✔ Create JwtAuthGuard @done(21-07-25 12:22)
-☐ GetIp Decorator
 ✔ AuthGuard Decorator @done(21-07-25 12:23)
+☐ GetIp Decorator
+☐ GetUserId decorator
+☐ Refactor variables to env var
 
 #TASKS TODO INFRA ENTITY INTERFACES
 ✔ User interface @started(21-05-02 13:32) @done(21-05-02 13:47) @lasted(15m35s)
