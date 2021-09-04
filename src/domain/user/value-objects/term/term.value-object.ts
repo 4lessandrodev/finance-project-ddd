@@ -1,9 +1,6 @@
-import {
-	Result,
-	ValueObject,
-	DateValueObject,
-} from '@shared/index';
+import { DateValueObject } from '@shared/index';
 import { IpValueObject } from '@domain/index';
+import { ValueObject, Result } from 'types-ddd';
 
 export interface IUserAgent {
 	name: string;
@@ -19,15 +16,15 @@ export interface TermValueObjectProps {
 }
 
 export class TermValueObject extends ValueObject<TermValueObjectProps> {
-	private constructor (props: TermValueObjectProps) {
+	private constructor(props: TermValueObjectProps) {
 		super(props);
 	}
 
-	get terms (): TermValueObjectProps {
+	get terms(): TermValueObjectProps {
 		return this.props;
 	}
 
-	public static create (props: TermValueObjectProps): Result<TermValueObject> {
+	public static create(props: TermValueObjectProps): Result<TermValueObject> {
 		return Result.ok<TermValueObject>(new TermValueObject(props));
 	}
 }

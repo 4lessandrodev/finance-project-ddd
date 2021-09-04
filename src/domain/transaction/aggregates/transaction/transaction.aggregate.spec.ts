@@ -1,9 +1,4 @@
-import {
-  BudgetIdValueObject,
-  ReasonIdValueObject,
-} from '@domain/budget-box/value-objects';
 import { DateValueObject } from '@shared/index';
-import { UserIdValueObject } from '@domain/user/value-objects';
 import {
   AttachmentPathValueObject,
   TransactionCalculationValueObject,
@@ -12,13 +7,14 @@ import {
   TransactionTypeValueObject,
 } from '@domain/transaction/value-objects';
 import { TransactionAggregate } from './transaction.aggregate';
-import { UniqueEntityID } from 'types-ddd';
+import { DomainId } from 'types-ddd';
 
 describe('transaction.aggregate', () => {
   it('should create a valid transaction', () => {
     const transaction = TransactionAggregate.create({
-      userId: UserIdValueObject.create().getResult(),
-      reasonId: ReasonIdValueObject.create().getResult(),
+      ID: DomainId.create(),
+      userId: DomainId.create(),
+      reasonId: DomainId.create(),
       paymentDate: DateValueObject.create(new Date()).getResult(),
       transactionType: TransactionTypeValueObject.create('ENTRADA').getResult(),
       status: TransactionStatusValueObject.create('PENDENTE').getResult(),
@@ -28,9 +24,7 @@ describe('transaction.aggregate', () => {
       ).getResult(),
       transactionCalculations: [
         TransactionCalculationValueObject.create({
-          budgetBoxId: BudgetIdValueObject.create(
-            new UniqueEntityID('valid_id'),
-          ).getResult(),
+          budgetBoxId: DomainId.create('valid_id'),
           value: 100,
         }).getResult(),
       ],
@@ -40,8 +34,9 @@ describe('transaction.aggregate', () => {
 
   it('should create a valid transaction with updated total', () => {
     const transaction = TransactionAggregate.create({
-      userId: UserIdValueObject.create().getResult(),
-      reasonId: ReasonIdValueObject.create().getResult(),
+      ID: DomainId.create(),
+      userId: DomainId.create(),
+      reasonId: DomainId.create(),
       paymentDate: DateValueObject.create(new Date()).getResult(),
       transactionType: TransactionTypeValueObject.create('ENTRADA').getResult(),
       status: TransactionStatusValueObject.create('PENDENTE').getResult(),
@@ -51,15 +46,11 @@ describe('transaction.aggregate', () => {
       ).getResult(),
       transactionCalculations: [
         TransactionCalculationValueObject.create({
-          budgetBoxId: BudgetIdValueObject.create(
-            new UniqueEntityID('valid_id'),
-          ).getResult(),
+          budgetBoxId: DomainId.create('valid_id'),
           value: 100,
         }).getResult(),
         TransactionCalculationValueObject.create({
-          budgetBoxId: BudgetIdValueObject.create(
-            new UniqueEntityID('valid_id'),
-          ).getResult(),
+          budgetBoxId: DomainId.create('valid_id'),
           value: 100,
         }).getResult(),
       ],
@@ -71,8 +62,9 @@ describe('transaction.aggregate', () => {
   it('should create a valid transaction with provided id ', () => {
     const transaction = TransactionAggregate.create(
       {
-        userId: UserIdValueObject.create().getResult(),
-        reasonId: ReasonIdValueObject.create().getResult(),
+        ID: DomainId.create('Valid_id'),
+        userId: DomainId.create(),
+        reasonId: DomainId.create(),
         paymentDate: DateValueObject.create(new Date()).getResult(),
         transactionType: TransactionTypeValueObject.create(
           'ENTRADA',
@@ -86,20 +78,15 @@ describe('transaction.aggregate', () => {
         ).getResult(),
         transactionCalculations: [
           TransactionCalculationValueObject.create({
-            budgetBoxId: BudgetIdValueObject.create(
-              new UniqueEntityID('valid_id'),
-            ).getResult(),
+            budgetBoxId: DomainId.create('valid_id'),
             value: 100,
           }).getResult(),
           TransactionCalculationValueObject.create({
-            budgetBoxId: BudgetIdValueObject.create(
-              new UniqueEntityID('valid_id'),
-            ).getResult(),
+            budgetBoxId: DomainId.create('valid_id'),
             value: 100,
           }).getResult(),
         ],
-      },
-      new UniqueEntityID('Valid_id'),
+      }
     );
     expect(transaction.isSuccess).toBe(true);
     expect(transaction.getResult().id.toValue()).toBe('Valid_id');

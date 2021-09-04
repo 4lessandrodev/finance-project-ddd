@@ -1,4 +1,5 @@
-import { ErrorMessages, Result, ValueObject } from '@shared/index';
+import { ErrorMessages } from '@shared/index';
+import { ValueObject, Result } from 'types-ddd';
 
 export const REASON_DESCRIPTION_MAX_LENGTH = 20;
 export const REASON_DESCRIPTION_MIN_LENGTH = 1;
@@ -15,9 +16,7 @@ export class ReasonDescriptionValueObject extends ValueObject<ReasonDescriptionV
     return this.props.value;
   }
 
-  public static create(
-    description: string,
-  ): Result<ReasonDescriptionValueObject> {
+  public static create(description: string): Result<ReasonDescriptionValueObject> {
     const isValidLength =
       description.trim().length >= REASON_DESCRIPTION_MIN_LENGTH &&
       description.trim().length <= REASON_DESCRIPTION_MAX_LENGTH;

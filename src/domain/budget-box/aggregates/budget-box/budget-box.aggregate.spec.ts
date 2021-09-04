@@ -1,4 +1,3 @@
-import { UserIdValueObject } from '@domain/user/value-objects';
 import { ReasonDomainEntity } from '@domain/budget-box/entities';
 import {
   BudgetDescriptionValueObject,
@@ -6,19 +5,24 @@ import {
   ReasonDescriptionValueObject,
 } from '@domain/budget-box/value-objects';
 import { BudgetBoxAggregate } from './budget-box.aggregate';
+import { DomainId } from 'types-ddd';
 
 describe('budget-box.aggregate', () => {
+  const percentage = PercentageValueObject.create(20).getResult();
   it('should create a valid budget-box aggregate', () => {
+
     const budgetBox = BudgetBoxAggregate.create({
-      ownerId: UserIdValueObject.create().getResult(),
+      ID: DomainId.create(),
+      ownerId: DomainId.create(),
       description: BudgetDescriptionValueObject.create(
         'valid_description',
       ).getResult(),
-      balanceAvaliable: 0,
-      isPercentual: true,
-      budgetPercentage: PercentageValueObject.create(20).getResult(),
+      balanceAvailable: 0,
+      isPercentage: true,
+      budgetPercentage: percentage,
       reasons: [
         ReasonDomainEntity.create({
+          ID: DomainId.create(),
           description: ReasonDescriptionValueObject.create(
             'valid_description',
           ).getResult(),
@@ -29,17 +33,19 @@ describe('budget-box.aggregate', () => {
     expect(budgetBox.getResult().budgetPercentage.value).toBe(20);
   });
 
-  it('should create a valid budget-box aggregate with 100% if provide not percentual', () => {
+  it('should create a valid budget-box aggregate with 100% if provide not percentage', () => {
     const budgetBox = BudgetBoxAggregate.create({
-      ownerId: UserIdValueObject.create().getResult(),
+      ID: DomainId.create(),
+      ownerId: DomainId.create(),
       description: BudgetDescriptionValueObject.create(
         'valid_description',
       ).getResult(),
-      balanceAvaliable: 0,
-      isPercentual: false,
-      budgetPercentage: PercentageValueObject.create(20).getResult(),
+      balanceAvailable: 0,
+      isPercentage: false,
+      budgetPercentage: percentage,
       reasons: [
         ReasonDomainEntity.create({
+          ID: DomainId.create(),
           description: ReasonDescriptionValueObject.create(
             'valid_description',
           ).getResult(),

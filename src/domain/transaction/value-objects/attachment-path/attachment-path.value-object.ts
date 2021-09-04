@@ -1,5 +1,6 @@
-import { ErrorMessages, Result, ValueObject } from '@shared/index';
+import { ErrorMessages } from '@shared/index';
 import isURL from 'validator/lib/isURL';
+import { ValueObject, Result } from 'types-ddd';
 const validateDirectoryPath = /^(.+)\/([^\/]+)$/;
 
 export interface AttachmentPathValueObjectProps {

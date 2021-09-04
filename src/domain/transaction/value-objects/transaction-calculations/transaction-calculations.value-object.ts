@@ -1,11 +1,10 @@
-import { BudgetIdValueObject } from '@domain/index';
 import { ErrorMessages } from '@shared/index';
-import { Result, ValueObject } from 'types-ddd';
+import { Result, ValueObject, DomainId } from 'types-ddd';
 
 export const TRANSACTION_CALCULATION_MIN_VALUE = 0;
 
 interface calculationProps {
-  budgetBoxId: BudgetIdValueObject;
+  budgetBoxId: DomainId;
   value: number;
 }
 

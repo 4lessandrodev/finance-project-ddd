@@ -1,17 +1,16 @@
-import { AggregateRoot, Result, UniqueEntityID } from 'types-ddd';
-import { DateValueObject, ReasonIdValueObject } from '@shared/index';
+import { AggregateRoot, DomainId, Result, BaseDomainEntity } from 'types-ddd';
+import { DateValueObject } from '@shared/index';
 import {
   AttachmentPathValueObject,
   TransactionCalculationValueObject,
   TransactionNoteValueObject,
   TransactionStatusValueObject,
-  TransactionTypeValueObject,
-  UserIdValueObject,
+  TransactionTypeValueObject
 } from '@domain/index';
 
-export interface TransactionAggregateProps {
-  userId: UserIdValueObject;
-  reasonId: ReasonIdValueObject;
+export interface TransactionAggregateProps extends BaseDomainEntity {
+  userId: DomainId;
+  reasonId: DomainId;
   paymentDate: DateValueObject;
   transactionType: TransactionTypeValueObject;
   status: TransactionStatusValueObject;
@@ -34,10 +33,9 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
   private _totalValue: number;
   private constructor(
     props: TransactionAggregateProps,
-    total: number,
-    id?: UniqueEntityID,
+    total: number
   ) {
-    super(props, id);
+    super(props, TransactionAggregate.name);
     this._totalValue = total;
   }
 
@@ -45,11 +43,11 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
     return this._totalValue;
   }
 
-  get userId(): UserIdValueObject {
+  get userId(): DomainId {
     return this.props.userId;
   }
 
-  get reasonId(): ReasonIdValueObject {
+  get reasonId(): DomainId {
     return this.props.reasonId;
   }
 
@@ -78,8 +76,7 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
   }
 
   public static create(
-    props: TransactionAggregateProps,
-    id?: UniqueEntityID,
+    props: TransactionAggregateProps
   ): Result<TransactionAggregate> {
     /**
      * total is calculated dynamically. Its the sum of calculation values
@@ -90,7 +87,7 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
     );
 
     return Result.ok<TransactionAggregate>(
-      new TransactionAggregate(props, total, id),
+      new TransactionAggregate(props, total),
     );
   }
 }

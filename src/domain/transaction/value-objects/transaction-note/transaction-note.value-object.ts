@@ -1,4 +1,5 @@
-import { ErrorMessages, Result, ValueObject } from '@shared/index';
+import { ErrorMessages } from '@shared/index';
+import { ValueObject, Result } from 'types-ddd';
 
 export const TRANSACTION_NOTE_MAX_LENGTH = 144;
 export interface TransactionNoteValueObjectProps {

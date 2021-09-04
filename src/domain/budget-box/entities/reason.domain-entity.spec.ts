@@ -1,10 +1,11 @@
-import { UniqueEntityID } from '@shared/index';
 import { ReasonDescriptionValueObject } from '@domain/budget-box/value-objects';
 import { ReasonDomainEntity } from '@domain/budget-box/entities';
+import { DomainId } from 'types-ddd';
 
 describe('reason.domain-entity', () => {
   it('should create a valid reason entity', () => {
     const reasonEntity = ReasonDomainEntity.create({
+      ID: DomainId.create(),
       description: ReasonDescriptionValueObject.create(
         'valid_description',
       ).getResult(),
@@ -19,11 +20,11 @@ describe('reason.domain-entity', () => {
   it('should create a valid reason entity with provided id', () => {
     const reasonEntity = ReasonDomainEntity.create(
       {
+        ID: DomainId.create('valid_id'),
         description: ReasonDescriptionValueObject.create(
           'valid_description',
         ).getResult(),
-      },
-      new UniqueEntityID('valid_id'),
+      }
     );
     expect(reasonEntity.isSuccess).toBe(true);
     expect(reasonEntity.getResult().isDeleted).toBe(false);

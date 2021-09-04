@@ -1,8 +1,9 @@
 import { IUserRepository } from '@repo/user.repository.interface';
 import { SigninUseCase } from './signin.use-case';
-import {UserAggregate} from '@domain/user/aggregates';
-import {EmailValueObject, PasswordValueObject} from '@domain/user/value-objects'
-import {JwtService} from '@nestjs/jwt';
+import { UserAggregate } from '@domain/user/aggregates';
+import { EmailValueObject, PasswordValueObject } from '@domain/user/value-objects'
+import { JwtService } from '@nestjs/jwt';
+import { DomainId } from 'types-ddd';
 
 describe('signin.use-case', () => {
 
@@ -11,21 +12,22 @@ describe('signin.use-case', () => {
 	let fakeJwt: JwtService;
 	let useCase: SigninUseCase;
 
-	beforeAll(()=>{
+	beforeAll(() => {
 
 		fakeJwt = {
 			sign: jest.fn()
-		} as unknown as  JwtService;
+		} as unknown as JwtService;
 
-		
+
 		user = UserAggregate.create({
+			ID: DomainId.create(),
 			email: EmailValueObject.create('valid_email@domain.com').getResult(),
 			password: PasswordValueObject.create('valid_password').getResult(),
-			terms:[]
+			terms: []
 		}).getResult();
-		
+
 	});
-	
+
 	beforeEach(() => {
 
 		userRepo = {
@@ -70,22 +72,22 @@ describe('signin.use-case', () => {
 		expect(result.isFailure).toBe(true);
 	});
 
-	it('should return fail if provided password does not match', async ()=>{
+	it('should return fail if provided password does not match', async () => {
 		jest.spyOn(userRepo, 'exists').mockResolvedValueOnce(true);
 		jest.spyOn(userRepo, 'findOne').mockResolvedValueOnce(user);
 
-		const result = await useCase.execute({email: 'valid_email@domain.com', password: 'invalid_password'});
+		const result = await useCase.execute({ email: 'valid_email@domain.com', password: 'invalid_password' });
 		expect(result.isFailure).toBe(true);
 	})
 
-	it('should return token payload if provide a valid password', async ()=>{
+	it('should return token payload if provide a valid password', async () => {
 		jest.spyOn(userRepo, 'exists').mockResolvedValueOnce(true);
 		jest.spyOn(userRepo, 'findOne').mockResolvedValueOnce(user);
 		jest.spyOn(fakeJwt, 'sign').mockReturnValueOnce('valid_token');
 
-		const result = await useCase.execute({email: 'valid_email@domain.com', password: 'valid_password'});
+		const result = await useCase.execute({ email: 'valid_email@domain.com', password: 'valid_password' });
 		expect(result.isSuccess).toBe(true);
-		expect(result.getResult()).toEqual({token: "valid_token"});
+		expect(result.getResult()).toEqual({ token: "valid_token" });
 	})
 
 });

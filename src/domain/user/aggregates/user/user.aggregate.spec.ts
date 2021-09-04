@@ -6,11 +6,12 @@ import {
 	PasswordValueObject,
 	TermValueObject,
 } from '@domain/user/value-objects';
-import { UniqueEntityID } from 'types-ddd';
+import { DomainId } from 'types-ddd';
 
 describe('user.aggregate', () => {
 	it('should create a valid user', () => {
 		const user = UserAggregate.create({
+			ID: DomainId.create(),
 			email: EmailValueObject.create('valid_mail@domain.com').getResult(),
 			password: PasswordValueObject.create('valid_password').getResult(),
 			terms: [
@@ -32,6 +33,7 @@ describe('user.aggregate', () => {
 
 	it('should get valid values', () => {
 		const user = UserAggregate.create({
+			ID: DomainId.create(),
 			email: EmailValueObject.create('valid_mail@domain.com').getResult(),
 			password: PasswordValueObject.create('valid_password').getResult(),
 			terms: [
@@ -68,6 +70,7 @@ describe('user.aggregate', () => {
 	it('should create a valid user with provided id', () => {
 		const user = UserAggregate.create(
 			{
+				ID: DomainId.create('valid_id'),
 				email: EmailValueObject.create('valid_mail@domain.com').getResult(),
 				password: PasswordValueObject.create('valid_password').getResult(),
 				terms: [
@@ -83,7 +86,6 @@ describe('user.aggregate', () => {
 					}).getResult(),
 				],
 			},
-			new UniqueEntityID('valid_id'),
 		);
 
 		expect(user.getResult().id.toValue()).toBe('valid_id');

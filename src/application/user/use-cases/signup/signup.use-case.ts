@@ -1,4 +1,4 @@
-import { IUseCase, Result } from 'types-ddd';
+import { IUseCase, Result, DomainId } from 'types-ddd';
 import { UserAggregate } from '@domain/user/aggregates';
 import { SignUpDto } from './signup.dto';
 import {
@@ -11,13 +11,13 @@ import {
 import { Inject } from '@nestjs/common';
 import { IUserRepository } from '@repo/user.repository.interface';
 
-export class SignUpUseCase implements IUseCase<SignUpDto, Result<void>> {
+export class SignUpUseCase implements IUseCase<SignUpDto, Result<void, string>> {
 
-	constructor (
+	constructor(
 		@Inject('UserRepository') private readonly userRepo: IUserRepository,
 	) { }
 
-	async execute (request: SignUpDto): Promise<Result<void>> {
+	async execute(request: SignUpDto): Promise<Result<void>> {
 
 		if (!request.acceptedTerms) {
 			return Result.fail<void>('Terms must be accepted');
@@ -29,7 +29,7 @@ export class SignUpUseCase implements IUseCase<SignUpDto, Result<void>> {
 		const acceptedAtOrError = DateValueObject.create(request.term.acceptedAt);
 		const ipOrError = IpValueObject.create(request.term.ip);
 
-		const hasErrorOnValueObjects = Result.combine([
+		const hasErrorOnValueObjects = Result.combine<unknown>([
 			emailOrError,
 			passwordOrError,
 			acceptedAtOrError,
@@ -37,7 +37,7 @@ export class SignUpUseCase implements IUseCase<SignUpDto, Result<void>> {
 		]);
 
 		if (hasErrorOnValueObjects.isFailure) {
-			return Result.fail<void>(hasErrorOnValueObjects.error);
+			return Result.fail<void>(hasErrorOnValueObjects.errorValue());
 		}
 
 		const acceptedAt = acceptedAtOrError.getResult();
@@ -50,7 +50,7 @@ export class SignUpUseCase implements IUseCase<SignUpDto, Result<void>> {
 		});
 
 		if (termOrError.isFailure) {
-			return Result.fail<void>(termOrError.error.toString());
+			return Result.fail(termOrError.error.toString());
 		}
 
 		const terms = [termOrError.getResult()];
@@ -59,13 +59,14 @@ export class SignUpUseCase implements IUseCase<SignUpDto, Result<void>> {
 		await password.encryptPassword();
 
 		const userOrError = UserAggregate.create({
+			ID: DomainId.create(),
 			email,
 			password,
 			terms,
 		});
 
 		if (userOrError.isFailure) {
-			return Result.fail<void>(userOrError.error.toString());
+			return Result.fail(userOrError.error.toString());
 		}
 
 		try {
@@ -74,14 +75,14 @@ export class SignUpUseCase implements IUseCase<SignUpDto, Result<void>> {
 			});
 
 			if (userAlreadyExistForEmail) {
-				return Result.fail<void>('User already exist for provided email');
+				return Result.fail('User already exist for provided email');
 			}
 
 			const user = userOrError.getResult();
 
 			await this.userRepo.save(user);
 
-			return Result.ok<void>();
+			return Result.success();
 		} catch (error) {
 			console.log(error);
 			return Result.fail<void>('Internal Server Error on Signup Use Case');

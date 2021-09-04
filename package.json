@@ -43,7 +43,7 @@
 		"rimraf": "^3.0.2",
 		"rxjs": "7.2.0",
 		"ts-morph": "^11.0.3",
-		"types-ddd": "^1.0.2",
+		"types-ddd": "2.3.6",
 		"ua-parser-js": "^0.7.28",
 		"uuid": "^8.3.2",
 		"validator": "13.6.0"

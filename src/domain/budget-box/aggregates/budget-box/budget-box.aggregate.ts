@@ -1,39 +1,32 @@
-import { AggregateRoot, Result, UniqueEntityID } from '@shared/index';
-import {
-  BudgetDescriptionValueObject,
-  DEFAULT_BUDGET_PERCENTAGE_VALUE,
-  BUDGET_PERCENTAGE_MAX_VALUE,
-  PercentageValueObject,
-  UserIdValueObject,
-  ReasonDomainEntity,
-} from '@domain/index';
+import { AggregateRoot, BaseDomainEntity, DomainId, Result } from 'types-ddd';
+import { PercentageValueObject } from '@domain/budget-box/value-objects/percentage/percentage.value-object';
+import { DEFAULT_BUDGET_PERCENTAGE_VALUE } from '@domain/budget-box/value-objects/percentage/percentage.value-object';
+import { BudgetDescriptionValueObject } from '@domain/budget-box/value-objects/budget-description/budget-description.value-object';
+import { ReasonDomainEntity } from '@domain/budget-box/entities/reason.domain-entity';
+import { BUDGET_PERCENTAGE_MAX_VALUE } from '@domain/budget-box/value-objects/percentage/percentage.value-object';
 
-export interface BudgetAggregateProps {
-  ownerId: UserIdValueObject;
+export interface BudgetAggregateProps extends BaseDomainEntity {
+  ownerId: DomainId;
   description: BudgetDescriptionValueObject;
-  balanceAvaliable: number;
-  isPercentual: boolean;
+  balanceAvailable: number;
+  isPercentage: boolean;
   budgetPercentage: PercentageValueObject;
   reasons: ReasonDomainEntity[];
 }
 /**
   @var ownerId: `UserIdValueObject`
   @var description: `BudgetDescriptionValueObject`
-  @var balanceAvaliable: `number`
-  @var isPercentual: `boolean`
+  @var balanceAvailable: `number`
+  @var isPercentage: `boolean`
   @var budgetPercentage: `PercentageValueObject`
   @var reasons: `ReasonDomainEntity[]`
  */
 export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
-  private constructor(props: BudgetAggregateProps, id?: UniqueEntityID) {
-    super(props, id);
+  private constructor(props: BudgetAggregateProps) {
+    super(props, BudgetBoxAggregate.name);
   }
 
-  get id(): UniqueEntityID {
-    return this._id;
-  }
-
-  get ownerId(): UserIdValueObject {
+  get ownerId(): DomainId {
     return this.props.ownerId;
   }
 
@@ -41,12 +34,12 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
     return this.props.description;
   }
 
-  get balanceAvaliable(): number {
-    return this.props.balanceAvaliable;
+  get balanceAvailable(): number {
+    return this.props.balanceAvailable;
   }
 
-  get isPercentual(): boolean {
-    return this.props.isPercentual;
+  get isPercentage(): boolean {
+    return this.props.isPercentage;
   }
 
   get budgetPercentage(): PercentageValueObject {
@@ -58,11 +51,11 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
   }
 
   public static create(
-    props: BudgetAggregateProps,
-    id?: UniqueEntityID,
+    props: BudgetAggregateProps
   ): Result<BudgetBoxAggregate> {
+
     if (
-      !props.isPercentual &&
+      !props.isPercentage &&
       props.budgetPercentage.value !== BUDGET_PERCENTAGE_MAX_VALUE
     ) {
       props.budgetPercentage = PercentageValueObject.create(
@@ -70,6 +63,6 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
       ).getResult();
     }
 
-    return Result.ok<BudgetBoxAggregate>(new BudgetBoxAggregate(props, id));
+    return Result.ok<BudgetBoxAggregate>(new BudgetBoxAggregate(props));
   }
 }
