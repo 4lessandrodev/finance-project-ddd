@@ -1,28 +1,23 @@
-import { BudgetIdValueObject } from '@domain/budget-box/value-objects';
 import { ErrorMessages } from '@shared/index';
-import { UniqueEntityID } from 'types-ddd';
+import { DomainId } from 'types-ddd';
 import { TransactionCalculationValueObject } from './transaction-calculations.value-object';
 
 describe('transaction-calculations.value-object', () => {
-  it('should create a valida calculation', () => {
+  it('should create a valid calculation', () => {
     const calculation = TransactionCalculationValueObject.create({
-      budgetBoxId: BudgetIdValueObject.create(
-        new UniqueEntityID('valid_budgetId'),
-      ).getResult(),
+      budgetBoxId: DomainId.create('valid_budgetId'),
       value: 200,
     });
     expect(calculation.isSuccess).toBe(true);
     expect(calculation.getResult().calculation.value).toBe(200);
-    expect(calculation.getResult().calculation.budgetBoxId.id.toValue()).toBe(
+    expect(calculation.getResult().calculation.budgetBoxId.value.toValue()).toBe(
       'valid_budgetId',
     );
   });
 
   it('should fail if provide a negative number', () => {
     const calculation = TransactionCalculationValueObject.create({
-      budgetBoxId: BudgetIdValueObject.create(
-        new UniqueEntityID('valid_budgetId'),
-      ).getResult(),
+      budgetBoxId: DomainId.create('valid_budgetId'),
       value: -100,
     });
     expect(calculation.isSuccess).toBe(false);

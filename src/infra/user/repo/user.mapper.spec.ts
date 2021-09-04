@@ -6,7 +6,7 @@ import {
   PasswordValueObject,
   TermValueObject,
 } from '@domain/user/value-objects';
-import { UniqueEntityID } from 'types-ddd';
+import { DomainId } from 'types-ddd';
 import { User } from '../entities/user.schema';
 import { UserMapper } from './user.mapper';
 
@@ -21,6 +21,7 @@ describe('user.mapper', () => {
     // Create user from domain
     domain = UserAggregate.create(
       {
+        ID: DomainId.create('valid_id'),
         email: EmailValueObject.create('valid_mail@domain.com').getResult(),
         password: PasswordValueObject.create('valid_password').getResult(),
         terms: [
@@ -38,7 +39,6 @@ describe('user.mapper', () => {
         createdAt: currentDate,
         updatedAt: currentDate,
       },
-      new UniqueEntityID('valid_id'),
     ).getResult();
 
     // Create persistence user

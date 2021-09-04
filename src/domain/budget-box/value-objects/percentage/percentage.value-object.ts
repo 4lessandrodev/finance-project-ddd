@@ -1,4 +1,5 @@
-import { ErrorMessages, Result, ValueObject } from '@shared/index';
+import { ErrorMessages } from '@shared/index';
+import { ValueObject, Result } from 'types-ddd';
 
 export const BUDGET_PERCENTAGE_MAX_VALUE = 100;
 export const BUDGET_PERCENTAGE_MIN_VALUE = 0;

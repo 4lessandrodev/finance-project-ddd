@@ -1,10 +1,5 @@
-import {
-  BaseDomainEntity,
-  Entity,
-  Result,
-  UniqueEntityID,
-} from '@shared/index';
 import { ReasonDescriptionValueObject } from '@domain/index';
+import { BaseDomainEntity, Entity, Result } from 'types-ddd';
 
 export interface ReasonProps extends BaseDomainEntity {
   description: ReasonDescriptionValueObject;
@@ -14,22 +9,15 @@ export interface ReasonProps extends BaseDomainEntity {
  * @var description: `ReasonDescriptionValueObject`
  */
 export class ReasonDomainEntity extends Entity<ReasonProps> {
-  private constructor(props: ReasonProps, id?: UniqueEntityID) {
-    super(props, id);
+  private constructor(props: ReasonProps) {
+    super(props, ReasonDomainEntity.name);
   }
 
   get description(): ReasonDescriptionValueObject {
     return this.props.description;
   }
 
-  get id(): UniqueEntityID {
-    return this._id;
-  }
-
-  public static create(
-    props: ReasonProps,
-    id?: UniqueEntityID,
-  ): Result<ReasonDomainEntity> {
-    return Result.ok<ReasonDomainEntity>(new ReasonDomainEntity(props, id));
+  public static create(props: ReasonProps): Result<ReasonDomainEntity> {
+    return Result.ok<ReasonDomainEntity>(new ReasonDomainEntity(props));
   }
 }

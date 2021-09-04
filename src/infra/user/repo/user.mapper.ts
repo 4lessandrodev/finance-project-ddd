@@ -1,4 +1,4 @@
-import { IMapper, UniqueEntityID } from 'types-ddd';
+import { IMapper, DomainId } from 'types-ddd';
 import { UserAggregate } from '@domain/user/aggregates';
 import { User } from '../entities/user.schema';
 import {
@@ -13,6 +13,7 @@ export class UserMapper implements IMapper<UserAggregate, User> {
   toDomain(target: User): UserAggregate {
     return UserAggregate.create(
       {
+        ID: DomainId.create(target.id),
         email: EmailValueObject.create(target.email).getResult(),
         password: PasswordValueObject.create(target.password).getResult(),
         terms: target.terms.map((term) =>
@@ -29,14 +30,13 @@ export class UserMapper implements IMapper<UserAggregate, User> {
         ),
         createdAt: target.createdAt,
         updatedAt: target.updatedAt,
-      },
-      new UniqueEntityID(target.id),
+      }
     ).getResult();
   }
   //
   toPersistence(target: UserAggregate): User {
     return {
-      id: target.id.toString(),
+      id: target.id.value.toString(),
       email: target.email.value,
       password: target.password.value,
       createdAt: target.createdAt,
