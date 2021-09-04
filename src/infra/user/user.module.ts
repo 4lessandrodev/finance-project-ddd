@@ -14,17 +14,17 @@ import { SigninUseCase } from "@app/user/use-cases/signin/signin.use-case";
 @Module({
 	imports: [
 		MongooseModule.forFeature([
-		{ name: User.name, schema: UserSchema }
-	]),
-	PassportModule.register({
-		defaultStrategy: 'jwt'
-	}),
-	JwtModule.register({
-		secret: 'secure_secret',
-		signOptions:{
-			expiresIn: '8h'
-		}
-	})
+			{ name: User.name, schema: UserSchema }
+		]),
+		PassportModule.register({
+			defaultStrategy: 'jwt'
+		}),
+		JwtModule.register({
+			secret: 'secure_secret',
+			signOptions: {
+				expiresIn: '8h'
+			}
+		})
 	],
 	providers: [
 		UserMapper,
