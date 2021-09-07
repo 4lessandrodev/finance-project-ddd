@@ -10,6 +10,7 @@ import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
 import { JwtStrategy } from "./services/strategies/jwt.strategy";
 import { SigninUseCase } from "@app/user/use-cases/signin/signin.use-case";
+import { JWT_SECRET } from "@config/env";
 
 @Module({
 	imports: [
@@ -20,7 +21,7 @@ import { SigninUseCase } from "@app/user/use-cases/signin/signin.use-case";
 			defaultStrategy: 'jwt'
 		}),
 		JwtModule.register({
-			secret: 'secure_secret',
+			secret: JWT_SECRET,
 			signOptions: {
 				expiresIn: '8h'
 			}

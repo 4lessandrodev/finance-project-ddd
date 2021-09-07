@@ -1,3 +1,4 @@
+import { JWT_SECRET } from "@config/env";
 import { ErrorMessages } from "@domain/shared";
 import { User, UserDocument } from "@infra/user/entities/user.schema";
 import { UnauthorizedException } from "@nestjs/common";
@@ -11,24 +12,24 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 	constructor(
 		@InjectModel(User.name)
 		private readonly conn: Model<UserDocument>
-	){
+	) {
 		super({
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 			ignoreExpiration: false,
-			secretOrKey: 'secure_secret'
+			secretOrKey: JWT_SECRET
 		})
 	}
 
-	async validate (payload: JwtDecodedPayload): Promise<JwtDecodedPayload> {
+	async validate(payload: JwtDecodedPayload): Promise<JwtDecodedPayload> {
 
 		const id = payload.userId;
 
-		const userExist = await this.conn.findOne({id})
+		const userExist = await this.conn.findOne({ id })
 
 		if (!userExist) {
 			throw new UnauthorizedException(ErrorMessages.INVALID_CREDENTIALS);
 		}
-	
+
 		return { userId: id };
 	}
 

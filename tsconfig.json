@@ -36,6 +36,9 @@
 			],
 			"@app/*": [
 				"application/*"
+			],
+			"@config/*": [
+				"config/*"
 			]
 		}
 	}
