@@ -10,27 +10,27 @@ export interface PercentageValueObjectProps {
 }
 
 export class PercentageValueObject extends ValueObject<PercentageValueObjectProps> {
-  private constructor(props: PercentageValueObjectProps) {
-    super(props);
-  }
+	private constructor (props: PercentageValueObjectProps) {
+		super(props);
+	}
 
-  get value(): number {
-    return this.props.value;
-  }
+	get value (): number {
+		return this.props.value;
+	}
 
-  public static create(value: number): Result<PercentageValueObject> {
-    const isValidRange =
+	public static create (value: number): Result<PercentageValueObject> {
+		const isValidRange =
       value >= BUDGET_PERCENTAGE_MIN_VALUE &&
       value <= BUDGET_PERCENTAGE_MAX_VALUE;
 
-    if (!isValidRange) {
-      return Result.fail<PercentageValueObject>(
-        ErrorMessages.INVALID_PERCENTAGE_VALUE,
-      );
-    }
+		if (!isValidRange) {
+			return Result.fail<PercentageValueObject>(
+				ErrorMessages.INVALID_PERCENTAGE_VALUE,
+			);
+		}
 
-    return Result.ok<PercentageValueObject>(
-      new PercentageValueObject({ value }),
-    );
-  }
+		return Result.ok<PercentageValueObject>(
+			new PercentageValueObject({ value }),
+		);
+	}
 }

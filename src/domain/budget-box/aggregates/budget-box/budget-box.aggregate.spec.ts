@@ -5,10 +5,16 @@ import {
 	ReasonDescriptionValueObject,
 } from '@domain/budget-box/value-objects';
 import { BudgetBoxAggregate } from './budget-box.aggregate';
-import { DomainId } from 'types-ddd';
+import { CurrencyValueObject, DomainId } from 'types-ddd';
+import { CURRENCY } from '@config/env';
 
 describe('budget-box.aggregate', () => {
 	const percentage = PercentageValueObject.create(20).getResult();
+	const balanceAvailable = CurrencyValueObject.create({
+		currency: CURRENCY,
+		value: 0
+	}).getResult();
+
 	it('should create a valid budget-box aggregate', () => {
 
 		const budgetBox = BudgetBoxAggregate.create({
@@ -17,7 +23,7 @@ describe('budget-box.aggregate', () => {
 			description: BudgetDescriptionValueObject.create(
 				'valid_description',
 			).getResult(),
-			balanceAvailable: 0,
+			balanceAvailable,
 			isPercentage: true,
 			budgetPercentage: percentage,
 			reasons: [
@@ -40,7 +46,7 @@ describe('budget-box.aggregate', () => {
 			description: BudgetDescriptionValueObject.create(
 				'valid_description',
 			).getResult(),
-			balanceAvailable: 0,
+			balanceAvailable,
 			isPercentage: false,
 			budgetPercentage: percentage,
 			reasons: [

@@ -1,4 +1,4 @@
-import { AggregateRoot, BaseDomainEntity, DomainId, Result } from 'types-ddd';
+import { AggregateRoot, BaseDomainEntity, CurrencyValueObject, DomainId, Result } from 'types-ddd';
 import { PercentageValueObject } from '@domain/budget-box/value-objects/percentage/percentage.value-object';
 import { DEFAULT_BUDGET_PERCENTAGE_VALUE } from '@domain/budget-box/value-objects/percentage/percentage.value-object';
 import { BudgetDescriptionValueObject } from '@domain/budget-box/value-objects/budget-description/budget-description.value-object';
@@ -8,7 +8,7 @@ import { BUDGET_PERCENTAGE_MAX_VALUE } from '@domain/budget-box/value-objects/pe
 export interface BudgetAggregateProps extends BaseDomainEntity {
 	ownerId: DomainId;
 	description: BudgetDescriptionValueObject;
-	balanceAvailable: number;
+	balanceAvailable: CurrencyValueObject;
 	isPercentage: boolean;
 	budgetPercentage: PercentageValueObject;
 	reasons: ReasonDomainEntity[];
@@ -16,7 +16,7 @@ export interface BudgetAggregateProps extends BaseDomainEntity {
 /**
 	@var ownerId: `UserIdValueObject`
 	@var description: `BudgetDescriptionValueObject`
-	@var balanceAvailable: `number`
+	@var balanceAvailable: `CurrencyValueObject`
 	@var isPercentage: `boolean`
 	@var budgetPercentage: `PercentageValueObject`
 	@var reasons: `ReasonDomainEntity[]`
@@ -35,7 +35,7 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
 	}
 
 	get balanceAvailable (): number {
-		return this.props.balanceAvailable;
+		return this.props.balanceAvailable.value;
 	}
 
 	get isPercentage (): boolean {

@@ -1,12 +1,13 @@
-import { AggregateRoot, DomainId, Result, BaseDomainEntity } from 'types-ddd';
+import { AggregateRoot, DomainId, Result, BaseDomainEntity, CurrencyValueObject } from 'types-ddd';
 import { DateValueObject } from '@shared/index';
 import {
-  AttachmentPathValueObject,
-  TransactionCalculationValueObject,
-  TransactionNoteValueObject,
-  TransactionStatusValueObject,
-  TransactionTypeValueObject
+	AttachmentPathValueObject,
+	TransactionCalculationValueObject,
+	TransactionNoteValueObject,
+	TransactionStatusValueObject,
+	TransactionTypeValueObject
 } from '@domain/index';
+import { CURRENCY } from '@config/env';
 
 export interface TransactionAggregateProps extends BaseDomainEntity {
   userId: DomainId;
@@ -30,64 +31,75 @@ export interface TransactionAggregateProps extends BaseDomainEntity {
  * @var attachment?: `AttachmentPathValueObject`
  */
 export class TransactionAggregate extends AggregateRoot<TransactionAggregateProps> {
-  private _totalValue: number;
-  private constructor(
-    props: TransactionAggregateProps,
-    total: number
+  private _totalValue: CurrencyValueObject;
+  private constructor (
+  	props: TransactionAggregateProps,
+  	total: CurrencyValueObject
   ) {
-    super(props, TransactionAggregate.name);
-    this._totalValue = total;
+  	super(props, TransactionAggregate.name);
+  	this._totalValue = total;
   }
 
-  get totalValue(): number {
-    return this._totalValue;
+  get totalValue (): number {
+  	return this._totalValue.value;
   }
 
-  get userId(): DomainId {
-    return this.props.userId;
+  get userId (): DomainId {
+  	return this.props.userId;
   }
 
-  get reasonId(): DomainId {
-    return this.props.reasonId;
+  get reasonId (): DomainId {
+  	return this.props.reasonId;
   }
 
-  get paymentDate(): DateValueObject {
-    return this.props.paymentDate;
+  get paymentDate (): DateValueObject {
+  	return this.props.paymentDate;
   }
 
-  get transactionType(): TransactionTypeValueObject {
-    return this.props.transactionType;
+  get transactionType (): TransactionTypeValueObject {
+  	return this.props.transactionType;
   }
 
-  get status(): TransactionStatusValueObject {
-    return this.props.status;
+  get status (): TransactionStatusValueObject {
+  	return this.props.status;
   }
 
-  get transactionCalculations(): TransactionCalculationValueObject[] {
-    return this.props.transactionCalculations;
+  get transactionCalculations (): TransactionCalculationValueObject[] {
+  	return this.props.transactionCalculations;
   }
 
-  get note(): TransactionNoteValueObject | null {
-    return this.props.note ?? null;
+  get note (): TransactionNoteValueObject | null {
+  	return this.props.note ?? null;
   }
 
-  get attachment(): AttachmentPathValueObject | null {
-    return this.props.attachment ?? null;
+  get attachment (): AttachmentPathValueObject | null {
+  	return this.props.attachment ?? null;
   }
 
-  public static create(
-    props: TransactionAggregateProps
+  public static create (
+  	props: TransactionAggregateProps
   ): Result<TransactionAggregate> {
-    /**
+  	/**
      * total is calculated dynamically. Its the sum of calculation values
      */
-    const total = props.transactionCalculations.reduce(
-      (total, calc) => calc.calculation.value + total,
-      0,
-    );
+  	const total = props.transactionCalculations.reduce(
+  		(total, calc) => calc.calculation.currency.value + total,
+  		0,
+  	);
 
-    return Result.ok<TransactionAggregate>(
-      new TransactionAggregate(props, total),
-    );
+  	const currencyTotalOrError = CurrencyValueObject.create({
+  		currency: CURRENCY,
+  		value: total
+  	});
+
+  	if (currencyTotalOrError.isFailure) {
+  		return Result.fail(currencyTotalOrError.errorValue());
+  	}
+
+  	const totalCurrency = currencyTotalOrError.getResult();
+
+  	return Result.ok<TransactionAggregate>(
+  		new TransactionAggregate(props, totalCurrency),
+  	);
   }
 }

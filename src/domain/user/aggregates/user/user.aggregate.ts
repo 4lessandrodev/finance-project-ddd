@@ -21,27 +21,27 @@ export interface UserAggregateProps extends BaseDomainEntity {
  * @var terms: `TermValueObject[]`
  */
 export class UserAggregate extends AggregateRoot<UserAggregateProps> {
-	private constructor(props: UserAggregateProps) {
+	private constructor (props: UserAggregateProps) {
 		super(props, UserAggregate.name);
 	}
 
-	get email(): EmailValueObject {
+	get email (): EmailValueObject {
 		return this.props.email;
 	}
 
-	get password(): PasswordValueObject {
+	get password (): PasswordValueObject {
 		return this.props.password;
 	}
 
-	get terms(): TermValueObject[] {
+	get terms (): TermValueObject[] {
 		return this.props.terms;
 	}
 
-	get deletedAt(): Date | undefined {
+	get deletedAt (): Date | undefined {
 		return this.props.deletedAt;
 	}
 
-	public static create(
+	public static create (
 		props: UserAggregateProps
 	): Result<UserAggregate> {
 		return Result.ok<UserAggregate>(new UserAggregate(props));
