@@ -1,8 +1,10 @@
 {
   "editor.fontSize": 15,
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.formatOnSave": true,
+  "editor.autoIndent": "full",
+  "editor.detectIndentation": true,
+  "editor.tabSize": 4,
 
   // Controls if quick suggestions should show up while typing
   "editor.quickSuggestions": {

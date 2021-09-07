@@ -26,7 +26,7 @@ module.exports = {
     semi: ['error', 'always'],
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/brace-style': 'off',
-    indent: [4, 'tab'],
+    indent: ['error', 'tab'],
     'no-tabs': 0,
     'space-before-function-paren': ['error', 'always'],
   },
