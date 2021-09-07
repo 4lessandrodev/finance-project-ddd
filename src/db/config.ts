@@ -1,3 +1,4 @@
+import { DB_NAME, MONGO_HOST, MONGO_PASSWORD, MONGO_PORT, MONGO_USER } from '@config/env';
 import { MongooseModuleOptions } from '@nestjs/mongoose';
 
 export const MongoDbConfig: MongooseModuleOptions = {
@@ -5,8 +6,7 @@ export const MongoDbConfig: MongooseModuleOptions = {
 	useUnifiedTopology: true,
 	useCreateIndex: true,
 	useFindAndModify: false,
-	dbName: 'finance_db',
+	dbName: DB_NAME,
 };
 
-/*mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}*/
-export const MongoURI: string = 'mongodb://root:mongo@localhost:27017';
+export const MongoURI: string = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}`;
