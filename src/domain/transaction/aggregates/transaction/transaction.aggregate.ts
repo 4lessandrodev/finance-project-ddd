@@ -82,24 +82,17 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
   	/**
      * total is calculated dynamically. Its the sum of calculation values
      */
-  	const total = props.transactionCalculations.reduce(
-  		(total, calc) => calc.calculation.currency.value + total,
-  		0,
-  	);
-
-  	const currencyTotalOrError = CurrencyValueObject.create({
+  	const currency = CurrencyValueObject.create({
   		currency: CURRENCY,
-  		value: total
+  		value: 0
+  	}).getResult();
+
+  	props.transactionCalculations.map((cur)=> {
+  		currency.add(cur.calculation.currency.value);
   	});
 
-  	if (currencyTotalOrError.isFailure) {
-  		return Result.fail(currencyTotalOrError.errorValue());
-  	}
-
-  	const totalCurrency = currencyTotalOrError.getResult();
-
   	return Result.ok<TransactionAggregate>(
-  		new TransactionAggregate(props, totalCurrency),
+  		new TransactionAggregate(props, currency),
   	);
   }
 }
