@@ -21,5 +21,6 @@ module.exports = {
 		'@repo/(.*)': '<rootDir>/src/repo/$1',
 		'@app/(.*)': '<rootDir>/src/application/$1',
 		'@config/(.*)': '<rootDir>/src/config/$1',
+		'@utils/(.*)': '<rootDir>/src/utils/$1',
 	},
 };

@@ -2,7 +2,7 @@ import { JWTPayload } from '@app/user/use-cases/signin/jwt-payload.interface';
 import { Inject, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";;
 import { SignupInput } from '../inputs/signup.input';
-import {SigninInput} from '../inputs/signin.input'
+import { SigninInput } from '../inputs/signin.input';
 import { GetUserAgent } from '../services/decorators/get-useragent.decorator';
 import { JwtAuthGuard } from '../services/guards/jwt-auth.guard';
 import { JwtPayloadType } from '../types/jwt-payload.type';

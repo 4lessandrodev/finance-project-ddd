@@ -92,6 +92,7 @@
 		"@repo": "./dist/repo",
 		"@app": "./dist/application",
 		"@config": "./dist/config",
+		"@utils": "./dist/utils",
 		"@": "./dist"
 	}
 }
