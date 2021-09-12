@@ -3,12 +3,13 @@ import { Inject, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";;
 import { SignupInput } from '../inputs/signup.input';
 import { SigninInput } from '../inputs/signin.input';
-import { GetUserAgent } from '../services/decorators/get-useragent.decorator';
+import { GetUserAgent } from '../services/decorators/get-user-agent.decorator';
 import { JwtAuthGuard } from '../services/guards/jwt-auth.guard';
 import { JwtPayloadType } from '../types/jwt-payload.type';
 import { UserAgentType } from '../types/user-agent.type';
 import { UserType } from "../types/user.type";
 import { UserService } from '../user.service';
+import { GetUserId } from '../services/decorators/get-user.decorator';
 
 @Resolver(() => UserType)
 export class UserResolver {
@@ -17,10 +18,14 @@ export class UserResolver {
 		private readonly userService: UserService
 	) { }
 
-	@Query(() => [UserType])
+	@Query(() => UserType)
 	@UseGuards(JwtAuthGuard)
-	async users (): Promise<UserType[]> {
+	async whoAmI (
+		@GetUserId() userId: string
+	): Promise<UserType> {
 
+		console.log(userId);
+		
 		const user = new UserType();
 		user.email = 'valid_email@domain.com';
 		user.id = 'ab535163-6924-420f-80b4-5a01674c51ea';
@@ -36,7 +41,7 @@ export class UserResolver {
 			}
 		});
 
-		return [user];
+		return user;
 	}
 
 	@Mutation(() => Boolean)
