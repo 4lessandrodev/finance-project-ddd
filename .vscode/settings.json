@@ -39,4 +39,8 @@
 
 // Enable parameter hints
 "editor.parameterHints.enabled": true,
+"cSpell.words": [
+  "nestjs",
+  "signin"
+],
 }

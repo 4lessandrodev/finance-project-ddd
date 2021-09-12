@@ -13,11 +13,11 @@ import { IUserRepository } from '@repo/user.repository.interface';
 
 export class SignUpUseCase implements IUseCase<SignUpDto, Result<void, string>> {
 
-	constructor(
+	constructor (
 		@Inject('UserRepository') private readonly userRepo: IUserRepository,
 	) { }
 
-	async execute(request: SignUpDto): Promise<Result<void>> {
+	async execute (request: SignUpDto): Promise<Result<void>> {
 
 		if (!request.acceptedTerms) {
 			return Result.fail<void>('Terms must be accepted');

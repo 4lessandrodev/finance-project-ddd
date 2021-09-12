@@ -39,6 +39,9 @@
 			],
 			"@config/*": [
 				"config/*"
+			],
+			"@utils/*": [
+				"utils/*"
 			]
 		}
 	}

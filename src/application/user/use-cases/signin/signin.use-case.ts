@@ -5,7 +5,7 @@ import { SigninDto } from './signin.dto';
 import { Injectable, Inject } from '@nestjs/common';
 import { EmailValueObject, PasswordValueObject } from '@domain/user/value-objects';
 import { JWTPayload } from './jwt-payload.interface';
-import {JwtService} from '@nestjs/jwt'
+import {JwtService} from '@nestjs/jwt';
 
 @Injectable()
 export class SigninUseCase implements IUseCase<SigninDto, Result<JWTPayload>>{
