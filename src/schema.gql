@@ -37,7 +37,6 @@ type Mutation {
 input SignupInput {
   email: String!
   password: String!
-  ip: String!
   acceptedTerms: Boolean!
 }
 

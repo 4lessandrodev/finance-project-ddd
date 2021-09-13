@@ -10,6 +10,7 @@ import { UserAgentType } from '../types/user-agent.type';
 import { UserType } from "../types/user.type";
 import { UserService } from '../user.service';
 import { GetUserId } from '../services/decorators/get-user.decorator';
+import { GetUserIp } from '../services/decorators/get-ip.decorator';
 
 @Resolver(() => UserType)
 export class UserResolver {
@@ -47,14 +48,16 @@ export class UserResolver {
 	@Mutation(() => Boolean)
 	async signup (
 		@Args(SignupInput.name) user: SignupInput,
-		@GetUserAgent() userAgent: UserAgentType): Promise<boolean> {
+		@GetUserAgent() userAgent: UserAgentType,
+		@GetUserIp() ip: string
+	): Promise<boolean> {
 		const success = true;
 		await this.userService.signup({
 			...user,
 			term:
 			{
+				ip,
 				acceptedAt: new Date(),
-				ip: user.ip,
 				userAgent
 			}
 		});
