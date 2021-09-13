@@ -2,15 +2,12 @@ import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class SignupInput {
-	@Field(() => String!)
+	@Field(() => String)
 	email!: string;
 
-	@Field(() => String!)
+	@Field(() => String)
 	password!: string;
 
-	@Field(() => String!)
-	ip!: string;
-
-	@Field(() => Boolean!)
+	@Field(() => Boolean)
 	acceptedTerms!: boolean;
 }
