@@ -1,10 +1,12 @@
+import { logger } from './env-logger';
 import * as env from 'env-var';
-const { from, logger } = env;
-
-const envVar = from(process.env, {}, logger);
+import { randomBytes } from 'crypto';
+const { from } = env;
+const DEFAULT_SECRET = randomBytes(42).toString('base64');
+const envVar = from(process.env, {}, logger.info);
 
 export const JWT_SECRET = envVar.get('JWT_SECRET')
-	.default('b57781ce27870c4caf7a19db6dc6bae9')
+	.default(DEFAULT_SECRET)
 	.required()
 	.asString();
 

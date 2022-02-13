@@ -13,7 +13,7 @@
 		"start": "nest start",
 		"start:dev": "env-cmd nest start --watch",
 		"start:debug": "nest start --debug --watch",
-		"start:prod": "node dist/main",
+		"start:prod": "NODE_ENV=production node dist/main",
 		"lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
 		"test": "jest --runInBand --silent",
 		"test:watch": "jest --watch",
@@ -45,7 +45,7 @@
 		"rimraf": "^3.0.2",
 		"rxjs": "7.2.0",
 		"ts-morph": "^11.0.3",
-		"types-ddd": "2.3.6",
+		"types-ddd": "^2.9.9",
 		"ua-parser-js": "0.7.31",
 		"uuid": "^8.3.2",
 		"validator": "13.7.0"
