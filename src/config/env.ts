@@ -1,6 +1,6 @@
 import { logger } from './env-logger';
-import * as env from 'env-var';
 import { randomBytes } from 'crypto';
+import * as env from 'env-var';
 const { from } = env;
 const DEFAULT_SECRET = randomBytes(42).toString('base64');
 const envVar = from(process.env, {}, logger.info);
