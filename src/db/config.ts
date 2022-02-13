@@ -9,4 +9,4 @@ export const MongoDbConfig: MongooseModuleOptions = {
 	dbName: DB_NAME,
 };
 
-export const MongoURI: string = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}`;
+export const MongoURI = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}`;
