@@ -1,9 +1,9 @@
+import { UserModule } from '@modules/user/infra/user.module';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
-import { UserModule } from './infra/user/user.module';
-import { MongoDbConfig, MongoURI } from './db/config';
+import { MongoDbConfig, MongoURI } from './config/mongo.config';
 
 
 @Module({

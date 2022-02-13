@@ -1,5 +1,5 @@
 module.exports = {
-	roots: [ '<rootDir>/src' ],
+	roots: ['<rootDir>/src'],
 	collectCoverageFrom: [
 		'<rootDir>/src/**/*.ts',
 		'!<rootDir>/src/main/**',
@@ -13,13 +13,9 @@ module.exports = {
 	moduleNameMapper: {
 		'@/(.*)': '<rootDir>/src/$1',
 		'@root/(.*)': '<rootDir>/src/$1',
-		'@domain/(.*)': '<rootDir>/src/domain/$1',
-		'@shared-core/(.*)': '<rootDir>/src/domain/shared/core/$1',
-		'@shared-common/(.*)': '<rootDir>/src/domain/shared/common/$1',
-		'@shared/(.*)': '<rootDir>/src/domain/shared/$1',
-		'@infra/(.*)': '<rootDir>/src/infra/$1',
-		'@repo/(.*)': '<rootDir>/src/repo/$1',
-		'@app/(.*)': '<rootDir>/src/application/$1',
+		'@modules/(.*)': '<rootDir>/src/modules/$1',
+		'@shared/(.*)': '<rootDir>/src/modules/shared/$1',
+		'@shared-common/(.*)': '<rootDir>/src/modules/shared/common/$1',
 		'@config/(.*)': '<rootDir>/src/config/$1',
 		'@utils/(.*)': '<rootDir>/src/utils/$1',
 	},

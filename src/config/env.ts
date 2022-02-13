@@ -1,9 +1,9 @@
-import { logger } from './env-logger';
-import { randomBytes } from 'crypto';
 import * as env from 'env-var';
 const { from } = env;
-const DEFAULT_SECRET = randomBytes(42).toString('base64');
-const envVar = from(process.env, {}, logger.info);
+import { envLogger } from './env-logger';
+import { DEFAULT_SECRET } from './env-token';
+
+const envVar = from(process.env, {}, envLogger);
 
 export const JWT_SECRET = envVar.get('JWT_SECRET')
 	.default(DEFAULT_SECRET)
@@ -43,4 +43,5 @@ export const PORT = envVar.get('PORT')
 export const CURRENCY = envVar.get('CURRENCY')
 	.default('BRL')
 	.required()
-	.asEnum(['BRL', 'USD' , 'EUR' , 'JPY']);
+	.asEnum(['BRL', 'USD', 'EUR', 'JPY']);
+	
