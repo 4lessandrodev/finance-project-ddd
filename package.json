@@ -84,13 +84,9 @@
 		"typescript": "4.3.5"
 	},
 	"_moduleAliases": {
-		"@domain": "./dist/domain",
-		"@shared-core": "./dist/domain/shared/core",
-		"@shared-common": "./dist/domain/shared/common",
-		"@shared": "./dist/domain/shared",
-		"@infra": "./dist/infra",
-		"@repo": "./dist/repo",
-		"@app": "./dist/application",
+		"@modules": "./dist/modules",
+		"@shared": "./dist/modules/shared",
+		"@shared-common": "./dist/modules/shared/common",
 		"@config": "./dist/config",
 		"@utils": "./dist/utils",
 		"@": "./dist"

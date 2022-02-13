@@ -16,26 +16,14 @@
 		"noUnusedParameters": true,
 		"baseUrl": "src",
 		"paths": {
-			"@domain/*": [
-				"domain/*"
-			],
-			"@shared-core/*": [
-				"domain/shared/core/*"
-			],
-			"@shared-common/*": [
-				"domain/shared/common/*"
+			"@modules/*": [
+				"modules/*"
 			],
 			"@shared/*": [
-				"domain/shared/*"
+				"modules/shared/*"
 			],
-			"@infra/*": [
-				"infra/*"
-			],
-			"@repo/*": [
-				"repo/*"
-			],
-			"@app/*": [
-				"application/*"
+			"@shared-common/*": [
+				"modules/shared/common/*"
 			],
 			"@config/*": [
 				"config/*"
