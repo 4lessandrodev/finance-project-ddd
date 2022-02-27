@@ -1,5 +1,4 @@
-import { DateValueObject } from '@shared/index';
-import { ValueObject, Result } from 'types-ddd';
+import { ValueObject, Result, DateValueObject } from 'types-ddd';
 import { IpValueObject } from './ip.value-object';
 
 export interface IUserAgent {
@@ -20,8 +19,16 @@ export class TermValueObject extends ValueObject<TermValueObjectProps> {
 		super(props);
 	}
 
-	get terms (): TermValueObjectProps {
-		return this.props;
+	get ip (): IpValueObject {
+		return this.props.ip;
+	}
+
+	get acceptedAt (): DateValueObject {
+		return this.props.acceptedAt;
+	}
+
+	get userAgent (): IUserAgent {
+		return this.props.userAgent;
 	}
 
 	public static create (props: TermValueObjectProps): Result<TermValueObject> {

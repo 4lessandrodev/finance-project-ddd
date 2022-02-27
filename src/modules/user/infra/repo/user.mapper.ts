@@ -1,8 +1,7 @@
-import { DateValueObject } from '@modules/shared';
 import { UserAggregate } from '@modules/user/domain';
 import { IpValueObject } from '@modules/user/domain/ip.value-object';
 import { TermValueObject } from '@modules/user/domain/term.value-object';
-import { IMapper, DomainId, EmailValueObject, PasswordValueObject } from 'types-ddd';
+import { IMapper, DomainId, EmailValueObject, PasswordValueObject, DateValueObject } from 'types-ddd';
 import { User } from '../entities/user.schema';
 
 export class UserMapper implements IMapper<UserAggregate, User> {
@@ -37,10 +36,10 @@ export class UserMapper implements IMapper<UserAggregate, User> {
 			password: target.password.value,
 			createdAt: target.createdAt,
 			updatedAt: target.updatedAt,
-			terms: target.terms.map(({ terms }) => ({
-				ip: terms.ip.value,
-				acceptedAt: terms.acceptedAt.value,
-				userAgent: terms.userAgent,
+			terms: target.terms.map(({ acceptedAt, ip, userAgent }) => ({
+				ip: ip.value,
+				acceptedAt: acceptedAt.value,
+				userAgent: userAgent,
 			})),
 		};
 	}

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user.aggregate should get valid values 1`] = `
+Array [
+  TermValueObject {
+    "props": Object {
+      "acceptedAt": DateValueObject {
+        "ONE_DAY": 86400000,
+        "ONE_HOUR": 3600000,
+        "ONE_MINUTE": 60000,
+        "ONE_MONTH": 2678400000,
+        "ONE_WEEK": 604800000,
+        "ONE_YEAR": 31622400000,
+        "props": Object {
+          "value": 2020-01-01T03:00:00.000Z,
+        },
+      },
+      "ip": IpValueObject {
+        "props": Object {
+          "value": "45.192.110.42",
+        },
+      },
+      "userAgent": Object {
+        "name": "firefox",
+        "os": "LINUX",
+        "type": "browser",
+        "version": "80.0.1",
+      },
+    },
+  },
+]
+`;
