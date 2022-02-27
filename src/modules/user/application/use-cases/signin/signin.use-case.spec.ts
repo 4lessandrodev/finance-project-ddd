@@ -1,9 +1,9 @@
 import { SigninUseCase } from './signin.use-case';
 import { JwtService } from '@nestjs/jwt';
-import { DomainId, EmailValueObject } from 'types-ddd';
+import { DomainId, EmailValueObject, PasswordValueObject } from 'types-ddd';
 import { IUserRepository } from '@modules/user/domain/interfaces/user.repository.interface';
 import { UserAggregate } from '@modules/user/domain';
-import { PasswordValueObject } from '@modules/user/domain/password.value-object';
+
 
 describe('signin.use-case', () => {
 

@@ -1,9 +1,9 @@
-import { PasswordValueObject } from './password.value-object';
 import { TermValueObject } from './term.value-object';
 import {
 	AggregateRoot,
 	BaseDomainEntity,
 	EmailValueObject,
+	PasswordValueObject,
 	Result
 } from 'types-ddd';
 

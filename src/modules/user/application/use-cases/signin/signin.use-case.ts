@@ -1,11 +1,11 @@
 import { ErrorMessages } from '@shared/common/error-messages/messages';
-import { EmailValueObject, IUseCase, Result } from 'types-ddd';
+import { EmailValueObject, IUseCase, PasswordValueObject, Result } from 'types-ddd';
 import { SigninDto } from './signin.dto';
 import { Injectable, Inject } from '@nestjs/common';
 import { JWTPayload } from './jwt-payload.interface';
 import {JwtService} from '@nestjs/jwt';
 import { IUserRepository } from '@modules/user/domain/interfaces/user.repository.interface';
-import { PasswordValueObject } from '@modules/user/domain/password.value-object';
+
 
 @Injectable()
 export class SigninUseCase implements IUseCase<SigninDto, Result<JWTPayload>>{
@@ -38,7 +38,7 @@ export class SigninUseCase implements IUseCase<SigninDto, Result<JWTPayload>>{
 
 			const user = await this.userRepo.findOne({email});
 
-			const isValidPassword = await user?.password.comparePasswords(password);
+			const isValidPassword = user?.password.compare(password);
 
 			if (!isValidPassword) {
 				return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
