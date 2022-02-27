@@ -178,4 +178,34 @@ Deixo como sugestão a Arquitetura hexagonal
 
 Baseado na arquitetura hexagonal, sugestão de organização de pastas
 
-![imagem](./readme/organizacao-pastas.png 'imagem')
+```sh
+  $ tree
+  .
+  ├── package.json
+  ├── README.md
+  └── src
+       ├── config
+       │    ├── main.ts    
+       │    └── env.ts 
+       │
+       └── modules
+            │ 
+            └── [module-name]
+                  │ 
+                  │── domain
+                  │     ├── value-objects
+                  │     ├── entities
+                  │     ├── aggregates
+                  │     ├── events
+                  │     ├── subscriptions
+                  │     ├── repo
+                  │     └── services
+                  │ 
+                  ├── application
+                  │     └── use-cases 
+                  │ 
+                  └── infra
+                        ├── models     
+                        ├── repo
+                        └── mappers 
+```
