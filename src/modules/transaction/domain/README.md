@@ -12,8 +12,8 @@ Só pode haver dois tipos de lançamento: "Entrada" ou "Saida".
   "total-value": 100,
   "reasonId": "uuid",
   "payment-date": "2021-01-01 10:00:00",
-  "transaction-type": "Entrada" | "Saida",
-  "status": "Pendente" | "Concluído",
+  "transaction-type": "Entrada | Saida",
+  "status": "Pendente | Concluído",
   "note": "valid_description",
   "attachment": "url",
   "transaction-calculations": [
