@@ -15,8 +15,14 @@ export class IpValueObject extends ValueObject<IpValueObjectProps> {
 		return this.props.value;
 	}
 
+	public static isValidValue (ip: string): boolean {
+		return validateIpRegex.test(ip);
+	}
+
 	public static create (ip: string): Result<IpValueObject> {
-		const isValidIp = validateIpRegex.test(ip);
+		
+		const isValidIp = IpValueObject.isValidValue(ip);
+
 		if (!isValidIp) {
 			return Result.fail<IpValueObject>(ErrorMessages.INVALID_IP);
 		}
