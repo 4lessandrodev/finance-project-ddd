@@ -15,8 +15,14 @@ export class TransactionNoteValueObject extends ValueObject<TransactionNoteValue
 		return this.props.value;
 	}
 
+	public static isValidValue (value: string): boolean {
+		return value.length <= TRANSACTION_NOTE_MAX_LENGTH;
+	}
+
 	public static create (note: string): Result<TransactionNoteValueObject> {
-		const isValidLength = note.length <= TRANSACTION_NOTE_MAX_LENGTH;
+		
+		const isValidLength = TransactionNoteValueObject.isValidValue(note);
+
 		if (!isValidLength) {
 			return Result.fail<TransactionNoteValueObject>(
 				ErrorMessages.INVALID_TRANSACTION_NOTE_LENGTH,
