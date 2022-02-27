@@ -12,7 +12,7 @@ Array [
         "ONE_WEEK": 604800000,
         "ONE_YEAR": 31622400000,
         "props": Object {
-          "value": 2020-01-01T03:00:00.000Z,
+          "value": 2020-01-01T00:00:00.000Z,
         },
       },
       "ip": IpValueObject {
