@@ -16,10 +16,19 @@ export class ReasonDescriptionValueObject extends ValueObject<ReasonDescriptionV
 		return this.props.value;
 	}
 
+	public static isValidValue (description: string): boolean {
+		const descriptionLength = description.trim().length;
+
+		const isValidLength = descriptionLength >= REASON_DESCRIPTION_MIN_LENGTH &&
+			descriptionLength <= REASON_DESCRIPTION_MAX_LENGTH;
+		
+		return isValidLength;
+	}
+
 	public static create (description: string): Result<ReasonDescriptionValueObject> {
-		const isValidLength =
-      description.trim().length >= REASON_DESCRIPTION_MIN_LENGTH &&
-      description.trim().length <= REASON_DESCRIPTION_MAX_LENGTH;
+	
+		const isValidLength = ReasonDescriptionValueObject.isValidValue(description);
+
 		if (!isValidLength) {
 			return Result.fail<ReasonDescriptionValueObject>(
 				ErrorMessages.INVALID_REASON_DESCRIPTION_LENGTH,

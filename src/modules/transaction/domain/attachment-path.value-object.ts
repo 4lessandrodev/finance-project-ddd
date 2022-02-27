@@ -16,16 +16,22 @@ export class AttachmentPathValueObject extends ValueObject<AttachmentPathValueOb
 		return this.props.value;
 	}
 
+	public static isValidValue (value: string): boolean {
+		const isValidUrl = isURL(value);
+		const isValidDirectory = validateDirectoryPath.test(value);
+		const isValid = isValidUrl || isValidDirectory;
+		return isValid;
+	}
+
 	/**
    *
    * @param path url or directory path
    * @returns instance of `AttachmentPathValueObject`
    */
 	public static create (path: string): Result<AttachmentPathValueObject> {
-		const isValidUrl = isURL(path);
-		const isValidDirectory = validateDirectoryPath.test(path);
+		const isValidUrl = AttachmentPathValueObject.isValidValue(path);
 
-		if (!isValidUrl && !isValidDirectory) {
+		if (!isValidUrl) {
 			return Result.fail<AttachmentPathValueObject>(
 				ErrorMessages.INVALID_ATTACHMENT_PATH,
 			);

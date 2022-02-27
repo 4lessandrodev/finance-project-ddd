@@ -1,6 +1,5 @@
-import { DateValueObject } from '@shared/index';
 import { TransactionAggregate } from '../transaction.aggregate';
-import { CurrencyValueObject, DomainId } from 'types-ddd';
+import { CurrencyValueObject, DateValueObject, DomainId } from 'types-ddd';
 import { CURRENCY } from '@config/env';
 import { TransactionTypeValueObject } from '../transaction-type.value-object';
 import { TransactionStatusValueObject } from '../transaction-status.value-object';

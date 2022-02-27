@@ -8,23 +8,23 @@ interface calculationProps {
   currency: CurrencyValueObject;
 }
 
-export interface TransactionCalculationValueObjectProps {
-  calculation: calculationProps;
-}
-
-export class TransactionCalculationValueObject extends ValueObject<TransactionCalculationValueObjectProps> {
-	private constructor (props: TransactionCalculationValueObjectProps) {
+export class TransactionCalculationValueObject extends ValueObject<calculationProps> {
+	private constructor (props: calculationProps) {
 		super(props);
 	}
 
-	get calculation (): calculationProps {
-		return this.props.calculation;
+	get budgetBoxId (): DomainId {
+		return this.props.budgetBoxId;
+	}
+
+	get currency (): CurrencyValueObject {
+		return this.props.currency;
 	}
 
 	public static create (
-		calculation: calculationProps,
+		props: calculationProps,
 	): Result<TransactionCalculationValueObject> {
-		const isValidValue = calculation.currency.value >= TRANSACTION_CALCULATION_MIN_VALUE;
+		const isValidValue = props.currency.value >= TRANSACTION_CALCULATION_MIN_VALUE;
 
 		if (!isValidValue) {
 			return Result.fail<TransactionCalculationValueObject>(
@@ -33,7 +33,8 @@ export class TransactionCalculationValueObject extends ValueObject<TransactionCa
 		}
 
 		return Result.ok<TransactionCalculationValueObject>(
-			new TransactionCalculationValueObject({ calculation }),
+			new TransactionCalculationValueObject({ ...props }),
 		);
 	}
 }
+

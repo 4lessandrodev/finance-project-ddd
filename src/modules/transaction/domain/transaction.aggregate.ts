@@ -1,5 +1,4 @@
-import { AggregateRoot, DomainId, Result, BaseDomainEntity, CurrencyValueObject } from 'types-ddd';
-import { DateValueObject } from '@shared/index';
+import { AggregateRoot, DomainId, Result, BaseDomainEntity, CurrencyValueObject, DateValueObject } from 'types-ddd';
 import { CURRENCY } from '@config/env';
 import { TransactionTypeValueObject } from './transaction-type.value-object';
 import { TransactionStatusValueObject } from './transaction-status.value-object';
@@ -86,7 +85,7 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
   	}).getResult();
 
   	props.transactionCalculations.map((cur)=> {
-  		currency.add(cur.calculation.currency.value);
+  		currency.add(cur.currency.value);
   	});
 
   	return Result.ok<TransactionAggregate>(

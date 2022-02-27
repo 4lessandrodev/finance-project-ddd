@@ -1,4 +1,4 @@
-import { DateValueObject } from '@shared/index';
+import { DateValueObject } from 'types-ddd';
 import { IpValueObject } from '../ip.value-object';
 import { TermValueObject } from '../term.value-object';
 
@@ -22,7 +22,7 @@ describe('term.value-object', () => {
 				type: props?.userAgent?.type ?? 'browser',
 				version: props?.userAgent?.version ?? '86.0.0',
 			},
-			acceptedAt: props?.acceptedAt ?? new Date(),
+			acceptedAt: props?.acceptedAt ?? new Date('2020-01-01 00:00:00'),
 			ip: props?.ip ?? '123.123.123.123',
 		};
 	};
@@ -32,10 +32,10 @@ describe('term.value-object', () => {
 		const term = TermValueObject.create({
 			acceptedAt: DateValueObject.create(props.acceptedAt).getResult(),
 			ip: IpValueObject.create(props.ip).getResult(),
-			userAgent: props.userAgent as any,
+			userAgent: props.userAgent,
 		});
 
 		expect(term.isSuccess).toBe(true);
-		expect(term.getResult().terms).toBe(term.getResult().terms);
+		expect(term.getResult()).toBe(term.getResult());
 	});
 });

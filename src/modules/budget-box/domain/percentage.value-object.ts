@@ -18,10 +18,16 @@ export class PercentageValueObject extends ValueObject<PercentageValueObjectProp
 		return this.props.value;
 	}
 
-	public static create (value: number): Result<PercentageValueObject> {
+	static isValidValue (value: number): boolean {
 		const isValidRange =
-      value >= BUDGET_PERCENTAGE_MIN_VALUE &&
-      value <= BUDGET_PERCENTAGE_MAX_VALUE;
+		value >= BUDGET_PERCENTAGE_MIN_VALUE &&
+			value <= BUDGET_PERCENTAGE_MAX_VALUE;
+		return isValidRange;
+	}
+
+	public static create (value: number): Result<PercentageValueObject> {
+
+		const isValidRange = PercentageValueObject.isValidValue(value);
 
 		if (!isValidRange) {
 			return Result.fail<PercentageValueObject>(

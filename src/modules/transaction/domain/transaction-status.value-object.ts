@@ -20,17 +20,24 @@ export class TransactionStatusValueObject extends ValueObject<TransactionStatusV
 		return this.props.value.toUpperCase() as transactionStatus;
 	}
 
+	public static isValidValue (value: transactionStatus): boolean {
+		return Object.values(validTransactionStatusEnum).includes(
+			value.toUpperCase(),
+		);
+	}
+
 	public static create (
 		status: transactionStatus,
 	): Result<TransactionStatusValueObject> {
-		const isValidEnumValue = Object.values(validTransactionStatusEnum).includes(
-			status.toUpperCase(),
-		);
+
+		const isValidEnumValue = TransactionStatusValueObject.isValidValue(status);
+		
 		if (!isValidEnumValue) {
 			return Result.fail<TransactionStatusValueObject>(
 				ErrorMessages.INVALID_ENUM_TRANSACTION_STATUS,
 			);
 		}
+		
 		return Result.ok<TransactionStatusValueObject>(
 			new TransactionStatusValueObject({ value: status }),
 		);
