@@ -1,11 +1,10 @@
 import { ErrorMessages } from '@shared/common/error-messages/messages';
-import { IUseCase, Result } from 'types-ddd';
+import { EmailValueObject, IUseCase, Result } from 'types-ddd';
 import { SigninDto } from './signin.dto';
 import { Injectable, Inject } from '@nestjs/common';
 import { JWTPayload } from './jwt-payload.interface';
 import {JwtService} from '@nestjs/jwt';
 import { IUserRepository } from '@modules/user/domain/interfaces/user.repository.interface';
-import { EmailValueObject } from '@modules/user/domain/email.value-object';
 import { PasswordValueObject } from '@modules/user/domain/password.value-object';
 
 @Injectable()
@@ -24,10 +23,10 @@ export class SigninUseCase implements IUseCase<SigninDto, Result<JWTPayload>>{
 		const emailOrError = EmailValueObject.create(email);
 		const passwordOrError = PasswordValueObject.create(password);
 
-		const hasError = Result.combine([emailOrError, passwordOrError]);
+		const hasError = Result.combine<unknown>([emailOrError, passwordOrError]);
 
 		if (hasError.isFailure) {
-			return Result.fail<JWTPayload>(hasError.error.toString());
+			return Result.fail<JWTPayload>(hasError.errorValue());
 		}
 
 		try {

@@ -1,11 +1,10 @@
 
 import { DateValueObject } from '@modules/shared';
 import { UserAggregate } from '@modules/user/domain';
-import { EmailValueObject } from '@modules/user/domain/email.value-object';
 import { IpValueObject } from '@modules/user/domain/ip.value-object';
 import { PasswordValueObject } from '@modules/user/domain/password.value-object';
 import { TermValueObject } from '@modules/user/domain/term.value-object';
-import { DomainId } from 'types-ddd';
+import { DomainId, EmailValueObject } from 'types-ddd';
 import { User } from '../entities/user.schema';
 import { UserMapper } from './user.mapper';
 

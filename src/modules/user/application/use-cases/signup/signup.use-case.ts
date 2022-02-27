@@ -1,8 +1,7 @@
-import { IUseCase, Result, DomainId } from 'types-ddd';
+import { IUseCase, Result, DomainId, EmailValueObject } from 'types-ddd';
 import { SignUpDto } from './signup.dto';
 import { Inject } from '@nestjs/common';
 import { IUserRepository } from '@modules/user/domain/interfaces/user.repository.interface';
-import { EmailValueObject } from '@modules/user/domain/email.value-object';
 import { PasswordValueObject } from '@modules/user/domain/password.value-object';
 import { DateValueObject } from '@modules/shared';
 import { IpValueObject } from '@modules/user/domain/ip.value-object';

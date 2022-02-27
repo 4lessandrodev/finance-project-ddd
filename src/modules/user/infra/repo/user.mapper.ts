@@ -1,10 +1,9 @@
 import { DateValueObject } from '@modules/shared';
 import { UserAggregate } from '@modules/user/domain';
-import { EmailValueObject } from '@modules/user/domain/email.value-object';
 import { IpValueObject } from '@modules/user/domain/ip.value-object';
 import { PasswordValueObject } from '@modules/user/domain/password.value-object';
 import { TermValueObject } from '@modules/user/domain/term.value-object';
-import { IMapper, DomainId } from 'types-ddd';
+import { IMapper, DomainId, EmailValueObject } from 'types-ddd';
 import { User } from '../entities/user.schema';
 
 export class UserMapper implements IMapper<UserAggregate, User> {

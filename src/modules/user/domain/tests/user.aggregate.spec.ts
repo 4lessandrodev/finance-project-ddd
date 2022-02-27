@@ -1,6 +1,5 @@
 import { UserAggregate } from '../user.aggregate';
-import { DomainId } from 'types-ddd';
-import { EmailValueObject } from '../email.value-object';
+import { DomainId, EmailValueObject } from 'types-ddd';
 import { PasswordValueObject } from '../password.value-object';
 import { TermValueObject } from '../term.value-object';
 import { DateValueObject } from '@modules/shared';
