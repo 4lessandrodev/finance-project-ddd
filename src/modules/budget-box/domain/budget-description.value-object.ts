@@ -18,17 +18,27 @@ export class BudgetDescriptionValueObject extends ValueObject<BudgetDescriptionV
 		return this.props.value;
 	}
 
+	static isValidValue (value: string): boolean {
+		
+		const descriptionLength = value.trim().length;
+
+		const isValid = descriptionLength >= BUDGET_DESCRIPTION_MIN_LENGTH &&
+			descriptionLength <= BUDGET_DESCRIPTION_MAX_LENGTH;
+		return isValid;
+	}
+
 	public static create (
 		description: string,
 	): Result<BudgetDescriptionValueObject> {
-		const isValidLength =
-      description.trim().length >= BUDGET_DESCRIPTION_MIN_LENGTH &&
-      description.trim().length <= BUDGET_DESCRIPTION_MAX_LENGTH;
+		
+		const isValidLength = BudgetDescriptionValueObject.isValidValue(description);
+      
 		if (!isValidLength) {
 			return Result.fail<BudgetDescriptionValueObject>(
 				ErrorMessages.INVALID_BUDGET_DESCRIPTION_LENGTH,
 			);
 		}
+		
 		return Result.ok<BudgetDescriptionValueObject>(
 			new BudgetDescriptionValueObject({ value: description.toLowerCase() }),
 		);
