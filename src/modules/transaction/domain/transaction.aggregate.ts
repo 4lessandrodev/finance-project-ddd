@@ -86,7 +86,7 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
   	}).getResult();
 
   	props.transactionCalculations.map((cur)=> {
-  		currency.add(cur.calculation.currency.value);
+  		currency.add(cur.currency.value);
   	});
 
   	return Result.ok<TransactionAggregate>(

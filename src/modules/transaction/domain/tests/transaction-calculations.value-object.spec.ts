@@ -16,11 +16,10 @@ describe('transaction-calculations.value-object', () => {
 			budgetBoxId: DomainId.create('valid_budgetId'),
 			currency: getCurrency(200),
 		});
+
 		expect(calculation.isSuccess).toBe(true);
-		expect(calculation.getResult().calculation.currency.value).toBe(200);
-		expect(calculation.getResult().calculation.budgetBoxId.value.toValue()).toBe(
-			'valid_budgetId',
-		);
+		expect(calculation.getResult().currency.value).toBe(200);
+		expect(calculation.getResult().budgetBoxId.uid).toBe('valid_budgetId');
 	});
 
 	it('should fail if provide a negative number', () => {
