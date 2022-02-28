@@ -11,7 +11,7 @@ describe('transaction-calculations.value-object', () => {
 		value
 	}).getResult();
 
-	it('should create a valid calculation', () => {
+	it.only('should create a valid calculation', () => {
 		const calculation = TransactionCalculationValueObject.create({
 			budgetBoxId: DomainId.create('valid_budgetId'),
 			currency: getCurrency(200),
