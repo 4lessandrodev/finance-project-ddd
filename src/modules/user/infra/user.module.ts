@@ -5,11 +5,12 @@ import { UserService } from './user.service';
 import { UserRepository } from './repo/user.repository';
 import { UserMapper } from './repo/user.mapper';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema } from './entities/user.schema';
+import { UserQueryService } from "@modules/user/infra/services/queries/user-query.service";
+import { SigninUseCase } from "@modules/user/application/use-cases/signin/signin.use-case";
+import { JwtStrategy } from "@modules/user/infra/services/strategies/jwt.strategy";
+import { User, UserSchema } from '@modules/user/infra/entities/user.schema';
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
-import { JwtStrategy } from "./services/strategies/jwt.strategy";
-import { SigninUseCase } from "@modules/user/application/use-cases/signin/signin.use-case";
 import { JWT_SECRET } from "@config/env";
 
 @Module({
@@ -39,7 +40,8 @@ import { JWT_SECRET } from "@config/env";
 		UserResolver,
 		JwtStrategy,
 		PassportModule,
-		JwtModule
+		JwtModule,
+		UserQueryService
 	],
 	exports: [PassportModule, JwtModule]
 })

@@ -3,8 +3,10 @@ import { SigninDto } from '@modules/user/application/use-cases/signin/signin.dto
 import { SigninUseCase } from '@modules/user/application/use-cases/signin/signin.use-case';
 import { SignUpDto } from '@modules/user/application/use-cases/signup/signup.dto';
 import { SignUpUseCase } from '@modules/user/application/use-cases/signup/signup.use-case';
-import { Inject, Injectable } from '@nestjs/common';
+import { UserQueryService } from '@modules/user/infra/services/queries/user-query.service';
+import { IUserQueryService } from '@modules/user/infra/services/queries/user-query.interface';
 import { CheckResultInterceptor } from '@utils/check-result.interceptor';
+import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UserService {
@@ -14,9 +16,16 @@ export class UserService {
 		private readonly signupUseCase: SignUpUseCase,
 
 		@Inject(SigninUseCase)
-		private readonly signinUseCase: SigninUseCase
+		private readonly signinUseCase: SigninUseCase,
+
+		@Inject(UserQueryService)
+		private readonly queryService: IUserQueryService
 	) { }
 
+	get query (): IUserQueryService {
+		return this.queryService;
+	}
+	
 	async signup (dto: SignUpDto): Promise<void> {
 		CheckResultInterceptor(await this.signupUseCase.execute(dto));
 	}
@@ -25,4 +34,5 @@ export class UserService {
 		const result = CheckResultInterceptor(await this.signinUseCase.execute(dto));
 		return result.getResult();
 	}
+
 }
