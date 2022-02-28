@@ -27,6 +27,8 @@ describe('transaction-calculations.value-object', () => {
 			budgetBoxId: DomainId.create('valid_budgetId'),
 			currency:  getCurrency(-100),
 		});
+
+
 		expect(calculation.isSuccess).toBe(false);
 		expect(calculation.error).toBe(
 			ErrorMessages.INVALID_TRANSACTION_CALCULATION_VALUE,
