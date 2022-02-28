@@ -7,7 +7,7 @@ import { UserMapper } from './user.mapper';
 
 describe('user.mapper', () => {
 	//
-	const currentDate = new Date();
+	const currentDate = new Date('2020-01-01 00:00:00');
 	//
 	let domain: UserAggregate;
 	let persistence: User;
@@ -72,6 +72,7 @@ describe('user.mapper', () => {
 	it('should convert object from domain to persistence', () => {
 		const mapper = new UserMapper();
 		const result = mapper.toPersistence(domain);
+		expect(domain.toObject()).toMatchSnapshot();
 		expect(result).toEqual(persistence);
 	});
 });

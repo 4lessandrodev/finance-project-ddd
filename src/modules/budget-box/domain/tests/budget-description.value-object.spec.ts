@@ -25,9 +25,9 @@ describe('description.value-object', () => {
 		);
 	});
 
-	it('should fail if provide long description (greatter than 30 char)', () => {
+	it('should fail if provide long description (greater than 30 char)', () => {
 		const description = BudgetDescriptionValueObject.create(
-			'Invalid description lenght greatter than max 30 char',
+			'Invalid description length greater than max 30 char',
 		);
 		expect(description.isFailure).toBe(true);
 		expect(description.error).toBe(

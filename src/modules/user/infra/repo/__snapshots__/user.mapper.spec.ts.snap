@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user.mapper should convert object from domain to persistence 1`] = `
+Object {
+  "createdAt": 2020-01-01T00:00:00.000Z,
+  "deletedAt": undefined,
+  "email": "valid_mail@domain.com",
+  "id": "valid_id",
+  "isDeleted": false,
+  "password": "valid_password",
+  "terms": Array [
+    Object {
+      "acceptedAt": 2020-01-01T00:00:00.000Z,
+      "ip": "45.192.110.42",
+      "userAgent": Object {
+        "name": "firefox",
+        "os": "LINUX",
+        "type": "browser",
+        "version": "80.0.1",
+      },
+    },
+  ],
+  "updatedAt": 2020-01-01T00:00:00.000Z,
+}
+`;

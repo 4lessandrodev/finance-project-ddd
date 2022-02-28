@@ -7,14 +7,14 @@ import { TransactionNoteValueObject } from './transaction-note.value-object';
 import { AttachmentPathValueObject } from './attachment-path.value-object';
 
 export interface TransactionAggregateProps extends BaseDomainEntity {
-  userId: DomainId;
-  reasonId: DomainId;
-  paymentDate: DateValueObject;
-  transactionType: TransactionTypeValueObject;
-  status: TransactionStatusValueObject;
-  transactionCalculations: TransactionCalculationValueObject[];
-  note?: TransactionNoteValueObject;
-  attachment?: AttachmentPathValueObject;
+	userId: DomainId;
+	reasonId: DomainId;
+	paymentDate: DateValueObject;
+	transactionType: TransactionTypeValueObject;
+	status: TransactionStatusValueObject;
+	transactionCalculations: TransactionCalculationValueObject[];
+	note?: TransactionNoteValueObject;
+	attachment?: AttachmentPathValueObject;
 }
 
 /**
@@ -28,68 +28,68 @@ export interface TransactionAggregateProps extends BaseDomainEntity {
  * @var attachment?: `AttachmentPathValueObject`
  */
 export class TransactionAggregate extends AggregateRoot<TransactionAggregateProps> {
-  private _totalValue: CurrencyValueObject;
-  private constructor (
-  	props: TransactionAggregateProps,
-  	total: CurrencyValueObject
-  ) {
-  	super(props, TransactionAggregate.name);
-  	this._totalValue = total;
-  }
+	private _totalValue: CurrencyValueObject;
+	private constructor (
+		props: TransactionAggregateProps,
+		total: CurrencyValueObject
+	) {
+		super(props, TransactionAggregate.name);
+		this._totalValue = total;
+	}
 
-  get totalValue (): number {
-  	return this._totalValue.value;
-  }
+	get totalValue (): number {
+		return this._totalValue.value;
+	}
 
-  get userId (): DomainId {
-  	return this.props.userId;
-  }
+	get userId (): DomainId {
+		return this.props.userId;
+	}
 
-  get reasonId (): DomainId {
-  	return this.props.reasonId;
-  }
+	get reasonId (): DomainId {
+		return this.props.reasonId;
+	}
 
-  get paymentDate (): DateValueObject {
-  	return this.props.paymentDate;
-  }
+	get paymentDate (): DateValueObject {
+		return this.props.paymentDate;
+	}
 
-  get transactionType (): TransactionTypeValueObject {
-  	return this.props.transactionType;
-  }
+	get transactionType (): TransactionTypeValueObject {
+		return this.props.transactionType;
+	}
 
-  get status (): TransactionStatusValueObject {
-  	return this.props.status;
-  }
+	get status (): TransactionStatusValueObject {
+		return this.props.status;
+	}
 
-  get transactionCalculations (): TransactionCalculationValueObject[] {
-  	return this.props.transactionCalculations;
-  }
+	get transactionCalculations (): TransactionCalculationValueObject[] {
+		return this.props.transactionCalculations;
+	}
 
-  get note (): TransactionNoteValueObject | null {
-  	return this.props.note ?? null;
-  }
+	get note (): TransactionNoteValueObject | null {
+		return this.props.note ?? null;
+	}
 
-  get attachment (): AttachmentPathValueObject | null {
-  	return this.props.attachment ?? null;
-  }
+	get attachment (): AttachmentPathValueObject | null {
+		return this.props.attachment ?? null;
+	}
 
-  public static create (
-  	props: TransactionAggregateProps
-  ): Result<TransactionAggregate> {
-  	/**
-     * total is calculated dynamically. Its the sum of calculation values
-     */
-  	const currency = CurrencyValueObject.create({
-  		currency: CURRENCY,
-  		value: 0
-  	}).getResult();
+	public static create (
+		props: TransactionAggregateProps
+	): Result<TransactionAggregate> {
+		/**
+		 * total is calculated dynamically. Its the sum of calculation values
+		 */
+		const currency = CurrencyValueObject.create({
+			currency: CURRENCY,
+			value: 0
+		}).getResult();
 
-  	props.transactionCalculations.map((cur)=> {
-  		currency.add(cur.currency.value);
-  	});
+		props.transactionCalculations.forEach((cur)=> {
+			currency.add(cur.currency.value);
+		});
 
-  	return Result.ok<TransactionAggregate>(
-  		new TransactionAggregate(props, currency),
-  	);
-  }
+		return Result.ok<TransactionAggregate>(
+			new TransactionAggregate(props, currency),
+		);
+	}
 }

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`budget-box.aggregate should create a valid budget-box aggregate with 100% if provide not percentage 1`] = `
+Object {
+  "balanceAvailable": 0,
+  "budgetPercentage": 100,
+  "createdAt": 2020-01-01T00:00:00.000Z,
+  "deletedAt": undefined,
+  "description": "valid_description",
+  "id": "valid_id_a",
+  "isDeleted": false,
+  "isPercentage": false,
+  "ownerId": "valid_id_b",
+  "reasons": Array [
+    Object {
+      "createdAt": 2020-01-01T00:00:00.000Z,
+      "deletedAt": undefined,
+      "description": "valid_description",
+      "id": "valid_id_c",
+      "isDeleted": false,
+      "updatedAt": 2020-01-01T00:00:00.000Z,
+    },
+  ],
+  "updatedAt": 2020-01-01T00:00:00.000Z,
+}
+`;

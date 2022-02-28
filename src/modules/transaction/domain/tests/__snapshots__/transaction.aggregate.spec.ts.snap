@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transaction.aggregate should create a valid transaction with provided id  1`] = `
+Object {
+  "attachment": "https://aws.s3.com/bucket-askjdas656/file.pdf",
+  "createdAt": 2020-01-01T00:00:00.000Z,
+  "deletedAt": undefined,
+  "id": "Valid_id_a",
+  "isDeleted": false,
+  "note": "valid_description",
+  "paymentDate": 2020-01-01T00:00:00.000Z,
+  "reasonId": "valid_id_c",
+  "status": "PENDENTE",
+  "transactionCalculations": Array [
+    Object {
+      "budgetBoxId": "valid_id_d",
+      "currency": Object {
+        "currency": "BRL",
+        "value": 100,
+      },
+    },
+    Object {
+      "budgetBoxId": "valid_id_e",
+      "currency": Object {
+        "currency": "BRL",
+        "value": 100,
+      },
+    },
+  ],
+  "transactionType": "ENTRADA",
+  "updatedAt": 2020-01-01T00:00:00.000Z,
+  "userId": "valid_id_b",
+}
+`;

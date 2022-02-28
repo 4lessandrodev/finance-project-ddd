@@ -19,18 +19,16 @@ describe('budget-box.aggregate', () => {
 		const budgetBox = BudgetBoxAggregate.create({
 			ID: DomainId.create(),
 			ownerId: DomainId.create(),
-			description: BudgetDescriptionValueObject.create(
-				'valid_description',
-			).getResult(),
+			description: BudgetDescriptionValueObject
+				.create('valid_description').getResult(),
 			balanceAvailable,
 			isPercentage: true,
 			budgetPercentage: percentage,
 			reasons: [
 				ReasonDomainEntity.create({
 					ID: DomainId.create(),
-					description: ReasonDescriptionValueObject.create(
-						'valid_description',
-					).getResult(),
+					description: ReasonDescriptionValueObject
+						.create('valid_description').getResult(),
 				}).getResult(),
 			],
 		});
@@ -39,24 +37,30 @@ describe('budget-box.aggregate', () => {
 	});
 
 	it('should create a valid budget-box aggregate with 100% if provide not percentage', () => {
+		const date = new Date('2020-01-01 00:00:00');
+
 		const budgetBox = BudgetBoxAggregate.create({
-			ID: DomainId.create(),
-			ownerId: DomainId.create(),
-			description: BudgetDescriptionValueObject.create(
-				'valid_description',
-			).getResult(),
+			ID: DomainId.create('valid_id_a'),
+			ownerId: DomainId.create('valid_id_b'),
+			description: BudgetDescriptionValueObject
+				.create('valid_description').getResult(),
 			balanceAvailable,
 			isPercentage: false,
 			budgetPercentage: percentage,
 			reasons: [
 				ReasonDomainEntity.create({
-					ID: DomainId.create(),
-					description: ReasonDescriptionValueObject.create(
-						'valid_description',
-					).getResult(),
+					ID: DomainId.create('valid_id_c'),
+					description: ReasonDescriptionValueObject
+						.create('valid_description').getResult(),
+					createdAt: date,
+					updatedAt: date
 				}).getResult(),
 			],
+			createdAt: date,
+			updatedAt: date
 		});
+		
+		expect(budgetBox.getResult().toObject()).toMatchSnapshot();
 		expect(budgetBox.isSuccess).toBe(true);
 		expect(budgetBox.getResult().budgetPercentage.value).toBe(100);
 	});
