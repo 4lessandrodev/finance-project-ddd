@@ -11,7 +11,7 @@ import { MongoDbConfig, MongoURI } from './config/mongo.config';
 		UserModule,
 		MongooseModule.forRoot(MongoURI, MongoDbConfig),
 		GraphQLModule.forRoot({
-			autoSchemaFile: join(process.cwd(), 'src/schema.gql')
+			autoSchemaFile: join(process.cwd(), 'src/types/schema.gql')
 		})
 	],
 })

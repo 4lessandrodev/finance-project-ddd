@@ -1,0 +1,18 @@
+overwrite: true
+
+schema:
+  - "./src/types/schema.gql"
+
+documents: null
+
+generates:
+  ./src/types/code-gen.types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+    config:
+      preResolveTypes: true
+
+hooks:
+  afterAllFileWrite:
+    - yarn prettier --write
