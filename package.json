@@ -7,6 +7,7 @@
 	"license": "MIT",
 	"scripts": {
 		"prestart:dev": "lsof -i:3000 | awk '/node/{print $2}' | awk 'NR == 1' | xargs -r kill -9 ",
+		"postinstall": "npm run generate:gql",
 		"prebuild": "rimraf dist",
 		"build": "nest build",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -19,10 +20,12 @@
 		"test:watch": "jest --watch",
 		"test:cov": "jest --coverage",
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-		"test:e2e": "jest --config ./test/jest-e2e.json"
+		"test:e2e": "jest --config ./test/jest-e2e.json",
+		"generate:gql": "graphql-codegen --config ./code-gen.yml"
 	},
 	"dependencies": {
 		"@apollo/gateway": "^0.34.0",
+		"@graphql-codegen/typescript-resolvers": "^2.5.2",
 		"@nestjs/common": "^8.1.2",
 		"@nestjs/core": "^8.1.2",
 		"@nestjs/graphql": "^8.0.2",
@@ -52,6 +55,8 @@
 	},
 	"@types/date-fns": "^2.6.0",
 	"devDependencies": {
+		"@graphql-codegen/cli": "^2.6.2",
+		"@graphql-codegen/typescript": "^2.4.5",
 		"@microsoft/tsdoc": "0.13.2",
 		"@nestjs/cli": "8.0.2",
 		"@nestjs/schematics": "8.0.2",
