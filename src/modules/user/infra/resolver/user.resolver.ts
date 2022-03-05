@@ -34,6 +34,7 @@ export class UserResolver {
 		@GetUserIp() ip: string
 	): Promise<boolean> {
 		const success = true;
+		
 		await this.userService.signup({
 			...user,
 			term:
