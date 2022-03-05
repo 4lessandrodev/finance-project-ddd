@@ -9,6 +9,7 @@ module.exports = {
 	],
 	coverageDirectory: 'coverage',
 	testEnvironment: 'node',
+	testRegex: [".+\\.spec\\.ts$"],
 	transform: {
 		'.+\\.ts$': 'ts-jest',
 	},
@@ -20,5 +21,6 @@ module.exports = {
 		'@shared-common/(.*)': '<rootDir>/src/modules/shared/common/$1',
 		'@config/(.*)': '<rootDir>/src/config/$1',
 		'@utils/(.*)': '<rootDir>/src/utils/$1',
+		'@app/(.*)': '<rootDir>/src/$1',
 	},
 };

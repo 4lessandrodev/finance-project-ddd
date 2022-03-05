@@ -16,11 +16,11 @@
 		"start:debug": "nest start --debug --watch",
 		"start:prod": "NODE_ENV=production node dist/main",
 		"lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-		"test": "TYPES_DDD_LOGS=off jest --runInBand --silent",
-		"test:watch": "jest --watch",
-		"test:cov": "jest --coverage",
-		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-		"test:e2e": "jest --config ./test/jest-e2e.json",
+		"test": "TYPES_DDD_LOGS=off jest --runInBand --silent -c ./jest.unit.config.js",
+		"test:watch": "jest --watch -c ./jest.unit.config.js",
+		"test:cov": "jest --coverage -c ./jest.unit.config.js",
+		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand -c ./jest.unit.config.js",
+		"test:e2e": "TYPES_DDD_LOGS=off jest -c ./jest.e2e.config.js",
 		"generate:gql": "graphql-codegen --config ./code-gen.yml"
 	},
 	"dependencies": {
@@ -79,6 +79,7 @@
 		"eslint-config-prettier": "8.3.0",
 		"eslint-plugin-prettier": "3.4.0",
 		"faker": "5.5.3",
+		"graphql-request": "^4.0.0",
 		"jest": "27.3.1",
 		"prettier": "2.4.1",
 		"supertest": "^6.0.0",
@@ -94,6 +95,7 @@
 		"@shared-common": "./dist/modules/shared/common",
 		"@config": "./dist/config",
 		"@utils": "./dist/utils",
+		"@app": "./dist",
 		"@": "./dist"
 	}
 }

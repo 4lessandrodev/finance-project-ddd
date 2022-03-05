@@ -13,7 +13,7 @@ export const GetUserIp = createParamDecorator((_data: any, ctx: ExecutionContext
 
 	const initialIp: string = remoteIp ?? forwardedIp;
 
-	let ip = initialIp.replace(/[:]|[\s]/g, '');
+	let ip = initialIp.replace(/[:]|[\s]|[f]/g, '');
 
 	if (ip === '1') {
 		ip = '127.0.0.1';

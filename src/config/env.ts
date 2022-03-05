@@ -44,4 +44,9 @@ export const CURRENCY = envVar.get('CURRENCY')
 	.default('BRL')
 	.required()
 	.asEnum(['BRL', 'USD', 'EUR', 'JPY']);
+
+export const TESTING_HOST = envVar.get('TESTING_HOST')
+	.default('http://localhost:3000/graphql')
+	.required()
+	.asUrlString();
 	
