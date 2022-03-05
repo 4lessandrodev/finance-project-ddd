@@ -3,8 +3,8 @@ import { TestingModule, Test } from '@nestjs/testing';
 import { AppModule } from "@app/app.module";
 import { PORT, TESTING_HOST } from "@config/env";
 import { GraphQLClient } from 'graphql-request';
-import { MutationSignupArgs, Mutation } from '@app/types/code-gen.types';
-import { SIGNUP_MUTATION } from "./user.mutation";
+import { MutationSignupArgs, Mutation, MutationSigninArgs } from '@app/types/code-gen.types';
+import { SIGNIN_MUTATION, SIGNUP_MUTATION } from "./user.mutation";
 import * as mongoose from "mongoose";
 import { Connection } from "mongoose";
 import { MongoDbConfig, MongoURI } from "@config/mongo.config";
@@ -57,5 +57,23 @@ describe('user.test', () => {
 		
 		expect(payload.signup).toBeTruthy();
 
-	});	
+	});
+	
+	it('should signin with success', async () => {
+
+		type RequestType = Pick<Mutation, 'signin'>;
+
+		const variables: MutationSigninArgs = {
+			SigninInput: {
+				email: "valid_email@domain.com",
+				password: "valid_pass123"
+			}
+		};
+
+		const payload = await client.request<RequestType, MutationSigninArgs>(SIGNIN_MUTATION, variables);
+		
+		expect(payload.signin.token).toBeDefined();
+		expect(payload.signin).toHaveProperty('token');
+
+	});
 });
