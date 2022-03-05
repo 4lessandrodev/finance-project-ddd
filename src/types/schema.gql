@@ -2,15 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type JwtPayloadType {
-  token: String!
-}
-
 type UserAgentType {
   name: String!
   version: String!
   os: String!
   type: String!
+}
+
+type JwtPayloadType {
+  token: String!
 }
 
 type TermType {
