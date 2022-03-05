@@ -3,12 +3,13 @@ import { TestingModule, Test } from '@nestjs/testing';
 import { AppModule } from "@app/app.module";
 import { PORT, TESTING_HOST } from "@config/env";
 import { GraphQLClient } from 'graphql-request';
-import { MutationSignupArgs, Mutation, MutationSigninArgs } from '@app/types/code-gen.types';
+import { MutationSignupArgs, Mutation, MutationSigninArgs, Query } from '@app/types/code-gen.types';
 import { SIGNIN_MUTATION, SIGNUP_MUTATION } from "./user.mutation";
 import * as mongoose from "mongoose";
 import { Connection } from "mongoose";
 import { MongoDbConfig, MongoURI } from "@config/mongo.config";
 import { UserSchema } from "@modules/user/infra/entities/user.schema";
+import { AUTH_QUERY } from "./user.query";
 
 describe('user.test', () => {
 
@@ -75,5 +76,19 @@ describe('user.test', () => {
 		expect(payload.signin.token).toBeDefined();
 		expect(payload.signin).toHaveProperty('token');
 
+		client.setHeaders({ authorization: `Bearer ${payload.signin.token}` });
+	});
+
+	it('should query auth user with success', async () => {
+
+		type RequestType = Pick<Query, 'whoAmI'>;
+
+		const payload = await client.request<RequestType>(AUTH_QUERY);
+
+		expect(payload.whoAmI).toBeDefined();
+		expect(payload.whoAmI).toHaveProperty('id');
+		expect(payload.whoAmI).toHaveProperty('email');
+		expect(payload.whoAmI).toHaveProperty('terms');
+		expect(payload.whoAmI?.terms?.[0]).toHaveProperty('ip');
 	});
 });

@@ -20,7 +20,7 @@
 		"test:watch": "jest --watch -c ./jest.unit.config.js",
 		"test:cov": "jest --coverage -c ./jest.unit.config.js",
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand -c ./jest.unit.config.js",
-		"test:e2e": "TYPES_DDD_LOGS=off jest -c ./jest.e2e.config.js",
+		"test:e2e": "TYPES_DDD_LOGS=off jest -c ./jest.e2e.config.js --runInBand",
 		"generate:gql": "graphql-codegen --config ./code-gen.yml"
 	},
 	"dependencies": {
