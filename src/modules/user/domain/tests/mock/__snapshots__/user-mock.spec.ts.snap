@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`user.mock should create a valid user aggregate mock with provided id 1`] = `
+Result {
+  "_value": UserAggregate {
+    "_domainEvents": Array [],
+    "_id": DomainId {
+      "isNew": false,
+      "props": Object {
+        "value": "provided_id",
+      },
+    },
+    "entityName": "UserAggregate",
+    "props": Object {
+      "ID": DomainId {
+        "isNew": false,
+        "props": Object {
+          "value": "provided_id",
+        },
+      },
+      "createdAt": 2022-01-01T00:00:00.000Z,
+      "deletedAt": undefined,
+      "email": EmailValueObject {
+        "props": Object {
+          "value": "valid_email@domain.com",
+        },
+      },
+      "isDeleted": false,
+      "password": PasswordValueObject {
+        "props": Object {
+          "value": "valid_password",
+        },
+      },
+      "terms": Array [
+        TermValueObject {
+          "props": Object {
+            "acceptedAt": DateValueObject {
+              "ONE_DAY": 86400000,
+              "ONE_HOUR": 3600000,
+              "ONE_MINUTE": 60000,
+              "ONE_MONTH": 2678400000,
+              "ONE_WEEK": 604800000,
+              "ONE_YEAR": 31622400000,
+              "props": Object {
+                "value": 2022-01-01T00:00:00.000Z,
+              },
+            },
+            "ip": IpValueObject {
+              "props": Object {
+                "value": "127.0.0.1",
+              },
+            },
+            "userAgent": Object {
+              "name": "firefox",
+              "os": "linux",
+              "type": "browser",
+              "version": "86.0.1",
+            },
+          },
+        },
+      ],
+      "updatedAt": 2022-01-01T00:00:00.000Z,
+    },
+  },
+  "error": null,
+  "isFailure": false,
+  "isSuccess": true,
+  "statusCode": "OK",
+  "statusCodeNumber": 200,
+}
+`;
+
+exports[`user.mock should create a valid user model mock with provided id 1`] = `
+Object {
+  "createdAt": 2022-01-01T00:00:00.000Z,
+  "email": "valid_email@domain.com",
+  "id": "provided_id",
+  "password": "valid_password",
+  "terms": Array [
+    Object {
+      "acceptedAt": 2022-01-01T00:00:00.000Z,
+      "ip": "127.0.0.1",
+      "userAgent": Object {
+        "name": "firefox",
+        "os": "linux",
+        "type": "browser",
+        "version": "86.0.1",
+      },
+    },
+  ],
+  "updatedAt": 2022-01-01T00:00:00.000Z,
+}
+`;
