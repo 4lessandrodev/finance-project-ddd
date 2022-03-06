@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import IMockEntity from "@shared/interfaces/entity-mock.interface";
 import { UserAggregate } from "@modules/user/domain/user.aggregate";
 import IUser from "@shared/interfaces/user-model.interface";
@@ -16,7 +15,7 @@ import {
 export class UserMock implements IMockEntity<UserAggregate, IUser> {
 	domain (props?: Partial<IUser>): Result<UserAggregate> {
 		
-		const ID = DomainId.create(props?.id);
+		const ID = DomainId.create(props?.id ?? 'valid_id');
 		const email = EmailValueObject.create(props?.email ?? 'valid_email@domain.com');
 		const password = PasswordValueObject.create(props?.password ?? 'valid_password');
 		
@@ -76,7 +75,7 @@ export class UserMock implements IMockEntity<UserAggregate, IUser> {
 	}
 	model (props?: Partial<IUser>): IUser {
 		return {
-			id: props?.id ?? randomUUID(),
+			id: props?.id ?? 'valid_id',
 			createdAt: props?.createdAt ?? new Date('2022-01-01 00:00:00'),
 			email: props?.email ?? 'valid_email@domain.com',
 			password: props?.password ?? 'valid_password',
