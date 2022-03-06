@@ -3,7 +3,9 @@ process.env.TZ = 'UTC';
 module.exports = {
 	roots: ['<rootDir>/src'],
 	collectCoverageFrom: [
-		'<rootDir>/src/**/*.ts',
+		'<rootDir>/src/modules/**/*.ts',
+		'!<rootDir>/src/modules/**/infra/*.ts',
+		'!<rootDir>/src/modules/**/infra/**/*.ts',
 		'!<rootDir>/src/main/**',
 		'!**/test/**',
 	],
