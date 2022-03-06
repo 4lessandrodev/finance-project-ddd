@@ -23,10 +23,7 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 		})) ?? [
 			TransactionCalculationValueObject.create({
 				budgetBoxId: DomainId.create('valid_budget_box_id'),
-				currency: CurrencyValueObject.create({
-					currency: CURRENCY,
-					value: 1000
-				}).getResult()
+				currency: CurrencyValueObject.create({ currency: CURRENCY, value: 1000 }).getResult()
 			})
 		];
 		
