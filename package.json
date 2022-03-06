@@ -17,6 +17,7 @@
 		"start:prod": "NODE_ENV=production node dist/main",
 		"lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
 		"test": "TYPES_DDD_LOGS=off jest --runInBand --silent -c ./jest.unit.config.js",
+		"test:verbose": "jest --runInBand -c ./jest.unit.config.js",
 		"test:watch": "jest --watch -c ./jest.unit.config.js",
 		"test:cov": "TYPES_DDD_LOGS=off jest --coverage --runInBand -c ./jest.unit.config.js",
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand -c ./jest.unit.config.js",

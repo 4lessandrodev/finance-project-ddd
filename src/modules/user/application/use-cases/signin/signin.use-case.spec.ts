@@ -63,7 +63,7 @@ describe('signin.use-case', () => {
 	});
 
 	it('should return fail if not exists user for provided email', async () => {
-		jest.spyOn(userRepo, 'exists').mockResolvedValueOnce(false);
+		jest.spyOn(userRepo, 'findOne').mockResolvedValueOnce(null);
 
 		const result = await useCase.execute({
 			email: 'not_exists@domain.com',
@@ -73,7 +73,6 @@ describe('signin.use-case', () => {
 	});
 
 	it('should return fail if provided password does not match', async () => {
-		jest.spyOn(userRepo, 'exists').mockResolvedValueOnce(true);
 		jest.spyOn(userRepo, 'findOne').mockResolvedValueOnce(user);
 
 		const result = await useCase.execute({ email: 'valid_email@domain.com', password: 'invalid_password' });
@@ -81,13 +80,24 @@ describe('signin.use-case', () => {
 	});
 
 	it('should return token payload if provide a valid password', async () => {
-		jest.spyOn(userRepo, 'exists').mockResolvedValueOnce(true);
 		jest.spyOn(userRepo, 'findOne').mockResolvedValueOnce(user);
 		jest.spyOn(fakeJwt, 'sign').mockReturnValueOnce('valid_token');
 
 		const result = await useCase.execute({ email: 'valid_email@domain.com', password: 'valid_password' });
 		expect(result.isSuccess).toBe(true);
 		expect(result.getResult()).toEqual({ token: "valid_token" });
+	});
+
+	it('should return internal server error if use case throws', async () => {
+
+		jest.spyOn(userRepo, 'findOne').mockImplementationOnce(async () => {
+			throw new Error("internal server error");
+		});
+		
+		const result = await useCase.execute({ email: 'valid_email@domain.com', password: 'valid_password' });
+
+		expect(result.isFailure).toBeTruthy();
+		expect(result.error).toBe('Internal Server Error on Signin Use Case');
 	});
 
 });

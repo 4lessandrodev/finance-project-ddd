@@ -44,10 +44,6 @@ export class SignUpUseCase implements IUseCase<SignUpDto, Result<void, string>> 
 			userAgent: request.term.userAgent,
 		});
 
-		if (termOrError.isFailure) {
-			return Result.fail(termOrError.error.toString());
-		}
-
 		const terms = [termOrError.getResult()];
 		const password = passwordOrError.getResult();
 		const email = emailOrError.getResult();
@@ -59,10 +55,6 @@ export class SignUpUseCase implements IUseCase<SignUpDto, Result<void, string>> 
 			password,
 			terms,
 		});
-
-		if (userOrError.isFailure) {
-			return Result.fail(userOrError.error.toString());
-		}
 
 		try {
 			const userAlreadyExistForEmail = await this.userRepo.exists({
@@ -79,7 +71,6 @@ export class SignUpUseCase implements IUseCase<SignUpDto, Result<void, string>> 
 
 			return Result.success();
 		} catch (error) {
-			console.log(error);
 			return Result.fail<void>('Internal Server Error on Signup Use Case');
 		}
 	}
