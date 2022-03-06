@@ -2,25 +2,25 @@
 
 exports[`budget-box.aggregate should create a valid budget-box aggregate with 100% if provide not percentage 1`] = `
 Object {
-  "balanceAvailable": 0,
-  "budgetPercentage": 100,
-  "createdAt": 2020-01-01T00:00:00.000Z,
+  "balanceAvailable": 1000,
+  "budgetPercentage": 50,
+  "createdAt": 2022-01-01T00:00:00.000Z,
   "deletedAt": undefined,
   "description": "valid_description",
-  "id": "valid_id_a",
+  "id": "valid_id",
   "isDeleted": false,
-  "isPercentage": false,
-  "ownerId": "valid_id_b",
+  "isPercentage": true,
+  "ownerId": "valid_owner_id",
   "reasons": Array [
     Object {
-      "createdAt": 2020-01-01T00:00:00.000Z,
+      "createdAt": 2022-01-01T00:00:00.000Z,
       "deletedAt": undefined,
       "description": "valid_description",
-      "id": "valid_id_c",
+      "id": "valid_id",
       "isDeleted": false,
-      "updatedAt": 2020-01-01T00:00:00.000Z,
+      "updatedAt": 2022-01-01T00:00:00.000Z,
     },
   ],
-  "updatedAt": 2020-01-01T00:00:00.000Z,
+  "updatedAt": 2022-01-01T00:00:00.000Z,
 }
 `;
