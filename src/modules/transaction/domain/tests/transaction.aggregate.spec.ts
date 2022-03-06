@@ -22,10 +22,8 @@ describe('transaction.aggregate', () => {
 			paymentDate: DateValueObject.create(new Date()).getResult(),
 			transactionType: TransactionTypeValueObject.create('ENTRADA').getResult(),
 			status: TransactionStatusValueObject.create('PENDENTE').getResult(),
-			note: TransactionNoteValueObject.create('valid_description').getResult(),
-			attachment: AttachmentPathValueObject.create(
-				'https://aws.s3.com/bucket-askjdas656/file.pdf',
-			).getResult(),
+			note: undefined,
+			attachment: undefined,
 			transactionCalculations: [
 				TransactionCalculationValueObject.create({
 					budgetBoxId: DomainId.create('valid_id'),
@@ -34,6 +32,8 @@ describe('transaction.aggregate', () => {
 			],
 		});
 		expect(transaction.isSuccess).toBe(true);
+		expect(transaction.getResult().note).toBeNull();
+		expect(transaction.getResult().attachment).toBeNull();
 	});
 
 	it('should create a valid transaction with updated total', () => {
@@ -99,5 +99,7 @@ describe('transaction.aggregate', () => {
 		expect(transaction.getResult().toObject()).toMatchSnapshot();
 		expect(transaction.isSuccess).toBe(true);
 		expect(transaction.getResult().id.toValue()).toBe('Valid_id_a');
+		expect(transaction.getResult().note?.value).toBe('valid_description');
+		expect(transaction.getResult().attachment?.value).toBe('https://aws.s3.com/bucket-askjdas656/file.pdf');
 	});
 });

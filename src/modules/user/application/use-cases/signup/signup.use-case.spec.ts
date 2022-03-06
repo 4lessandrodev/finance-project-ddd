@@ -84,4 +84,30 @@ describe('signup.use-case', () => {
 		expect(result.isSuccess).toBe(true);
 		expect(saved).toBeCalled();
 	});
+
+	it('should fail if provide an invalid email', async () => {
+		jest.spyOn(userRepo, 'exists').mockResolvedValueOnce(false);
+
+		const useCase = new SignUpUseCase(userRepo);
+
+		const result = await useCase.execute(makeDto(
+			{ email: 'invalid_email' }
+		));
+
+		expect(result.isFailure).toBe(true);
+	});
+
+	it('should fail use case throws', async () => {
+		jest.spyOn(userRepo, 'exists').mockImplementationOnce(async () => {
+			throw new Error("internal server error");
+		});
+
+		const useCase = new SignUpUseCase(userRepo);
+
+		const result = await useCase.execute(makeDto({}));
+
+		expect(result.isFailure).toBe(true);
+		expect(result.error).toBe('Internal Server Error on Signup Use Case');
+	});
+
 });

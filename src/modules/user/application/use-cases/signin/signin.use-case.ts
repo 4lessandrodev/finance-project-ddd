@@ -30,21 +30,21 @@ export class SigninUseCase implements IUseCase<SigninDto, Result<JWTPayload>>{
 		}
 
 		try {
-			const existsUserForEmail = await this.userRepo.exists({ email });
+			const existsUserForEmail = await this.userRepo.findOne({ email });
 
 			if (!existsUserForEmail) {
 				return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
 			}
 
-			const user = await this.userRepo.findOne({email});
+			const user = existsUserForEmail;
 
-			const isValidPassword = user?.password.compare(password);
+			const isValidPassword = user.password.compare(password);
 
 			if (!isValidPassword) {
 				return Result.fail<JWTPayload>(ErrorMessages.INVALID_CREDENTIALS);
 			}
 
-			const token =  this.jwtService.sign({userId: user?.id.toString()});
+			const token =  this.jwtService.sign({userId: user.id.toString()});
 
 			return Result.ok<JWTPayload>({token});
 
