@@ -1,25 +1,11 @@
+import IUser, { ITerm } from '@shared/interfaces/user-model.interface';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-// Terms interface
-
-export interface IUserAgent {
-	name: string;
-	version: string;
-	os: string;
-	type: string;
-}
-
-export interface Term {
-	ip: string;
-	acceptedAt: Date;
-	userAgent: IUserAgent;
-}
-
 export type UserDocument = User & Document;
-
 @Schema({ autoCreate: true, timestamps: true, autoIndex: true })
-export class User {
+export class User implements IUser {
+
 	@Prop({ immutable: true, required: true, type: String, index: true })
 	readonly id!: string;
 
@@ -30,7 +16,7 @@ export class User {
 	password!: string;
 
 	@Prop({ type: Array, required: true })
-	terms!: Array<Term>;
+	terms!: Array<ITerm>;
 
 	@Prop({ type: Date, required: true, default: new Date() })
 	createdAt!: Date;

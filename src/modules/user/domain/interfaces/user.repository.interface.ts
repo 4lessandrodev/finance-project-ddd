@@ -1,5 +1,5 @@
 import { IBaseRepository } from 'types-ddd';
-import { User } from '@modules/user/infra/entities/user.schema';
 import { UserAggregate } from '../user.aggregate';
+import IUser from '@shared/interfaces/user-model.interface';
 
-export type IUserRepository = IBaseRepository<UserAggregate, User>;
+export type IUserRepository = IBaseRepository<UserAggregate, IUser>;

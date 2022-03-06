@@ -1,8 +1,8 @@
 import { SigninUseCase } from './signin.use-case';
 import { JwtService } from '@nestjs/jwt';
-import { DomainId, EmailValueObject, PasswordValueObject } from 'types-ddd';
 import { IUserRepository } from '@modules/user/domain/interfaces/user.repository.interface';
 import { UserAggregate } from '@modules/user/domain';
+import UserMock from '@modules/user/domain/tests/mock/user.mock';
 
 
 describe('signin.use-case', () => {
@@ -14,17 +14,14 @@ describe('signin.use-case', () => {
 
 	beforeAll(() => {
 
+		const userMock = new UserMock();
+
 		fakeJwt = {
 			sign: jest.fn()
 		} as unknown as JwtService;
 
 
-		user = UserAggregate.create({
-			ID: DomainId.create(),
-			email: EmailValueObject.create('valid_email@domain.com').getResult(),
-			password: PasswordValueObject.create('valid_password').getResult(),
-			terms: []
-		}).getResult();
+		user = userMock.domain().getResult();
 
 	});
 
