@@ -1,4 +1,6 @@
 # Controle Financeiro
+## Um projeto aplicando os principais conceitos de DDD
+Neste projeto financeiro para controle de finanças foi aplicado domain-driven-design
 
 ### Requisitos
 
@@ -54,6 +56,34 @@ Entradas e Saídas de capital.
     Como usuário quero poder excluir um lançamento a qualquer momento.
     Como usuário quero poder transferir um saldo de um caixa para outro.
     Como usuário eu quero poder identificar de maneira clara o saldo em cada caixa e o saldo total.
+
+### Linguagem Ubíqua
+
+- **Budget-Box:** São caixas financeiros, cada qual com seu objetivo. 
+Exemplo Caixa Financeiro de Educação, destinado a receber um percentual de receita que será investido em cursos, livros ou afins relacionado a educação.
+
+- **Transaction-Calculation:** Cálculo de um lançamento, seja entrada ou saída.
+Exemplo, todo lançamento de receita tem seu montante dividido percentualmente para cada caixa financeiro e este cálculo é denominado como transaction-calculation.
+
+- **User:** Refere-se ao usuário cadastrado na plataforma ao qual tem seus caixas financeiros cadastrados.
+
+- **Percentage-Budget-Box:** São caixas financeiros com uma divisão percentual, significa que ele recebe uma porcentagem de todo lançamento de receita.
+
+- **Benefit-Budget-Box:** São caixas financeiros que não recebem nenhum percentual de lançamento de receitas. A receita lançada para esse caixa é alocada 100% para o mesmo.
+
+- **Money-In:** Entrada de capital, quer dizer que o usuário está realizando uma transação de lançamento de receita, seja perceitual ou benefício.
+
+- **Money-Out:** Saída de capital, quer dizer que o usuário está realizando uma transação de lançamento de despesa em algum caixa financeiro.
+
+- **Reason:** Significa motivo, todo lançamento possui um motivo para estar sendo lançado, seja motivo de saída por aquisição de algum bem ou motivo de entrada como o recebimento de um salário.
+
+- **Term:** Termos de uso e política de privacidade.
+
+- **Attachment:** Anexo, comprovante de uma transação.
+
+- **Transaction-Note:** Observações de uma transação, seja uma nota ou uma observação.
+
+- **Transaction-Type:** Tipo de transação, ENTRADA (Money-In) ou SAÍDA (Money-Out)
 
 ### Vídeo demonstrativo da planilha
 
