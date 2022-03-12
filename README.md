@@ -62,6 +62,10 @@ Entradas e Saídas de capital.
 - **Budget-Box:** São caixas financeiros, cada qual com seu objetivo. 
 Exemplo Caixa Financeiro de Educação, destinado a receber um percentual de receita que será investido em cursos, livros ou afins relacionado a educação.
 
+- **Income:** Entrada, Receita, valor monetário recebido, entrada de capital.
+
+- **Expenses:** Saída, Despesa, valor monetário pago, saída de capital.
+
 - **Transaction-Calculation:** Cálculo de um lançamento, seja entrada ou saída.
 Exemplo, todo lançamento de receita tem seu montante dividido percentualmente para cada caixa financeiro e este cálculo é denominado como transaction-calculation.
 
@@ -84,6 +88,12 @@ Exemplo, todo lançamento de receita tem seu montante dividido percentualmente p
 - **Transaction-Note:** Observações de uma transação, seja uma nota ou uma observação.
 
 - **Transaction-Type:** Tipo de transação, ENTRADA (Money-In) ou SAÍDA (Money-Out)
+
+- **Balance:** Total de capital, Saldo de um caixa ou de uma transação.
+
+- **Amount:** Todal disponível, saldo total do usuário
+
+> Mais detalhes
 
 ### Vídeo demonstrativo da planilha
 
