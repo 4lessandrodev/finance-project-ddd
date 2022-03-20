@@ -30,7 +30,9 @@ export class ReasonMock implements IMockEntity<ReasonDomainEntity, IReason>{
 			id: props?.id ?? 'valid_id',
 			description: props?.description ?? 'valid_description',
 			createdAt: props?.createdAt ?? new Date('2022-01-01 00:00:00'),
-			updatedAt: props?.updatedAt ?? new Date('2022-01-01 00:00:00')
+			updatedAt: props?.updatedAt ?? new Date('2022-01-01 00:00:00'),
+			deletedAt: undefined,
+			isDeleted: false,
 		};
 	}
 

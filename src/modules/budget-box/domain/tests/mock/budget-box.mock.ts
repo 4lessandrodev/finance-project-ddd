@@ -69,6 +69,8 @@ export class BudgetBoxMock implements IMockEntity<BudgetBoxAggregate, IBudgetBox
 			reasons: props?.reasons ?? [this.reasonMock.model()],
 			createdAt: props?.createdAt ?? new Date('2022-01-01 00:00:00'),
 			updatedAt: props?.updatedAt ?? new Date('2022-01-01 00:00:00'),
+			deletedAt: undefined,
+			isDeleted: false,
 		};
 	}
 }
