@@ -93,3 +93,5 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
 		);
 	}
 }
+
+export default TransactionAggregate;

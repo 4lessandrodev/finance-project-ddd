@@ -69,3 +69,5 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
 		return Result.ok<BudgetBoxAggregate>(new BudgetBoxAggregate(props));
 	}
 }
+
+export default BudgetBoxAggregate;

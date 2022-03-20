@@ -43,3 +43,5 @@ export class TransactionStatusValueObject extends ValueObject<TransactionStatusV
 		);
 	}
 }
+
+export default TransactionStatusValueObject;

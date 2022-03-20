@@ -40,3 +40,5 @@ export class PercentageValueObject extends ValueObject<PercentageValueObjectProp
 		);
 	}
 }
+
+export default PercentageValueObject;

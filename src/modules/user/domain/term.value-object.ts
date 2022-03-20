@@ -35,3 +35,5 @@ export class TermValueObject extends ValueObject<TermValueObjectProps> {
 		return Result.ok<TermValueObject>(new TermValueObject(props));
 	}
 }
+
+export default TermValueObject;

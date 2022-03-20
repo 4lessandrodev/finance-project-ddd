@@ -45,3 +45,5 @@ export class UserAggregate extends AggregateRoot<UserAggregateProps> {
 		return Result.ok<UserAggregate>(new UserAggregate(props));
 	}
 }
+
+export default UserAggregate;

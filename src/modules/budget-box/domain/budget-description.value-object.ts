@@ -44,3 +44,5 @@ export class BudgetDescriptionValueObject extends ValueObject<BudgetDescriptionV
 		);
 	}
 }
+
+export default BudgetDescriptionValueObject;

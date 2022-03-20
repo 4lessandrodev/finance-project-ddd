@@ -38,3 +38,4 @@ export class TransactionCalculationValueObject extends ValueObject<calculationPr
 	}
 }
 
+export default TransactionCalculationValueObject;

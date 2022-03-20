@@ -29,3 +29,5 @@ export class IpValueObject extends ValueObject<IpValueObjectProps> {
 		return Result.ok<IpValueObject>(new IpValueObject({ value: ip }));
 	}
 }
+
+export default IpValueObject;

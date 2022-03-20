@@ -21,3 +21,5 @@ export class ReasonDomainEntity extends Entity<ReasonProps> {
 		return Result.ok<ReasonDomainEntity>(new ReasonDomainEntity(props));
 	}
 }
+
+export default ReasonDomainEntity;

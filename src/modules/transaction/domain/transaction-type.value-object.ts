@@ -45,3 +45,5 @@ export class TransactionTypeValueObject extends ValueObject<TransactionTypeValue
 		);
 	}
 }
+
+export default TransactionTypeValueObject;

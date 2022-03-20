@@ -42,3 +42,5 @@ export class AttachmentPathValueObject extends ValueObject<AttachmentPathValueOb
 		);
 	}
 }
+
+export default AttachmentPathValueObject;

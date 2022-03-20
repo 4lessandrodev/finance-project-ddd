@@ -39,3 +39,5 @@ export class ReasonDescriptionValueObject extends ValueObject<ReasonDescriptionV
 		);
 	}
 }
+
+export default ReasonDescriptionValueObject;

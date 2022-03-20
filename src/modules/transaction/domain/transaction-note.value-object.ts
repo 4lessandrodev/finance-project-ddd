@@ -34,3 +34,5 @@ export class TransactionNoteValueObject extends ValueObject<TransactionNoteValue
 		);
 	}
 }
+
+export default TransactionNoteValueObject;

@@ -1,16 +1,17 @@
 import { JWTPayload } from '@modules/user/application/use-cases/signin/jwt-payload.interface';
 import { Inject, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";;
-import { SignupInput } from '../inputs/signup.input';
-import { SigninInput } from '../inputs/signin.input';
-import { GetUserAgent } from '../services/decorators/get-user-agent.decorator';
-import { JwtAuthGuard } from '../services/guards/jwt-auth.guard';
-import { JwtPayloadType } from '../types/jwt-payload.type';
-import { UserAgentType } from '../types/user-agent.type';
-import { UserType } from "../types/user.type";
-import { UserService } from '../user.service';
-import { GetUserId } from '../services/decorators/get-user.decorator';
-import { GetUserIp } from '../services/decorators/get-ip.decorator';
+import { SignupInput } from '@modules/user/infra/inputs/signup.input';
+import { SigninInput } from '@modules/user/infra/inputs/signin.input';
+import { GetUserAgent } from '@modules/user/infra/services/decorators/get-user-agent.decorator';
+import { JwtAuthGuard } from '@modules/user/infra/services/guards/jwt-auth.guard';
+import { JwtPayloadType } from '@modules/user/infra/types/jwt-payload.type';
+import { UserAgentType } from '@modules/user/infra/types/user-agent.type';
+import { UserType } from "@modules/user/infra/types/user.type";
+import { UserService } from '@modules/user/infra/user.service';
+import { GetUserId } from '@modules/user/infra/services/decorators/get-user.decorator';
+import { GetUserIp } from '@modules/user/infra/services/decorators/get-ip.decorator';
+
 @Resolver(() => UserType)
 export class UserResolver {
 	constructor (
