@@ -1,10 +1,11 @@
 import IBudgetBox from "@modules/shared/interfaces/budget-box-model.interface";
 import IReason from "@modules/shared/interfaces/reason-model.interface";
-import { Prop, SchemaFactory } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
 export type BudgetBoxDocument = BudgetBox & Document;
 
+@Schema({ autoCreate: true, timestamps: true, autoIndex: true })
 export class BudgetBox implements IBudgetBox {
 
 	@Prop({ immutable: true, required: true, type: String, index: true })
