@@ -54,7 +54,7 @@ export class BudgetBoxToDomainMapper implements TMapper<IBudgetBox, BudgetBoxAgg
 			isPercentage: target.isPercentage,
 			ownerId: DomainId.create(target.ownerId),
 			createdAt: target.createdAt,
-			updatedAt: target.createdAt,
+			updatedAt: target.updatedAt,
 			isDeleted: target.isDeleted,
 			deletedAt: target.deletedAt
 		});

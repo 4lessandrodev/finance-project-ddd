@@ -13,3 +13,5 @@ export class UserType {
 	@Field(() => String)
 	email!: string;
 }
+
+export default UserType;
