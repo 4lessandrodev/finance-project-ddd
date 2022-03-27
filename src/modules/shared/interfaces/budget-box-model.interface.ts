@@ -19,6 +19,10 @@ export interface IBudgetBox {
 	createdAt: Date;
 
 	updatedAt: Date;
+
+	isDeleted?: boolean;
+	
+	deletedAt?: Date;
 }
 
 export default IBudgetBox;

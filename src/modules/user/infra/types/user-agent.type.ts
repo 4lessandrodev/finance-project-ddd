@@ -14,3 +14,5 @@ export class UserAgentType {
 	@Field(() => String)
 	type!: string;
 }
+
+export default UserAgentType;

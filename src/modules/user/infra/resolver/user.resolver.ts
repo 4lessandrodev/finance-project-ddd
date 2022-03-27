@@ -55,3 +55,5 @@ export class UserResolver {
 		return this.userService.signin(args);
 	}
 }
+
+export default UserResolver;

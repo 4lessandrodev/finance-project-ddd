@@ -8,6 +8,10 @@ export interface IReason {
 	createdAt: Date;
 
 	updatedAt: Date;
+
+	isDeleted?: boolean;
+	
+	deletedAt?: Date;
 }
 
 export default IReason;

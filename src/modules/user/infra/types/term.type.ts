@@ -12,3 +12,5 @@ export class TermType {
 	@Field(() => UserAgentType)
 	userAgent!: UserAgentType;
 }
+
+export default TermType;

@@ -2,8 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type JwtPayloadType {
-  token: String!
+type ReasonType {
+  id: ID!
+  description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type BudgetBoxType {
+  id: ID!
+  description: String!
+  balanceAvailable: Float!
+  isPercentage: Boolean!
+  budgetPercentage: Float!
+  reasons: [ReasonType!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type UserAgentType {
@@ -11,6 +30,10 @@ type UserAgentType {
   version: String!
   os: String!
   type: String!
+}
+
+type JwtPayloadType {
+  token: String!
 }
 
 type TermType {
@@ -27,11 +50,13 @@ type UserType {
 
 type Query {
   whoAmI: UserType
+  getBudgetBoxes: [BudgetBoxType!]!
 }
 
 type Mutation {
   signup(SignupInput: SignupInput!): Boolean!
   signin(SigninInput: SigninInput!): JwtPayloadType!
+  createBudgetBox: Boolean!
 }
 
 input SignupInput {

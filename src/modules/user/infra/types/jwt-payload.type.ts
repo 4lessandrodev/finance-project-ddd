@@ -7,3 +7,5 @@ export class JwtPayloadType {
 	token!: string;
 
 }
+
+export default JwtPayloadType;
