@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo } from 'graphql';
+import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -12,6 +12,20 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: any;
+};
+
+export type BudgetBoxType = {
+  __typename?: 'BudgetBoxType';
+  balanceAvailable: Scalars['Float'];
+  budgetPercentage: Scalars['Float'];
+  createdAt: Scalars['DateTime'];
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  isPercentage: Scalars['Boolean'];
+  reasons: Array<ReasonType>;
+  updatedAt: Scalars['DateTime'];
 };
 
 export type JwtPayloadType = {
@@ -21,6 +35,7 @@ export type JwtPayloadType = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createBudgetBox: Scalars['Boolean'];
   signin: JwtPayloadType;
   signup: Scalars['Boolean'];
 };
@@ -37,7 +52,16 @@ export type MutationSignupArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  getBudgetBoxes: Array<BudgetBoxType>;
   whoAmI?: Maybe<UserType>;
+};
+
+export type ReasonType = {
+  __typename?: 'ReasonType';
+  createdAt: Scalars['DateTime'];
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type SigninInput = {
@@ -143,10 +167,14 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  BudgetBoxType: ResolverTypeWrapper<BudgetBoxType>;
+  DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
+  Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   JwtPayloadType: ResolverTypeWrapper<JwtPayloadType>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  ReasonType: ResolverTypeWrapper<ReasonType>;
   SigninInput: SigninInput;
   SignupInput: SignupInput;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -158,10 +186,14 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
+  BudgetBoxType: BudgetBoxType;
+  DateTime: Scalars['DateTime'];
+  Float: Scalars['Float'];
   ID: Scalars['ID'];
   JwtPayloadType: JwtPayloadType;
   Mutation: {};
   Query: {};
+  ReasonType: ReasonType;
   SigninInput: SigninInput;
   SignupInput: SignupInput;
   String: Scalars['String'];
@@ -170,18 +202,44 @@ export type ResolversParentTypes = {
   UserType: UserType;
 };
 
+export type BudgetBoxTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['BudgetBoxType'] = ResolversParentTypes['BudgetBoxType']> = {
+  balanceAvailable?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  budgetPercentage?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  isPercentage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  reasons?: Resolver<Array<ResolversTypes['ReasonType']>, ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
+  name: 'DateTime';
+}
+
 export type JwtPayloadTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['JwtPayloadType'] = ResolversParentTypes['JwtPayloadType']> = {
   token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  createBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   signin?: Resolver<ResolversTypes['JwtPayloadType'], ParentType, ContextType, RequireFields<MutationSigninArgs, 'SigninInput'>>;
   signup?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSignupArgs, 'SignupInput'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getBudgetBoxes?: Resolver<Array<ResolversTypes['BudgetBoxType']>, ParentType, ContextType>;
   whoAmI?: Resolver<Maybe<ResolversTypes['UserType']>, ParentType, ContextType>;
+};
+
+export type ReasonTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['ReasonType'] = ResolversParentTypes['ReasonType']> = {
+  createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  updatedAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type TermTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['TermType'] = ResolversParentTypes['TermType']> = {
@@ -207,9 +265,12 @@ export type UserTypeResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type Resolvers<ContextType = any> = {
+  BudgetBoxType?: BudgetBoxTypeResolvers<ContextType>;
+  DateTime?: GraphQLScalarType;
   JwtPayloadType?: JwtPayloadTypeResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  ReasonType?: ReasonTypeResolvers<ContextType>;
   TermType?: TermTypeResolvers<ContextType>;
   UserAgentType?: UserAgentTypeResolvers<ContextType>;
   UserType?: UserTypeResolvers<ContextType>;
