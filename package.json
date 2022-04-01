@@ -24,7 +24,9 @@
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand -c ./jest.unit.config.js",
 		"test:e2e": "TYPES_DDD_LOGS=off jest -c ./jest.e2e.config.js --runInBand",
 		"generate:gql": "graphql-codegen --config ./code-gen.yml",
-		"check:deps": "./scripts/check-deps.sh && ./scripts/check-dev-deps.sh"
+		"check:deps": "npm run check:prod-deps && npm run check:dev-deps",
+		"check:dev-deps": "./scripts/check-dev-deps.sh",
+		"check:prod-deps": "./scripts/check-deps.sh"
 	},
 	"dependencies": {
 		"@apollo/gateway": "^0.34.0",
