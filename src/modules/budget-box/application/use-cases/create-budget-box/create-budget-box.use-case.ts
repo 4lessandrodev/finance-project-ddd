@@ -3,10 +3,11 @@ import BudgetBoxAggregate from "@modules/budget-box/domain/budget-box.aggregate"
 import BudgetDescriptionValueObject from "@modules/budget-box/domain/budget-description.value-object";
 import { IBudgetBoxRepository } from "@modules/budget-box/domain/interfaces/budget-box.repository.interface";
 import PercentageValueObject from "@modules/budget-box/domain/percentage.value-object";
-import { Inject } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { ChangesObserver, CurrencyValueObject, DomainId, IUseCase, Result } from "types-ddd";
 import CreateBudgetBoxDto from "./create-budget-box.dto";
 
+@Injectable()
 export class CreateBudgetBoxUseCase implements IUseCase<CreateBudgetBoxDto, Result<void>>{
 
 	constructor (

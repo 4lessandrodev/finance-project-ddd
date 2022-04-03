@@ -11,3 +11,5 @@ export class SignupInput {
 	@Field(() => Boolean)
 	acceptedTerms!: boolean;
 }
+
+export default SignupInput;

@@ -32,3 +32,5 @@ export const CheckResultInterceptor = <T, F>(result: Result<T, F>): Result<T, F>
 
 	return result;
 };
+
+export default CheckResultInterceptor;

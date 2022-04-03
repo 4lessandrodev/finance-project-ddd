@@ -56,7 +56,7 @@ type Query {
 type Mutation {
   signup(SignupInput: SignupInput!): Boolean!
   signin(SigninInput: SigninInput!): JwtPayloadType!
-  createBudgetBox: Boolean!
+  createBudgetBox(CreateBudgetBoxInput: CreateBudgetBoxInput!): Boolean!
 }
 
 input SignupInput {
@@ -68,4 +68,10 @@ input SignupInput {
 input SigninInput {
   email: String!
   password: String!
+}
+
+input CreateBudgetBoxInput {
+  description: String!
+  isPercentage: Boolean!
+  budgetPercentage: Float!
 }
