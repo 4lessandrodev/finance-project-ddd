@@ -6,7 +6,7 @@
 	"private": true,
 	"license": "MIT",
 	"scripts": {
-		"prestart:dev": "lsof -i:3000 | awk '/node/{print $2}' | awk 'NR == 1' | xargs -r kill -9 ",
+		"prestart:dev": "./scripts/pre-start-dev.sh",
 		"postinstall": "./scripts/post-install.sh",
 		"prebuild": "rimraf dist",
 		"build": "nest build",
