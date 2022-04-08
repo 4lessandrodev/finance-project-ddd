@@ -2,6 +2,11 @@
 ## Um projeto aplicando os principais conceitos de DDD
 Neste projeto financeiro para controle de finanças foi aplicado domain-driven-design
 
+
+### Cobertura de tests
+
+<img src="./readme/test-cov.png" alt="imagem" width="100%">
+
 ### Requisitos
 
 Preciso de um sistema que gerencie minhas finanças.
@@ -103,19 +108,19 @@ Exemplo, todo lançamento de receita tem seu montante dividido percentualmente p
 
 [Veja no Figma](https://www.figma.com/proto/szD8Gs6el1sBSCTcyjPtub/modelagem-controle-financeiro?node-id=21%3A1111&scaling=scale-down)
 
-![imagem](./readme/wireframe.png 'imagem')
+<a href="https://www.figma.com/proto/szD8Gs6el1sBSCTcyjPtub/modelagem-controle-financeiro?node-id=21%3A1111&scaling=scale-down"><img src="./readme/wireframe.png" alt="imagem" width="100%"></a>
 
 ## Demo animada
 
 Gif do protótipo feito no figma
 
-[![figma](./readme/demo.gif 'figma')](https://www.figma.com/proto/szD8Gs6el1sBSCTcyjPtub/modelagem-controle-financeiro?node-id=21%3A1111&scaling=scale-down 'figma')
+<a href="https://www.figma.com/proto/szD8Gs6el1sBSCTcyjPtub/modelagem-controle-financeiro?node-id=21%3A1111&scaling=scale-down"><img src="./readme/demo.gif" alt="imagem" width="100%"></a>
 
 ## Event Storm
 
 [Veja no Figma](https://www.figma.com/proto/szD8Gs6el1sBSCTcyjPtub/modelagem-controle-financeiro?node-id=1%3A445&scaling=min-zoom)
 
-![imagem](./readme/event-storm.png 'imagem')
+<a href="https://www.figma.com/proto/szD8Gs6el1sBSCTcyjPtub/modelagem-controle-financeiro?node-id=1%3A445&scaling=min-zoom"><img src="./readme/event-storm.png" alt="imagem" width="100%"></a>
 
 ## Playlist Youtube
 
@@ -123,7 +128,8 @@ O desenvolvimento deste projeto foi gravado e disponibilizado no youtube
 
 [Acesse no Youtube](https://www.youtube.com/watch?v=nhgBqKxFIiw&list=PLUxrX6EvA-2ZRQokZDXHp-uXQUFWmoaJ7)
 
-[![youtube](./readme/youtube-icon.gif 'youtube')](https://www.youtube.com/watch?v=nhgBqKxFIiw&list=PLUxrX6EvA-2ZRQokZDXHp-uXQUFWmoaJ7 'playlist youtube')
+
+<a href="https://www.youtube.com/watch?v=nhgBqKxFIiw&list=PLUxrX6EvA-2ZRQokZDXHp-uXQUFWmoaJ7"><img src="./readme/youtube-icon.gif" alt="playlist youtube" width="100%"></a>
 
 ## Domain Driven Design
 
@@ -206,14 +212,6 @@ Arquivos padrões em typescript para iniciar um projeto usando DDD. Inspirado no
 
 DDD não é uma arquitetura. O DDD (Domain Driven Design) é uma modelagem de software cujo objetivo é facilitar a implementação de regras e processos complexos, onde visa a divisão de responsabilidades por camadas e é independente da tecnologia utilizada. Ou seja, o DDD é uma filosofia voltado para o domínio do negócio.
 
-### Para arquitetura
-
-Deixo como sugestão a Arquitetura hexagonal
-
-[Saiba mais](https://br.sensedia.com/post/use-of-the-hexagonal-architecture-pattern)
-
-![imagem](./readme/arquitetura-hexagonal.jpg 'imagem')
-
 ### Padrão de Pastas
 
 Baseado na arquitetura hexagonal, sugestão de organização de pastas
@@ -249,3 +247,16 @@ Baseado na arquitetura hexagonal, sugestão de organização de pastas
                         ├── repo
                         └── mappers 
 ```
+
+### Arquitetura
+
+Deixo como sugestão a Arquitetura limpa
+
+<object data="./readme/clean-architecture.pdf" type="application/pdf" width="100%" height="auto">
+    <embed src="./readme/clean-architecture.pdf">
+        <p>Este navegador não suporta pdf <a href="./readme/clean-architecture.pdf">Baixar PDF</a>.</p>
+    </embed>
+</object>
+
+ > creditos da imagem em pdf [Junior Grossi](https://www.linkedin.com/in/juniorgrossi/)
+ 
