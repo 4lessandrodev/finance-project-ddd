@@ -250,13 +250,8 @@ Baseado na arquitetura hexagonal, sugestão de organização de pastas
 
 ### Arquitetura
 
-Deixo como sugestão a Arquitetura limpa
+Deixo como sugestão a Arquitetura Limpa
 
-<object data="./readme/clean-architecture.pdf" type="application/pdf" width="100%" height="auto">
-    <embed src="./readme/clean-architecture.pdf">
-        <p>Este navegador não suporta pdf <a href="./readme/clean-architecture.pdf">Baixar PDF</a>.</p>
-    </embed>
-</object>
+<a href="./readme/arch-img.png"><img src="./readme/arch-img.png" alt="imagem" width="100%"></a>
 
  > creditos da imagem em pdf [Junior Grossi](https://www.linkedin.com/in/juniorgrossi/)
- 
