@@ -252,6 +252,6 @@ Baseado na arquitetura hexagonal, sugestão de organização de pastas
 
 Deixo como sugestão a Arquitetura Limpa
 
-<a href="./readme/arch-img.png"><img src="./readme/arch-img.png" alt="imagem" width="100%"></a>
+<a href="./readme/clean-architecture.pdf"><img src="./readme/arch-img.png" alt="imagem" width="100%"></a>
 
  > creditos da imagem em pdf [Junior Grossi](https://www.linkedin.com/in/juniorgrossi/)
