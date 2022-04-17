@@ -1,4 +1,4 @@
-import IUser, { ITerm } from '@shared/interfaces/user-model.interface';
+import { IUser, ITerm } from '@shared/index';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 

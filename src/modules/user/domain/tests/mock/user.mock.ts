@@ -1,6 +1,5 @@
-import IMockEntity from "@shared/interfaces/entity-mock.interface";
+import { IMockEntity, IUser } from "@shared/index";
 import { UserAggregate } from "@modules/user/domain/user.aggregate";
-import IUser from "@shared/interfaces/user-model.interface";
 import { TermValueObject } from "@modules/user/domain/term.value-object";
 import { IpValueObject } from "@modules/user/domain/ip.value-object";
 import {

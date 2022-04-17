@@ -1,4 +1,4 @@
-import { ErrorMessages } from '@shared/common/error-messages/messages';
+import { ErrorMessages } from '@modules/shared';
 import { EmailValueObject, IUseCase, PasswordValueObject, Result } from 'types-ddd';
 import { SigninDto } from './signin.dto';
 import { Injectable, Inject } from '@nestjs/common';

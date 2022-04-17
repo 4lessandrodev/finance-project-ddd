@@ -3,8 +3,7 @@ import BudgetBoxAggregate from "@modules/budget-box/domain/budget-box.aggregate"
 import BudgetDescriptionValueObject from "@modules/budget-box/domain/budget-description.value-object";
 import PercentageValueObject from "@modules/budget-box/domain/percentage.value-object";
 import ReasonDomainEntity from "@modules/budget-box/domain/reason.domain-entity";
-import IBudgetBox from "@modules/shared/interfaces/budget-box-model.interface";
-import IReason from "@modules/shared/interfaces/reason-model.interface";
+import { IBudgetBox, IReason } from "@shared/index";
 import { Inject } from "@nestjs/common";
 import { ChangesObserver, CurrencyValueObject, DomainId, Result, TMapper } from "types-ddd";
 

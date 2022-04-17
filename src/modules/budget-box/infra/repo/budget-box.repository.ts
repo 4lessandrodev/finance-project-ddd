@@ -1,6 +1,6 @@
 import BudgetBoxAggregate from "@modules/budget-box/domain/budget-box.aggregate";
 import { IBudgetBoxRepository } from "@modules/budget-box/domain/interfaces/budget-box.repository.interface";
-import IBudgetBox from "@modules/shared/interfaces/budget-box-model.interface";
+import { IBudgetBox } from "@shared/index";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";

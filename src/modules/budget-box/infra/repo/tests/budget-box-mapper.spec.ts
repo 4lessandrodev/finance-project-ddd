@@ -1,7 +1,6 @@
 import BudgetBoxAggregate from "@modules/budget-box/domain/budget-box.aggregate";
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
-import IBudgetBox from "@modules/shared/interfaces/budget-box-model.interface";
-import IMockEntity from "@modules/shared/interfaces/entity-mock.interface";
+import { IBudgetBox, IMockEntity } from "@shared/index";
 import { TMapper } from "types-ddd";
 import ReasonToDomainMapper from "../budget-box-reason.mapper";
 import BudgetBoxToDomainMapper from "../budget-box.mapper";

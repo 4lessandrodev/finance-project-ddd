@@ -1,5 +1,4 @@
-import IBudgetBox from "@modules/shared/interfaces/budget-box-model.interface";
-import IReason from "@modules/shared/interfaces/reason-model.interface";
+import { IBudgetBox, IReason } from "@shared/index";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 

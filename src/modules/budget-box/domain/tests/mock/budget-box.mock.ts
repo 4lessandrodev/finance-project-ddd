@@ -1,8 +1,7 @@
 import { BudgetDescriptionValueObject } from "@modules/budget-box/domain/budget-description.value-object";
 import { DEFAULT_BUDGET_PERCENTAGE_VALUE } from "@modules/budget-box/domain/percentage.value-object";
 import { BudgetBoxAggregate } from "@modules/budget-box/domain/budget-box.aggregate";
-import IBudgetBox from "@modules/shared/interfaces/budget-box-model.interface";
-import IMockEntity from "@modules/shared/interfaces/entity-mock.interface";
+import { IBudgetBox, IMockEntity } from "@shared/index";
 import { PercentageValueObject } from '@modules/budget-box/domain/percentage.value-object';
 import { ChangesObserver, CurrencyValueObject, DomainId, Result } from "types-ddd";
 import { ReasonMock } from "./reason.mock";
