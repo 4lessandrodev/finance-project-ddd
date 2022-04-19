@@ -3,10 +3,10 @@ import { SigninDto } from '@modules/user/application/use-cases/signin/signin.dto
 import { SigninUseCase } from '@modules/user/application/use-cases/signin/signin.use-case';
 import { SignUpDto } from '@modules/user/application/use-cases/signup/signup.dto';
 import { SignUpUseCase } from '@modules/user/application/use-cases/signup/signup.use-case';
-import { UserQueryService } from '@modules/user/infra/services/queries/user-query.service';
-import { IUserQueryService } from '@modules/user/infra/services/queries/user-query.interface';
 import { CheckResultInterceptor } from '@utils/check-result.interceptor';
 import { Inject, Injectable } from '@nestjs/common';
+import GetUserByIdUseCase from '@modules/user/application/use-cases/get-user-by-id/get-user-by-id.use-case';
+import { IUser } from '@modules/shared';
 
 @Injectable()
 export class UserService {
@@ -18,12 +18,14 @@ export class UserService {
 		@Inject(SigninUseCase)
 		private readonly signinUseCase: SigninUseCase,
 
-		@Inject(UserQueryService)
-		private readonly queryService: IUserQueryService
+		@Inject(GetUserByIdUseCase)
+		private readonly getUserByIdUseCase: GetUserByIdUseCase
 	) { }
 
-	get query (): IUserQueryService {
-		return this.queryService;
+	async getAuthUser (userId: string): Promise<IUser> {
+		const result = await this.getUserByIdUseCase.execute({ userId });
+		CheckResultInterceptor(result);
+		return result.getResult();
 	}
 	
 	async signup (dto: SignUpDto): Promise<void> {

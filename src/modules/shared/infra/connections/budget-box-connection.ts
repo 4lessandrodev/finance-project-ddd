@@ -11,9 +11,9 @@ export class BudgetBoxConnection implements IBudgetBoxConnection {
 	async findBudgetBoxesByUserId (ownerId: string): Promise<IBudgetBox[]> {
 		
 		const result = await this.connection.db(DB_NAME)
-			.collection(BUDGET_BOX_COLLECTION_NAME).find({ ownerId }).toArray();
+			.collection(BUDGET_BOX_COLLECTION_NAME).find<IBudgetBox>({ ownerId }).toArray();
 		
-		return result as unknown as IBudgetBox[];
+		return result;
 	}
 }
 

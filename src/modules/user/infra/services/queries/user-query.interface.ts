@@ -1,5 +1,5 @@
-import { User } from "@modules/user/infra/entities/user.schema";
+import { IUser } from "@modules/shared";
 
 export interface IUserQueryService {
-	getUserById(userId: string): Promise<User | null>;
+	getUserById(userId: string): Promise<IUser | null>;
 }
