@@ -1,5 +1,5 @@
 import { ErrorMessages } from '@modules/shared';
-import { EmailValueObject, IUseCase, PasswordValueObject, Result } from 'types-ddd';
+import { EmailValueObject, IUseCase, PasswordValueObject, Result, ErrorStatus } from 'types-ddd';
 import { SigninDto } from './signin.dto';
 import { Injectable, Inject } from '@nestjs/common';
 import { JWTPayload } from './jwt-payload.interface';
@@ -19,17 +19,17 @@ export class SigninUseCase implements IUseCase<SigninDto, Result<JWTPayload>>{
 
 	async execute (dto: SigninDto): Promise<Result<JWTPayload>> {
 		
-		const { password, email } = dto;
-		const emailOrError = EmailValueObject.create(email);
-		const passwordOrError = PasswordValueObject.create(password);
-
-		const hasError = Result.combine<unknown>([emailOrError, passwordOrError]);
-
-		if (hasError.isFailure) {
-			return Result.fail<JWTPayload>(hasError.errorValue());
-		}
-
 		try {
+			const { password, email } = dto;
+			const emailOrError = EmailValueObject.create(email);
+			const passwordOrError = PasswordValueObject.create(password);
+
+			const hasError = Result.combine<unknown>([emailOrError, passwordOrError]);
+
+			if (hasError.isFailure) {
+				return Result.fail<JWTPayload>(hasError.errorValue(), hasError.statusCode as ErrorStatus);
+			}
+
 			const existsUserForEmail = await this.userRepo.findOne({ email });
 
 			if (!existsUserForEmail) {
@@ -50,7 +50,7 @@ export class SigninUseCase implements IUseCase<SigninDto, Result<JWTPayload>>{
 
 		} catch (error) {
 
-			return Result.fail<JWTPayload>('Internal Server Error on Signin Use Case');
+			return Result.fail<JWTPayload>('Internal Server Error on Signin Use Case', 'INTERNAL_SERVER_ERROR');
 
 		}
 		

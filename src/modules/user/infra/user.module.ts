@@ -1,4 +1,5 @@
 import { Module } from "@nestjs/common";
+import GetUserByIdUseCase from "@modules/user/application/use-cases/get-user-by-id/get-user-by-id.use-case";
 import { SignUpUseCase } from '@modules/user/application/use-cases/signup/signup.use-case';
 import { UserResolver } from "./resolver/user.resolver";
 import { UserService } from './user.service';
@@ -34,8 +35,13 @@ import { JWT_SECRET } from "@config/env";
 			provide: 'UserRepository',
 			useClass: UserRepository
 		},
+		{
+			provide: 'UserQueryService',
+			useClass: UserQueryService
+		},
 		SignUpUseCase,
 		SigninUseCase,
+		GetUserByIdUseCase,
 		UserService,
 		UserResolver,
 		JwtStrategy,

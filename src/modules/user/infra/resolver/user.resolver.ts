@@ -23,7 +23,7 @@ export class UserResolver {
 	@UseGuards(JwtAuthGuard)
 	async whoAmI (@GetUserId() userId: string): Promise<UserType | null> {
 		
-		const user = await this.userService.query.getUserById(userId);
+		const user = await this.userService.getAuthUser(userId);
 
 		return user;
 	}
