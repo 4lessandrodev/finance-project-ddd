@@ -35,7 +35,8 @@ export class UserRepository implements IUserRepository {
 	}
 
 	async exists (filter: Filter): Promise<boolean> {
-		return await this.conn.exists(filter);
+		const result = await this.conn.exists(filter);
+		return result as boolean;
 	}
 
 	async save (target: UserAggregate): Promise<void> {

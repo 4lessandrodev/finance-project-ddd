@@ -15,6 +15,7 @@ export class UserMapper implements IMapper<UserAggregate, User> {
 					TermValueObject.create({
 						acceptedAt: DateValueObject.create(term.acceptedAt).getResult(),
 						ip: IpValueObject.create(term.ip).getResult(),
+						isAccepted: true,
 						userAgent: {
 							name: term.userAgent.name,
 							os: term.userAgent.os,

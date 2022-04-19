@@ -53,7 +53,7 @@ describe('signup.use-case', () => {
 		expect(useCase).toBeDefined();
 	});
 
-	it('should return fails if not accept the terms', async () => {
+	it('should return fails if do not accept the terms', async () => {
 		const useCase = new SignUpUseCase(userRepo);
 
 		const result = await useCase.execute(makeDto({ acceptedTerms: false }));

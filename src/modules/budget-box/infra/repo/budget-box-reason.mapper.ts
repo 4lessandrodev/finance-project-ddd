@@ -1,6 +1,6 @@
 import ReasonDescriptionValueObject from "@modules/budget-box/domain/reason-description.value-object";
 import ReasonDomainEntity from "@modules/budget-box/domain/reason.domain-entity";
-import IReason from "@modules/shared/interfaces/reason-model.interface";
+import { IReason } from "@shared/index";
 import { Injectable } from "@nestjs/common";
 import { DomainId, Result, TMapper } from "types-ddd";
 

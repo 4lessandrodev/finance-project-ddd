@@ -15,6 +15,11 @@ export const DB_NAME = envVar.get('DB_NAME')
 	.required()
 	.asString();
 
+export const BUDGET_BOX_COLLECTION_NAME = envVar.get('BUDGET_BOX_COLLECTION_NAME')
+	.default('budgetboxes')
+	.required()
+	.asString();
+
 export const MONGO_PASSWORD = envVar.get('MONGO_PASSWORD')
 	.default('mongo')
 	.required()

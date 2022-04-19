@@ -10,3 +10,5 @@ export class SigninInput {
 	password!: string;
 
 }
+
+export default SigninInput;

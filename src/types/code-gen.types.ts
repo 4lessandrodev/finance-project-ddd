@@ -28,6 +28,12 @@ export type BudgetBoxType = {
   updatedAt: Scalars['DateTime'];
 };
 
+export type CreateBudgetBoxInput = {
+  budgetPercentage: Scalars['Float'];
+  description: Scalars['String'];
+  isPercentage: Scalars['Boolean'];
+};
+
 export type JwtPayloadType = {
   __typename?: 'JwtPayloadType';
   token: Scalars['String'];
@@ -38,6 +44,11 @@ export type Mutation = {
   createBudgetBox: Scalars['Boolean'];
   signin: JwtPayloadType;
   signup: Scalars['Boolean'];
+};
+
+
+export type MutationCreateBudgetBoxArgs = {
+  CreateBudgetBoxInput: CreateBudgetBoxInput;
 };
 
 
@@ -168,6 +179,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   BudgetBoxType: ResolverTypeWrapper<BudgetBoxType>;
+  CreateBudgetBoxInput: CreateBudgetBoxInput;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
@@ -187,6 +199,7 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   BudgetBoxType: BudgetBoxType;
+  CreateBudgetBoxInput: CreateBudgetBoxInput;
   DateTime: Scalars['DateTime'];
   Float: Scalars['Float'];
   ID: Scalars['ID'];
@@ -224,7 +237,7 @@ export type JwtPayloadTypeResolvers<ContextType = any, ParentType extends Resolv
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  createBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationCreateBudgetBoxArgs, 'CreateBudgetBoxInput'>>;
   signin?: Resolver<ResolversTypes['JwtPayloadType'], ParentType, ContextType, RequireFields<MutationSigninArgs, 'SigninInput'>>;
   signup?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSignupArgs, 'SignupInput'>>;
 };

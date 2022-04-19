@@ -3,8 +3,7 @@ import { TransactionStatusValueObject } from "@modules/transaction/domain/transa
 import { TransactionTypeValueObject } from "@modules/transaction/domain/transaction-type.value-object";
 import { TransactionNoteValueObject } from "@modules/transaction/domain/transaction-note.value-object";
 import { TransactionAggregate } from "@modules/transaction/domain/transaction.aggregate";
-import ITransaction from "@modules/shared/interfaces/transaction-model.interface";
-import IMockEntity from "@modules/shared/interfaces/entity-mock.interface";
+import { ITransaction, IMockEntity } from "@shared/index";
 import { ChangesObserver, CurrencyValueObject, DateValueObject, DomainId, Result } from "types-ddd";
 import { CURRENCY } from "@config/env";
 

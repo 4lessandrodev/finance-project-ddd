@@ -1,9 +1,11 @@
+import { randomUUID } from "crypto";
+import { GetUserId } from "@modules/user/infra/services/decorators/get-user.decorator";
 import { JwtAuthGuard } from "@modules/user/infra/services/guards/jwt-auth.guard";
 import { Inject, UseGuards } from "@nestjs/common";
-import { Mutation, Query, Resolver } from "@nestjs/graphql";
-import { randomUUID } from "crypto";
-import BudgetBoxService from "../budget-box.service";
-import BudgetBoxType from "../types/budget-box.type";
+import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import BudgetBoxService from "@modules/budget-box/infra/budget-box.service";
+import CreateBudgetBoxInput from "@modules/budget-box/infra/inputs/create-budget-box.input";
+import BudgetBoxType from "@modules/budget-box/infra/types/budget-box.type";
 
 @Resolver(() => BudgetBoxType)
 export class BudgetBoxResolver {
@@ -14,10 +16,13 @@ export class BudgetBoxResolver {
 	
 	@Mutation(() => Boolean)
 	@UseGuards(JwtAuthGuard)
-	async createBudgetBox (): Promise<boolean> {
+	async createBudgetBox (
+		@Args(CreateBudgetBoxInput.name) args: CreateBudgetBoxInput,
+		@GetUserId() ownerId: string
+	): Promise<boolean> {
 		const isSuccess = true;
 
-		await this.budgetBoxService.createBudgetBox();
+		await this.budgetBoxService.createBudgetBox({ ...args, ownerId });
 
 		return isSuccess;
 	}

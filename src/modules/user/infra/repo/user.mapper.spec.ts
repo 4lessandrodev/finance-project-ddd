@@ -23,6 +23,7 @@ describe('user.mapper', () => {
 					TermValueObject.create({
 						acceptedAt: DateValueObject.create(currentDate).getResult(),
 						ip: IpValueObject.create('45.192.110.42').getResult(),
+						isAccepted: true,
 						userAgent: {
 							name: 'firefox',
 							os: 'LINUX',

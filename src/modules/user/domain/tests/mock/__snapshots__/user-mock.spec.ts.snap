@@ -50,6 +50,7 @@ Result {
                 "value": "127.0.0.1",
               },
             },
+            "isAccepted": true,
             "userAgent": Object {
               "name": "firefox",
               "os": "linux",
