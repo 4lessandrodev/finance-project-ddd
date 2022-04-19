@@ -34,6 +34,7 @@ export class UserMock implements IMockEntity<UserAggregate, IUser> {
 			{
 				ip: ips?.[index]?.getResult() ?? IpValueObject.create('127.0.0.1').getResult(),
 				acceptedAt: DateValueObject.create(term?.acceptedAt ?? new Date('2022-01-01 00:00:00')).getResult(),
+				isAccepted: true,
 				userAgent: term?.userAgent ?? {
 					name: 'firefox',
 					os: 'linux',
@@ -45,6 +46,7 @@ export class UserMock implements IMockEntity<UserAggregate, IUser> {
 			TermValueObject.create({
 				acceptedAt: DateValueObject.create(new Date('2022-01-01 00:00:00')).getResult(),
 				ip: IpValueObject.create('127.0.0.1').getResult(),
+				isAccepted: true,
 				userAgent: {
 					name: 'firefox',
 					os: 'linux',

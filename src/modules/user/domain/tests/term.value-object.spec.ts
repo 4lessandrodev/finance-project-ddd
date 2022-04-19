@@ -33,6 +33,7 @@ describe('term.value-object', () => {
 			acceptedAt: DateValueObject.create(props.acceptedAt).getResult(),
 			ip: IpValueObject.create(props.ip).getResult(),
 			userAgent: props.userAgent,
+			isAccepted: true
 		});
 
 		expect(term.isSuccess).toBe(true);

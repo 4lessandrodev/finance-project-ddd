@@ -12,6 +12,7 @@ Object {
     Object {
       "acceptedAt": 2020-01-01T00:00:00.000Z,
       "ip": "45.192.110.42",
+      "isAccepted": true,
       "userAgent": Object {
         "name": "firefox",
         "os": "LINUX",

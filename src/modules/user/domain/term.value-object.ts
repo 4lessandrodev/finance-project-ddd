@@ -12,6 +12,7 @@ export interface TermValueObjectProps {
 	ip: IpValueObject;
 	acceptedAt: DateValueObject;
 	userAgent: IUserAgent;
+	isAccepted: boolean;
 }
 
 export class TermValueObject extends ValueObject<TermValueObjectProps> {
@@ -32,6 +33,9 @@ export class TermValueObject extends ValueObject<TermValueObjectProps> {
 	}
 
 	public static create (props: TermValueObjectProps): Result<TermValueObject> {
+		if (!props.isAccepted) {
+			return Result.fail('Terms must be accepted');
+		}
 		return Result.ok<TermValueObject>(new TermValueObject(props));
 	}
 }

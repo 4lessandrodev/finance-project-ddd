@@ -64,4 +64,4 @@ export class CreateBudgetBoxUseCase implements IUseCase<CreateBudgetBoxDto, Resu
 	};
 }
 
-export default CreateBudgetBoxDto;
+export default CreateBudgetBoxUseCase;

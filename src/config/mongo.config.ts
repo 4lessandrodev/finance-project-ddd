@@ -4,8 +4,6 @@ import { MongooseModuleOptions } from '@nestjs/mongoose';
 export const MongoDbConfig: MongooseModuleOptions = {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-	useCreateIndex: true,
-	useFindAndModify: false,
 	dbName: DB_NAME,
 };
 
