@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { GetUserId } from "@modules/user/infra/services/decorators/get-user.decorator";
 import { JwtAuthGuard } from "@modules/user/infra/services/guards/jwt-auth.guard";
 import { Inject, UseGuards } from "@nestjs/common";
@@ -29,19 +28,11 @@ export class BudgetBoxResolver {
 
 	@Query(() => [BudgetBoxType])
 	@UseGuards(JwtAuthGuard)
-	async getBudgetBoxes (): Promise<BudgetBoxType[]> {
-		return [
-			{
-				id: randomUUID(),
-				balanceAvailable: 200,
-				budgetPercentage: 10,
-				description: 'valid budget box',
-				isPercentage: true,
-				reasons: [],
-				createdAt: new Date(),
-				updatedAt: new Date()
-			}
-		];
+	async getBudgetBoxes (
+		@GetUserId() ownerId: string
+	): Promise<BudgetBoxType[]> {
+		const result = await this.budgetBoxService.getBudgetBoxesForAuthUser({ ownerId });
+		return result;
 	}
 }
 
