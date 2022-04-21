@@ -16,6 +16,11 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type AddReasonToBudgetBoxInput = {
+  budgetBoxId: Scalars['String'];
+  reasonDescription: Scalars['String'];
+};
+
 export type BudgetBoxType = {
   __typename?: 'BudgetBoxType';
   balanceAvailable: Scalars['Float'];
@@ -34,6 +39,10 @@ export type CreateBudgetBoxInput = {
   isPercentage: Scalars['Boolean'];
 };
 
+export type GetBudgetBoxByIdInput = {
+  budgetBoxId: Scalars['String'];
+};
+
 export type JwtPayloadType = {
   __typename?: 'JwtPayloadType';
   token: Scalars['String'];
@@ -41,9 +50,15 @@ export type JwtPayloadType = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addReasonToBudgetBox: Scalars['Boolean'];
   createBudgetBox: Scalars['Boolean'];
   signin: JwtPayloadType;
   signup: Scalars['Boolean'];
+};
+
+
+export type MutationAddReasonToBudgetBoxArgs = {
+  AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput;
 };
 
 
@@ -63,8 +78,14 @@ export type MutationSignupArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  getBudgetBoxById: BudgetBoxType;
   getBudgetBoxes: Array<BudgetBoxType>;
   whoAmI?: Maybe<UserType>;
+};
+
+
+export type QueryGetBudgetBoxByIdArgs = {
+  GetBudgetBoxByIdInput: GetBudgetBoxByIdInput;
 };
 
 export type ReasonType = {
@@ -177,11 +198,13 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   BudgetBoxType: ResolverTypeWrapper<BudgetBoxType>;
   CreateBudgetBoxInput: CreateBudgetBoxInput;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
+  GetBudgetBoxByIdInput: GetBudgetBoxByIdInput;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   JwtPayloadType: ResolverTypeWrapper<JwtPayloadType>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -197,11 +220,13 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput;
   Boolean: Scalars['Boolean'];
   BudgetBoxType: BudgetBoxType;
   CreateBudgetBoxInput: CreateBudgetBoxInput;
   DateTime: Scalars['DateTime'];
   Float: Scalars['Float'];
+  GetBudgetBoxByIdInput: GetBudgetBoxByIdInput;
   ID: Scalars['ID'];
   JwtPayloadType: JwtPayloadType;
   Mutation: {};
@@ -237,12 +262,14 @@ export type JwtPayloadTypeResolvers<ContextType = any, ParentType extends Resolv
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  addReasonToBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddReasonToBudgetBoxArgs, 'AddReasonToBudgetBoxInput'>>;
   createBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationCreateBudgetBoxArgs, 'CreateBudgetBoxInput'>>;
   signin?: Resolver<ResolversTypes['JwtPayloadType'], ParentType, ContextType, RequireFields<MutationSigninArgs, 'SigninInput'>>;
   signup?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSignupArgs, 'SignupInput'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getBudgetBoxById?: Resolver<ResolversTypes['BudgetBoxType'], ParentType, ContextType, RequireFields<QueryGetBudgetBoxByIdArgs, 'GetBudgetBoxByIdInput'>>;
   getBudgetBoxes?: Resolver<Array<ResolversTypes['BudgetBoxType']>, ParentType, ContextType>;
   whoAmI?: Resolver<Maybe<ResolversTypes['UserType']>, ParentType, ContextType>;
 };

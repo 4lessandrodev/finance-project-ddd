@@ -7,6 +7,7 @@ import CreateBudgetBoxInput from "@modules/budget-box/infra/inputs/create-budget
 import BudgetBoxType from "@modules/budget-box/infra/types/budget-box.type";
 import AddReasonToBudgetBoxInput from "@modules/budget-box/infra/inputs/add-reason-to-budget-box.input";
 import GetBudgetBoxByIdInput from "@modules/budget-box/infra/inputs/budget-box-id.input";
+import RemoveReasonFromBudgetBoxInput from "../inputs/remove-reason-from-budget-box.input";
 
 @Resolver(() => BudgetBoxType)
 export class BudgetBoxResolver {
@@ -56,6 +57,20 @@ export class BudgetBoxResolver {
 		const isSuccess = true;
 
 		await this.budgetBoxService.addReasonToBudgetBox({ ...args, ownerId });
+
+		return isSuccess;
+	}
+
+
+	@Mutation(() => Boolean)
+	@UseGuards(JwtAuthGuard)
+	async removeReasonFromBudgetBox (
+		@Args(RemoveReasonFromBudgetBoxInput.name) args: RemoveReasonFromBudgetBoxInput,
+		@GetUserId() ownerId: string
+	): Promise<boolean> {
+		const isSuccess = true;
+
+		await this.budgetBoxService.removeReasonFromBudgetBox({ ...args, ownerId });
 
 		return isSuccess;
 	}

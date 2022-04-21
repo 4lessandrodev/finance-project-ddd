@@ -5,7 +5,8 @@ import {
 	NotFoundException, 
 	PreconditionFailedException, 
 	UnauthorizedException, 
-	UnprocessableEntityException
+	UnprocessableEntityException,
+	BadRequestException
 } from '@nestjs/common';
 import { Result } from "types-ddd";
 
@@ -25,6 +26,8 @@ export const CheckResultInterceptor = <T, F>(result: Result<T, F>): Result<T, F>
 			throw new UnauthorizedException(result.errorValue());
 		case result.statusCode === 'UNPROCESSABLE_ENTITY':
 			throw new UnprocessableEntityException(result.errorValue());
+		case result.statusCode === 'NOT_MODIFIED':
+			throw new BadRequestException(result.errorValue());
 		default:
 			throw new InternalServerErrorException(result.errorValue());
 		}
