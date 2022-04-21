@@ -5,7 +5,7 @@ import { IBudgetBoxRepository } from "@modules/budget-box/domain/interfaces/budg
 import PercentageValueObject from "@modules/budget-box/domain/percentage.value-object";
 import { Inject, Injectable } from "@nestjs/common";
 import { ChangesObserver, CurrencyValueObject, DomainId, IUseCase, Result } from "types-ddd";
-import CreateBudgetBoxDto from "./create-budget-box.dto";
+import CreateBudgetBoxDto from "@modules/budget-box/application/use-cases/create-budget-box/create-budget-box.dto";
 
 @Injectable()
 export class CreateBudgetBoxUseCase implements IUseCase<CreateBudgetBoxDto, Result<void>>{
