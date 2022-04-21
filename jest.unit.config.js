@@ -8,6 +8,7 @@ module.exports = {
 		'!<rootDir>/src/modules/**/infra/**/*.ts',
 		'!<rootDir>/src/main/**',
 		'!<rootDir>/src/modules/**/domain/tests/mock/**/*.ts',
+		'!<rootDir>/src/modules/**/application/use-cases/**/*.dto.ts',
 		'!**/test/**',
 	],
 	coverageDirectory: 'coverage',

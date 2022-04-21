@@ -1,5 +1,6 @@
 import { IBudgetBoxRepository } from "@modules/budget-box/domain/interfaces/budget-box.repository.interface";
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
+import CreateBudgetBoxDto from "./create-budget-box.dto";
 import { CreateBudgetBoxUseCase } from "./create-budget-box.use-case";
 
 describe('create-budget-box.use-case', () => {
@@ -18,35 +19,32 @@ describe('create-budget-box.use-case', () => {
 		};
 	});
 
-	it('should create a budget box with success', async () => {
+	const budgetModelMock = budgetBoxMock.model();
 
-		const budgetModelMock = budgetBoxMock.model();
+	const dto: CreateBudgetBoxDto = {
+		budgetPercentage: budgetModelMock.budgetPercentage,
+		ownerId: budgetModelMock.ownerId,
+		isPercentage: budgetModelMock.isPercentage,
+		description: budgetModelMock.description
+	};
+
+	it('should create a budget box with success', async () => {
 
 		const useCase = new CreateBudgetBoxUseCase(budgetRepoMock);
 
-		const result = await useCase.execute({
-			ownerId: budgetModelMock.ownerId,
-			budgetPercentage: budgetModelMock.budgetPercentage,
-			description: budgetModelMock.description,
-			isPercentage: budgetModelMock.isPercentage
-		});
+		const result = await useCase.execute(dto);
 
 		expect(result.isSuccess).toBeTruthy();
 	});
 
 	it('should fails if provide a percentage greater than 100', async () => {
-		const budgetModelMock = budgetBoxMock.model();
+		
 		const repoSpy = jest.spyOn(budgetRepoMock, 'save');
 		const invalidPercentage = 101; // max valid value is 100
 
 		const useCase = new CreateBudgetBoxUseCase(budgetRepoMock);
 
-		const result = await useCase.execute({
-			ownerId: budgetModelMock.ownerId,
-			budgetPercentage: invalidPercentage,
-			description: budgetModelMock.description,
-			isPercentage: budgetModelMock.isPercentage
-		});
+		const result = await useCase.execute({...dto, budgetPercentage: invalidPercentage });
 
 		expect(result.isFailure).toBeTruthy();
 		expect(result.statusCode).toBe('UNPROCESSABLE_ENTITY');
@@ -55,24 +53,17 @@ describe('create-budget-box.use-case', () => {
 	});
 
 	it('should call repository with success', async () => {
-		const budgetModelMock = budgetBoxMock.model();
 		const repoSpy = jest.spyOn(budgetRepoMock, 'save');
 
 		const useCase = new CreateBudgetBoxUseCase(budgetRepoMock);
 
-		const result = await useCase.execute({
-			ownerId: budgetModelMock.ownerId,
-			budgetPercentage: budgetModelMock.budgetPercentage,
-			description: budgetModelMock.description,
-			isPercentage: budgetModelMock.isPercentage
-		});
+		const result = await useCase.execute(dto);
 
 		expect(result.isSuccess).toBeTruthy();
 		expect(repoSpy).toHaveBeenCalled();
 	});
 
 	it('should return result fail if use case throws', async () => {
-		const budgetModelMock = budgetBoxMock.model();
 
 		jest.spyOn(budgetRepoMock, 'save').mockImplementationOnce(async () => {
 			throw new Error("internal server error");
@@ -80,12 +71,7 @@ describe('create-budget-box.use-case', () => {
 
 		const useCase = new CreateBudgetBoxUseCase(budgetRepoMock);
 
-		const result = await useCase.execute({
-			ownerId: budgetModelMock.ownerId,
-			budgetPercentage: budgetModelMock.budgetPercentage,
-			description: budgetModelMock.description,
-			isPercentage: budgetModelMock.isPercentage
-		});
+		const result = await useCase.execute(dto);
 
 		expect(result.isFailure).toBeTruthy();
 		expect(result.error).toBe('Internal Server Error on Create BudgetBox UseCase');
