@@ -71,7 +71,8 @@ describe('user.test', () => {
 			}
 		};
 
-		const payload = await client.request<RequestType, MutationSigninArgs>(SIGNIN_MUTATION, variables);
+		const payload = await client
+			.request<RequestType, MutationSigninArgs>(SIGNIN_MUTATION, variables);
 		
 		expect(payload.signin.token).toBeDefined();
 		expect(payload.signin).toHaveProperty('token');
