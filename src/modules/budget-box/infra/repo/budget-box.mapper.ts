@@ -6,11 +6,12 @@ import ReasonDomainEntity from "@modules/budget-box/domain/reason.domain-entity"
 import { IBudgetBox, IReason } from "@shared/index";
 import { Inject } from "@nestjs/common";
 import { ChangesObserver, CurrencyValueObject, DomainId, Result, TMapper } from "types-ddd";
+import ReasonToDomainMapper from "./budget-box-reason.mapper";
 
 export class BudgetBoxToDomainMapper implements TMapper<IBudgetBox, BudgetBoxAggregate>{
 
 	constructor (
-		@Inject('ReasonToDomainMapper')
+		@Inject(ReasonToDomainMapper)
 		private readonly reasonMapper: TMapper<IReason, ReasonDomainEntity>
 	){}
 

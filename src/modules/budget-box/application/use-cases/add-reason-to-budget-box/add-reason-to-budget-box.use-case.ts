@@ -37,7 +37,7 @@ export class AddReasonToBudgetBoxUseCase implements IUseCase<Dto, Result<void>>{
 			const budgetBox = budgetBoxOrNull;
 
 			budgetBox.addReason(reasonEntity);
-
+			
 			await this.budgetBoxRepo.save(budgetBox);
 
 			return Result.success();

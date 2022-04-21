@@ -6,10 +6,10 @@ export type UserDocument = User & Document;
 @Schema({ autoCreate: true, timestamps: true, autoIndex: true })
 export class User implements IUser {
 
-	@Prop({ immutable: true, required: true, type: String, index: true })
+	@Prop({ immutable: true, required: true, type: String, index: true, unique: true })
 	readonly id!: string;
 
-	@Prop({ required: true, index: true, type: String })
+	@Prop({ required: true, index: true, type: String, unique: true })
 	email!: string;
 
 	@Prop({ type: String, required: true })

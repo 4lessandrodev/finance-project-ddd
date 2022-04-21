@@ -7,7 +7,8 @@ import GetBudgetBoxesForAuthUserUseCase from "@modules/budget-box/application/us
 import GetBudgetBoxesForAuthUserDto from "@modules/budget-box/application/use-cases/get-budget-boxes-for-auth-user/get-budget-boxes-for-auth-user.dto";
 import AddReasonToBudgetBoxUseCase from "@modules/budget-box/application/use-cases/add-reason-to-budget-box/add-reason-to-budget-box.use-case";
 import AddReasonToBudgetBoxDto from "@modules/budget-box/application/use-cases/add-reason-to-budget-box/add-reason-to-budget-box.dto";
-
+import GetBudgetBoxByIdUseCase from "@modules/budget-box/application/use-cases/get-budget-box-by-id/get-budget-box-by-id.use-case";
+import GetBudgetBoxByIdDto from '@modules/budget-box/application/use-cases/get-budget-box-by-id/get-budget-box-by-id.dto';
 @Injectable()
 export class BudgetBoxService {
 	constructor (
@@ -21,7 +22,10 @@ export class BudgetBoxService {
 		private readonly getBudgetBoxesForAuthUserUseCase: GetBudgetBoxesForAuthUserUseCase,
 		
 		@Inject(AddReasonToBudgetBoxUseCase)
-		private readonly addReasonToBudgetBoxUseCase: AddReasonToBudgetBoxUseCase
+		private readonly addReasonToBudgetBoxUseCase: AddReasonToBudgetBoxUseCase,
+
+		@Inject(GetBudgetBoxByIdUseCase)
+		private readonly getBudgetBoxByIdUseCase: GetBudgetBoxByIdUseCase
 	){}
 	async createBudgetBox (dto: CreateBudgetBoxDto): Promise<void>{
 		
@@ -40,6 +44,12 @@ export class BudgetBoxService {
 	async addReasonToBudgetBox (dto: AddReasonToBudgetBoxDto): Promise<void> {
 		const result = await this.addReasonToBudgetBoxUseCase.execute(dto);
 		CheckResultInterceptor(result);
+	}
+
+	async getBudgetBoxById (dto: GetBudgetBoxByIdDto): Promise<IBudgetBox>{
+		const result = await this.getBudgetBoxByIdUseCase.execute(dto);
+		CheckResultInterceptor(result);
+		return result.getResult();
 	}
 }
 
