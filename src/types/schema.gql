@@ -63,6 +63,7 @@ type Mutation {
   signin(SigninInput: SigninInput!): JwtPayloadType!
   createBudgetBox(CreateBudgetBoxInput: CreateBudgetBoxInput!): Boolean!
   addReasonToBudgetBox(AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput!): Boolean!
+  removeReasonFromBudgetBox(RemoveReasonFromBudgetBoxInput: RemoveReasonFromBudgetBoxInput!): Boolean!
 }
 
 input SignupInput {
@@ -84,5 +85,10 @@ input CreateBudgetBoxInput {
 
 input AddReasonToBudgetBoxInput {
   reasonDescription: String!
+  budgetBoxId: String!
+}
+
+input RemoveReasonFromBudgetBoxInput {
+  reasonId: String!
   budgetBoxId: String!
 }

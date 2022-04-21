@@ -57,6 +57,20 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
 		this.props.reasons.push(reason);
 	}
 
+	removeBudgetBoxById (reasonId: DomainId): boolean {
+		const reasonIndex = this.props
+			.reasons
+			.findIndex((reason) => reason
+				.id.equals(reasonId));
+		
+		const exists = reasonIndex !== -1;
+		if (exists) {
+			this.props.reasons.splice(reasonIndex, 1);	
+		}
+
+		return exists;
+	}
+
 	public static create (
 		props: BudgetAggregateProps
 	): Result<BudgetBoxAggregate> {

@@ -9,6 +9,9 @@ import AddReasonToBudgetBoxUseCase from "@modules/budget-box/application/use-cas
 import AddReasonToBudgetBoxDto from "@modules/budget-box/application/use-cases/add-reason-to-budget-box/add-reason-to-budget-box.dto";
 import GetBudgetBoxByIdUseCase from "@modules/budget-box/application/use-cases/get-budget-box-by-id/get-budget-box-by-id.use-case";
 import GetBudgetBoxByIdDto from '@modules/budget-box/application/use-cases/get-budget-box-by-id/get-budget-box-by-id.dto';
+import RemoveReasonFromBudgetBoxUseCase from "@modules/budget-box/application/use-cases/remove-reason-from-budget-box/remove-reason-from-budget-box.use-case";
+
+import RemoveReasonDto from "@modules/budget-box/application/use-cases/remove-reason-from-budget-box/remove-reason-from-budget-box-dto";
 @Injectable()
 export class BudgetBoxService {
 	constructor (
@@ -25,8 +28,11 @@ export class BudgetBoxService {
 		private readonly addReasonToBudgetBoxUseCase: AddReasonToBudgetBoxUseCase,
 
 		@Inject(GetBudgetBoxByIdUseCase)
-		private readonly getBudgetBoxByIdUseCase: GetBudgetBoxByIdUseCase
-	){}
+		private readonly getBudgetBoxByIdUseCase: GetBudgetBoxByIdUseCase,
+
+		@Inject(RemoveReasonFromBudgetBoxUseCase)
+		private readonly removeReasonFromBudgetBoxUseCase: RemoveReasonFromBudgetBoxUseCase
+	) { }
 	async createBudgetBox (dto: CreateBudgetBoxDto): Promise<void>{
 		
 		const proxy = new BaseProxy<CreateBudgetBoxDto, void>(this.canAllocate, this.createBudgetBoxUseCase);
@@ -50,6 +56,11 @@ export class BudgetBoxService {
 		const result = await this.getBudgetBoxByIdUseCase.execute(dto);
 		CheckResultInterceptor(result);
 		return result.getResult();
+	}
+
+	async removeReasonFromBudgetBox (dto:RemoveReasonDto): Promise<void> {
+		const result = await this.removeReasonFromBudgetBoxUseCase.execute(dto);
+		CheckResultInterceptor(result);
 	}
 }
 
