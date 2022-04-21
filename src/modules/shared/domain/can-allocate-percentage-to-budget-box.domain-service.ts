@@ -34,7 +34,8 @@ export class CanAllocatePercentageToBudgetBoxDomainService implements IDomainSer
 			return Result.ok(canAllocate);
 		}
 		
-		return Result.fail('100% already allocated');
+		const available = maxPercentage - totalPercentageAllocated;
+		return Result.fail(`Could not allocate percentage to budget-box. ${totalPercentageAllocated}% already allocated. Available ${available}%`);
 	}
 }
 
