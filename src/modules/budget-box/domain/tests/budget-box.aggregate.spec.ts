@@ -1,4 +1,5 @@
 import { DomainId } from 'types-ddd';
+import ReasonDescriptionValueObject from '../reason-description.value-object';
 import { BudgetBoxMock } from './mock/budget-box.mock';
 import { ReasonMock } from './mock/reason.mock';
 
@@ -40,7 +41,7 @@ describe('budget-box.aggregate', () => {
 
 		const reasonId = DomainId.create('valid_id');
 
-		const result = budgetBox.removeBudgetBoxById(reasonId);
+		const result = budgetBox.removeReasonById(reasonId);
 
 		expect(result).toBeTruthy();
 	});
@@ -54,7 +55,7 @@ describe('budget-box.aggregate', () => {
 
 		const reasonId = DomainId.create('invalid_id');
 
-		const result = budgetBox.removeBudgetBoxById(reasonId);
+		const result = budgetBox.removeReasonById(reasonId);
 
 		expect(result).toBeFalsy();
 	});
@@ -71,5 +72,66 @@ describe('budget-box.aggregate', () => {
 		budgetBox.addReason(reason);
 
 		expect(budgetBox.reasons).toHaveLength(1);
+	});
+
+	it('should get null on get reason by id and do not exists', () => {
+		const budgetBox = budgetBoxMock.domain({
+			isPercentage: true,
+			budgetPercentage: 50,
+			reasons: []
+		}).getResult();
+
+		const result = budgetBox.getReasonById(DomainId.create('invalid_id'));
+
+		expect(result).toBeNull();
+	});
+
+	it('should get null on get reason by id and do not exists', () => {
+
+		const reason = reasonMock.model({ id: 'valid_id' });
+
+		const budgetBox = budgetBoxMock.domain({
+			isPercentage: true,
+			budgetPercentage: 50,
+			reasons: [reason]
+		}).getResult();
+
+		const result = budgetBox.getReasonById(DomainId.create('valid_id'));
+
+		expect(result?.toObject()).toEqual(reason);
+	});
+
+	it('should update reason description with success', () => {
+
+		const reason = reasonMock.model({ id: 'valid_id', description: 'valid_description' });
+
+		const budgetBox = budgetBoxMock.domain({
+			isPercentage: true,
+			budgetPercentage: 50,
+			reasons: [reason]
+		}).getResult();
+
+		const ID = DomainId.create('valid_id');
+		const description = ReasonDescriptionValueObject.create('updated_description').getResult();
+		const result = budgetBox.changeReasonDescription(ID, description);
+
+		expect(result).toBeTruthy();
+		expect(budgetBox.getReasonById(ID)?.description.value).toBe('updated_description');
+		
+	});
+
+	it('should return false if does not update description', () => {
+
+		const budgetBox = budgetBoxMock.domain({
+			isPercentage: true,
+			budgetPercentage: 50,
+			reasons: []
+		}).getResult();
+
+		const ID = DomainId.create('valid_id');
+		const description = ReasonDescriptionValueObject.create('updated_description').getResult();
+		const result = budgetBox.changeReasonDescription(ID, description);
+
+		expect(result).toBeFalsy();
 	});
 });

@@ -25,9 +25,9 @@ describe('description.value-object', () => {
 		);
 	});
 
-	it('should fail if provide long description (greater than 20 char)', () => {
+	it('should fail if provide long description (greater than 30 char)', () => {
 		const description = ReasonDescriptionValueObject.create(
-			'Invalid description length greater than max 20 char',
+			'Invalid description length greater than max 30 char',
 		);
 		expect(description.isFailure).toBe(true);
 		expect(description.error).toBe(

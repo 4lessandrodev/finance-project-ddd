@@ -52,6 +52,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   addReasonToBudgetBox: Scalars['Boolean'];
   createBudgetBox: Scalars['Boolean'];
+  removeReasonFromBudgetBox: Scalars['Boolean'];
   signin: JwtPayloadType;
   signup: Scalars['Boolean'];
 };
@@ -64,6 +65,11 @@ export type MutationAddReasonToBudgetBoxArgs = {
 
 export type MutationCreateBudgetBoxArgs = {
   CreateBudgetBoxInput: CreateBudgetBoxInput;
+};
+
+
+export type MutationRemoveReasonFromBudgetBoxArgs = {
+  RemoveReasonFromBudgetBoxInput: RemoveReasonFromBudgetBoxInput;
 };
 
 
@@ -94,6 +100,11 @@ export type ReasonType = {
   description: Scalars['String'];
   id: Scalars['ID'];
   updatedAt: Scalars['DateTime'];
+};
+
+export type RemoveReasonFromBudgetBoxInput = {
+  budgetBoxId: Scalars['String'];
+  reasonId: Scalars['String'];
 };
 
 export type SigninInput = {
@@ -210,6 +221,7 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   ReasonType: ResolverTypeWrapper<ReasonType>;
+  RemoveReasonFromBudgetBoxInput: RemoveReasonFromBudgetBoxInput;
   SigninInput: SigninInput;
   SignupInput: SignupInput;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -232,6 +244,7 @@ export type ResolversParentTypes = {
   Mutation: {};
   Query: {};
   ReasonType: ReasonType;
+  RemoveReasonFromBudgetBoxInput: RemoveReasonFromBudgetBoxInput;
   SigninInput: SigninInput;
   SignupInput: SignupInput;
   String: Scalars['String'];
@@ -264,6 +277,7 @@ export type JwtPayloadTypeResolvers<ContextType = any, ParentType extends Resolv
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   addReasonToBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddReasonToBudgetBoxArgs, 'AddReasonToBudgetBoxInput'>>;
   createBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationCreateBudgetBoxArgs, 'CreateBudgetBoxInput'>>;
+  removeReasonFromBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveReasonFromBudgetBoxArgs, 'RemoveReasonFromBudgetBoxInput'>>;
   signin?: Resolver<ResolversTypes['JwtPayloadType'], ParentType, ContextType, RequireFields<MutationSigninArgs, 'SigninInput'>>;
   signup?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSignupArgs, 'SignupInput'>>;
 };
