@@ -10,8 +10,9 @@ import AddReasonToBudgetBoxDto from "@modules/budget-box/application/use-cases/a
 import GetBudgetBoxByIdUseCase from "@modules/budget-box/application/use-cases/get-budget-box-by-id/get-budget-box-by-id.use-case";
 import GetBudgetBoxByIdDto from '@modules/budget-box/application/use-cases/get-budget-box-by-id/get-budget-box-by-id.dto';
 import RemoveReasonFromBudgetBoxUseCase from "@modules/budget-box/application/use-cases/remove-reason-from-budget-box/remove-reason-from-budget-box.use-case";
-
 import RemoveReasonDto from "@modules/budget-box/application/use-cases/remove-reason-from-budget-box/remove-reason-from-budget-box-dto";
+import ChangeReasonDescriptionUseCase from "@modules/budget-box/application/use-cases/change-reason-description/change-reason-description.use-case";
+import ChangeReasonDescriptionDto from "@modules/budget-box/application/use-cases/change-reason-description/change-reason-description.dto";
 @Injectable()
 export class BudgetBoxService {
 	constructor (
@@ -31,7 +32,10 @@ export class BudgetBoxService {
 		private readonly getBudgetBoxByIdUseCase: GetBudgetBoxByIdUseCase,
 
 		@Inject(RemoveReasonFromBudgetBoxUseCase)
-		private readonly removeReasonFromBudgetBoxUseCase: RemoveReasonFromBudgetBoxUseCase
+		private readonly removeReasonFromBudgetBoxUseCase: RemoveReasonFromBudgetBoxUseCase,
+
+		@Inject(ChangeReasonDescriptionUseCase)
+		private readonly changeReasonDescriptionUseCase: ChangeReasonDescriptionUseCase
 	) { }
 	async createBudgetBox (dto: CreateBudgetBoxDto): Promise<void>{
 		
@@ -60,6 +64,11 @@ export class BudgetBoxService {
 
 	async removeReasonFromBudgetBox (dto:RemoveReasonDto): Promise<void> {
 		const result = await this.removeReasonFromBudgetBoxUseCase.execute(dto);
+		CheckResultInterceptor(result);
+	}
+
+	async changeReasonDescription (dto: ChangeReasonDescriptionDto): Promise<void> {
+		const result = await this.changeReasonDescriptionUseCase.execute(dto);
 		CheckResultInterceptor(result);
 	}
 }

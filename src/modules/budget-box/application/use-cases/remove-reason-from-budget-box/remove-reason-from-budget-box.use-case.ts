@@ -21,7 +21,7 @@ export class RemoveReasonFromBudgetBoxUseCase implements IUseCase<Dto, Result<vo
 
 			const budgetBox = budgetBoxOrNull;
 
-			const removed = budgetBox.removeBudgetBoxById(DomainId.create(reasonId));
+			const removed = budgetBox.removeReasonById(DomainId.create(reasonId));
 
 			if (!removed) {
 				return Result.fail('Reason not found on budget box', 'NOT_FOUND');

@@ -6,6 +6,7 @@ import {
 	DEFAULT_BUDGET_PERCENTAGE_VALUE,
 	PercentageValueObject
 } from './percentage.value-object';
+import ReasonDescriptionValueObject from './reason-description.value-object';
 
 
 export interface BudgetAggregateProps extends BaseDomainEntity {
@@ -57,7 +58,41 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
 		this.props.reasons.push(reason);
 	}
 
-	removeBudgetBoxById (reasonId: DomainId): boolean {
+	getReasonById (reasonId: DomainId): ReasonDomainEntity | null {
+		const reasonOrUndefined = this.props
+			.reasons
+			.find((reason) => reason
+				.id.equals(reasonId));
+		
+		if (!reasonOrUndefined) {
+			return null;
+		}
+
+		return reasonOrUndefined;
+	}
+
+	changeReasonDescription (reasonId: DomainId, description: ReasonDescriptionValueObject): boolean {
+		const updated = true;
+		const reasonOrNull = this.getReasonById(reasonId);
+
+		if (!reasonOrNull) {
+			return !updated;
+		}
+
+		const reason = reasonOrNull.clone({
+			idStrategy: 'uuid', isNew: false, props: {
+				ID: reasonId,
+				description,
+				createdAt: reasonOrNull.createdAt
+			}
+		}).getResult();
+		
+		this.removeReasonById(reasonId);
+		this.addReason(reason);
+		return updated;
+	}
+
+	removeReasonById (reasonId: DomainId): boolean {
 		const reasonIndex = this.props
 			.reasons
 			.findIndex((reason) => reason

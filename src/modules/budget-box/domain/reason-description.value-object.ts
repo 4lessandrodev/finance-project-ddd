@@ -1,7 +1,7 @@
 import { ErrorMessages } from '@shared/index';
 import { ValueObject, Result } from 'types-ddd';
 
-export const REASON_DESCRIPTION_MAX_LENGTH = 20;
+export const REASON_DESCRIPTION_MAX_LENGTH = 30;
 export const REASON_DESCRIPTION_MIN_LENGTH = 1;
 export interface ReasonDescriptionValueObjectProps {
   value: string;
