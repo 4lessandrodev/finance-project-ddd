@@ -15,7 +15,9 @@ export class CreateBudgetBoxUseCase implements IUseCase<CreateBudgetBoxDto, Resu
 		private readonly budgetBoxRepo: IBudgetBoxRepository
 	) { }
 
-	async execute (dto: CreateBudgetBoxDto): Promise<Result<void, string>> {
+	async execute ({
+		description, budgetPercentage, isPercentage, ownerId
+	}: CreateBudgetBoxDto): Promise<Result<void, string>> {
 		try {
 
 			const balanceAvailableOrError = CurrencyValueObject.create({
@@ -23,9 +25,9 @@ export class CreateBudgetBoxUseCase implements IUseCase<CreateBudgetBoxDto, Resu
 				value: 0
 			});
 
-			const descriptionOrError = BudgetDescriptionValueObject.create(dto.description);
+			const descriptionOrError = BudgetDescriptionValueObject.create(description);
 
-			const budgetPercentageOrError = PercentageValueObject.create(dto.budgetPercentage);
+			const budgetPercentageOrError = PercentageValueObject.create(budgetPercentage);
 
 			const observer = ChangesObserver.init<unknown>([
 				balanceAvailableOrError,
@@ -45,8 +47,8 @@ export class CreateBudgetBoxUseCase implements IUseCase<CreateBudgetBoxDto, Resu
 					ID: DomainId.create(),
 					balanceAvailable: balanceAvailableOrError.getResult(),
 					reasons: [],
-					ownerId: DomainId.create(dto.ownerId),
-					isPercentage: dto.isPercentage,
+					ownerId: DomainId.create(ownerId),
+					isPercentage: isPercentage,
 					description: descriptionOrError.getResult(),
 					budgetPercentage: budgetPercentageOrError.getResult()
 				}

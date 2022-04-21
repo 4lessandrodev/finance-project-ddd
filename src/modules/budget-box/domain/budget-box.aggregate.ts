@@ -53,6 +53,10 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
 		return this.props.reasons;
 	}
 
+	addReason (reason: ReasonDomainEntity): void {
+		this.props.reasons.push(reason);
+	}
+
 	public static create (
 		props: BudgetAggregateProps
 	): Result<BudgetBoxAggregate> {

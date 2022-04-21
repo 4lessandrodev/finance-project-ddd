@@ -9,6 +9,7 @@ import { BaseConnection } from "@modules/shared/infra/connections/connection";
 import CreateBudgetBoxUseCase from "@modules/budget-box/application/use-cases/create-budget-box/create-budget-box.use-case";
 import BudgetBoxQueryService from "@modules/budget-box/infra/services/queries/budget-box-query.service";
 import GetBudgetBoxesForAuthUserUseCase from "@modules/budget-box/application/use-cases/get-budget-boxes-for-auth-user/get-budget-boxes-for-auth-user.use-case";
+import AddReasonToBudgetBoxUseCase from "@modules/budget-box/application/use-cases/add-reason-to-budget-box/add-reason-to-budget-box.use-case";
 
 @Module({
 	imports: [
@@ -22,6 +23,7 @@ import GetBudgetBoxesForAuthUserUseCase from "@modules/budget-box/application/us
 	providers: [
 		CreateBudgetBoxUseCase,
 		GetBudgetBoxesForAuthUserUseCase,
+		AddReasonToBudgetBoxUseCase,
 		BudgetBoxResolver,
 		BudgetBoxService,
 		{

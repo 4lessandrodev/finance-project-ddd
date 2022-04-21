@@ -5,6 +5,7 @@ import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import BudgetBoxService from "@modules/budget-box/infra/budget-box.service";
 import CreateBudgetBoxInput from "@modules/budget-box/infra/inputs/create-budget-box.input";
 import BudgetBoxType from "@modules/budget-box/infra/types/budget-box.type";
+import AddReasonToBudgetBoxInput from "@modules/budget-box/infra/inputs/add-reason-to-budget-box.input";
 
 @Resolver(() => BudgetBoxType)
 export class BudgetBoxResolver {
@@ -33,6 +34,19 @@ export class BudgetBoxResolver {
 	): Promise<BudgetBoxType[]> {
 		const result = await this.budgetBoxService.getBudgetBoxesForAuthUser({ ownerId });
 		return result;
+	}
+
+	@Mutation(() => Boolean)
+	@UseGuards(JwtAuthGuard)
+	async addReasonToBudgetBox (
+		@Args(AddReasonToBudgetBoxInput.name) args: AddReasonToBudgetBoxInput,
+		@GetUserId() ownerId: string
+	): Promise<boolean> {
+		const isSuccess = true;
+
+		await this.budgetBoxService.addReasonToBudgetBox({ ...args, ownerId });
+
+		return isSuccess;
 	}
 }
 
