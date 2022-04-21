@@ -8,7 +8,8 @@ describe('get-budget-boxes-for-auth-user', () => {
 
 	beforeEach(() => {
 		fakeQueryService = {
-			getBudgetBoxesByOwnerId: jest.fn()
+			getBudgetBoxesByOwnerId: jest.fn(),
+			getBudgetBoxByIdAndOwnerId: jest.fn()
 		};
 	});
 

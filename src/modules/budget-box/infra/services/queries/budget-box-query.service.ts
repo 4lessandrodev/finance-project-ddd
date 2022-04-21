@@ -11,6 +11,11 @@ export class BudgetBoxQueryService implements IBudgetBoxQueryService {
 	constructor (
 		@InjectModel(BudgetBox.name) private readonly conn: Model<BudgetBoxDocument>,
 	) { }
+	async getBudgetBoxByIdAndOwnerId (filter: { ownerId: string; id: string; }): Promise<IBudgetBox | null> {
+		const budgetBoxesFound = await this.conn.findOne<IBudgetBox>({ ...filter }, { _id: false, __v: false });
+
+		return budgetBoxesFound;
+	}
 	async getBudgetBoxesByOwnerId (ownerId: string): Promise<IBudgetBox[]> {
 		const budgetBoxesFound = await this.conn.find<IBudgetBox>({ ownerId }, { _id: false, __v: false });
 

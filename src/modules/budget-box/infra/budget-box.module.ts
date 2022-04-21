@@ -10,6 +10,9 @@ import CreateBudgetBoxUseCase from "@modules/budget-box/application/use-cases/cr
 import BudgetBoxQueryService from "@modules/budget-box/infra/services/queries/budget-box-query.service";
 import GetBudgetBoxesForAuthUserUseCase from "@modules/budget-box/application/use-cases/get-budget-boxes-for-auth-user/get-budget-boxes-for-auth-user.use-case";
 import AddReasonToBudgetBoxUseCase from "@modules/budget-box/application/use-cases/add-reason-to-budget-box/add-reason-to-budget-box.use-case";
+import GetBudgetBoxByIdUseCase from "@modules/budget-box/application/use-cases/get-budget-box-by-id/get-budget-box-by-id.use-case";
+import BudgetBoxToDomainMapper from "@modules/budget-box/infra/repo/budget-box.mapper";
+import ReasonToDomainMapper from "@modules/budget-box/infra/repo/budget-box-reason.mapper";
 
 @Module({
 	imports: [
@@ -24,8 +27,11 @@ import AddReasonToBudgetBoxUseCase from "@modules/budget-box/application/use-cas
 		CreateBudgetBoxUseCase,
 		GetBudgetBoxesForAuthUserUseCase,
 		AddReasonToBudgetBoxUseCase,
+		GetBudgetBoxByIdUseCase,
 		BudgetBoxResolver,
 		BudgetBoxService,
+		ReasonToDomainMapper,
+		BudgetBoxToDomainMapper,
 		{
 			provide: 'BudgetBoxRepository',
 			useClass: BudgetBoxRepository

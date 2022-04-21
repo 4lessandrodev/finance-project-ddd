@@ -51,12 +51,18 @@ type UserType {
 type Query {
   whoAmI: UserType
   getBudgetBoxes: [BudgetBoxType!]!
+  getBudgetBoxById(GetBudgetBoxByIdInput: GetBudgetBoxByIdInput!): BudgetBoxType!
+}
+
+input GetBudgetBoxByIdInput {
+  budgetBoxId: String!
 }
 
 type Mutation {
   signup(SignupInput: SignupInput!): Boolean!
   signin(SigninInput: SigninInput!): JwtPayloadType!
   createBudgetBox(CreateBudgetBoxInput: CreateBudgetBoxInput!): Boolean!
+  addReasonToBudgetBox(AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput!): Boolean!
 }
 
 input SignupInput {
@@ -74,4 +80,9 @@ input CreateBudgetBoxInput {
   description: String!
   isPercentage: Boolean!
   budgetPercentage: Float!
+}
+
+input AddReasonToBudgetBoxInput {
+  reasonDescription: String!
+  budgetBoxId: String!
 }

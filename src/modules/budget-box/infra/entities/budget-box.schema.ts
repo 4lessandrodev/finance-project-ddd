@@ -7,7 +7,7 @@ export type BudgetBoxDocument = BudgetBox & Document;
 @Schema({ autoCreate: true, timestamps: true, autoIndex: true })
 export class BudgetBox implements IBudgetBox {
 
-	@Prop({ immutable: true, required: true, type: String, index: true })
+	@Prop({ immutable: true, required: true, type: String, index: true, unique: true })
 	readonly id!: string;
 
 	@Prop({ required: true, type: String, index: true })

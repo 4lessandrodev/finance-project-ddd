@@ -6,6 +6,7 @@ import BudgetBoxService from "@modules/budget-box/infra/budget-box.service";
 import CreateBudgetBoxInput from "@modules/budget-box/infra/inputs/create-budget-box.input";
 import BudgetBoxType from "@modules/budget-box/infra/types/budget-box.type";
 import AddReasonToBudgetBoxInput from "@modules/budget-box/infra/inputs/add-reason-to-budget-box.input";
+import GetBudgetBoxByIdInput from "@modules/budget-box/infra/inputs/budget-box-id.input";
 
 @Resolver(() => BudgetBoxType)
 export class BudgetBoxResolver {
@@ -33,6 +34,16 @@ export class BudgetBoxResolver {
 		@GetUserId() ownerId: string
 	): Promise<BudgetBoxType[]> {
 		const result = await this.budgetBoxService.getBudgetBoxesForAuthUser({ ownerId });
+		return result;
+	}
+
+	@Query(() => BudgetBoxType)
+	@UseGuards(JwtAuthGuard)
+	async getBudgetBoxById (
+		@GetUserId() ownerId: string,
+		@Args(GetBudgetBoxByIdInput.name) args: GetBudgetBoxByIdInput
+	): Promise<BudgetBoxType> {
+		const result = await this.budgetBoxService.getBudgetBoxById({ ...args, ownerId, });
 		return result;
 	}
 
