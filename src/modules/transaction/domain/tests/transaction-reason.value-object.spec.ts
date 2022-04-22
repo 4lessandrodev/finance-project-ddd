@@ -28,10 +28,10 @@ describe('transaction-reason.value-object', () => {
 
 		const resultMax = TransactionReasonDescriptionValueObject.createValid(invalidMaxValue);
 		const resultMin = TransactionReasonDescriptionValueObject.createValid(invalidMinValue);
-		const result = TransactionReasonDescriptionValueObject.create(validValue);
+		const result = TransactionReasonDescriptionValueObject.createValid(validValue);
 
 		expect(resultMax.value).toBe(invalidMaxValue.slice(0, 49));
 		expect(resultMin.value).toBe('auto import: ');
-		expect(result.isSuccess).toBeTruthy();
+		expect(result.value).toBe('valid_value');
 	});
 });

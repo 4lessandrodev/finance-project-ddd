@@ -53,8 +53,6 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 			ID,
 			updatedAt: props?.updatedAt ?? new Date('2022-01-01 00:00:00'),
 			note: note?.getResult(),
-			isDeleted: false,
-			deletedAt: undefined,
 			createdAt:props?.createdAt ?? new Date('2022-01-01 00:00:00'),
 			attachment: attachment?.getResult(),
 			userId: userId,
@@ -64,7 +62,9 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 			),
 			status: status.getResult(),
 			reason: reason.getResult(),
-			paymentDate: paymentDate.getResult()
+			paymentDate: paymentDate.getResult(),
+			isDeleted: false,
+			deletedAt: undefined,
 		});
 	}
 	model (props?: Partial<ITransaction>): ITransaction {
@@ -89,6 +89,9 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 			],
 			transactionType: props?.transactionType ?? 'ENTRADA',
 			updatedAt: props?.updatedAt ?? new Date('2022-01-01 00:00:00'),
+			isDeleted: false,
+			deletedAt: undefined,
 		};
 	}
 }
+export default TransactionMock;
