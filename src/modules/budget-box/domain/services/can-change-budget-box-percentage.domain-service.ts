@@ -1,7 +1,7 @@
 import { Inject } from "@nestjs/common";
 import { Result } from "types-ddd";
 import { IDomainService } from "@modules/shared/interfaces/domain-service.interface";
-import { IBudgetBoxConnection } from "@modules/shared/domain/budget-box-connection.interface";
+import { IBudgetBoxQueryService } from "@modules/budget-box/infra/services/queries/budget-box-query.interface";
 
 interface Dto {
 	ownerId: string;
@@ -11,14 +11,14 @@ interface Dto {
 
 export class CanChangeBudgetBoxPercentageDomainService implements IDomainService<Dto, Result<boolean>>{
 	constructor (
-		@Inject('BudgetBoxConnection')
-		private readonly connection: IBudgetBoxConnection
+		@Inject('BudgetBoxQueryService')
+		private readonly connection: IBudgetBoxQueryService
 	) { }
 	async execute ({ ownerId, budgetPercentage, budgetBoxId }: Dto): Promise<Result<boolean>> {
 		const maxPercentage = 100;
 		const initialValue = 0;
 		
-		const budgetBoxes = await this.connection.findBudgetBoxesByUserId(ownerId);
+		const budgetBoxes = await this.connection.getBudgetBoxesByOwnerId(ownerId);
 
 		const budgetBoxToChange = budgetBoxes.find(
 			(budgetBox) => budgetBox.id === budgetBoxId && budgetBox.isPercentage

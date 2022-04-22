@@ -10,18 +10,20 @@ Só pode haver dois tipos de lançamento: "Entrada" ou "Saida".
 {
   "user-id": "uuid",
   "total-value": 100,
-  "reasonId": "uuid",
+  "reason": "valid_reason",
   "payment-date": "2021-01-01 10:00:00",
   "transaction-type": "Entrada | Saida",
-  "status": "Pendente | Concluído",
+  "status": "Pendente | Concluído | Estornado",
   "note": "valid_description",
   "attachment": "url",
   "transaction-calculations": [
     {
+      "budgetBoxName": "valid_name",
       "budgetbox-id": "uuid",
       "Value": 50
     },
     {
+      "budgetBoxName": "valid_name",
       "budgetbox-id": "uuid",
       "Value": 50
     }
@@ -35,3 +37,5 @@ Só pode haver dois tipos de lançamento: "Entrada" ou "Saida".
 - attachment-path: Value Object - Ok
 - transaction-calculations: Value Object - Ok
 - payment-date: Value Object - Ok
+- budgetBoxName: Value Object - Ok
+- reason: Value Object - Ok

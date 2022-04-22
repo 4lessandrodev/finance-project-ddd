@@ -1,16 +1,22 @@
 import { ErrorMessages } from '@shared/index';
 import { Result, ValueObject, DomainId, CurrencyValueObject } from 'types-ddd';
+import TransactionBudgetBoxNameValueObject from './budget-box-name.value-object';
 
 export const TRANSACTION_CALCULATION_MIN_VALUE = 0;
 
 interface calculationProps {
-  budgetBoxId: DomainId;
-  currency: CurrencyValueObject;
+	budgetBoxName: TransactionBudgetBoxNameValueObject;
+	budgetBoxId: DomainId;
+	currency: CurrencyValueObject;
 }
 
 export class TransactionCalculationValueObject extends ValueObject<calculationProps> {
 	private constructor (props: calculationProps) {
 		super(props);
+	}
+
+	get budgetBoxName (): TransactionBudgetBoxNameValueObject {
+		return this.props.budgetBoxName;
 	}
 
 	get budgetBoxId (): DomainId {

@@ -17,6 +17,8 @@ import RemoveReasonFromBudgetBoxUseCase from "@modules/budget-box/application/us
 import ChangeReasonDescriptionUseCase from "@modules/budget-box/application/use-cases/change-reason-description/change-reason-description.use-case";
 import ChangeBudgetBoxPercentageUseCase from "@modules/budget-box/application/use-cases/change-budget-box-percentage/change-budget-box-percentage.use-case";
 import ChangeBudgetBoxNameUseCase from "@modules/budget-box/application/use-cases/change-budget-box-name/change-budget-box-name.use-case";
+import CanAllocatePercentageToBudgetBoxDomainService from "@modules/budget-box/domain/services/can-allocate-percentage-to-budget-box.domain-service";
+import CanChangeBudgetBoxPercentageDomainService from "@modules/budget-box/domain/services/can-change-budget-box-percentage.domain-service";
 
 @Module({
 	imports: [
@@ -47,7 +49,9 @@ import ChangeBudgetBoxNameUseCase from "@modules/budget-box/application/use-case
 		{
 			provide: 'BudgetBoxQueryService',
 			useClass: BudgetBoxQueryService
-		}
+		},
+		CanAllocatePercentageToBudgetBoxDomainService,
+		CanChangeBudgetBoxPercentageDomainService
 	],
 	exports: []
 })

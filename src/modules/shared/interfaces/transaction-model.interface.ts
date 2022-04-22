@@ -2,36 +2,37 @@ import { transactionStatus } from "@modules/transaction/domain/transaction-statu
 import { transactionType } from "@modules/transaction/domain/transaction-type.value-object";
 
 export interface ICurrency {
-	value: number;
-	currency: 'BRL' | 'USD' | 'EUR' | 'JPY'
+	readonly value: number;
+	readonly currency: 'BRL' | 'USD' | 'EUR' | 'JPY'
 }
 
 export interface ICalculation {
+	budgetBoxName: string;
 	budgetBoxId: string;
-	currency: ICurrency;
+	readonly currency: ICurrency;
 }
 
 export interface ITransaction {
 	
 	readonly id: string;
 
-	userId: string;
+	readonly userId: string;
 
-	reasonId: string;
+	readonly reason: string;
 
-	paymentDate: Date;
+	readonly paymentDate: Date;
 
-	transactionType: transactionType;
+	readonly transactionType: transactionType;
 
 	status: transactionStatus;
 	
-	transactionCalculations: ICalculation[];
+	readonly transactionCalculations: readonly ICalculation[];
 
 	note: string | null;
 
 	attachment: string | null;
 
-	createdAt: Date;
+	readonly createdAt: Date;
 
 	updatedAt: Date;
 }

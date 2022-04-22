@@ -9,11 +9,12 @@ Object {
   "isDeleted": false,
   "note": "valid_description",
   "paymentDate": 2022-01-01T00:00:00.000Z,
-  "reasonId": "valid_reason_id",
+  "reason": "valid_reason",
   "status": "CONCLUIDO",
   "transactionCalculations": Array [
     Object {
       "budgetBoxId": "valid_budget_box_id",
+      "budgetBoxName": "valid_name",
       "currency": Object {
         "currency": "BRL",
         "value": 1000,

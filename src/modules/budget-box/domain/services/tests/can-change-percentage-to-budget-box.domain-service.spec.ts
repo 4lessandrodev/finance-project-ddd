@@ -1,6 +1,6 @@
 import IBudgetBox from "@modules/shared/interfaces/budget-box-model.interface";
-import { IBudgetBoxConnection } from "../budget-box-connection.interface";
 import CanChangeBudgetBoxPercentageDomainService from "../can-change-budget-box-percentage.domain-service";
+import { IBudgetBoxQueryService } from "@modules/budget-box/infra/services/queries/budget-box-query.interface";
 
 describe('can-allocate-percentage-to-budget-box.domain-service', () => {
 	const currentDate = new Date('2022-01-01 00:00:00');
@@ -22,13 +22,13 @@ describe('can-allocate-percentage-to-budget-box.domain-service', () => {
 		noPercentage: (): IBudgetBox => ({ ...data, budgetPercentage: 100, isPercentage: false }),
 	};
 
-	const fakeConnection: IBudgetBoxConnection = {
-		findBudgetBoxesByUserId: jest.fn()
+	const fakeConnection: IBudgetBoxQueryService = {
+		getBudgetBoxByIdAndOwnerId: jest.fn(),
+		getBudgetBoxesByOwnerId: jest.fn()
 	};
-
 	it('should return cannot change if budget box is not found', async () => {
 
-		jest.spyOn(fakeConnection, 'findBudgetBoxesByUserId').mockResolvedValueOnce([]);
+		jest.spyOn(fakeConnection, 'getBudgetBoxesByOwnerId').mockResolvedValueOnce([]);
 
 		const domainService = new CanChangeBudgetBoxPercentageDomainService(fakeConnection);
 		const result = await domainService.execute({
@@ -44,7 +44,7 @@ describe('can-allocate-percentage-to-budget-box.domain-service', () => {
 
 		const data: IBudgetBox[] = [withPercentage(10), noPercentage(), withPercentage(20)];
 
-		jest.spyOn(fakeConnection, 'findBudgetBoxesByUserId').mockResolvedValueOnce(data);
+		jest.spyOn(fakeConnection, 'getBudgetBoxesByOwnerId').mockResolvedValueOnce(data);
 
 		const domainService = new CanChangeBudgetBoxPercentageDomainService(fakeConnection);
 		const result = await domainService.execute({
@@ -60,7 +60,7 @@ describe('can-allocate-percentage-to-budget-box.domain-service', () => {
 
 		const data: IBudgetBox[] = [withPercentage(50), noPercentage(), withPercentage(50)];
 
-		jest.spyOn(fakeConnection, 'findBudgetBoxesByUserId').mockResolvedValueOnce(data);
+		jest.spyOn(fakeConnection, 'getBudgetBoxesByOwnerId').mockResolvedValueOnce(data);
 
 		const domainService = new CanChangeBudgetBoxPercentageDomainService(fakeConnection);
 		const result = await domainService.execute({

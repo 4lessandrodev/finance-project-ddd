@@ -1,6 +1,7 @@
 import { CURRENCY } from '@config/env';
 import { ErrorMessages } from '@shared/index';
 import { CurrencyValueObject, DomainId } from 'types-ddd';
+import TransactionBudgetBoxNameValueObject from '../budget-box-name.value-object';
 import { TransactionCalculationValueObject } from '../transaction-calculations.value-object';
 
 describe('transaction-calculations.value-object', () => {
@@ -13,6 +14,7 @@ describe('transaction-calculations.value-object', () => {
 
 	it('should create a valid calculation', () => {
 		const calculation = TransactionCalculationValueObject.create({
+			budgetBoxName: TransactionBudgetBoxNameValueObject.create('valid_name').getResult(),
 			budgetBoxId: DomainId.create('valid_budgetId'),
 			currency: getCurrency(200),
 		});
@@ -24,6 +26,7 @@ describe('transaction-calculations.value-object', () => {
 
 	it('should fail if provide a negative number', () => {
 		const calculation = TransactionCalculationValueObject.create({
+			budgetBoxName: TransactionBudgetBoxNameValueObject.create('valid_name').getResult(),
 			budgetBoxId: DomainId.create('valid_budgetId'),
 			currency:  getCurrency(-100),
 		});

@@ -20,6 +20,7 @@ describe('transaction.aggregate', () => {
 				id: 'valid_id',
 				transactionCalculations: [
 					{
+						budgetBoxName: 'valid_name',
 						budgetBoxId: 'valid_id',
 						currency: {
 							currency: 'BRL',
@@ -27,6 +28,7 @@ describe('transaction.aggregate', () => {
 						}
 					},
 					{
+						budgetBoxName: 'valid_name',
 						budgetBoxId: 'valid_id',
 						currency: {
 							currency: 'BRL',
