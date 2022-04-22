@@ -6,6 +6,7 @@ export * from './interfaces/transaction-model.interface';
 export * from './interfaces/user-model.interface';
 export * from './interfaces/domain-service.interface';
 export * from './domain/budget-box-connection.interface';
+export * from './domain/can-change-budget-box-percentage.domain-service';
 export * from './domain/can-allocate-percentage-to-budget-box.domain-service';
 export * from './infra/connections/budget-box-connection';
 export * from './infra/shared.module';

@@ -65,6 +65,7 @@ type Mutation {
   addReasonToBudgetBox(AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput!): Boolean!
   removeReasonFromBudgetBox(RemoveReasonFromBudgetBoxInput: RemoveReasonFromBudgetBoxInput!): Boolean!
   changeReasonDescription(ChangeReasonDescriptionBoxInput: ChangeReasonDescriptionBoxInput!): Boolean!
+  changeBudgetPercentage(ChangeBudgetBoxPercentageInput: ChangeBudgetBoxPercentageInput!): Boolean!
 }
 
 input SignupInput {
@@ -98,4 +99,9 @@ input ChangeReasonDescriptionBoxInput {
   reasonDescription: String!
   budgetBoxId: String!
   reasonId: String!
+}
+
+input ChangeBudgetBoxPercentageInput {
+  budgetBoxId: String!
+  budgetPercentage: Float!
 }

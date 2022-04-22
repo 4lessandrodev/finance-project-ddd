@@ -1,7 +1,7 @@
 import { Inject } from "@nestjs/common";
 import { Result } from "types-ddd";
-import { IDomainService } from "../interfaces/domain-service.interface";
-import { IBudgetBoxConnection } from "./budget-box-connection.interface";
+import { IDomainService } from "@modules/shared/interfaces/domain-service.interface";
+import { IBudgetBoxConnection } from "@modules/shared/domain/budget-box-connection.interface";
 
 interface Dto {
 	ownerId: string;

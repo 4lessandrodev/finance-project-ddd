@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { MongoClient } from "mongodb";
-import CanAllocatePercentageToBudgetBoxDomainService from "../domain/can-allocate-percentage-to-budget-box.domain-service";
+import CanChangeBudgetBoxPercentageDomainService from "@modules/shared/domain/can-change-budget-box-percentage.domain-service";
+import CanAllocateBudgetBoxPercentageDomainService from "@modules/shared/domain/can-allocate-percentage-to-budget-box.domain-service";
 import BudgetBoxConnection from "./connections/budget-box-connection";
 import { BaseConnection } from "./connections/connection";
 
@@ -20,12 +21,14 @@ import { BaseConnection } from "./connections/connection";
 			useFactory: (conn: MongoClient)=> new BudgetBoxConnection(conn),
 			inject:[BaseConnection]
 		},
-		CanAllocatePercentageToBudgetBoxDomainService
+		CanChangeBudgetBoxPercentageDomainService,
+		CanAllocateBudgetBoxPercentageDomainService,
 	],
 	exports: [
 		BaseConnection,
 		'BudgetBoxConnection',
-		CanAllocatePercentageToBudgetBoxDomainService
+		CanChangeBudgetBoxPercentageDomainService,
+		CanAllocateBudgetBoxPercentageDomainService
 	]
 })
 export class SharedModule { }

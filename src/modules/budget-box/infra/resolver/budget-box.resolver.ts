@@ -1,6 +1,6 @@
+import { Inject, UseGuards } from "@nestjs/common";
 import { GetUserId } from "@modules/user/infra/services/decorators/get-user.decorator";
 import { JwtAuthGuard } from "@modules/user/infra/services/guards/jwt-auth.guard";
-import { Inject, UseGuards } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import BudgetBoxService from "@modules/budget-box/infra/budget-box.service";
 import CreateBudgetBoxInput from "@modules/budget-box/infra/inputs/create-budget-box.input";
@@ -9,6 +9,7 @@ import AddReasonToBudgetBoxInput from "@modules/budget-box/infra/inputs/add-reas
 import GetBudgetBoxByIdInput from "@modules/budget-box/infra/inputs/budget-box-id.input";
 import RemoveReasonFromBudgetBoxInput from "@modules/budget-box/infra/inputs/remove-reason-from-budget-box.input";
 import ChangeReasonDescriptionBoxInput from "@modules/budget-box/infra/inputs/change-reason-description.input";
+import ChangeBudgetBoxPercentageInput from "@modules/budget-box/infra/inputs/change-budget-percentage.input";
 
 @Resolver(() => BudgetBoxType)
 export class BudgetBoxResolver {
@@ -84,6 +85,19 @@ export class BudgetBoxResolver {
 		const isSuccess = true;
 
 		await this.budgetBoxService.changeReasonDescription({ ...args, ownerId });
+
+		return isSuccess;
+	}
+
+	@Mutation(() => Boolean)
+	@UseGuards(JwtAuthGuard)
+	async changeBudgetPercentage (
+		@Args(ChangeBudgetBoxPercentageInput.name) args: ChangeBudgetBoxPercentageInput,
+		@GetUserId() ownerId: string
+	): Promise<boolean> {
+		const isSuccess = true;
+
+		await this.budgetBoxService.changeBudgetBoxPercentage({ ...args, ownerId });
 
 		return isSuccess;
 	}

@@ -54,6 +54,11 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
 		return this.props.reasons;
 	}
 
+	changePercentage (percentage: PercentageValueObject): void {
+		if (!this.isPercentage) return;
+		this.props.budgetPercentage = percentage;
+	}
+
 	addReason (reason: ReasonDomainEntity): void {
 		this.props.reasons.push(reason);
 	}
