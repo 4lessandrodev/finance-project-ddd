@@ -35,6 +35,10 @@ export interface ITransaction {
 	readonly createdAt: Date;
 
 	updatedAt: Date;
+
+	isDeleted?: boolean,
+
+	deletedAt?: Date,
 }
 
 export default ITransaction;
