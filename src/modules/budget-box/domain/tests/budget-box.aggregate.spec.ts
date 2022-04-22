@@ -1,4 +1,5 @@
 import { DomainId } from 'types-ddd';
+import BudgetDescriptionValueObject from '../budget-description.value-object';
 import ReasonDescriptionValueObject from '../reason-description.value-object';
 import { BudgetBoxMock } from './mock/budget-box.mock';
 import { ReasonMock } from './mock/reason.mock';
@@ -133,5 +134,15 @@ describe('budget-box.aggregate', () => {
 		const result = budgetBox.changeReasonDescription(ID, description);
 
 		expect(result).toBeFalsy();
+	});
+
+	it('should change name with success', () => {
+
+		const budgetBox = budgetBoxMock.domain({ description: 'old_name' }).getResult();
+
+		const description = BudgetDescriptionValueObject.create('updated_description').getResult();
+		budgetBox.changeDescription(description);
+
+		expect(budgetBox.description.value).toBe('updated_description');
 	});
 });

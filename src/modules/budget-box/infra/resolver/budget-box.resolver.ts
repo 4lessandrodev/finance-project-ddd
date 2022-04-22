@@ -10,6 +10,7 @@ import GetBudgetBoxByIdInput from "@modules/budget-box/infra/inputs/budget-box-i
 import RemoveReasonFromBudgetBoxInput from "@modules/budget-box/infra/inputs/remove-reason-from-budget-box.input";
 import ChangeReasonDescriptionBoxInput from "@modules/budget-box/infra/inputs/change-reason-description.input";
 import ChangeBudgetBoxPercentageInput from "@modules/budget-box/infra/inputs/change-budget-percentage.input";
+import ChangeBudgetBoxNameInput from "@modules/budget-box/infra/inputs/change-budget-box-name.input";
 
 @Resolver(() => BudgetBoxType)
 export class BudgetBoxResolver {
@@ -98,6 +99,19 @@ export class BudgetBoxResolver {
 		const isSuccess = true;
 
 		await this.budgetBoxService.changeBudgetBoxPercentage({ ...args, ownerId });
+
+		return isSuccess;
+	}
+
+	@Mutation(() => Boolean)
+	@UseGuards(JwtAuthGuard)
+	async changeBudgetName (
+		@Args(ChangeBudgetBoxNameInput.name) args: ChangeBudgetBoxNameInput,
+		@GetUserId() ownerId: string
+	): Promise<boolean> {
+		const isSuccess = true;
+
+		await this.budgetBoxService.changeBudgetBoxName({ ...args, ownerId });
 
 		return isSuccess;
 	}

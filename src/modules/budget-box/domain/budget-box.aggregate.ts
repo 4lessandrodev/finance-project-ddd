@@ -76,6 +76,10 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
 		return reasonOrUndefined;
 	}
 
+	changeDescription (description: BudgetDescriptionValueObject): void {
+		this.props.description = description;
+	}
+
 	changeReasonDescription (reasonId: DomainId, description: ReasonDescriptionValueObject): boolean {
 		const updated = true;
 		const reasonOrNull = this.getReasonById(reasonId);

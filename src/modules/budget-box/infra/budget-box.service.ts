@@ -15,6 +15,8 @@ import ChangeReasonDescriptionUseCase from "@modules/budget-box/application/use-
 import ChangeReasonDescriptionDto from "@modules/budget-box/application/use-cases/change-reason-description/change-reason-description.dto";
 import ChangeBudgetBoxPercentageUseCase from "@modules/budget-box/application/use-cases/change-budget-box-percentage/change-budget-box-percentage.use-case";
 import ChangeBudgetBoxPercentageDto from "@modules/budget-box/application/use-cases/change-budget-box-percentage/change-budget-box-percentage.dto";
+import ChangeBudgetBoxNameUseCase from "@modules/budget-box/application/use-cases/change-budget-box-name/change-budget-box-name.use-case";
+import ChangeBudgetBoxNameDto from "@modules/budget-box/application/use-cases/change-budget-box-name/change-budget-box-name.dto";
 
 @Injectable()
 export class BudgetBoxService {
@@ -44,7 +46,10 @@ export class BudgetBoxService {
 		private readonly changeBudgetBoxPercentageUseCase: ChangeBudgetBoxPercentageUseCase,
 
 		@Inject(CanChangeBudgetBoxPercentageDomainService)
-		private readonly canChangeBudgetBoxPercentageDomainService: CanChangeBudgetBoxPercentageDomainService
+		private readonly canChangeBudgetBoxPercentageDomainService: CanChangeBudgetBoxPercentageDomainService,
+
+		@Inject(ChangeBudgetBoxNameUseCase)
+		private readonly changeBudgetBoxNameUseCase: ChangeBudgetBoxNameUseCase
 	) { }
 	async createBudgetBox (dto: CreateBudgetBoxDto): Promise<void>{
 		
@@ -88,6 +93,11 @@ export class BudgetBoxService {
 		);
 		const result = await proxy.execute(dto);
 		
+		CheckResultInterceptor(result);
+	}
+
+	async changeBudgetBoxName (dto: ChangeBudgetBoxNameDto): Promise<void> {
+		const result = await this.changeBudgetBoxNameUseCase.execute(dto);
 		CheckResultInterceptor(result);
 	}
 }
