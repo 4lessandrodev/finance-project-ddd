@@ -15,6 +15,7 @@ import BudgetBoxToDomainMapper from "@modules/budget-box/infra/repo/budget-box.m
 import ReasonToDomainMapper from "@modules/budget-box/infra/repo/budget-box-reason.mapper";
 import RemoveReasonFromBudgetBoxUseCase from "@modules/budget-box/application/use-cases/remove-reason-from-budget-box/remove-reason-from-budget-box.use-case";
 import ChangeReasonDescriptionUseCase from "@modules/budget-box/application/use-cases/change-reason-description/change-reason-description.use-case";
+import ChangeBudgetBoxPercentageUseCase from "@modules/budget-box/application/use-cases/change-budget-box-percentage/change-budget-box-percentage.use-case";
 
 @Module({
 	imports: [
@@ -32,6 +33,7 @@ import ChangeReasonDescriptionUseCase from "@modules/budget-box/application/use-
 		GetBudgetBoxByIdUseCase,
 		RemoveReasonFromBudgetBoxUseCase,
 		ChangeReasonDescriptionUseCase,
+		ChangeBudgetBoxPercentageUseCase,
 		BudgetBoxResolver,
 		BudgetBoxService,
 		ReasonToDomainMapper,

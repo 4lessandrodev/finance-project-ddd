@@ -2,7 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import CreateBudgetBoxUseCase from "@modules/budget-box/application/use-cases/create-budget-box/create-budget-box.use-case";
 import { CreateBudgetBoxDto } from '@modules/budget-box/application/use-cases/create-budget-box/create-budget-box.dto';
 import CheckResultInterceptor from "@utils/check-result.interceptor";
-import { BaseProxy, CanAllocatePercentageToBudgetBoxDomainService, IBudgetBox } from "@modules/shared";
+import { BaseProxy, CanAllocatePercentageToBudgetBoxDomainService, IBudgetBox, CanChangeBudgetBoxPercentageDomainService } from "@modules/shared";
 import GetBudgetBoxesForAuthUserUseCase from "@modules/budget-box/application/use-cases/get-budget-boxes-for-auth-user/get-budget-boxes-for-auth-user.use-case";
 import GetBudgetBoxesForAuthUserDto from "@modules/budget-box/application/use-cases/get-budget-boxes-for-auth-user/get-budget-boxes-for-auth-user.dto";
 import AddReasonToBudgetBoxUseCase from "@modules/budget-box/application/use-cases/add-reason-to-budget-box/add-reason-to-budget-box.use-case";
@@ -13,6 +13,9 @@ import RemoveReasonFromBudgetBoxUseCase from "@modules/budget-box/application/us
 import RemoveReasonDto from "@modules/budget-box/application/use-cases/remove-reason-from-budget-box/remove-reason-from-budget-box-dto";
 import ChangeReasonDescriptionUseCase from "@modules/budget-box/application/use-cases/change-reason-description/change-reason-description.use-case";
 import ChangeReasonDescriptionDto from "@modules/budget-box/application/use-cases/change-reason-description/change-reason-description.dto";
+import ChangeBudgetBoxPercentageUseCase from "@modules/budget-box/application/use-cases/change-budget-box-percentage/change-budget-box-percentage.use-case";
+import ChangeBudgetBoxPercentageDto from "@modules/budget-box/application/use-cases/change-budget-box-percentage/change-budget-box-percentage.dto";
+
 @Injectable()
 export class BudgetBoxService {
 	constructor (
@@ -35,7 +38,13 @@ export class BudgetBoxService {
 		private readonly removeReasonFromBudgetBoxUseCase: RemoveReasonFromBudgetBoxUseCase,
 
 		@Inject(ChangeReasonDescriptionUseCase)
-		private readonly changeReasonDescriptionUseCase: ChangeReasonDescriptionUseCase
+		private readonly changeReasonDescriptionUseCase: ChangeReasonDescriptionUseCase,
+
+		@Inject(ChangeBudgetBoxPercentageUseCase)
+		private readonly changeBudgetBoxPercentageUseCase: ChangeBudgetBoxPercentageUseCase,
+
+		@Inject(CanChangeBudgetBoxPercentageDomainService)
+		private readonly canChangeBudgetBoxPercentageDomainService: CanChangeBudgetBoxPercentageDomainService
 	) { }
 	async createBudgetBox (dto: CreateBudgetBoxDto): Promise<void>{
 		
@@ -69,6 +78,16 @@ export class BudgetBoxService {
 
 	async changeReasonDescription (dto: ChangeReasonDescriptionDto): Promise<void> {
 		const result = await this.changeReasonDescriptionUseCase.execute(dto);
+		CheckResultInterceptor(result);
+	}
+
+	async changeBudgetBoxPercentage (dto: ChangeBudgetBoxPercentageDto): Promise<void> {
+		
+		const proxy = new BaseProxy<ChangeBudgetBoxPercentageDto, void>(
+			this.canChangeBudgetBoxPercentageDomainService, this.changeBudgetBoxPercentageUseCase
+		);
+		const result = await proxy.execute(dto);
+		
 		CheckResultInterceptor(result);
 	}
 }
