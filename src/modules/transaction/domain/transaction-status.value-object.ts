@@ -2,8 +2,9 @@ import { ErrorMessages } from '@shared/index';
 import { ValueObject, Result } from 'types-ddd';
 
 export enum validTransactionStatusEnum {
-  'PENDENTE',
-  'CONCLUIDO',
+	'PENDENTE',
+	'CONCLUIDO',
+	'ESTORNADO'
 }
 
 export type transactionStatus = keyof typeof validTransactionStatusEnum;

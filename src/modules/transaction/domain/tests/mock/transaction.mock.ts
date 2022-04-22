@@ -6,6 +6,8 @@ import { TransactionAggregate } from "@modules/transaction/domain/transaction.ag
 import { ITransaction, IMockEntity } from "@shared/index";
 import { ChangesObserver, CurrencyValueObject, DateValueObject, DomainId, Result } from "types-ddd";
 import { CURRENCY } from "@config/env";
+import TransactionBudgetBoxNameValueObject from "@modules/transaction/domain/budget-box-name.value-object";
+import TransactionReasonDescriptionValueObject from "@modules/transaction/domain/transaction-reason.value-object";
 
 export class TransactionMock implements IMockEntity<TransactionAggregate, ITransaction>{
 	domain (props?: Partial<ITransaction>): Result<TransactionAggregate, string> {
@@ -14,13 +16,16 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 		const userId = DomainId.create(props?.userId ?? 'valid_user_id');
 		const note = props?.note ? TransactionNoteValueObject.create(props.note) : undefined;
 		const attachment = props?.attachment ? TransactionNoteValueObject.create(props.attachment) : undefined;
+		const reason = TransactionReasonDescriptionValueObject.create(props?.reason ?? 'valid_reason');
 		const transactionType = TransactionTypeValueObject.create(props?.transactionType ?? 'ENTRADA');
 
 		const transactionCalculations = props?.transactionCalculations?.map((calc) => TransactionCalculationValueObject.create({
+			budgetBoxName: TransactionBudgetBoxNameValueObject.create(calc.budgetBoxName).getResult(),
 			budgetBoxId: DomainId.create(calc.budgetBoxId),
 			currency: CurrencyValueObject.create(calc.currency).getResult()
 		})) ?? [
 			TransactionCalculationValueObject.create({
+				budgetBoxName: TransactionBudgetBoxNameValueObject.create('valid_name').getResult(),
 				budgetBoxId: DomainId.create('valid_budget_box_id'),
 				currency: CurrencyValueObject.create({ currency: CURRENCY, value: 1000 }).getResult()
 			})
@@ -28,7 +33,6 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 		
 		const status = TransactionStatusValueObject.create(props?.status ?? 'CONCLUIDO');
 
-		const reasonId = DomainId.create(props?.reasonId ?? 'valid_reason_id');
 
 		const paymentDate = DateValueObject.create(props?.paymentDate ?? new Date('2022-01-01 00:00:00'));
 
@@ -38,6 +42,7 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 		observer.add(transactionType);
 		observer.add(status);
 		observer.add(paymentDate);
+		observer.add(reason);
 
 		const result = observer.getResult();
 		if (result.isFailure) {
@@ -58,7 +63,7 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 				(calc) => calc.getResult()
 			),
 			status: status.getResult(),
-			reasonId: reasonId,
+			reason: reason.getResult(),
 			paymentDate: paymentDate.getResult()
 		});
 	}
@@ -66,7 +71,7 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 		return {
 			id: props?.id ?? 'valid_id',
 			userId: props?.userId ?? 'valid_user_id',
-			reasonId: props?.reasonId ?? 'valid_reason_id',
+			reason: props?.reason ?? 'valid_reason_id',
 			status: props?.status ?? 'CONCLUIDO',
 			attachment: props?.attachment ?? 'http://s3-us-east-1.amazonaws.com/bucket/file.pdf',
 			createdAt: props?.createdAt ?? new Date('2022-01-01 00:00:00'),
@@ -74,6 +79,7 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 			paymentDate: props?.paymentDate ?? new Date('2022-01-01 00:00:00'),
 			transactionCalculations: props?.transactionCalculations ?? [
 				{
+					budgetBoxName: 'valid_name',
 					budgetBoxId: 'valid_budget_box_id',
 					currency: {
 						currency: CURRENCY,

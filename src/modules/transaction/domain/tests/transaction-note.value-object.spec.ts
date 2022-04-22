@@ -1,4 +1,4 @@
-import { ErrorMessages } from '../../../shared';
+import { ErrorMessages } from '@modules/shared';
 import { TransactionNoteValueObject } from '../transaction-note.value-object';
 
 describe('transaction-note.value-object', () => {

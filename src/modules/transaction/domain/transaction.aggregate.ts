@@ -5,10 +5,11 @@ import { TransactionStatusValueObject } from './transaction-status.value-object'
 import { TransactionCalculationValueObject } from './transaction-calculations.value-object';
 import { TransactionNoteValueObject } from './transaction-note.value-object';
 import { AttachmentPathValueObject } from './attachment-path.value-object';
+import TransactionReasonDescriptionValueObject from './transaction-reason.value-object';
 
 export interface TransactionAggregateProps extends BaseDomainEntity {
 	userId: DomainId;
-	reasonId: DomainId;
+	reason: TransactionReasonDescriptionValueObject;
 	paymentDate: DateValueObject;
 	transactionType: TransactionTypeValueObject;
 	status: TransactionStatusValueObject;
@@ -19,7 +20,7 @@ export interface TransactionAggregateProps extends BaseDomainEntity {
 
 /**
  * @var userId: `UserIdValueObject`
- * @var reasonId: `ReasonIdValueObject`
+ * @var reason: `TransactionReasonDescriptionValueObject`
  * @var paymentDate: `DateValueObject`
  * @var transactionType: `TransactionTypeValueObject`
  * @var status: `TransactionStatusValueObject`
@@ -45,8 +46,8 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
 		return this.props.userId;
 	}
 
-	get reasonId (): DomainId {
-		return this.props.reasonId;
+	get reason (): TransactionReasonDescriptionValueObject {
+		return this.props.reason;
 	}
 
 	get paymentDate (): DateValueObject {
