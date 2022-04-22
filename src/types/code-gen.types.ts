@@ -33,6 +33,22 @@ export type BudgetBoxType = {
   updatedAt: Scalars['DateTime'];
 };
 
+export type ChangeBudgetBoxNameInput = {
+  budgetBoxId: Scalars['String'];
+  description: Scalars['String'];
+};
+
+export type ChangeBudgetBoxPercentageInput = {
+  budgetBoxId: Scalars['String'];
+  budgetPercentage: Scalars['Float'];
+};
+
+export type ChangeReasonDescriptionBoxInput = {
+  budgetBoxId: Scalars['String'];
+  reasonDescription: Scalars['String'];
+  reasonId: Scalars['String'];
+};
+
 export type CreateBudgetBoxInput = {
   budgetPercentage: Scalars['Float'];
   description: Scalars['String'];
@@ -51,6 +67,9 @@ export type JwtPayloadType = {
 export type Mutation = {
   __typename?: 'Mutation';
   addReasonToBudgetBox: Scalars['Boolean'];
+  changeBudgetName: Scalars['Boolean'];
+  changeBudgetPercentage: Scalars['Boolean'];
+  changeReasonDescription: Scalars['Boolean'];
   createBudgetBox: Scalars['Boolean'];
   removeReasonFromBudgetBox: Scalars['Boolean'];
   signin: JwtPayloadType;
@@ -60,6 +79,21 @@ export type Mutation = {
 
 export type MutationAddReasonToBudgetBoxArgs = {
   AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput;
+};
+
+
+export type MutationChangeBudgetNameArgs = {
+  ChangeBudgetBoxNameInput: ChangeBudgetBoxNameInput;
+};
+
+
+export type MutationChangeBudgetPercentageArgs = {
+  ChangeBudgetBoxPercentageInput: ChangeBudgetBoxPercentageInput;
+};
+
+
+export type MutationChangeReasonDescriptionArgs = {
+  ChangeReasonDescriptionBoxInput: ChangeReasonDescriptionBoxInput;
 };
 
 
@@ -212,6 +246,9 @@ export type ResolversTypes = {
   AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   BudgetBoxType: ResolverTypeWrapper<BudgetBoxType>;
+  ChangeBudgetBoxNameInput: ChangeBudgetBoxNameInput;
+  ChangeBudgetBoxPercentageInput: ChangeBudgetBoxPercentageInput;
+  ChangeReasonDescriptionBoxInput: ChangeReasonDescriptionBoxInput;
   CreateBudgetBoxInput: CreateBudgetBoxInput;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
@@ -235,6 +272,9 @@ export type ResolversParentTypes = {
   AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput;
   Boolean: Scalars['Boolean'];
   BudgetBoxType: BudgetBoxType;
+  ChangeBudgetBoxNameInput: ChangeBudgetBoxNameInput;
+  ChangeBudgetBoxPercentageInput: ChangeBudgetBoxPercentageInput;
+  ChangeReasonDescriptionBoxInput: ChangeReasonDescriptionBoxInput;
   CreateBudgetBoxInput: CreateBudgetBoxInput;
   DateTime: Scalars['DateTime'];
   Float: Scalars['Float'];
@@ -276,6 +316,9 @@ export type JwtPayloadTypeResolvers<ContextType = any, ParentType extends Resolv
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   addReasonToBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationAddReasonToBudgetBoxArgs, 'AddReasonToBudgetBoxInput'>>;
+  changeBudgetName?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationChangeBudgetNameArgs, 'ChangeBudgetBoxNameInput'>>;
+  changeBudgetPercentage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationChangeBudgetPercentageArgs, 'ChangeBudgetBoxPercentageInput'>>;
+  changeReasonDescription?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationChangeReasonDescriptionArgs, 'ChangeReasonDescriptionBoxInput'>>;
   createBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationCreateBudgetBoxArgs, 'CreateBudgetBoxInput'>>;
   removeReasonFromBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveReasonFromBudgetBoxArgs, 'RemoveReasonFromBudgetBoxInput'>>;
   signin?: Resolver<ResolversTypes['JwtPayloadType'], ParentType, ContextType, RequireFields<MutationSigninArgs, 'SigninInput'>>;
