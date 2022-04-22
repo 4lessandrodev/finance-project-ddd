@@ -9,10 +9,28 @@ import * as mongoose from "mongoose";
 import { Connection } from "mongoose";
 import UserMock from "@modules/user/domain/tests/mock/user.mock";
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
-import { Mutation, MutationCreateBudgetBoxArgs, MutationSigninArgs, Query } from "@app/types/code-gen.types";
-import { CREATE_BUDGET_BOX_MUTATION } from "./budget-box.mutation";
 import { UserSchema } from "@modules/user/infra/entities/user.schema";
-import { GET_BUDGET_BOXES } from "./budget-box.query";
+import { GET_BUDGET_BOXES, GET_BUDGET_BOX_BY_ID } from "./budget-box.query";
+import {
+	Mutation,
+	MutationAddReasonToBudgetBoxArgs,
+	MutationCreateBudgetBoxArgs,
+	MutationChangeReasonDescriptionArgs,
+	MutationSigninArgs,
+	Query,
+	QueryGetBudgetBoxByIdArgs,
+	MutationRemoveReasonFromBudgetBoxArgs,
+	MutationChangeBudgetNameArgs,
+	MutationChangeBudgetPercentageArgs
+} from "@app/types/code-gen.types";
+import {
+	ADD_REASON_TO_BUDGET_BOX_MUTATION,
+	CHANGE_BUDGET_BOX_REASON_DESCRIPTION_MUTATION,
+	CREATE_BUDGET_BOX_MUTATION,
+	REMOVE_REASON_FROM_BUDGET_BOX_MUTATION,
+	CHANGE_BUDGET_BOX_NAME_MUTATION,
+	CHANGE_BUDGET_BOX_PERCENTAGE_MUTATION
+} from "./budget-box.mutation";
 
 describe('budget-box.test', () => {
 
@@ -36,6 +54,8 @@ describe('budget-box.test', () => {
 	}).getResult();
 
 	let token = '';
+	let reasonId = '';
+	let budgetBoxId = '';
 
 	beforeAll(async () => {
 
@@ -173,5 +193,123 @@ describe('budget-box.test', () => {
 		expect(payload.getBudgetBoxes[0].budgetPercentage).toBe(99);
 		expect(payload.getBudgetBoxes[1].budgetPercentage).toBe(1);
 		
+		budgetBoxId = payload.getBudgetBoxes[0].id;
+	});
+
+	it('should add reason to budget box with success', async () => {
+		type PayloadType = Pick<Mutation, 'addReasonToBudgetBox'>;
+
+		const variables: MutationAddReasonToBudgetBoxArgs = {
+			AddReasonToBudgetBoxInput: {
+				budgetBoxId,
+				reasonDescription: 'valid_description'
+			}
+		};
+
+		const payload = await client
+			.request<PayloadType, MutationAddReasonToBudgetBoxArgs>(
+				ADD_REASON_TO_BUDGET_BOX_MUTATION, variables
+			);
+
+		expect(payload.addReasonToBudgetBox).toBeTruthy();
+	});
+
+	it('should get budget box by id', async () => {
+		type payloadType = Pick<Query, 'getBudgetBoxById'>;
+
+		const variables: QueryGetBudgetBoxByIdArgs = {
+			GetBudgetBoxByIdInput: {
+				budgetBoxId
+			}
+		};
+
+		const payload = await client
+			.request<payloadType, QueryGetBudgetBoxByIdArgs>(
+				GET_BUDGET_BOX_BY_ID, variables
+			);
+		
+		expect(payload.getBudgetBoxById.description).toBeDefined();
+		expect(payload.getBudgetBoxById.reasons[0].description).toBe('valid_description');
+		expect(payload.getBudgetBoxById.reasons).toHaveLength(1);
+
+		reasonId = payload.getBudgetBoxById.reasons[0].id;
+	});
+
+	it('should change reason description with success', async () => {
+		type payloadType = Pick<Mutation, 'changeReasonDescription'>;
+
+		const variables: MutationChangeReasonDescriptionArgs = {
+			ChangeReasonDescriptionBoxInput: {
+				budgetBoxId,
+				reasonId,
+				reasonDescription: 'new description'
+			}
+		};
+
+		const payload = await client
+			.request<payloadType, MutationChangeReasonDescriptionArgs>(
+				CHANGE_BUDGET_BOX_REASON_DESCRIPTION_MUTATION,
+				variables
+			);
+		
+		expect(payload.changeReasonDescription).toBeTruthy();
+	});
+
+	it('should remove reason from budget box with success', async () => {
+
+		type payloadType = Pick<Mutation, 'removeReasonFromBudgetBox'>;
+
+		const variables: MutationRemoveReasonFromBudgetBoxArgs = {
+			RemoveReasonFromBudgetBoxInput: {
+				budgetBoxId,
+				reasonId
+			}
+		};
+
+		const payload = await client
+			.request<payloadType, MutationRemoveReasonFromBudgetBoxArgs>(
+				REMOVE_REASON_FROM_BUDGET_BOX_MUTATION,
+				variables
+			);
+		
+		expect(payload.removeReasonFromBudgetBox).toBeTruthy();
+	});
+
+	it('should change budget box description with success', async () => {
+		type payloadType = Pick<Mutation, 'changeBudgetName'>;
+
+		const variables: MutationChangeBudgetNameArgs = {
+			ChangeBudgetBoxNameInput: {
+				budgetBoxId,
+				description: 'updated description'
+			}
+		};
+
+		const payload = await client
+			.request<payloadType, MutationChangeBudgetNameArgs>(
+				CHANGE_BUDGET_BOX_NAME_MUTATION,
+				variables
+			);
+		
+		expect(payload.changeBudgetName).toBeTruthy();
+	});
+
+	it('should change budget box percentage with success', async () => {
+		type payloadType = Pick<Mutation, 'changeBudgetPercentage'>;
+
+		const variables: MutationChangeBudgetPercentageArgs = {
+			ChangeBudgetBoxPercentageInput: {
+				budgetBoxId,
+				budgetPercentage: 1
+			}
+		};
+
+		const payload = await client
+			.request<payloadType, MutationChangeBudgetPercentageArgs>(
+				CHANGE_BUDGET_BOX_PERCENTAGE_MUTATION,
+				variables
+			);
+		
+		expect(payload.changeBudgetPercentage).toBeTruthy();
 	});
 });
