@@ -1,6 +1,6 @@
 import IBudgetBox from "@modules/shared/interfaces/budget-box-model.interface";
-import { IBudgetBoxConnection } from "../budget-box-connection.interface";
 import CanAllocateToBudgetBoxPercentageDomainService from "../can-allocate-percentage-to-budget-box.domain-service";
+import { IBudgetBoxQueryService } from "@modules/budget-box/infra/services/queries/budget-box-query.interface";
 
 describe('can-allocate-percentage-to-budget-box.domain-service', () => {
 	const currentDate = new Date('2022-01-01 00:00:00');
@@ -22,13 +22,14 @@ describe('can-allocate-percentage-to-budget-box.domain-service', () => {
 		noPercentage: (): IBudgetBox => ({ ...data, budgetPercentage: 100, isPercentage: false }),
 	};
 
-	const fakeConnection: IBudgetBoxConnection = {
-		findBudgetBoxesByUserId: jest.fn()
+	const fakeConnection: IBudgetBoxQueryService = {
+		getBudgetBoxByIdAndOwnerId: jest.fn(),
+		getBudgetBoxesByOwnerId: jest.fn()
 	};
 
 	it('should return can allocate 100 if none budget-boxes were found', async () => {
 
-		jest.spyOn(fakeConnection, 'findBudgetBoxesByUserId').mockResolvedValueOnce([]);
+		jest.spyOn(fakeConnection, 'getBudgetBoxesByOwnerId').mockResolvedValueOnce([]);
 
 		const domainService = new CanAllocateToBudgetBoxPercentageDomainService(fakeConnection);
 		const result = await domainService.execute({ ownerId: 'valid_user_id', budgetPercentage: 100 });
@@ -42,7 +43,7 @@ describe('can-allocate-percentage-to-budget-box.domain-service', () => {
 
 		const data: IBudgetBox[] = [withPercentage(10), noPercentage(), withPercentage(20)];
 
-		jest.spyOn(fakeConnection, 'findBudgetBoxesByUserId').mockResolvedValueOnce(data);
+		jest.spyOn(fakeConnection, 'getBudgetBoxesByOwnerId').mockResolvedValueOnce(data);
 
 		const domainService = new CanAllocateToBudgetBoxPercentageDomainService(fakeConnection);
 		const result = await domainService.execute({ ownerId: 'valid_user_id', budgetPercentage: 80 });
@@ -56,7 +57,7 @@ describe('can-allocate-percentage-to-budget-box.domain-service', () => {
 
 		const data: IBudgetBox[] = [withPercentage(10), noPercentage(), withPercentage(20)];
 
-		jest.spyOn(fakeConnection, 'findBudgetBoxesByUserId').mockResolvedValueOnce(data);
+		jest.spyOn(fakeConnection, 'getBudgetBoxesByOwnerId').mockResolvedValueOnce(data);
 
 		const domainService = new CanAllocateToBudgetBoxPercentageDomainService(fakeConnection);
 		const result = await domainService.execute({ ownerId: 'valid_user_id', budgetPercentage: 65 });
@@ -70,7 +71,7 @@ describe('can-allocate-percentage-to-budget-box.domain-service', () => {
 
 		const data: IBudgetBox[] = [withPercentage(10), noPercentage(), withPercentage(20)];
 
-		jest.spyOn(fakeConnection, 'findBudgetBoxesByUserId').mockResolvedValueOnce(data);
+		jest.spyOn(fakeConnection, 'getBudgetBoxesByOwnerId').mockResolvedValueOnce(data);
 
 		const domainService = new CanAllocateToBudgetBoxPercentageDomainService(fakeConnection);
 		const result = await domainService.execute({ ownerId: 'valid_user_id', budgetPercentage: 70 });

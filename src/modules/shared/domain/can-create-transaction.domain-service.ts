@@ -1,19 +1,18 @@
 import { Inject } from "@nestjs/common";
 import { Result } from "types-ddd";
 import { IDomainService } from "@modules/shared/interfaces/domain-service.interface";
-import { IBudgetBoxConnection } from "@modules/shared/domain/budget-box-connection.interface";
+import { IBudgetBoxConnection } from "./budget-box-connection.interface";
 
 interface Dto {
 	ownerId: string;
-	budgetPercentage: number;
 }
 
-export class CanAllocatePercentageToBudgetBoxDomainService implements IDomainService<Dto, Result<boolean>>{
+export class CanCreateTransactionDomainService implements IDomainService<Dto, Result<boolean>>{
 	constructor (
 		@Inject('BudgetBoxConnection')
 		private readonly connection: IBudgetBoxConnection
 	) { }
-	async execute ({ ownerId, budgetPercentage }: Dto): Promise<Result<boolean>> {
+	async execute ({ ownerId }: Dto): Promise<Result<boolean>> {
 		const maxPercentage = 100;
 		const initialValue = 0;
 		
@@ -25,18 +24,16 @@ export class CanAllocatePercentageToBudgetBoxDomainService implements IDomainSer
 			}
 			return total;
 		}, initialValue);
-
-		const totalSum = totalPercentageAllocated + budgetPercentage;
 		
-		const canAllocate = totalSum <= maxPercentage;
+		const canCreateTransaction = totalPercentageAllocated === maxPercentage;
 		
-		if (canAllocate) {
-			return Result.ok(canAllocate);
+		if (canCreateTransaction) {
+			return Result.ok(canCreateTransaction);
 		}
 		
 		const available = maxPercentage - totalPercentageAllocated;
-		return Result.fail(`Could not allocate percentage to budget-box. ${totalPercentageAllocated}% already allocated. Available ${available}%`);
+		return Result.fail(`You must allocate 100% on budget boxes. ${available}% not allocated`);
 	}
 }
 
-export default CanAllocatePercentageToBudgetBoxDomainService;
+export default CanCreateTransactionDomainService;

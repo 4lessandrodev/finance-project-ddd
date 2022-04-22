@@ -2,7 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import CreateBudgetBoxUseCase from "@modules/budget-box/application/use-cases/create-budget-box/create-budget-box.use-case";
 import { CreateBudgetBoxDto } from '@modules/budget-box/application/use-cases/create-budget-box/create-budget-box.dto';
 import CheckResultInterceptor from "@utils/check-result.interceptor";
-import { BaseProxy, CanAllocatePercentageToBudgetBoxDomainService, IBudgetBox, CanChangeBudgetBoxPercentageDomainService } from "@modules/shared";
+import { BaseProxy, IBudgetBox } from "@modules/shared";
 import GetBudgetBoxesForAuthUserUseCase from "@modules/budget-box/application/use-cases/get-budget-boxes-for-auth-user/get-budget-boxes-for-auth-user.use-case";
 import GetBudgetBoxesForAuthUserDto from "@modules/budget-box/application/use-cases/get-budget-boxes-for-auth-user/get-budget-boxes-for-auth-user.dto";
 import AddReasonToBudgetBoxUseCase from "@modules/budget-box/application/use-cases/add-reason-to-budget-box/add-reason-to-budget-box.use-case";
@@ -17,6 +17,8 @@ import ChangeBudgetBoxPercentageUseCase from "@modules/budget-box/application/us
 import ChangeBudgetBoxPercentageDto from "@modules/budget-box/application/use-cases/change-budget-box-percentage/change-budget-box-percentage.dto";
 import ChangeBudgetBoxNameUseCase from "@modules/budget-box/application/use-cases/change-budget-box-name/change-budget-box-name.use-case";
 import ChangeBudgetBoxNameDto from "@modules/budget-box/application/use-cases/change-budget-box-name/change-budget-box-name.dto";
+import CanAllocatePercentageToBudgetBoxDomainService from "@modules/budget-box/domain/services/can-allocate-percentage-to-budget-box.domain-service";
+import CanChangeBudgetBoxPercentageDomainService from "@modules/budget-box/domain/services/can-change-budget-box-percentage.domain-service";
 
 @Injectable()
 export class BudgetBoxService {
