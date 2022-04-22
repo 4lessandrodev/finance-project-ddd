@@ -25,6 +25,24 @@ type BudgetBoxType {
   updatedAt: DateTime!
 }
 
+type CurrencyType {
+  value: Float!
+  currency: currency!
+}
+
+enum currency {
+  BRL
+  USD
+  EUR
+  JPY
+}
+
+type CalculationType {
+  budgetBoxName: String!
+  budgetBoxId: ID!
+  currency: CurrencyType!
+}
+
 type JwtPayloadType {
   token: String!
 }
@@ -67,6 +85,7 @@ type Mutation {
   changeReasonDescription(ChangeReasonDescriptionBoxInput: ChangeReasonDescriptionBoxInput!): Boolean!
   changeBudgetPercentage(ChangeBudgetBoxPercentageInput: ChangeBudgetBoxPercentageInput!): Boolean!
   changeBudgetName(ChangeBudgetBoxNameInput: ChangeBudgetBoxNameInput!): Boolean!
+  capitalInflowPosting: Boolean!
 }
 
 input SignupInput {

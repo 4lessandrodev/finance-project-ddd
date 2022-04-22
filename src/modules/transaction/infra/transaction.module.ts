@@ -4,6 +4,7 @@ import { Transaction, TransactionSchema } from "./entities/transaction.schema";
 import TransactionCalculationToDomain from "./repo/transaction-calculation.mapper";
 import TransactionToDomainMapper from "./repo/transaction.mapper";
 import TransactionRepository from "./repo/transaction.repository";
+import TransactionResolver from "./resolver/transaction.resolver";
 import TransactionService from "./transaction.service";
 
 @Module({
@@ -13,6 +14,7 @@ import TransactionService from "./transaction.service";
 		])
 	],
 	providers: [
+		TransactionResolver,
 		TransactionCalculationToDomain,
 		TransactionToDomainMapper,
 		TransactionService,
