@@ -2,9 +2,9 @@ import { ErrorMessages } from '@shared/index';
 import { ValueObject, Result } from 'types-ddd';
 
 export enum validTransactionStatusEnum {
-	'PENDENTE',
-	'CONCLUIDO',
-	'ESTORNADO'
+	'PENDENTE' = 'PENDENTE',
+	'CONCLUIDO' = 'CONCLUIDO',
+	'ESTORNADO' = 'ESTORNADO',
 }
 
 export type transactionStatus = keyof typeof validTransactionStatusEnum;
@@ -22,9 +22,7 @@ export class TransactionStatusValueObject extends ValueObject<TransactionStatusV
 	}
 
 	public static isValidValue (value: transactionStatus): boolean {
-		return Object.values(validTransactionStatusEnum).includes(
-			value.toUpperCase(),
-		);
+		return value.toUpperCase() in validTransactionStatusEnum;
 	}
 
 	public static create (

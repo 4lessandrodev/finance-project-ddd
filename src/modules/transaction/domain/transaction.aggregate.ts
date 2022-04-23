@@ -74,20 +74,31 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
 		return this.props.attachment ?? null;
 	}
 
+	public static calculate (calculation: TransactionCalculationValueObject[]): CurrencyValueObject {
+		const total = CurrencyValueObject.create({
+			currency: CURRENCY,
+			value: 0
+		}).getResult();
+
+		calculation.forEach((cur)=> {
+			total.add(cur.currency.value);
+		});
+
+		return total;
+	}
+
+	applyCalculation (calculation: TransactionCalculationValueObject[]): void {
+		const total = TransactionAggregate.calculate(calculation);
+		this._totalValue = total;
+	}
+
 	public static create (
 		props: TransactionAggregateProps
 	): Result<TransactionAggregate> {
 		/**
 		 * total is calculated dynamically. Its the sum of calculation values
 		 */
-		const currency = CurrencyValueObject.create({
-			currency: CURRENCY,
-			value: 0
-		}).getResult();
-
-		props.transactionCalculations.forEach((cur)=> {
-			currency.add(cur.currency.value);
-		});
+		const currency = this.calculate(props.transactionCalculations);
 
 		return Result.ok<TransactionAggregate>(
 			new TransactionAggregate(props, currency),

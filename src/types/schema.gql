@@ -85,7 +85,7 @@ type Mutation {
   changeReasonDescription(ChangeReasonDescriptionBoxInput: ChangeReasonDescriptionBoxInput!): Boolean!
   changeBudgetPercentage(ChangeBudgetBoxPercentageInput: ChangeBudgetBoxPercentageInput!): Boolean!
   changeBudgetName(ChangeBudgetBoxNameInput: ChangeBudgetBoxNameInput!): Boolean!
-  capitalInflowPosting: Boolean!
+  capitalInflowPosting(CapitalInflowPostingInput: CapitalInflowPostingInput!): Boolean!
 }
 
 input SignupInput {
@@ -129,4 +129,19 @@ input ChangeBudgetBoxPercentageInput {
 input ChangeBudgetBoxNameInput {
   budgetBoxId: String!
   description: String!
+}
+
+input CapitalInflowPostingInput {
+  total: Float!
+  reason: String!
+  status: transactionStatus!
+  paymentDate: DateTime
+  note: String
+  attachment: String
+}
+
+enum transactionStatus {
+  PENDENTE
+  CONCLUIDO
+  ESTORNADO
 }
