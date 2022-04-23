@@ -44,8 +44,10 @@ export class TransactionRepository implements ITransactionRepository {
 		throw new Error("not implemented for " + filter);
 	};
 
-	async exists (filter: Filter<Partial<ITransaction>>):Promise<boolean> {
-		const document = this.conn.exists({ ...filter }).exec();
+	async exists (filter: Filter<Partial<ITransaction>>): Promise<boolean> {
+		
+		const document = await this.conn.exists({ ...filter }).exec();
+		
 		return !!document;
 	};
 
@@ -59,9 +61,9 @@ export class TransactionRepository implements ITransactionRepository {
 		if (!exists) {
 			const schema = new this.conn(document);
 			await schema.save();
-
 			return;
 		}
+
 		await this.conn.updateOne({ id }, document);
 	};
 }

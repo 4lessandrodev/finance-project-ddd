@@ -22,7 +22,7 @@ describe('can-create-transaction.domain-service', () => {
 
 		const canCreateService = new CanCreateTransactionDomainService(fakeConnection);
 
-		const result = await canCreateService.execute({ ownerId: 'valid_id' });
+		const result = await canCreateService.execute({ userId: 'valid_id' });
 
 		expect(result.isSuccess).toBeTruthy();
 		expect(result.getResult()).toBeTruthy();
@@ -37,7 +37,7 @@ describe('can-create-transaction.domain-service', () => {
 
 		const canCreateService = new CanCreateTransactionDomainService(fakeConnection);
 
-		const result = await canCreateService.execute({ ownerId: 'valid_id' });
+		const result = await canCreateService.execute({ userId: 'valid_id' });
 
 		expect(result.isFailure).toBeTruthy();
 		expect(result.error).toBe('You must allocate 100% on budget boxes. 10% not allocated');
@@ -52,7 +52,7 @@ describe('can-create-transaction.domain-service', () => {
 
 		const canCreateService = new CanCreateTransactionDomainService(fakeConnection);
 
-		const result = await canCreateService.execute({ ownerId: 'valid_id' });
+		const result = await canCreateService.execute({ userId: 'valid_id' });
 
 		expect(result.isFailure).toBeTruthy();
 		expect(result.error).toBe('You must allocate 100% on budget boxes. 100% not allocated');

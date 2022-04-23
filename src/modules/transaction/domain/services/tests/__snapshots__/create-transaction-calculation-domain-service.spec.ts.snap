@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create-transaction-calculation.domain-service should calculate percentage for each budget box 1`] = `
+Array [
+  Object {
+    "budgetBoxId": "valid_id-10",
+    "budgetBoxName": "valid_name-10",
+    "currency": Object {
+      "currency": "BRL",
+      "value": 10,
+    },
+  },
+  Object {
+    "budgetBoxId": "valid_id-10",
+    "budgetBoxName": "valid_name-10",
+    "currency": Object {
+      "currency": "BRL",
+      "value": 10,
+    },
+  },
+  Object {
+    "budgetBoxId": "valid_id-20",
+    "budgetBoxName": "valid_name-20",
+    "currency": Object {
+      "currency": "BRL",
+      "value": 20,
+    },
+  },
+  Object {
+    "budgetBoxId": "valid_id-20",
+    "budgetBoxName": "valid_name-20",
+    "currency": Object {
+      "currency": "BRL",
+      "value": 20,
+    },
+  },
+  Object {
+    "budgetBoxId": "valid_id-40",
+    "budgetBoxName": "valid_name-40",
+    "currency": Object {
+      "currency": "BRL",
+      "value": 40,
+    },
+  },
+]
+`;

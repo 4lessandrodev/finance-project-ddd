@@ -4,7 +4,7 @@ import { IDomainService } from "@modules/shared/interfaces/domain-service.interf
 import { IBudgetBoxConnection } from "./budget-box-connection.interface";
 
 interface Dto {
-	ownerId: string;
+	userId: string;
 }
 
 export class CanCreateTransactionDomainService implements IDomainService<Dto, Result<boolean>>{
@@ -12,7 +12,7 @@ export class CanCreateTransactionDomainService implements IDomainService<Dto, Re
 		@Inject('BudgetBoxConnection')
 		private readonly connection: IBudgetBoxConnection
 	) { }
-	async execute ({ ownerId }: Dto): Promise<Result<boolean>> {
+	async execute ({ userId: ownerId }: Dto): Promise<Result<boolean>> {
 		const maxPercentage = 100;
 		const initialValue = 0;
 		

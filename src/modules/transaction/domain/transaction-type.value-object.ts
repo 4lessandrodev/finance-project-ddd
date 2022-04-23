@@ -2,8 +2,9 @@ import { ErrorMessages } from '@shared/index';
 import { ValueObject, Result } from 'types-ddd';
 
 export enum validTransactionTypeEnum {
-  'ENTRADA',
-  'SAIDA',
+  'ENTRADA' = 'ENTRADA',
+  'SAIDA' = 'SAIDA',
+  'ESTORNO' = 'ESTORNO',
 }
 
 export type transactionType = keyof typeof validTransactionTypeEnum;
@@ -21,11 +22,7 @@ export class TransactionTypeValueObject extends ValueObject<TransactionTypeValue
 	}
 
 	public static isValidValue (value: transactionType): boolean {
-		const isValidEnumValue = Object.values(validTransactionTypeEnum).includes(
-			value.toUpperCase(),
-		);
-
-		return isValidEnumValue;
+		return value.toUpperCase() in validTransactionTypeEnum;
 	}
 
 	public static create (
