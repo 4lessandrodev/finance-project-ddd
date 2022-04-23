@@ -27,7 +27,7 @@ type currency = keyof typeof Currencies;
 @ObjectType()
 export class CurrencyType {
 	@Field(() => Float)
-	value!: string;
+	value!: number;
 
 	@Field(() => Currencies)
 	currency!: currency;
@@ -55,6 +55,9 @@ export class TransactionType {
 
 	@Field(() => String)
 	reason!: string;
+
+	@Field(() => CurrencyType)
+	totalValue!: CurrencyType;
 
 	@Field(() => Date)
 	paymentDate!: Date;

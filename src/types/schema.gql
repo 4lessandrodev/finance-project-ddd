@@ -43,6 +43,33 @@ type CalculationType {
   currency: CurrencyType!
 }
 
+type TransactionType {
+  id: ID!
+  userId: ID!
+  reason: String!
+  totalValue: CurrencyType!
+  paymentDate: DateTime!
+  transactionType: transactionType!
+  transactionStatus: transactionStatus!
+  transactionCalculations: [CalculationType!]!
+  note: String
+  attachment: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum transactionType {
+  ENTRADA
+  SAIDA
+  ESTORNO
+}
+
+enum transactionStatus {
+  PENDENTE
+  CONCLUIDO
+  ESTORNADO
+}
+
 type JwtPayloadType {
   token: String!
 }
@@ -70,6 +97,7 @@ type Query {
   whoAmI: UserType
   getBudgetBoxes: [BudgetBoxType!]!
   getBudgetBoxById(GetBudgetBoxByIdInput: GetBudgetBoxByIdInput!): BudgetBoxType!
+  getTransactions: [TransactionType!]!
 }
 
 input GetBudgetBoxByIdInput {
@@ -85,7 +113,8 @@ type Mutation {
   changeReasonDescription(ChangeReasonDescriptionBoxInput: ChangeReasonDescriptionBoxInput!): Boolean!
   changeBudgetPercentage(ChangeBudgetBoxPercentageInput: ChangeBudgetBoxPercentageInput!): Boolean!
   changeBudgetName(ChangeBudgetBoxNameInput: ChangeBudgetBoxNameInput!): Boolean!
-  capitalInflowPosting(CapitalInflowPostingInput: CapitalInflowPostingInput!): Boolean!
+  percentageCapitalInflowPosting(PercentageCapitalInflowPostingInput: PercentageCapitalInflowPostingInput!): Boolean!
+  postingToBenefit(PostingToBenefitInput: PostingToBenefitInput!): Boolean!
 }
 
 input SignupInput {
@@ -131,7 +160,7 @@ input ChangeBudgetBoxNameInput {
   description: String!
 }
 
-input CapitalInflowPostingInput {
+input PercentageCapitalInflowPostingInput {
   total: Float!
   reason: String!
   status: transactionStatus!
@@ -140,8 +169,12 @@ input CapitalInflowPostingInput {
   attachment: String
 }
 
-enum transactionStatus {
-  PENDENTE
-  CONCLUIDO
-  ESTORNADO
+input PostingToBenefitInput {
+  total: Float!
+  reason: String!
+  budgetBoxId: String!
+  status: transactionStatus!
+  paymentDate: DateTime
+  note: String
+  attachment: String
 }

@@ -40,7 +40,7 @@ describe('transaction.aggregate', () => {
 		);
 			
 		expect(transaction.isSuccess).toBe(true);
-		expect(transaction.getResult().totalValue).toBe(200);
+		expect(transaction.getResult().totalValue.value).toBe(200);
 	});
 
 	it('should create a valid transaction with provided id ', () => {
@@ -56,5 +56,20 @@ describe('transaction.aggregate', () => {
 		expect(transaction.getResult().id.toValue()).toBe('valid_id');
 		expect(transaction.getResult().note?.value).toBe('valid_description');
 		expect(transaction.getResult().attachment?.value).toBe('https://aws.s3.com/bucket-askjdas656/file.pdf');
+	});
+
+	it('should apply calculation with success', () => {
+
+		const transaction = transactionMock.domain({
+			id: 'valid_id',
+			attachment: 'https://aws.s3.com/bucket-askjdas656/file.pdf',
+			note: 'valid_description'
+		}).getResult();
+
+		
+		const calculation = transaction.transactionCalculations[0];
+		expect(transaction.transactionCalculations).toHaveLength(1);
+		transaction.applyCalculation([calculation, calculation]);
+		expect(transaction.transactionCalculations).toHaveLength(2);
 	});
 });

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`create-transaction-calculation.domain-service should calculate percentage for each budget box 1`] = `
+exports[`create-percentage-transaction-calculation.domain-service should calculate percentage for each budget box 1`] = `
 Array [
   Object {
     "budgetBoxId": "valid_id-10",

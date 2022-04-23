@@ -9,23 +9,24 @@ import TransactionNoteValueObject from "@modules/transaction/domain/transaction-
 import TransactionTypeValueObject from "@modules/transaction/domain/transaction-type.value-object";
 import { IDomainService } from "@modules/shared";
 import TransactionCalculationValueObject from "@modules/transaction/domain/transaction-calculations.value-object";
-import Dto from "./capital-inflow-posting.dto";
-import { CalculationDomainServiceDto } from "@modules/transaction/domain/services/create-transaction-calculation.domain-service";
+import Dto from "./percentage-capital-inflow-posting.dto";
+import { PercentageCalculationDomainServiceDto } from "@modules/transaction/domain/services/create-percentage-transaction-calculation.domain-service";
+import { CURRENCY } from "@config/env";
 
-export class CapitalInflowPostingUseCase implements IUseCase<Dto, Result<void>>{
+export class PercentageCapitalInflowPostingUseCase implements IUseCase<Dto, Result<void>>{
 	constructor (
 		@Inject('TransactionRepository')
 		private readonly transactionRepo: ITransactionRepository,
 
 		@Inject('CalculationDomainService')
-		private readonly createCalcDomainService: IDomainService<CalculationDomainServiceDto, TransactionCalculationValueObject[]>
+		private readonly createCalcDomainService: IDomainService<PercentageCalculationDomainServiceDto, TransactionCalculationValueObject[]>
 	) { }
 	
 	async execute (dto: Dto): Promise<Result<void, string>>{
 		try {
 			const { userId, total, reason, status, attachment, note, paymentDate } = dto;
 			
-			const totalOrError = CurrencyValueObject.create({ currency: 'BRL', value: total });
+			const totalOrError = CurrencyValueObject.create({ currency: CURRENCY, value: total });
 			const reasonOrError = ReasonDescriptionValueObject.create(reason);
 			const statusOrError = TransactionStatusValueObject.create(status);
 			const attachmentOrError = attachment && AttachmentPathValueObject.create(attachment);
@@ -58,7 +59,7 @@ export class CapitalInflowPostingUseCase implements IUseCase<Dto, Result<void>>{
 				.createCalcDomainService
 				.execute({ userId, total });
 
-			const aggregate = TransactionAggregate.create({
+			const aggregateOrError = TransactionAggregate.create({
 				ID,
 				transactionCalculations: calculation,
 				paymentDate: paymentDateOrError.getResult(),
@@ -68,21 +69,26 @@ export class CapitalInflowPostingUseCase implements IUseCase<Dto, Result<void>>{
 				userId: ownerId,
 				attachment: attachmentOrError ? attachmentOrError.getResult(): undefined,
 				note: noteOrError ? noteOrError.getResult() : undefined,
-			}).getResult();
+			});
+
+			if (aggregateOrError.isFailure) {
+				const message = aggregateOrError.error;
+				return Result.fail(message);
+			}
+
+			const aggregate = aggregateOrError.getResult();
 
 			await this.transactionRepo.save(aggregate);
 
 			return Result.success();
 
-		} catch (error) {
-			console.log(error);
-			
+		} catch (error) {		
 			return Result.fail(
-				'Internal Server Error On Capital Inflow Posting Use Case',
+				'Internal Server Error On Percentage Capital Inflow Posting Use Case',
 				'INTERNAL_SERVER_ERROR'
 			);
 		}	
 	};
 }
 
-export default CapitalInflowPostingUseCase;
+export default PercentageCapitalInflowPostingUseCase;

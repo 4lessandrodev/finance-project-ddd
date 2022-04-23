@@ -4,7 +4,7 @@ import {
 import { Field, Float, InputType } from "@nestjs/graphql";
 
 @InputType()
-export class CapitalInflowPostingInput {
+export class PercentageCapitalInflowPostingInput {
 	@Field(() => Float)
 	total!: number;
 
@@ -24,4 +24,4 @@ export class CapitalInflowPostingInput {
 	attachment?: string;
 }
 
-export default CapitalInflowPostingInput;
+export default PercentageCapitalInflowPostingInput;

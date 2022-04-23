@@ -16,6 +16,7 @@ export interface TransactionAggregateProps extends BaseDomainEntity {
 	transactionCalculations: TransactionCalculationValueObject[];
 	note?: TransactionNoteValueObject;
 	attachment?: AttachmentPathValueObject;
+	totalValue?: CurrencyValueObject;
 }
 
 /**
@@ -27,19 +28,17 @@ export interface TransactionAggregateProps extends BaseDomainEntity {
  * @var transactionCalculations: `TransactionCalculationValueObject[]`
  * @var note?: `TransactionNoteValueObject`
  * @var attachment?: `AttachmentPathValueObject`
+ * @var totalValue?: `number`
  */
 export class TransactionAggregate extends AggregateRoot<TransactionAggregateProps> {
-	private _totalValue: CurrencyValueObject;
 	private constructor (
-		props: TransactionAggregateProps,
-		total: CurrencyValueObject
+		props: TransactionAggregateProps
 	) {
 		super(props, TransactionAggregate.name);
-		this._totalValue = total;
 	}
 
-	get totalValue (): number {
-		return this._totalValue.value;
+	get totalValue (): CurrencyValueObject {
+		return this.props.totalValue as CurrencyValueObject;
 	}
 
 	get userId (): DomainId {
@@ -89,19 +88,31 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
 
 	applyCalculation (calculation: TransactionCalculationValueObject[]): void {
 		const total = TransactionAggregate.calculate(calculation);
-		this._totalValue = total;
+		this.props.transactionCalculations = calculation;
+		this.props.totalValue = total;
+	}
+
+	public static isValid (props: TransactionAggregateProps): boolean {
+		return props.transactionCalculations.length > 0;
 	}
 
 	public static create (
 		props: TransactionAggregateProps
 	): Result<TransactionAggregate> {
+
+		const isValid = this.isValid(props);
+
+		if (!isValid) {
+			return Result.fail('Calculation is required');
+		}
 		/**
 		 * total is calculated dynamically. Its the sum of calculation values
 		 */
 		const currency = this.calculate(props.transactionCalculations);
+		props.totalValue = currency;
 
 		return Result.ok<TransactionAggregate>(
-			new TransactionAggregate(props, currency),
+			new TransactionAggregate(props),
 		);
 	}
 }

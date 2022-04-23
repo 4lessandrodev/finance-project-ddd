@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`transaction.aggregate should create a valid transaction with provided id  1`] = `
+exports[`transaction.mapper should translate to domain with success 1`] = `
 Object {
-  "attachment": "https://aws.s3.com/bucket-askjdas656/file.pdf",
+  "attachment": "http://s3-us-east-1.amazonaws.com/bucket/file.pdf",
   "createdAt": 2022-01-01T00:00:00.000Z,
   "deletedAt": undefined,
   "id": "valid_id",
   "isDeleted": false,
-  "note": "valid_description",
+  "note": "valid_note",
   "paymentDate": 2022-01-01T00:00:00.000Z,
-  "reason": "valid_reason",
+  "reason": "valid_reason_id",
   "status": "CONCLUIDO",
   "totalValue": Object {
     "currency": "BRL",
