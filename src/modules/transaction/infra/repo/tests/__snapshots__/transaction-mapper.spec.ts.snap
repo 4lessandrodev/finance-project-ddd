@@ -11,6 +11,10 @@ Object {
   "paymentDate": 2022-01-01T00:00:00.000Z,
   "reason": "valid_reason_id",
   "status": "CONCLUIDO",
+  "totalValue": Object {
+    "currency": "BRL",
+    "value": 1000,
+  },
   "transactionCalculations": Array [
     Object {
       "budgetBoxId": "valid_budget_box_id",

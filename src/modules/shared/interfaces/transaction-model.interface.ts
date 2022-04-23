@@ -36,9 +36,11 @@ export interface ITransaction {
 
 	updatedAt: Date;
 
-	isDeleted?: boolean,
+	isDeleted?: boolean;
 
-	deletedAt?: Date,
+	deletedAt?: Date;
+
+	readonly totalValue?: ICurrency;
 }
 
 export default ITransaction;

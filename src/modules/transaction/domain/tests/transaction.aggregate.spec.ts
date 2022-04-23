@@ -40,7 +40,7 @@ describe('transaction.aggregate', () => {
 		);
 			
 		expect(transaction.isSuccess).toBe(true);
-		expect(transaction.getResult().totalValue).toBe(200);
+		expect(transaction.getResult().totalValue.value).toBe(200);
 	});
 
 	it('should create a valid transaction with provided id ', () => {

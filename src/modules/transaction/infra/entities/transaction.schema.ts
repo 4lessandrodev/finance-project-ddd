@@ -1,7 +1,7 @@
 import {
 	validTransactionStatusEnum, transactionStatus
 } from "@modules/transaction/domain/transaction-status.value-object";
-import { ICalculation, ITransaction } from "@modules/shared";
+import { ICalculation, ICurrency, ITransaction } from "@modules/shared";
 import {
 	validTransactionTypeEnum,
 	transactionType
@@ -30,11 +30,14 @@ export class Transaction implements ITransaction {
 	
 	@Prop({ immutable: true, required: true, type: String, enum:validTransactionStatusEnum, index: true })
 	status!: transactionStatus;
+
+	@Prop({ immutable: true, required: true, type: Object })
+	readonly totalValue?: ICurrency;
 	
 	@Prop({type: [{ immutable: true, type: Object }], immutable: true, required: true })
 	readonly transactionCalculations!: readonly ICalculation[];
 	
-	@Prop({ type: String, default: '' })
+	@Prop({ type: String, default: null })
 	note!: string | null;
 	
 	@Prop({ type: String, default: null })

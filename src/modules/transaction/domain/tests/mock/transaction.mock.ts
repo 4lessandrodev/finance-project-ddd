@@ -77,6 +77,10 @@ export class TransactionMock implements IMockEntity<TransactionAggregate, ITrans
 			createdAt: props?.createdAt ?? new Date('2022-01-01 00:00:00'),
 			note: props?.note ?? 'valid_note',
 			paymentDate: props?.paymentDate ?? new Date('2022-01-01 00:00:00'),
+			totalValue: props?.totalValue ?? {
+				currency: 'BRL',
+				value: 1000
+			},
 			transactionCalculations: props?.transactionCalculations ?? [
 				{
 					budgetBoxName: 'valid_name',

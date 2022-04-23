@@ -1,16 +1,16 @@
 import { BaseConnection, BudgetBoxConnection, SharedModule } from "@modules/shared";
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import {
-	CapitalInflowPostingUseCase
-} from "@modules/transaction/application/use-cases/capital-inflow-posting/capital-inflow-posting.use-case";
 import { Transaction, TransactionSchema } from "@modules/transaction/infra/entities/transaction.schema";
 import TransactionCalculationToDomain from "@modules/transaction/infra/repo/transaction-calculation.mapper";
 import TransactionToDomainMapper from "@modules/transaction/infra/repo/transaction.mapper";
 import TransactionRepository from "@modules/transaction/infra/repo/transaction.repository";
 import TransactionResolver from "@modules/transaction/infra/resolver/transaction.resolver";
 import TransactionService from "@modules/transaction/infra/transaction.service";
-import CalculationDomainService from "@modules/transaction/domain/services/create-transaction-calculation.domain-service";
+import TransactionQueryService from "./services/queries/transaction-query.service";
+import PercentageCapitalInflowPostingUseCase from "@modules/transaction/application/use-cases/percentage-capital-inflow-posting/percentage-capital-inflow-posting.use-case";
+import CalculationDomainService from "@modules/transaction/domain/services/create-percentage-transaction-calculation.domain-service";
+import { GetTransactionsByUserIdUseCase } from "@modules/transaction/application/use-cases/get-transaction-by-user-id/get-transactions-by-user-id.use-case";
 
 @Module({
 	imports: [
@@ -30,11 +30,16 @@ import CalculationDomainService from "@modules/transaction/domain/services/creat
 			provide: 'TransactionRepository',
 			useClass: TransactionRepository
 		},
-		CapitalInflowPostingUseCase,
+		PercentageCapitalInflowPostingUseCase,
 		{
 			provide: 'CalculationDomainService',
 			useClass: CalculationDomainService
-		}
+		},
+		{
+			provide: 'TransactionQueryService',
+			useClass: TransactionQueryService
+		},
+		GetTransactionsByUserIdUseCase
 	]
 })
 export class TransactionModule { }
