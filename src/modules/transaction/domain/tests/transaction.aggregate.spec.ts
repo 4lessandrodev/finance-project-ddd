@@ -57,4 +57,19 @@ describe('transaction.aggregate', () => {
 		expect(transaction.getResult().note?.value).toBe('valid_description');
 		expect(transaction.getResult().attachment?.value).toBe('https://aws.s3.com/bucket-askjdas656/file.pdf');
 	});
+
+	it('should apply calculation with success', () => {
+
+		const transaction = transactionMock.domain({
+			id: 'valid_id',
+			attachment: 'https://aws.s3.com/bucket-askjdas656/file.pdf',
+			note: 'valid_description'
+		}).getResult();
+
+		
+		const calculation = transaction.transactionCalculations[0];
+		expect(transaction.transactionCalculations).toHaveLength(1);
+		transaction.applyCalculation([calculation, calculation]);
+		expect(transaction.transactionCalculations).toHaveLength(2);
+	});
 });

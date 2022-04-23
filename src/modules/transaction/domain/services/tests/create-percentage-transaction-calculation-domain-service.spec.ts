@@ -1,7 +1,7 @@
 import { IBudgetBox, IBudgetBoxConnection } from "@modules/shared";
-import CreateTransactionCalculationDomainService from "../create-transaction-calculation.domain-service";
+import CreatePercentageTransactionCalculationDomainService from "../create-percentage-transaction-calculation.domain-service";
 
-describe('create-transaction-calculation.domain-service', () => {
+describe('create-percentage-transaction-calculation.domain-service', () => {
 
 	let fakeConnection: IBudgetBoxConnection;
 
@@ -31,7 +31,7 @@ describe('create-transaction-calculation.domain-service', () => {
 			[...data, invalidModel] as IBudgetBox[]
 		);
 
-		const domainService = new CreateTransactionCalculationDomainService(fakeConnection);
+		const domainService = new CreatePercentageTransactionCalculationDomainService(fakeConnection);
 
 		const result = await domainService.execute({
 			total: 100,

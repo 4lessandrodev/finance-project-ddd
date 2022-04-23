@@ -90,11 +90,22 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
 	applyCalculation (calculation: TransactionCalculationValueObject[]): void {
 		const total = TransactionAggregate.calculate(calculation);
 		this._totalValue = total;
+		this.props.transactionCalculations = calculation;
+	}
+
+	public static isValid (props: TransactionAggregateProps): boolean {
+		return props.transactionCalculations.length > 0;
 	}
 
 	public static create (
 		props: TransactionAggregateProps
 	): Result<TransactionAggregate> {
+
+		const isValid = this.isValid(props);
+
+		if (!isValid) {
+			return Result.fail('Calculation is required');
+		}
 		/**
 		 * total is calculated dynamically. Its the sum of calculation values
 		 */

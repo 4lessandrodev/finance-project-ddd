@@ -16,13 +16,13 @@ export class TransactionResolver {
 
 	@Mutation(() => Boolean)
 	@UseGuards(JwtAuthGuard)
-	async capitalInflowPosting (
+	async percentageCapitalInflowPosting (
 		@GetUserId() userId: string,
 		@Args(CapitalInflowPostingInput.name) args: CapitalInflowPostingInput
 	): Promise<boolean> {
 		const isSuccess = true;
 		
-		await this.transactionService.capitalInflowPosting({ ...args, userId });
+		await this.transactionService.percentageCapitalInflowPosting({ ...args, userId });
 
 		return isSuccess;
 	}

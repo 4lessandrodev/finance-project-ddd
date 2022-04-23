@@ -5,20 +5,20 @@ import { IBudgetBoxConnection, IDomainService } from "@modules/shared";
 import { Inject } from "@nestjs/common";
 import { CurrencyValueObject, DomainId } from "types-ddd";
 
-export interface CalculationDomainServiceDto {
+export interface PercentageCalculationDomainServiceDto {
 	userId: string;
 	total: number;
 }
 
-export class CreateTransactionCalculationDomainService implements
-	IDomainService<CalculationDomainServiceDto, TransactionCalculationValueObject[]>{
+export class CreatePercentageTransactionCalculationDomainService implements
+	IDomainService<PercentageCalculationDomainServiceDto, TransactionCalculationValueObject[]>{
 	
 	constructor (
 		@Inject('BudgetBoxConnection')
 		private readonly budgetBoxConnection: IBudgetBoxConnection
 	){}
 	
-	async execute ({ userId, total }: CalculationDomainServiceDto): Promise<TransactionCalculationValueObject[]> {
+	async execute ({ userId, total }: PercentageCalculationDomainServiceDto): Promise<TransactionCalculationValueObject[]> {
 		const allBudgetBoxes = await this.budgetBoxConnection.findBudgetBoxesByUserId(userId);
 		const budgetBoxes = allBudgetBoxes.filter((budgetBox) => budgetBox.isPercentage);
 
@@ -48,4 +48,4 @@ export class CreateTransactionCalculationDomainService implements
 
 }
 
-export default CreateTransactionCalculationDomainService;
+export default CreatePercentageTransactionCalculationDomainService;

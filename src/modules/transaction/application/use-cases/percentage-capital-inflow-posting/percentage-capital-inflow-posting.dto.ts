@@ -1,6 +1,6 @@
 import { transactionStatus } from "@modules/transaction/domain/transaction-status.value-object";
 
-export interface CapitalInflowPostingDto {
+export interface PercentageCapitalInflowPostingDto {
 	total: number;
 	userId: string;
 	reason: string;
@@ -10,4 +10,4 @@ export interface CapitalInflowPostingDto {
 	attachment?: string;
 }
 
-export default CapitalInflowPostingDto;
+export default PercentageCapitalInflowPostingDto;

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transaction.mapper should translate to domain with success 1`] = `
+Object {
+  "attachment": "http://s3-us-east-1.amazonaws.com/bucket/file.pdf",
+  "createdAt": 2022-01-01T00:00:00.000Z,
+  "deletedAt": undefined,
+  "id": "valid_id",
+  "isDeleted": false,
+  "note": "valid_note",
+  "paymentDate": 2022-01-01T00:00:00.000Z,
+  "reason": "valid_reason_id",
+  "status": "CONCLUIDO",
+  "transactionCalculations": Array [
+    Object {
+      "budgetBoxId": "valid_budget_box_id",
+      "budgetBoxName": "valid_name",
+      "currency": Object {
+        "currency": "BRL",
+        "value": 1000,
+      },
+    },
+  ],
+  "transactionType": "ENTRADA",
+  "updatedAt": 2022-01-01T00:00:00.000Z,
+  "userId": "valid_user_id",
+}
+`;
