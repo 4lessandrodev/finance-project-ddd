@@ -28,6 +28,8 @@ export const CheckResultInterceptor = <T, F>(result: Result<T, F>): Result<T, F>
 			throw new UnprocessableEntityException(result.errorValue());
 		case result.statusCode === 'NOT_MODIFIED':
 			throw new BadRequestException(result.errorValue());
+		case result.statusCode === 'USE_PROXY':
+			throw new BadRequestException(result.errorValue());
 		default:
 			throw new InternalServerErrorException(result.errorValue());
 		}

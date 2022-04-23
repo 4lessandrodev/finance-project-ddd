@@ -7,7 +7,8 @@ describe('create-percentage-transaction-calculation.domain-service', () => {
 
 	beforeEach(() => {
 		fakeConnection = {
-			findBudgetBoxesByUserId: jest.fn()
+			findBudgetBoxesByUserId: jest.fn(),
+			findBudgetBoxByIdAndUserId: jest.fn()
 		};
 	});
 

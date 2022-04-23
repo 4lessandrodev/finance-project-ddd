@@ -6,6 +6,7 @@ import { IBudgetBoxQueryService } from "@modules/budget-box/infra/services/queri
 interface Dto {
 	ownerId: string;
 	budgetPercentage: number;
+	isPercentage: boolean;
 }
 
 export class CanAllocatePercentageToBudgetBoxDomainService implements IDomainService<Dto, Result<boolean>>{
@@ -13,10 +14,12 @@ export class CanAllocatePercentageToBudgetBoxDomainService implements IDomainSer
 		@Inject('BudgetBoxQueryService')
 		private readonly connection: IBudgetBoxQueryService
 	) { }
-	async execute ({ ownerId, budgetPercentage }: Dto): Promise<Result<boolean>> {
+	async execute ({ ownerId, budgetPercentage, isPercentage  }: Dto): Promise<Result<boolean>> {
 		const maxPercentage = 100;
 		const initialValue = 0;
 		
+		if(!isPercentage) return Result.ok(!isPercentage);
+
 		const budgetBoxes = await this.connection.getBudgetBoxesByOwnerId(ownerId);
 
 		const totalPercentageAllocated = budgetBoxes.reduce((total, budgetBox) => {

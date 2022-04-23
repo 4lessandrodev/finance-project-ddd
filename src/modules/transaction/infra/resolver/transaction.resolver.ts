@@ -6,6 +6,7 @@ import PercentageCapitalInflowPostingInput from "@modules/transaction/infra/inpu
 import { JwtAuthGuard } from "@modules/user/infra/services/guards/jwt-auth.guard";
 import { GetUserId } from "@modules/user/infra/services/decorators/get-user.decorator";
 import { ITransaction } from "@modules/shared";
+import PostingToBenefitInput from "../inputs/posting-to-benefit.input";
 
 @Resolver(() => TransactionType)
 export class TransactionResolver { 
@@ -34,6 +35,19 @@ export class TransactionResolver {
 		@GetUserId() userId: string,
 	): Promise<ITransaction[]> {
 		return this.transactionService.getTransactions({ userId });
+	}
+
+	@Mutation(() => Boolean)
+	@UseGuards(JwtAuthGuard)
+	async postingToBenefit (
+		@GetUserId() userId: string,
+		@Args(PostingToBenefitInput.name) args: PostingToBenefitInput
+	): Promise<boolean> {
+		const isSuccess = true;
+		
+		await this.transactionService.postingToBenefit({ ...args, userId });
+
+		return isSuccess;
 	}
 }
 
