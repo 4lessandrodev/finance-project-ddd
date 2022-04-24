@@ -14,3 +14,5 @@ export class BaseConnection implements IBaseConnection {
 		return this.conn;
 	};
 }
+
+export default BaseConnection;
