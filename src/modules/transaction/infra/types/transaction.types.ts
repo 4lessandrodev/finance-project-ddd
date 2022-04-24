@@ -1,14 +1,27 @@
 import { ICalculation } from "@modules/shared";
-import { transactionStatus, validTransactionStatusEnum } from "@modules/transaction/domain/transaction-status.value-object";
+import {
+	transactionStatus, validTransactionStatusEnum
+} from "@modules/transaction/domain/transaction-status.value-object";
 import { validTransactionTypeEnum, transactionType } from "@modules/transaction/domain/transaction-type.value-object";
 import { Field, Float, ID, ObjectType, registerEnumType } from "@nestjs/graphql";
 
+export enum ValidClientTransactionStatusEnum {
+	'PENDENTE' = 'PENDENTE',
+	'CONCLUIDO' = 'CONCLUIDO',
+}
+
+export type TransactionStatus = keyof typeof ValidClientTransactionStatusEnum;
+
+registerEnumType(ValidClientTransactionStatusEnum, {
+	name: 'TransactionStatus'
+});
+
 registerEnumType(validTransactionTypeEnum, {
-	name: 'transactionType',
+	name: 'TransactionTypeEnum',
 });
 
 registerEnumType(validTransactionStatusEnum, {
-	name: 'transactionStatus',
+	name: 'TransactionStatusEnum',
 });
 
 enum Currencies {
@@ -46,7 +59,7 @@ export class CalculationType {
 }
 
 @ObjectType()
-export class TransactionType {
+export class BoxTransactionType {
 	@Field(() => ID)
 	id!: string;
 
@@ -62,14 +75,10 @@ export class TransactionType {
 	@Field(() => Date)
 	paymentDate!: Date;
 
-	@Field(() => validTransactionTypeEnum,
-		{ name: 'transactionType' }
-	)
+	@Field(() => validTransactionTypeEnum)
 	transactionType!: transactionType;
 
-	@Field(() => validTransactionStatusEnum,
-		{ name: 'transactionStatus' }
-	)
+	@Field(() => validTransactionStatusEnum)
 	transactionStatus!: transactionStatus;
 	
 	@Field(() => [CalculationType])
@@ -89,4 +98,4 @@ export class TransactionType {
 
 }
 
-export default TransactionType;
+export default BoxTransactionType;

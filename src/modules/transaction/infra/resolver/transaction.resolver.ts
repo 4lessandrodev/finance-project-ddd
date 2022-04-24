@@ -1,14 +1,15 @@
 import { Inject, UseGuards } from "@nestjs/common";
 import { Args, Query, Mutation, Resolver } from "@nestjs/graphql";
 import TransactionService from "@modules/transaction/infra/transaction.service";
-import TransactionType from "@modules/transaction/infra/types/transaction.types";
+import BoxTransactionType from "@modules/transaction/infra/types/transaction.types";
 import PercentageCapitalInflowPostingInput from "@modules/transaction/infra/inputs/percentage-capital-inflow-posting.input";
 import { JwtAuthGuard } from "@modules/user/infra/services/guards/jwt-auth.guard";
 import { GetUserId } from "@modules/user/infra/services/decorators/get-user.decorator";
 import { ITransaction } from "@modules/shared";
-import PostingToBenefitInput from "../inputs/posting-to-benefit.input";
+import PostingToBenefitInput from "@modules/transaction/infra/inputs/posting-to-benefit.input";
+import CreateExpenseInput from "@modules/transaction/infra/inputs/create-expense.input";
 
-@Resolver(() => TransactionType)
+@Resolver(() => BoxTransactionType)
 export class TransactionResolver { 
 
 	constructor (
@@ -29,7 +30,7 @@ export class TransactionResolver {
 		return isSuccess;
 	}
 
-	@Query(() => [TransactionType])
+	@Query(() => [BoxTransactionType])
 	@UseGuards(JwtAuthGuard)
 	async getTransactions (
 		@GetUserId() userId: string,
@@ -46,6 +47,19 @@ export class TransactionResolver {
 		const isSuccess = true;
 		
 		await this.transactionService.postingToBenefit({ ...args, userId });
+
+		return isSuccess;
+	}
+
+	@Mutation(() => Boolean)
+	@UseGuards(JwtAuthGuard)
+	async createExpense (
+		@GetUserId() userId: string,
+		@Args(CreateExpenseInput.name) args: CreateExpenseInput
+	): Promise<boolean> {
+		const isSuccess = true;
+		
+		await this.transactionService.createExpense({ ...args, userId });
 
 		return isSuccess;
 	}

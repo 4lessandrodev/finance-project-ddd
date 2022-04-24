@@ -11,9 +11,11 @@ import TransactionQueryService from "./services/queries/transaction-query.servic
 import PercentageCapitalInflowPostingUseCase from "@modules/transaction/application/use-cases/percentage-capital-inflow-posting/percentage-capital-inflow-posting.use-case";
 import CalculationDomainService from "@modules/transaction/domain/services/create-percentage-transaction-calculation.domain-service";
 import { GetTransactionsByUserIdUseCase } from "@modules/transaction/application/use-cases/get-transaction-by-user-id/get-transactions-by-user-id.use-case";
-import CreateBenefitCalculationDomainService from "@modules/transaction/domain/services/create-benefit-calculation.domain-service";
+import CreateSingleCalculationDomainService from "@modules/transaction/domain/services/create-single-calculation.domain-service";
 import PostingToBenefitUseCase from "@modules/transaction/application/use-cases/posting-to-benefit/posting-to-benefit.use-case";
 import CanCreateBenefit from "@modules/transaction/domain/services/can-create-benefit.proxy";
+import CreateExpenseUseCase from "@modules/transaction/application/use-cases/create-expense/create-expense.use-case";
+import CanCreateExpense from "@modules/transaction/domain/services/can-create-expense.proxy";
 
 @Module({
 	imports: [
@@ -43,13 +45,15 @@ import CanCreateBenefit from "@modules/transaction/domain/services/can-create-be
 			useClass: TransactionQueryService
 		},
 		{
-			provide: 'CreateBenefitCalculationDomainService',
-			useClass: CreateBenefitCalculationDomainService
+			provide: 'CreateSingleCalculationDomainService',
+			useClass: CreateSingleCalculationDomainService
 		},
 		GetTransactionsByUserIdUseCase,
-		CreateBenefitCalculationDomainService,
+		CreateExpenseUseCase,
+		CreateSingleCalculationDomainService,
 		PostingToBenefitUseCase,
-		CanCreateBenefit
+		CanCreateBenefit,
+		CanCreateExpense
 	]
 })
 export class TransactionModule { }

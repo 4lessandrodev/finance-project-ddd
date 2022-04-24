@@ -9,13 +9,16 @@ Só pode haver dois tipos de lançamento: "Entrada" ou "Saida".
 ```json
 {
   "user-id": "uuid",
-  "total-value": 100,
   "reason": "valid_reason",
   "payment-date": "2021-01-01 10:00:00",
   "transaction-type": "Entrada | Saida",
   "status": "Pendente | Concluído | Estornado",
   "note": "valid_description",
   "attachment": "url",
+  "total-value": {
+    "value": 100,
+    "currency": "BRL"
+  },
   "transaction-calculations": [
     {
       "budgetBoxName": "valid_name",

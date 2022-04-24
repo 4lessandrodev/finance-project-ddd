@@ -4,10 +4,10 @@ import ITransactionRepository from "@modules/transaction/domain/interfaces/trans
 import { CreateSingleCalculationDto } from "@modules/transaction/domain/services/create-single-calculation.domain-service";
 import TransactionCalculationValueObject from "@modules/transaction/domain/transaction-calculations.value-object";
 import { CurrencyValueObject, DomainId } from "types-ddd";
-import PostingToBenefitDto from "./posting-to-benefit.dto";
-import PostingToBenefitUseCase from "./posting-to-benefit.use-case";
+import CreateExpenseDto from "./create-expense.dto";
+import CreateExpenseUseCase from "./create-expense.use-case";
 
-describe('posting-to-benefit.use-case', () => {
+describe('create-expense.use-case', () => {
 
 	let fakeDomainService: IDomainService<CreateSingleCalculationDto, TransactionCalculationValueObject> = {
 		execute: jest.fn()
@@ -21,9 +21,9 @@ describe('posting-to-benefit.use-case', () => {
 		save: jest.fn(),
 	};
 
-	let useCase = new PostingToBenefitUseCase(fakeRepo, fakeDomainService);
+	let useCase = new CreateExpenseUseCase(fakeRepo, fakeDomainService);
 
-	let validDto: PostingToBenefitDto = {
+	let validDto: CreateExpenseDto = {
 		budgetBoxId: 'valid_id',
 		paymentDate: new Date('2020-01-01 00:00:00'),
 		reason: 'valid_id',
@@ -51,7 +51,7 @@ describe('posting-to-benefit.use-case', () => {
 			save: jest.fn(),
 		};
 	
-		useCase = new PostingToBenefitUseCase(fakeRepo, fakeDomainService);
+		useCase = new CreateExpenseUseCase(fakeRepo, fakeDomainService);
 	
 		validDto = {
 			budgetBoxId: 'valid_id',

@@ -2,7 +2,7 @@ import { Field, Float, InputType } from "@nestjs/graphql";
 import { TransactionStatus, ValidClientTransactionStatusEnum } from "../types/transaction.types";
 
 @InputType()
-export class PostingToBenefitInput {
+export class CreateExpenseInput {
 	@Field(() => Float)
 	total!: number;
 
@@ -25,4 +25,4 @@ export class PostingToBenefitInput {
 	attachment?: string;
 }
 
-export default PostingToBenefitInput;
+export default CreateExpenseInput;

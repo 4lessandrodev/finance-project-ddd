@@ -43,14 +43,14 @@ type CalculationType {
   currency: CurrencyType!
 }
 
-type TransactionType {
+type BoxTransactionType {
   id: ID!
   userId: ID!
   reason: String!
   totalValue: CurrencyType!
   paymentDate: DateTime!
-  transactionType: transactionType!
-  transactionStatus: transactionStatus!
+  transactionType: TransactionTypeEnum!
+  transactionStatus: TransactionStatusEnum!
   transactionCalculations: [CalculationType!]!
   note: String
   attachment: String
@@ -58,13 +58,14 @@ type TransactionType {
   updatedAt: DateTime!
 }
 
-enum transactionType {
+enum TransactionTypeEnum {
   ENTRADA
   SAIDA
   ESTORNO
+  TRANSFERENCIA
 }
 
-enum transactionStatus {
+enum TransactionStatusEnum {
   PENDENTE
   CONCLUIDO
   ESTORNADO
@@ -97,7 +98,7 @@ type Query {
   whoAmI: UserType
   getBudgetBoxes: [BudgetBoxType!]!
   getBudgetBoxById(GetBudgetBoxByIdInput: GetBudgetBoxByIdInput!): BudgetBoxType!
-  getTransactions: [TransactionType!]!
+  getTransactions: [BoxTransactionType!]!
 }
 
 input GetBudgetBoxByIdInput {
@@ -115,6 +116,7 @@ type Mutation {
   changeBudgetName(ChangeBudgetBoxNameInput: ChangeBudgetBoxNameInput!): Boolean!
   percentageCapitalInflowPosting(PercentageCapitalInflowPostingInput: PercentageCapitalInflowPostingInput!): Boolean!
   postingToBenefit(PostingToBenefitInput: PostingToBenefitInput!): Boolean!
+  createExpense(CreateExpenseInput: CreateExpenseInput!): Boolean!
 }
 
 input SignupInput {
@@ -163,17 +165,32 @@ input ChangeBudgetBoxNameInput {
 input PercentageCapitalInflowPostingInput {
   total: Float!
   reason: String!
-  status: transactionStatus!
+  status: TransactionStatus!
   paymentDate: DateTime
   note: String
   attachment: String
+}
+
+enum TransactionStatus {
+  PENDENTE
+  CONCLUIDO
 }
 
 input PostingToBenefitInput {
   total: Float!
   reason: String!
   budgetBoxId: String!
-  status: transactionStatus!
+  status: TransactionStatus!
+  paymentDate: DateTime
+  note: String
+  attachment: String
+}
+
+input CreateExpenseInput {
+  total: Float!
+  reason: String!
+  budgetBoxId: String!
+  status: TransactionStatus!
   paymentDate: DateTime
   note: String
   attachment: String

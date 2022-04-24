@@ -1,7 +1,5 @@
-import {
-	transactionStatus, validTransactionStatusEnum
-} from "@modules/transaction/domain/transaction-status.value-object";
 import { Field, Float, InputType } from "@nestjs/graphql";
+import { TransactionStatus, ValidClientTransactionStatusEnum } from "../types/transaction.types";
 
 @InputType()
 export class PercentageCapitalInflowPostingInput {
@@ -11,8 +9,8 @@ export class PercentageCapitalInflowPostingInput {
 	@Field(() => String)
 	reason!: string;
 
-	@Field(() => validTransactionStatusEnum)
-	status!: transactionStatus;
+	@Field(() => ValidClientTransactionStatusEnum)
+	status!: TransactionStatus;
 
 	@Field(() => Date, { nullable: true })
 	paymentDate?: Date;
