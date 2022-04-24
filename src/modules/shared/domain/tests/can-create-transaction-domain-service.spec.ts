@@ -1,6 +1,7 @@
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
 import { IBudgetBoxConnection } from "../budget-box-connection.interface";
 import CanCreateTransactionDomainService from "../can-create-transaction.domain-service";
+import budgetBoxConnectionMock from "./mocks/budget-box-connection.mock";
 
 describe('can-create-transaction.domain-service', () => {
 
@@ -8,12 +9,7 @@ describe('can-create-transaction.domain-service', () => {
 	const mockBudgetBox = new BudgetBoxMock();
 
 	beforeEach(() => {
-		fakeConnection = {
-			findBudgetBoxesByUserId: jest.fn(),
-			findBudgetBoxByIdAndUserId: jest.fn(),
-			getBudgetBoxesByIds: jest.fn(),
-			updateBudgetBoxesBalance: jest.fn(),
-		};
+		fakeConnection = budgetBoxConnectionMock;
 	});
 
 	it('should can create transaction if total allocate is equal to 100%', async () => {

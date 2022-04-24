@@ -2,16 +2,15 @@ import { IBudgetBoxRepository } from "@modules/budget-box/domain/interfaces/budg
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
 import { ReasonMock } from "@modules/budget-box/domain/tests/mock/reason.mock";
 import { RemoveReasonFromBudgetBoxUseCase } from "./remove-reason-from-budget-box.use-case";
+import budgetBoxMockRepo from "@modules/budget-box/application/mocks/budget-box-repo.mock";
 
 describe('remove-reason-from-budget-box-use-case', () => {
 
-	const fakeRepo: IBudgetBoxRepository = {
-		delete: jest.fn(),
-		exists: jest.fn(),
-		find: jest.fn(),
-		findOne: jest.fn(),
-		save: jest.fn()
-	};
+	let fakeRepo: IBudgetBoxRepository;
+
+	beforeEach(() => {
+		fakeRepo = budgetBoxMockRepo;
+	});
 
 	const mockBudgetBox = new BudgetBoxMock();
 	const reasonMock = new ReasonMock();

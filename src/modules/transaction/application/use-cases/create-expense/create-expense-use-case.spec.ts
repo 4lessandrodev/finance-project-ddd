@@ -1,9 +1,12 @@
 import { IDomainService } from "@modules/shared";
 import TransactionBudgetBoxNameValueObject from "@modules/transaction/domain/budget-box-name.value-object";
 import ITransactionRepository from "@modules/transaction/domain/interfaces/transaction.repository.interface";
-import { CreateSingleCalculationDto } from "@modules/transaction/domain/services/create-single-calculation.domain-service";
+import {
+	CreateSingleCalculationDto
+} from "@modules/transaction/domain/services/create-single-calculation.domain-service";
 import TransactionCalculationValueObject from "@modules/transaction/domain/transaction-calculations.value-object";
 import { CurrencyValueObject, DomainId } from "types-ddd";
+import transactionMockRepo from "@modules/transaction/application/mocks/transaction-repo.mock";
 import CreateExpenseDto from "./create-expense.dto";
 import CreateExpenseUseCase from "./create-expense.use-case";
 
@@ -13,13 +16,7 @@ describe('create-expense.use-case', () => {
 		execute: jest.fn()
 	};
 
-	let fakeRepo: ITransactionRepository = {
-		delete: jest.fn(),
-		exists: jest.fn(),
-		find: jest.fn(),
-		findOne: jest.fn(),
-		save: jest.fn(),
-	};
+	let fakeRepo: ITransactionRepository = transactionMockRepo;
 
 	let useCase = new CreateExpenseUseCase(fakeRepo, fakeDomainService);
 
@@ -43,13 +40,7 @@ describe('create-expense.use-case', () => {
 			execute: jest.fn()
 		};
 	
-		fakeRepo = {
-			delete: jest.fn(),
-			exists: jest.fn(),
-			find: jest.fn(),
-			findOne: jest.fn(),
-			save: jest.fn(),
-		};
+		fakeRepo = transactionMockRepo;
 	
 		useCase = new CreateExpenseUseCase(fakeRepo, fakeDomainService);
 	
@@ -67,6 +58,8 @@ describe('create-expense.use-case', () => {
 			budgetBoxName: TransactionBudgetBoxNameValueObject.create('valid').getResult(),
 			currency: CurrencyValueObject.create({ value: 100, currency: 'BRL' }).getResult()
 		}).getResult();
+
+		jest.spyOn(fakeRepo, 'save').mockClear();
 	});
 
 	it('should create a valid transaction with success', async () => {

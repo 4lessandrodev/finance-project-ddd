@@ -4,14 +4,16 @@ import { Inject } from "@nestjs/common";
 import { IBudgetBoxConnection } from "./budget-box-connection.interface";
 import { CURRENCY } from "@config/env";
 
-interface IBoxes {
+export interface IBoxes {
 	budgetBoxId: DomainId;
 	value: CurrencyValueObject;
 }
 
+export type OperationType = 'SUM' | 'SUBTRACT';
+
 export interface UpdateBudgetBoxBalanceDto {
-	budgetBoxes: IBoxes[]
-	operationType: 'SUM' | 'SUBTRACT'
+	budgetBoxes: IBoxes[];
+	operationType: OperationType;
 }
 
 export class UpdateBudgetBoxBalanceDomainService implements IDomainService<UpdateBudgetBoxBalanceDto, Result<void>>{

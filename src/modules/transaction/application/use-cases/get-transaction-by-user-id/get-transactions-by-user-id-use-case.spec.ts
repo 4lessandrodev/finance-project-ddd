@@ -1,11 +1,10 @@
 import { ITransactionQueryService } from "@modules/transaction/infra/services/queries/transaction-query.interface";
+import transactionQueryServiceMock from "@modules/transaction/application/mocks/transaction-query-service.mock";
 import { GetTransactionsByUserIdUseCase } from "./get-transactions-by-user-id.use-case";
 
 describe('get-transactions-by-user-id.use-case', () => {
 
-	const fakeQueryService: ITransactionQueryService = {
-		getTransactionsByUserId: jest.fn()
-	};
+	const fakeQueryService: ITransactionQueryService = transactionQueryServiceMock;
 
 	it('should get transactions with success', async () => {
 

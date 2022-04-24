@@ -1,5 +1,6 @@
 import { IBudgetBoxRepository } from "@modules/budget-box/domain/interfaces/budget-box.repository.interface";
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
+import budgetBoxMockRepo from "@modules/budget-box/application/mocks/budget-box-repo.mock";
 import { ChangeBudgetBoxPercentageUseCase } from "./change-budget-box-percentage.use-case";
 
 describe('change-budget-box-percentage.use-case', () => {
@@ -8,13 +9,7 @@ describe('change-budget-box-percentage.use-case', () => {
 	let budgetRepoMock: IBudgetBoxRepository;
 
 	beforeEach(() => {
-		budgetRepoMock = {
-			delete: jest.fn(),
-			exists: jest.fn(),
-			find: jest.fn(),
-			findOne: jest.fn(),
-			save: jest.fn(),
-		};
+		budgetRepoMock = budgetBoxMockRepo;
 	});
 
 	it('should change percentage with success', async () => {

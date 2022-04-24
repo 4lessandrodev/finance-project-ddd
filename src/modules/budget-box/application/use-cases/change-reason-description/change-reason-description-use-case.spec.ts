@@ -2,6 +2,7 @@ import { IBudgetBoxRepository } from "@modules/budget-box/domain/interfaces/budg
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
 import { ReasonMock } from "@modules/budget-box/domain/tests/mock/reason.mock";
 import ChangeReasonDescriptionUseCase from "./change-reason-description.use-case";
+import budgetBoxMockRepo from "@modules/budget-box/application/mocks/budget-box-repo.mock";
 
 describe('change-reason-description.use-case', () => {
 
@@ -10,13 +11,7 @@ describe('change-reason-description.use-case', () => {
 	const reasonMock = new ReasonMock();
 
 	beforeEach(() => {
-		budgetBoxRepo = {
-			delete: jest.fn(),
-			save: jest.fn(),
-			findOne: jest.fn(),
-			find: jest.fn(),
-			exists: jest.fn(),
-		};
+		budgetBoxRepo = budgetBoxMockRepo;
 	});
 
 	it('should fails if reason does not exists', async () => {

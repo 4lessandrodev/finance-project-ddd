@@ -1,4 +1,5 @@
 import { IBudgetBoxConnection } from "@modules/shared";
+import budgetBoxConnectionMock from "@modules/shared/domain/tests/mocks/budget-box-connection.mock";
 import CanCreateBenefit from "../can-create-benefit.proxy";
 
 describe('can-create-benefit.proxy', () => {
@@ -8,12 +9,7 @@ describe('can-create-benefit.proxy', () => {
 
 	beforeEach(() => {
 
-		connection = {
-			findBudgetBoxByIdAndUserId: jest.fn(),
-			findBudgetBoxesByUserId: jest.fn(),
-			updateBudgetBoxesBalance: jest.fn(),
-			getBudgetBoxesByIds: jest.fn(),
-		};
+		connection = budgetBoxConnectionMock;
 		service = new CanCreateBenefit(connection);
 	});
 

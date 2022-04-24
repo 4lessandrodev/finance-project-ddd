@@ -1,19 +1,14 @@
 import { IBudgetBoxRepository } from "@modules/budget-box/domain/interfaces/budget-box.repository.interface";
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
 import ChangeBudgetBoxNameUseCase from "./change-budget-box-name.use-case";
+import budgetBoxMockRepo from "@modules/budget-box/application/mocks/budget-box-repo.mock";
 
 describe('change-budget-box-name.use-case', () => {
 
 	let fakeRepo: IBudgetBoxRepository;
 
 	beforeEach(() => {
-		fakeRepo = {
-			delete: jest.fn(),
-			exists: jest.fn(),
-			find: jest.fn(),
-			findOne: jest.fn(),
-			save: jest.fn(),
-		};
+		fakeRepo = budgetBoxMockRepo;
 	});
 
 	const mockBudgetBox = new BudgetBoxMock();

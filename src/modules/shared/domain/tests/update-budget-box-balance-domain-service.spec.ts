@@ -4,18 +4,14 @@ import { CurrencyValueObject, DomainId } from "types-ddd";
 import { IBudgetBoxConnection } from "@shared/domain/budget-box-connection.interface";
 import UpdateBudgetBoxBalanceDomainService,
 { UpdateBudgetBoxBalanceDto } from "@shared/domain/update-budget-box-balance.domain-service";
+import budgetBoxConnectionMock from "./mocks/budget-box-connection.mock";
 
 describe('update-budget-box-balance.domain-service', () => {
 
 	let fakeConnection: IBudgetBoxConnection;
 
 	beforeEach(() => {
-		fakeConnection = {
-			findBudgetBoxByIdAndUserId: jest.fn(),
-			findBudgetBoxesByUserId: jest.fn(),
-			getBudgetBoxesByIds: jest.fn(),
-			updateBudgetBoxesBalance: jest.fn(),
-		};
+		fakeConnection = budgetBoxConnectionMock;
 	});
 
 	it('should sum and update documents with success', async () => {

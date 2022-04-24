@@ -1,6 +1,7 @@
 import { IBudgetBoxRepository } from "@modules/budget-box/domain/interfaces/budget-box.repository.interface";
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
 import AddReasonToBudgetBoxUseCase from "./add-reason-to-budget-box.use-case";
+import budgetBoxMockRepo from "@modules/budget-box/application/mocks/budget-box-repo.mock";
 
 describe('add-reason-to-budget-box.use-case', () => {
 
@@ -8,13 +9,7 @@ describe('add-reason-to-budget-box.use-case', () => {
 	const budgetBoxMock = new BudgetBoxMock();
 
 	beforeEach(() => {
-		budgetBoxRepo = {
-			delete: jest.fn(),
-			save: jest.fn(),
-			findOne: jest.fn(),
-			find: jest.fn(),
-			exists: jest.fn(),
-		};
+		budgetBoxRepo = budgetBoxMockRepo;
 	});
 
 	it('should add a valid reason to a budget box', async () => {
