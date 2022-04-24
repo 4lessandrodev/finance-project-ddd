@@ -22,10 +22,10 @@ export class CanCreateExpense implements IDomainService<CanCreateBenefitDto, Res
 			return Result.fail('Budget Box Does Not Exists', 'USE_PROXY');
 		}
 
-		const enoughBalance = budgetBox.balanceAvailable >= data.total;
+		const enoughBalance = budgetBox.balanceAvailable.value >= data.total;
 
 		if (!enoughBalance) {
-			return Result.fail(`Insufficient Funds. Available: ${budgetBox.balanceAvailable}`, 'USE_PROXY');
+			return Result.fail(`Insufficient Funds. Available: ${budgetBox.balanceAvailable.value}`, 'USE_PROXY');
 		}
 
 		return Result.ok(enoughBalance);

@@ -5,9 +5,12 @@ import { IBudgetBoxQueryService } from "@modules/budget-box/infra/services/queri
 describe('can-allocate-percentage-to-budget-box.domain-service', () => {
 	const currentDate = new Date('2022-01-01 00:00:00');
 
-	const data = {
+	const data: IBudgetBox = {
 		id: 'valid_id',
-		balanceAvailable: 100,
+		balanceAvailable: {
+			value: 100,
+			currency: 'BRL'
+		},
 		budgetPercentage: 10,
 		createdAt: currentDate,
 		description: 'valid_description',

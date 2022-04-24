@@ -14,10 +14,22 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type BudgetBoxCurrencyType {
+  value: Float!
+  currency: BudgetBoxCurrencies!
+}
+
+enum BudgetBoxCurrencies {
+  BRL
+  USD
+  EUR
+  JPY
+}
+
 type BudgetBoxType {
   id: ID!
   description: String!
-  balanceAvailable: Float!
+  balanceAvailable: BudgetBoxCurrencyType!
   isPercentage: Boolean!
   budgetPercentage: Float!
   reasons: [ReasonType!]!
@@ -27,17 +39,17 @@ type BudgetBoxType {
 
 type CurrencyType {
   value: Float!
-  currency: currency!
+  currency: TransactionCurrencies!
 }
 
-enum currency {
+enum TransactionCurrencies {
   BRL
   USD
   EUR
   JPY
 }
 
-type CalculationType {
+type TransactionCalculationType {
   budgetBoxName: String!
   budgetBoxId: ID!
   currency: CurrencyType!
@@ -51,7 +63,7 @@ type BoxTransactionType {
   paymentDate: DateTime!
   transactionType: TransactionTypeEnum!
   transactionStatus: TransactionStatusEnum!
-  transactionCalculations: [CalculationType!]!
+  transactionCalculations: [TransactionCalculationType!]!
   note: String
   attachment: String
   createdAt: DateTime!

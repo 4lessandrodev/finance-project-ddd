@@ -1,4 +1,4 @@
-import { IBudgetBox, IReason } from "@shared/index";
+import { IBudgetBox, ICurrency, IReason } from "@shared/index";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
@@ -16,8 +16,8 @@ export class BudgetBox implements IBudgetBox {
 	@Prop({ required: true, type: String })
 	description!: string;
 
-	@Prop({ required: true, type: Number })
-	balanceAvailable!: number;
+	@Prop({ required: true, type: Object })
+	balanceAvailable!: ICurrency;
 
 	@Prop({ required: true, type: Boolean })
 	isPercentage!: boolean;

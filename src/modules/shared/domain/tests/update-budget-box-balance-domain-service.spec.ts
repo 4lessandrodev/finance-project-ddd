@@ -12,6 +12,7 @@ describe('update-budget-box-balance.domain-service', () => {
 
 	beforeEach(() => {
 		fakeConnection = budgetBoxConnectionMock;
+		jest.spyOn(fakeConnection, 'updateBudgetBoxesBalance').mockClear();
 	});
 
 	it('should sum and update documents with success', async () => {
@@ -25,12 +26,18 @@ describe('update-budget-box-balance.domain-service', () => {
 
 		const models = data.map((model) => ({
 			id: model.budgetBoxId.uid,
-			balanceAvailable: model.value.value
+			balanceAvailable: {
+				currency: 'BRL',
+				value: model.value.value,
+			}
 		}));
 
 		const expectedModels = models.map((model) => ({
 			id: model.id,
-			balanceAvailable: model.balanceAvailable + model.balanceAvailable
+			balanceAvailable: {
+				currency: 'BRL',
+				value: model.balanceAvailable.value + model.balanceAvailable.value,
+			}
 		}));
 
 		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection);
@@ -41,12 +48,13 @@ describe('update-budget-box-balance.domain-service', () => {
 		};
 
 		jest.spyOn(fakeConnection, 'getBudgetBoxesByIds').mockResolvedValueOnce(models as IBudgetBox[]);
+		const saveSpy = jest.spyOn(fakeConnection, 'updateBudgetBoxesBalance');
 		jest.spyOn(fakeConnection, 'updateBudgetBoxesBalance').mockResolvedValueOnce(true);
 
 		const result = await service.execute(dto);
 		
 		expect(result.isSuccess).toBeTruthy();
-		expect(models).toEqual(expectedModels);
+		expect(saveSpy).toHaveBeenCalledWith(expectedModels);
 	});
 
 	it('should subtract and update documents with success', async () => {
@@ -60,12 +68,18 @@ describe('update-budget-box-balance.domain-service', () => {
 
 		const models = data.map((model) => ({
 			id: model.budgetBoxId.uid,
-			balanceAvailable: model.value.value
+			balanceAvailable: {
+				value: model.value.value,
+				currency: 'BRL'
+			}
 		}));
 
 		const expectedModels = models.map((model) => ({
 			id: model.id,
-			balanceAvailable: model.balanceAvailable - model.balanceAvailable
+			balanceAvailable: {
+				value: model.balanceAvailable.value - model.balanceAvailable.value,
+				currency: 'BRL'
+			}
 		}));
 
 		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection);
@@ -74,14 +88,14 @@ describe('update-budget-box-balance.domain-service', () => {
 			operationType: 'SUBTRACT',
 			budgetBoxes: data
 		};
-
+		const saveSpy = jest.spyOn(fakeConnection, 'updateBudgetBoxesBalance');
 		jest.spyOn(fakeConnection, 'getBudgetBoxesByIds').mockResolvedValueOnce(models as IBudgetBox[]);
 		jest.spyOn(fakeConnection, 'updateBudgetBoxesBalance').mockResolvedValueOnce(true);
 
 		const result = await service.execute(dto);
 		
 		expect(result.isSuccess).toBeTruthy();
-		expect(models).toEqual(expectedModels);
+		expect(saveSpy).toHaveBeenCalledWith(expectedModels);
 	});
 
 	it('fails if connection throws', async () => {
@@ -95,7 +109,10 @@ describe('update-budget-box-balance.domain-service', () => {
 
 		const models = data.map((model) => ({
 			id: model.budgetBoxId.uid,
-			balanceAvailable: model.value.value
+			balanceAvailable: {
+				value: model.value.value,
+				currency: 'BRL'
+			}
 		}));
 
 		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection);
