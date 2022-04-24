@@ -6,6 +6,7 @@ import { TransactionCalculationValueObject } from './transaction-calculations.va
 import { TransactionNoteValueObject } from './transaction-note.value-object';
 import { AttachmentPathValueObject } from './attachment-path.value-object';
 import TransactionReasonDescriptionValueObject from './transaction-reason.value-object';
+import TransactionCreatedEvent from './event/transaction-created.event';
 
 export interface TransactionAggregateProps extends BaseDomainEntity {
 	userId: DomainId;
@@ -111,9 +112,13 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
 		const currency = this.calculate(props.transactionCalculations);
 		props.totalValue = currency;
 
-		return Result.ok<TransactionAggregate>(
-			new TransactionAggregate(props),
-		);
+		const transaction = new TransactionAggregate(props);
+
+		if (transaction.id.isNew) {
+			transaction.addDomainEvent(new TransactionCreatedEvent(transaction));
+		}
+
+		return Result.ok<TransactionAggregate>(transaction);
 	}
 }
 

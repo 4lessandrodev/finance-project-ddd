@@ -8,6 +8,7 @@ import {
 } from "@modules/transaction/domain/transaction-type.value-object";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
+import { DomainEvents, DomainId } from "types-ddd";
 
 export type TransactionDocument = Transaction & Document;
 
@@ -51,3 +52,9 @@ export class Transaction implements ITransaction {
 }
 
 export const TransactionSchema = SchemaFactory.createForClass(Transaction);
+
+// Execute hooks after create transaction on database
+TransactionSchema.post('save', (model: Transaction) => {
+	const id = DomainId.create(model.id);
+	DomainEvents.dispatchEventsForAggregate(id.value);
+});

@@ -1,4 +1,4 @@
-import { BaseConnection, BudgetBoxConnection, SharedModule } from "@modules/shared";
+import { SharedModule } from "@modules/shared";
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
 import { Transaction, TransactionSchema } from "@modules/transaction/infra/entities/transaction.schema";
@@ -16,11 +16,10 @@ import PostingToBenefitUseCase from "@modules/transaction/application/use-cases/
 import CanCreateBenefit from "@modules/transaction/domain/services/can-create-benefit.proxy";
 import CreateExpenseUseCase from "@modules/transaction/application/use-cases/create-expense/create-expense.use-case";
 import CanCreateExpense from "@modules/transaction/domain/services/can-create-expense.proxy";
+import AfterTransactionCreated from "@modules/transaction/domain/subscriptions/after-transaction-created.subscription";
 
 @Module({
 	imports: [
-		BaseConnection,
-		BudgetBoxConnection,
 		SharedModule,
 		MongooseModule.forFeature([
 			{ name: Transaction.name, schema: TransactionSchema }
@@ -53,7 +52,8 @@ import CanCreateExpense from "@modules/transaction/domain/services/can-create-ex
 		CreateSingleCalculationDomainService,
 		PostingToBenefitUseCase,
 		CanCreateBenefit,
-		CanCreateExpense
+		CanCreateExpense,
+		AfterTransactionCreated
 	]
 })
 export class TransactionModule { }
