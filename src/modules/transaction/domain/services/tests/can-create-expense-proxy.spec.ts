@@ -10,7 +10,9 @@ describe('can-create-expense.proxy', () => {
 
 		connection = {
 			findBudgetBoxByIdAndUserId: jest.fn(),
-			findBudgetBoxesByUserId: jest.fn()
+			findBudgetBoxesByUserId: jest.fn(),
+			getBudgetBoxesByIds: jest.fn(),
+			updateBudgetBoxesBalance: jest.fn(),
 		};
 		service = new CanCreateExpense(connection);
 	});

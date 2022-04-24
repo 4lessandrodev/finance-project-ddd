@@ -6,7 +6,9 @@ describe('create-single-calculation.domain-service', () => {
 
 	const fakeConnection: IBudgetBoxConnection = {
 		findBudgetBoxByIdAndUserId: jest.fn(),
-		findBudgetBoxesByUserId: jest.fn()
+		findBudgetBoxesByUserId: jest.fn(),
+		getBudgetBoxesByIds: jest.fn(),
+		updateBudgetBoxesBalance: jest.fn(),
 	};
 
 	it('should create a valid calculation if budget box is not found', async () => {

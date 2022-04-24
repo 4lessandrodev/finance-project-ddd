@@ -10,7 +10,9 @@ describe('can-create-benefit.proxy', () => {
 
 		connection = {
 			findBudgetBoxByIdAndUserId: jest.fn(),
-			findBudgetBoxesByUserId: jest.fn()
+			findBudgetBoxesByUserId: jest.fn(),
+			updateBudgetBoxesBalance: jest.fn(),
+			getBudgetBoxesByIds: jest.fn(),
 		};
 		service = new CanCreateBenefit(connection);
 	});

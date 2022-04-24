@@ -10,7 +10,9 @@ describe('can-create-transaction.domain-service', () => {
 	beforeEach(() => {
 		fakeConnection = {
 			findBudgetBoxesByUserId: jest.fn(),
-			findBudgetBoxByIdAndUserId: jest.fn()
+			findBudgetBoxByIdAndUserId: jest.fn(),
+			getBudgetBoxesByIds: jest.fn(),
+			updateBudgetBoxesBalance: jest.fn(),
 		};
 	});
 
