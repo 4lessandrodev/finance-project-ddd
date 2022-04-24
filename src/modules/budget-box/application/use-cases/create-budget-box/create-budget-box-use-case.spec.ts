@@ -2,6 +2,7 @@ import { IBudgetBoxRepository } from "@modules/budget-box/domain/interfaces/budg
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
 import CreateBudgetBoxDto from "./create-budget-box.dto";
 import { CreateBudgetBoxUseCase } from "./create-budget-box.use-case";
+import budgetBoxMockRepo from "@modules/budget-box/application/mocks/budget-box-repo.mock";
 
 describe('create-budget-box.use-case', () => {
 
@@ -10,13 +11,8 @@ describe('create-budget-box.use-case', () => {
 	let budgetRepoMock: IBudgetBoxRepository;
 
 	beforeEach(() => {
-		budgetRepoMock = {
-			delete: jest.fn(),
-			exists: jest.fn(),
-			find: jest.fn(),
-			findOne: jest.fn(),
-			save: jest.fn(),
-		};
+		budgetRepoMock = budgetBoxMockRepo;
+		jest.spyOn(budgetRepoMock, 'save').mockClear();
 	});
 
 	const budgetModelMock = budgetBoxMock.model();

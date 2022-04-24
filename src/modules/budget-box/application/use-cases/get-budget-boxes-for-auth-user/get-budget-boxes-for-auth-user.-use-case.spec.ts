@@ -1,16 +1,14 @@
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
 import { IBudgetBoxQueryService } from "@modules/budget-box/infra/services/queries/budget-box-query.interface";
 import { GetBudgetBoxesForAuthUserUseCase } from "./get-budget-boxes-for-auth-user.use-case";
+import budgetBoxQueryServiceMock from "@modules/budget-box/application/mocks/budget-box-query-service.mock";
 
 describe('get-budget-boxes-for-auth-user', () => {
 
 	let fakeQueryService: IBudgetBoxQueryService;
 
 	beforeEach(() => {
-		fakeQueryService = {
-			getBudgetBoxesByOwnerId: jest.fn(),
-			getBudgetBoxByIdAndOwnerId: jest.fn()
-		};
+		fakeQueryService = budgetBoxQueryServiceMock;
 	});
 
 	it('should get a empty array if none budget box were found', async () => {

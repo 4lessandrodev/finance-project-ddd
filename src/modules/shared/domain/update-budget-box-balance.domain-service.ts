@@ -4,14 +4,16 @@ import { Inject } from "@nestjs/common";
 import { IBudgetBoxConnection } from "./budget-box-connection.interface";
 import { CURRENCY } from "@config/env";
 
-interface IBoxes {
+export interface IBoxes {
 	budgetBoxId: DomainId;
 	value: CurrencyValueObject;
 }
 
+export type OperationType = 'SUM' | 'SUBTRACT';
+
 export interface UpdateBudgetBoxBalanceDto {
-	budgetBoxes: IBoxes[]
-	operationType: 'SUM' | 'SUBTRACT'
+	budgetBoxes: IBoxes[];
+	operationType: OperationType;
 }
 
 export class UpdateBudgetBoxBalanceDomainService implements IDomainService<UpdateBudgetBoxBalanceDto, Result<void>>{
@@ -27,7 +29,8 @@ export class UpdateBudgetBoxBalanceDomainService implements IDomainService<Updat
 			const budgetBoxesDocuments = await this.connection.getBudgetBoxesByIds(ids);
 
 			const calculateValueToApply = (currentDocumentValue: number, eventValue: CurrencyValueObject): number => {
-				const currency = CurrencyValueObject.create({ value: currentDocumentValue, currency: CURRENCY }).getResult();
+				const currency = CurrencyValueObject
+					.create({ value: currentDocumentValue, currency: CURRENCY }).getResult();
 				if (operationType === 'SUM') {
 					return currency.add(eventValue.value).getResult().value;
 				} 
@@ -36,13 +39,14 @@ export class UpdateBudgetBoxBalanceDomainService implements IDomainService<Updat
 
 			const documentToUpdate = budgetBoxesDocuments.map((model) => {
 				const eventData = budgetBoxes.find((box) => box.budgetBoxId.uid === model.id);
-				if (eventData) {
-					const totalToApply = calculateValueToApply(model.balanceAvailable, eventData.value);
-					model.balanceAvailable = totalToApply;
+				if (!eventData) {
+					return model;
 				}
-				return model;
+				const totalToApply = calculateValueToApply(model.balanceAvailable.value, eventData.value);
+				const balanceAvailable = { ...model.balanceAvailable, value: totalToApply };
+				return Object.assign({}, model, { balanceAvailable });
 			});
-
+			
 			const isSuccess = await this.connection.updateBudgetBoxesBalance(documentToUpdate);
 
 			if (isSuccess) {

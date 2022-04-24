@@ -20,7 +20,7 @@ export class BudgetBoxMock implements IMockEntity<BudgetBoxAggregate, IBudgetBox
 		const ownerId = DomainId.create(props?.ownerId ?? 'valid_owner_id');
 
 		const balanceAvailable = CurrencyValueObject.create({
-			value: props?.balanceAvailable ?? 1000,
+			value: props?.balanceAvailable?.value ?? 1000,
 			currency: CURRENCY
 		});
 
@@ -60,7 +60,7 @@ export class BudgetBoxMock implements IMockEntity<BudgetBoxAggregate, IBudgetBox
 	model (props?: Partial<IBudgetBox>): IBudgetBox {
 		return {
 			id: props?.id ?? 'valid_id',
-			balanceAvailable: props?.balanceAvailable ?? 1000,
+			balanceAvailable: props?.balanceAvailable ?? { value:1000, currency: CURRENCY },
 			budgetPercentage: props?.budgetPercentage ?? DEFAULT_BUDGET_PERCENTAGE_VALUE,
 			description: props?.description ?? 'valid_description',
 			isPercentage: props?.isPercentage ?? false,

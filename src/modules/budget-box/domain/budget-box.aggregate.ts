@@ -38,8 +38,8 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
 		return this.props.description;
 	}
 
-	get balanceAvailable (): number {
-		return this.props.balanceAvailable.value;
+	get balanceAvailable (): CurrencyValueObject {
+		return this.props.balanceAvailable;
 	}
 
 	get isPercentage (): boolean {

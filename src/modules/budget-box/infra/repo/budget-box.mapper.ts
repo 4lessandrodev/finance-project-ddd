@@ -20,7 +20,7 @@ export class BudgetBoxToDomainMapper implements TMapper<IBudgetBox, BudgetBoxAgg
 
 		const balanceAvailableOrError = CurrencyValueObject.create({
 			currency: CURRENCY,
-			value: target.balanceAvailable
+			value: target.balanceAvailable.value
 		});
 
 		const budgetDescriptionOrError = BudgetDescriptionValueObject.create(target.description);

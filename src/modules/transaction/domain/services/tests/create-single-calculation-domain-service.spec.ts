@@ -1,15 +1,11 @@
 import { IBudgetBoxConnection } from "@modules/shared";
 import TransactionCalculationValueObject from "@modules/transaction/domain/transaction-calculations.value-object";
 import CreateBenefitCalculationDomainService from "@modules/transaction/domain/services/create-single-calculation.domain-service";
+import budgetBoxConnectionMock from "@modules/shared/domain/tests/mocks/budget-box-connection.mock";
 
 describe('create-single-calculation.domain-service', () => {
 
-	const fakeConnection: IBudgetBoxConnection = {
-		findBudgetBoxByIdAndUserId: jest.fn(),
-		findBudgetBoxesByUserId: jest.fn(),
-		getBudgetBoxesByIds: jest.fn(),
-		updateBudgetBoxesBalance: jest.fn(),
-	};
+	const fakeConnection: IBudgetBoxConnection = budgetBoxConnectionMock;
 
 	it('should create a valid calculation if budget box is not found', async () => {
 

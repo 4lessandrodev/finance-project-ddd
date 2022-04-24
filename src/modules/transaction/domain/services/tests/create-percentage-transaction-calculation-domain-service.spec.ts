@@ -1,4 +1,5 @@
 import { IBudgetBox, IBudgetBoxConnection } from "@modules/shared";
+import budgetBoxConnectionMock from "@modules/shared/domain/tests/mocks/budget-box-connection.mock";
 import CreatePercentageTransactionCalculationDomainService from "../create-percentage-transaction-calculation.domain-service";
 
 describe('create-percentage-transaction-calculation.domain-service', () => {
@@ -6,12 +7,7 @@ describe('create-percentage-transaction-calculation.domain-service', () => {
 	let fakeConnection: IBudgetBoxConnection;
 
 	beforeEach(() => {
-		fakeConnection = {
-			findBudgetBoxesByUserId: jest.fn(),
-			findBudgetBoxByIdAndUserId: jest.fn(),
-			updateBudgetBoxesBalance: jest.fn(),
-			getBudgetBoxesByIds: jest.fn(),
-		};
+		fakeConnection = budgetBoxConnectionMock;
 	});
 
 	it('should calculate percentage for each budget box', async () => {

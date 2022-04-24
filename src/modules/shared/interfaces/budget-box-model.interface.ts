@@ -1,4 +1,5 @@
 import IReason from "./reason-model.interface";
+import { ICurrency } from "./transaction-model.interface";
 
 export interface IBudgetBox {
 	
@@ -8,7 +9,7 @@ export interface IBudgetBox {
 
 	description: string;
 
-	balanceAvailable: number;
+	balanceAvailable: ICurrency;
 
 	isPercentage: boolean;
 

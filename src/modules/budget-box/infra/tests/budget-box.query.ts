@@ -5,7 +5,9 @@ export const RESULT = gql``;
 export const BUDGET_BOX_FRAGMENT = gql`
 	fragment BudgetBox on BudgetBoxType {
 		id
-		balanceAvailable
+		balanceAvailable {
+			value
+		}
 		budgetPercentage
 		description
 		reasons {

@@ -6,6 +6,7 @@ import PercentageCapitalInflowPostingUseCase from "./percentage-capital-inflow-p
 import Dto from "./percentage-capital-inflow-posting.dto";
 import { CurrencyValueObject, DomainId } from "types-ddd";
 import TransactionBudgetBoxNameValueObject from "@modules/transaction/domain/budget-box-name.value-object";
+import transactionMockRepo from "@modules/transaction/application/mocks/transaction-repo.mock";
 
 describe('percentage-capital-inflow-posting.use-case', () => {
 
@@ -16,14 +17,9 @@ describe('percentage-capital-inflow-posting.use-case', () => {
 		fakeService = {
 			execute: jest.fn()
 		};
-
-		fakeRepo = {
-			delete: jest.fn(),
-			exists: jest.fn(),
-			find: jest.fn(),
-			findOne: jest.fn(),
-			save: jest.fn(),
-		};
+		
+		fakeRepo = transactionMockRepo;
+		jest.spyOn(fakeRepo, 'save').mockClear();
 	});
 
 	const validDto:Dto = {

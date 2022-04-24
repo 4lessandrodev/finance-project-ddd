@@ -24,30 +24,30 @@ registerEnumType(validTransactionStatusEnum, {
 	name: 'TransactionStatusEnum',
 });
 
-enum Currencies {
+enum TransactionCurrencies {
 	'BRL' = 'BRL',
 	'USD' = 'USD',
 	'EUR' = 'EUR',
 	'JPY' = 'JPY'
 }
 
-registerEnumType(Currencies, {
-	name: 'currency',
+registerEnumType(TransactionCurrencies, {
+	name: 'TransactionCurrencies',
 });
 
-type currency = keyof typeof Currencies;
+type currency = keyof typeof TransactionCurrencies;
 
 @ObjectType()
 export class CurrencyType {
 	@Field(() => Float)
 	value!: number;
 
-	@Field(() => Currencies)
+	@Field(() => TransactionCurrencies)
 	currency!: currency;
 }
 
 @ObjectType()
-export class CalculationType {
+export class TransactionCalculationType {
 	@Field(() => String)
 	budgetBoxName!: string;
 
@@ -81,7 +81,7 @@ export class BoxTransactionType {
 	@Field(() => validTransactionStatusEnum)
 	transactionStatus!: transactionStatus;
 	
-	@Field(() => [CalculationType])
+	@Field(() => [TransactionCalculationType])
 	transactionCalculations!: ICalculation[];
 
 	@Field(() => String, { nullable: true })
