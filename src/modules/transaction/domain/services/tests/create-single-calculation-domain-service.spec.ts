@@ -1,8 +1,8 @@
 import { IBudgetBoxConnection } from "@modules/shared";
 import TransactionCalculationValueObject from "@modules/transaction/domain/transaction-calculations.value-object";
-import CreateBenefitCalculationDomainService from "@modules/transaction/domain/services/create-benefit-calculation.domain-service";
+import CreateBenefitCalculationDomainService from "@modules/transaction/domain/services/create-single-calculation.domain-service";
 
-describe('create-benefit-calculation.domain-service', () => {
+describe('create-single-calculation.domain-service', () => {
 
 	const fakeConnection: IBudgetBoxConnection = {
 		findBudgetBoxByIdAndUserId: jest.fn(),

@@ -2,9 +2,10 @@ import { ErrorMessages } from '@shared/index';
 import { ValueObject, Result } from 'types-ddd';
 
 export enum validTransactionTypeEnum {
-  'ENTRADA' = 'ENTRADA',
-  'SAIDA' = 'SAIDA',
-  'ESTORNO' = 'ESTORNO',
+	'ENTRADA' = 'ENTRADA',
+	'SAIDA' = 'SAIDA',
+	'ESTORNO' = 'ESTORNO',
+	'TRANSFERENCIA' = 'TRANSFERENCIA'
 }
 
 export type transactionType = keyof typeof validTransactionTypeEnum;

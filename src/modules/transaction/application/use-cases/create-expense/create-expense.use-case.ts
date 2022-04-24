@@ -13,9 +13,9 @@ import TransactionTypeValueObject from "@modules/transaction/domain/transaction-
 import TransactionAggregate from "@modules/transaction/domain/transaction.aggregate";
 import { Inject } from "@nestjs/common";
 import { ChangesObserver, CurrencyValueObject, DateValueObject, DomainId, IUseCase, Result } from "types-ddd";
-import PostingToBenefitDto from "./posting-to-benefit.dto";
+import CreateExpenseDto from "./create-expense.dto";
 
-export class PostingToBenefitUseCase implements IUseCase<PostingToBenefitDto, Result<void>>{
+export class CreateExpenseUseCase implements IUseCase<CreateExpenseDto, Result<void>>{
 
 	constructor (
 		@Inject('TransactionRepository')
@@ -25,13 +25,14 @@ export class PostingToBenefitUseCase implements IUseCase<PostingToBenefitDto, Re
 		private readonly domainService: IDomainService<CreateSingleCalculationDto, TransactionCalculationValueObject>
 	){}
 
-	async execute (dto: PostingToBenefitDto) : Promise<Result<void, string>> {
+	async execute (dto: CreateExpenseDto): Promise<Result<void, string>> {
 		try {
+
 			const ID = DomainId.create();
 			const paymentDate = DateValueObject.create(dto.paymentDate);
 			const reasonOrError = ReasonDescriptionValueObject.create(dto.reason);
 			const statusOrError = TransactionStatusValueObject.create(dto.status);
-			const transactionTypeOrError = TransactionTypeValueObject.create('ENTRADA');
+			const transactionTypeOrError = TransactionTypeValueObject.create('SAIDA');
 			const userId = DomainId.create(dto.userId);
 			const attachmentOrError = dto.attachment && AttachmentPathValueObject.create(dto.attachment);
 			const noteOrError = dto.note && TransactionNoteValueObject.create(dto.note);
@@ -69,7 +70,7 @@ export class PostingToBenefitUseCase implements IUseCase<PostingToBenefitDto, Re
 				note: noteOrError ? noteOrError.getResult() : undefined,
 				totalValue: totalValueOrError.getResult()
 			});
-
+			
 			if (aggregateOrError.isFailure) {
 				const message = aggregateOrError.errorValue();
 				return Result.fail(message);
@@ -80,11 +81,10 @@ export class PostingToBenefitUseCase implements IUseCase<PostingToBenefitDto, Re
 			await this.transactionRepo.save(aggregate);
 
 			return Result.success();
-
 		} catch (error) {
-			return Result.fail('Internal Server Error On Posting To Benefit Use Case', 'INTERNAL_SERVER_ERROR');
+			return Result.fail('Internal Server Error On Create Expense Use Case', 'INTERNAL_SERVER_ERROR');
 		}
 	};
 }
 
-export default PostingToBenefitUseCase;
+export default CreateExpenseUseCase;
