@@ -15,6 +15,7 @@ import CreateSingleCalculationDomainService from "@modules/transaction/domain/se
 import PostingToBenefitUseCase from "@modules/transaction/application/use-cases/posting-to-benefit/posting-to-benefit.use-case";
 import CanCreateBenefit from "@modules/transaction/domain/services/can-create-benefit.proxy";
 import CreateExpenseUseCase from "@modules/transaction/application/use-cases/create-expense/create-expense.use-case";
+import CanCreateExpense from "@modules/transaction/domain/services/can-create-expense.proxy";
 
 @Module({
 	imports: [
@@ -51,7 +52,8 @@ import CreateExpenseUseCase from "@modules/transaction/application/use-cases/cre
 		CreateExpenseUseCase,
 		CreateSingleCalculationDomainService,
 		PostingToBenefitUseCase,
-		CanCreateBenefit
+		CanCreateBenefit,
+		CanCreateExpense
 	]
 })
 export class TransactionModule { }

@@ -11,6 +11,7 @@ import CanCreateBenefit from "@modules/transaction/domain/services/can-create-be
 import PostingToBenefitDto from "@modules/transaction/application/use-cases/posting-to-benefit/posting-to-benefit.dto";
 import CreateExpenseUseCase from "@modules/transaction/application/use-cases/create-expense/create-expense.use-case";
 import CreateExpenseDto from "@modules/transaction/application/use-cases/create-expense/create-expense.dto";
+import CanCreateExpense from "@modules/transaction/domain/services/can-create-expense.proxy";
 
 @Injectable()
 export class TransactionService {
@@ -32,11 +33,16 @@ export class TransactionService {
 		private readonly canCreateBenefitPosting: CanCreateBenefit,
 
 		@Inject(CreateExpenseUseCase)
-		private readonly createExpenseUseCase: CreateExpenseUseCase
+		private readonly createExpenseUseCase: CreateExpenseUseCase,
+
+		@Inject(CanCreateExpense)
+		private readonly canCreateExpense: CanCreateExpense
 	){}
 
-	async percentageCapitalInflowPosting (dto: PercentageCapitalInflowPostingDto) {
-		const proxy = new BaseProxy(this.canCreateTransactionDomainService, this.percentageCapitalInflowPostingUseCase);
+	async percentageCapitalInflowPosting (dto: PercentageCapitalInflowPostingDto): Promise<void> {
+		const proxy = new BaseProxy<PercentageCapitalInflowPostingDto, void>(
+			this.canCreateTransactionDomainService, this.percentageCapitalInflowPostingUseCase
+		);
 		const result = await proxy.execute(dto);
 		CheckResultInterceptor(result);
 	}
@@ -48,13 +54,16 @@ export class TransactionService {
 	}
 
 	async postingToBenefit (dto: PostingToBenefitDto): Promise<void> {
-		const proxy = new BaseProxy(this.canCreateBenefitPosting, this.postingToBenefitUseCase);
+		const proxy = new BaseProxy<PostingToBenefitDto, void>(
+			this.canCreateBenefitPosting, this.postingToBenefitUseCase
+		);
 		const result = await proxy.execute(dto);
 		CheckResultInterceptor(result);
 	}
 
 	async createExpense (dto: CreateExpenseDto): Promise<void> {
-		const result = await this.createExpenseUseCase.execute(dto);
+		const proxy = new BaseProxy<CreateExpenseDto, void>(this.canCreateExpense, this.createExpenseUseCase);
+		const result = await proxy.execute(dto);
 		CheckResultInterceptor(result);
 	}
 }
