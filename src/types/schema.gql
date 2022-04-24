@@ -99,10 +99,15 @@ type Query {
   getBudgetBoxes: [BudgetBoxType!]!
   getBudgetBoxById(GetBudgetBoxByIdInput: GetBudgetBoxByIdInput!): BudgetBoxType!
   getTransactions: [BoxTransactionType!]!
+  getTransactionById(GetTransactionByIdInput: GetTransactionByIdInput!): BoxTransactionType!
 }
 
 input GetBudgetBoxByIdInput {
   budgetBoxId: String!
+}
+
+input GetTransactionByIdInput {
+  transactionId: String!
 }
 
 type Mutation {

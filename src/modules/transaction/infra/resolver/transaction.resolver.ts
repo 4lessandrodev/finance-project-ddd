@@ -8,6 +8,7 @@ import { GetUserId } from "@modules/user/infra/services/decorators/get-user.deco
 import { ITransaction } from "@modules/shared";
 import PostingToBenefitInput from "@modules/transaction/infra/inputs/posting-to-benefit.input";
 import CreateExpenseInput from "@modules/transaction/infra/inputs/create-expense.input";
+import GetTransactionByIdInput from "@modules/transaction/infra/inputs/get-transaction-by-id.input";
 
 @Resolver(() => BoxTransactionType)
 export class TransactionResolver { 
@@ -62,6 +63,15 @@ export class TransactionResolver {
 		await this.transactionService.createExpense({ ...args, userId });
 
 		return isSuccess;
+	}
+
+	@Query(() => BoxTransactionType)
+	@UseGuards(JwtAuthGuard)
+	async getTransactionById (
+		@GetUserId() userId: string,
+		@Args(GetTransactionByIdInput.name) args: GetTransactionByIdInput
+	): Promise<ITransaction> {
+		return this.transactionService.getTransactionById({ ...args, userId });
 	}
 }
 

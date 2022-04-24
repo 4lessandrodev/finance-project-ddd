@@ -5,6 +5,12 @@ export interface Filter {
 	beforeDate?: Date;
 }
 
+export interface IData {
+	userId: string;
+	id: string;
+}
+
 export interface ITransactionQueryService {
 	getTransactionsByUserId(filter: Filter): Promise<ITransaction[]>;
+	getTransactionById(data: IData): Promise<ITransaction | null >;
 }

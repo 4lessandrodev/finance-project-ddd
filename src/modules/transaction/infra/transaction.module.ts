@@ -17,6 +17,7 @@ import CanCreateBenefit from "@modules/transaction/domain/services/can-create-be
 import CreateExpenseUseCase from "@modules/transaction/application/use-cases/create-expense/create-expense.use-case";
 import CanCreateExpense from "@modules/transaction/domain/services/can-create-expense.proxy";
 import AfterTransactionCreated from "@modules/transaction/domain/subscriptions/after-transaction-created.subscription";
+import GetTransactionByIdUseCase from "@modules/transaction/application/use-cases/get-transaction-by-id/get-transaction-by-id.use-case";
 
 @Module({
 	imports: [
@@ -51,6 +52,7 @@ import AfterTransactionCreated from "@modules/transaction/domain/subscriptions/a
 		CreateExpenseUseCase,
 		CreateSingleCalculationDomainService,
 		PostingToBenefitUseCase,
+		GetTransactionByIdUseCase,
 		CanCreateBenefit,
 		CanCreateExpense,
 		AfterTransactionCreated

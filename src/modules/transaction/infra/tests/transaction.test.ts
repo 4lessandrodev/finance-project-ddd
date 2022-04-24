@@ -11,12 +11,12 @@ import { BudgetBoxSchema } from "@modules/budget-box/infra/entities/budget-box.s
 import { TransactionSchema } from "@modules/transaction/infra/entities/transaction.schema";
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
 import UserMock from "@modules/user/domain/tests/mock/user.mock";
-import { Mutation, MutationCreateBudgetBoxArgs, MutationCreateExpenseArgs, MutationPercentageCapitalInflowPostingArgs, MutationPostingToBenefitArgs, MutationSigninArgs, Query, TransactionStatus } from "@app/types/code-gen.types";
+import { Mutation, MutationCreateBudgetBoxArgs, MutationCreateExpenseArgs, MutationPercentageCapitalInflowPostingArgs, MutationPostingToBenefitArgs, MutationSigninArgs, Query, QueryGetTransactionByIdArgs, TransactionStatus } from "@app/types/code-gen.types";
 import { IBudgetBox } from "@modules/shared";
 import {
 	CREATE_BENEFIT_TRANSACTION, CREATE_EXPENSE_TRANSACTION, CREATE_PERCENTAGE_TRANSACTION
 } from "./transaction.mutation";
-import { GET_TRANSACTIONS } from "./transation.query";
+import { GET_TRANSACTIONS, GET_TRANSACTION_BY_ID } from "./transation.query";
 
 describe('transaction.test', () => {
 
@@ -218,5 +218,24 @@ describe('transaction.test', () => {
 			.request<PayloadType>(GET_TRANSACTIONS);
 		
 		expect(payload.getTransactions).toBeTruthy();
+	});
+
+	it('should get transactions with success', async () => {
+		const transactionModel = conn.model('Transaction', TransactionSchema);
+
+		const transaction = await transactionModel.findOne({});
+
+		type PayloadType = Pick<Query, 'getTransactionById'>;
+
+		const variables: QueryGetTransactionByIdArgs = {
+			GetTransactionByIdInput: {
+				transactionId: transaction.id
+			}
+		};
+
+		const payload = await client
+			.request<PayloadType, QueryGetTransactionByIdArgs>(GET_TRANSACTION_BY_ID, variables);
+		
+		expect(payload.getTransactionById).toBeTruthy();
 	});
 });

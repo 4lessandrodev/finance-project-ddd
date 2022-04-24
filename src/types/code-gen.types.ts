@@ -98,6 +98,10 @@ export type GetBudgetBoxByIdInput = {
   budgetBoxId: Scalars['String'];
 };
 
+export type GetTransactionByIdInput = {
+  transactionId: Scalars['String'];
+};
+
 export type JwtPayloadType = {
   __typename?: 'JwtPayloadType';
   token: Scalars['String'];
@@ -196,6 +200,7 @@ export type Query = {
   __typename?: 'Query';
   getBudgetBoxById: BudgetBoxType;
   getBudgetBoxes: Array<BudgetBoxType>;
+  getTransactionById: BoxTransactionType;
   getTransactions: Array<BoxTransactionType>;
   whoAmI?: Maybe<UserType>;
 };
@@ -203,6 +208,11 @@ export type Query = {
 
 export type QueryGetBudgetBoxByIdArgs = {
   GetBudgetBoxByIdInput: GetBudgetBoxByIdInput;
+};
+
+
+export type QueryGetTransactionByIdArgs = {
+  GetTransactionByIdInput: GetTransactionByIdInput;
 };
 
 export type ReasonType = {
@@ -359,6 +369,7 @@ export type ResolversTypes = {
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   GetBudgetBoxByIdInput: GetBudgetBoxByIdInput;
+  GetTransactionByIdInput: GetTransactionByIdInput;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   JwtPayloadType: ResolverTypeWrapper<JwtPayloadType>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -395,6 +406,7 @@ export type ResolversParentTypes = {
   DateTime: Scalars['DateTime'];
   Float: Scalars['Float'];
   GetBudgetBoxByIdInput: GetBudgetBoxByIdInput;
+  GetTransactionByIdInput: GetTransactionByIdInput;
   ID: Scalars['ID'];
   JwtPayloadType: JwtPayloadType;
   Mutation: {};
@@ -478,6 +490,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   getBudgetBoxById?: Resolver<ResolversTypes['BudgetBoxType'], ParentType, ContextType, RequireFields<QueryGetBudgetBoxByIdArgs, 'GetBudgetBoxByIdInput'>>;
   getBudgetBoxes?: Resolver<Array<ResolversTypes['BudgetBoxType']>, ParentType, ContextType>;
+  getTransactionById?: Resolver<ResolversTypes['BoxTransactionType'], ParentType, ContextType, RequireFields<QueryGetTransactionByIdArgs, 'GetTransactionByIdInput'>>;
   getTransactions?: Resolver<Array<ResolversTypes['BoxTransactionType']>, ParentType, ContextType>;
   whoAmI?: Resolver<Maybe<ResolversTypes['UserType']>, ParentType, ContextType>;
 };
