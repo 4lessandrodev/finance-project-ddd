@@ -5,7 +5,7 @@ import {
 import TransactionCreatedEvent from "@modules/transaction/domain/event/transaction-created.event";
 import { Inject } from "@nestjs/common";
 import { DomainEvents, IHandle, Logger, Result } from "types-ddd";
-import { transactionType } from "../transaction-type.value-object";
+import { transactionType } from "@modules/transaction/domain/transaction-type.value-object";
 type Operations = { [k in transactionType]: OperationType };
 
 export class AfterTransactionCreated implements IHandle<TransactionCreatedEvent>{
@@ -31,12 +31,8 @@ export class AfterTransactionCreated implements IHandle<TransactionCreatedEvent>
 		const operations: Operations = {
 			ENTRADA: "SUM",
 			SAIDA: "SUBTRACT",
-
-			/** @todo implements reversal */
-			ESTORNO: "SUM",
-
-			/** @todo implements transference */
-			TRANSFERENCIA: "SUBTRACT"
+			ESTORNO: "NONE",
+			TRANSFERENCIA: "NONE"
 		};
 
 		const budgetBoxes: IBoxes[] = transaction.transactionCalculations.map((calc): IBoxes => ({
@@ -50,8 +46,6 @@ export class AfterTransactionCreated implements IHandle<TransactionCreatedEvent>
 
 		const result = await this.updateBudgetBoxBalanceDomainService.execute(data);
 		return Logger.info(`Success to update box: ${result.isSuccess}`);
-
-		/** @todo if fails save event on queue to try again later */
 	}
 }
 

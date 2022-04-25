@@ -9,7 +9,7 @@ export interface IBoxes {
 	value: CurrencyValueObject;
 }
 
-export type OperationType = 'SUM' | 'SUBTRACT';
+export type OperationType = 'SUM' | 'SUBTRACT' | 'NONE';
 
 export interface UpdateBudgetBoxBalanceDto {
 	budgetBoxes: IBoxes[];
@@ -24,17 +24,25 @@ export class UpdateBudgetBoxBalanceDomainService implements IDomainService<Updat
 	async execute ({ budgetBoxes, operationType }: UpdateBudgetBoxBalanceDto): Promise<Result<void, string>> {
 		try {
 
+			if (operationType === 'NONE') return Result.success();
+
 			const ids = budgetBoxes.map((box) => box.budgetBoxId.uid);
 
 			const budgetBoxesDocuments = await this.connection.getBudgetBoxesByIds(ids);
 
 			const calculateValueToApply = (currentDocumentValue: number, eventValue: CurrencyValueObject): number => {
 				const currency = CurrencyValueObject
-					.create({ value: currentDocumentValue, currency: CURRENCY }).getResult();
+					.create({ value: currentDocumentValue, currency: CURRENCY })
+					.getResult();
+				
 				if (operationType === 'SUM') {
 					return currency.add(eventValue.value).getResult().value;
-				} 
-				return currency.subtractBy(eventValue.value).getResult().value;
+
+				} else if (operationType === 'SUBTRACT') {
+					return currency.subtractBy(eventValue.value).getResult().value;
+
+				}
+				return currentDocumentValue;
 			};
 
 			const documentToUpdate = budgetBoxesDocuments.map((model) => {
