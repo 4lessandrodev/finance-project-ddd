@@ -42,3 +42,21 @@ Só pode haver dois tipos de lançamento: "Entrada" ou "Saida".
 - payment-date: Value Object - Ok
 - budgetBoxName: Value Object - Ok
 - reason: Value Object - Ok
+
+### Fluxo de transações
+
+#### Realizar um lançamento de entrada em um caixa de benefício
+
+<img src="../../../../readme/entrada-beneficio.jpg" alt="imagem" width="100%">
+
+#### Realizar um lançamento de entrada distribuido para todos os caixas que estão marcados como percentual
+
+<img src="../../../../readme/entrada-percentual.jpg" alt="imagem" width="100%">
+
+#### Realizar um lançamento de saída (despesa) em algum caixa
+
+<img src="../../../../readme/lancamento-saida.jpg" alt="imagem" width="100%">
+
+#### Realizar um lançamento de transferência de saldo entre caixas
+
+<img src="../../../../readme/lancamento-transferencia.jpg" alt="imagem" width="100%">
