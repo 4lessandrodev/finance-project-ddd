@@ -21,6 +21,15 @@ export type AddReasonToBudgetBoxInput = {
   reasonDescription: Scalars['String'];
 };
 
+export type BalanceTransferenceInput = {
+  attachment?: InputMaybe<Scalars['String']>;
+  destinationBoxId: Scalars['String'];
+  note?: InputMaybe<Scalars['String']>;
+  reason: Scalars['String'];
+  sourceBoxId: Scalars['String'];
+  total: Scalars['Float'];
+};
+
 export type BoxTransactionType = {
   __typename?: 'BoxTransactionType';
   attachment?: Maybe<Scalars['String']>;
@@ -30,16 +39,29 @@ export type BoxTransactionType = {
   paymentDate: Scalars['DateTime'];
   reason: Scalars['String'];
   totalValue: CurrencyType;
-  transactionCalculations: Array<CalculationType>;
+  transactionCalculations: Array<TransactionCalculationType>;
   transactionStatus: TransactionStatusEnum;
   transactionType: TransactionTypeEnum;
   updatedAt: Scalars['DateTime'];
   userId: Scalars['ID'];
 };
 
+export enum BudgetBoxCurrencies {
+  Brl = 'BRL',
+  Eur = 'EUR',
+  Jpy = 'JPY',
+  Usd = 'USD'
+}
+
+export type BudgetBoxCurrencyType = {
+  __typename?: 'BudgetBoxCurrencyType';
+  currency: BudgetBoxCurrencies;
+  value: Scalars['Float'];
+};
+
 export type BudgetBoxType = {
   __typename?: 'BudgetBoxType';
-  balanceAvailable: Scalars['Float'];
+  balanceAvailable: BudgetBoxCurrencyType;
   budgetPercentage: Scalars['Float'];
   createdAt: Scalars['DateTime'];
   description: Scalars['String'];
@@ -47,13 +69,6 @@ export type BudgetBoxType = {
   isPercentage: Scalars['Boolean'];
   reasons: Array<ReasonType>;
   updatedAt: Scalars['DateTime'];
-};
-
-export type CalculationType = {
-  __typename?: 'CalculationType';
-  budgetBoxId: Scalars['ID'];
-  budgetBoxName: Scalars['String'];
-  currency: CurrencyType;
 };
 
 export type ChangeBudgetBoxNameInput = {
@@ -90,7 +105,7 @@ export type CreateExpenseInput = {
 
 export type CurrencyType = {
   __typename?: 'CurrencyType';
-  currency: Currency;
+  currency: TransactionCurrencies;
   value: Scalars['Float'];
 };
 
@@ -120,6 +135,7 @@ export type Mutation = {
   removeReasonFromBudgetBox: Scalars['Boolean'];
   signin: JwtPayloadType;
   signup: Scalars['Boolean'];
+  transferBalance: Scalars['Boolean'];
 };
 
 
@@ -175,6 +191,11 @@ export type MutationSigninArgs = {
 
 export type MutationSignupArgs = {
   SignupInput: SignupInput;
+};
+
+
+export type MutationTransferBalanceArgs = {
+  BalanceTransferenceInput: BalanceTransferenceInput;
 };
 
 export type PercentageCapitalInflowPostingInput = {
@@ -246,6 +267,20 @@ export type TermType = {
   userAgent: UserAgentType;
 };
 
+export type TransactionCalculationType = {
+  __typename?: 'TransactionCalculationType';
+  budgetBoxId: Scalars['ID'];
+  budgetBoxName: Scalars['String'];
+  currency: CurrencyType;
+};
+
+export enum TransactionCurrencies {
+  Brl = 'BRL',
+  Eur = 'EUR',
+  Jpy = 'JPY',
+  Usd = 'USD'
+}
+
 export enum TransactionStatus {
   Concluido = 'CONCLUIDO',
   Pendente = 'PENDENTE'
@@ -278,13 +313,6 @@ export type UserType = {
   id: Scalars['ID'];
   terms?: Maybe<Array<TermType>>;
 };
-
-export enum Currency {
-  Brl = 'BRL',
-  Eur = 'EUR',
-  Jpy = 'JPY',
-  Usd = 'USD'
-}
 
 
 
@@ -356,10 +384,12 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput;
+  BalanceTransferenceInput: BalanceTransferenceInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   BoxTransactionType: ResolverTypeWrapper<BoxTransactionType>;
+  BudgetBoxCurrencies: BudgetBoxCurrencies;
+  BudgetBoxCurrencyType: ResolverTypeWrapper<BudgetBoxCurrencyType>;
   BudgetBoxType: ResolverTypeWrapper<BudgetBoxType>;
-  CalculationType: ResolverTypeWrapper<CalculationType>;
   ChangeBudgetBoxNameInput: ChangeBudgetBoxNameInput;
   ChangeBudgetBoxPercentageInput: ChangeBudgetBoxPercentageInput;
   ChangeReasonDescriptionBoxInput: ChangeReasonDescriptionBoxInput;
@@ -382,21 +412,23 @@ export type ResolversTypes = {
   SignupInput: SignupInput;
   String: ResolverTypeWrapper<Scalars['String']>;
   TermType: ResolverTypeWrapper<TermType>;
+  TransactionCalculationType: ResolverTypeWrapper<TransactionCalculationType>;
+  TransactionCurrencies: TransactionCurrencies;
   TransactionStatus: TransactionStatus;
   TransactionStatusEnum: TransactionStatusEnum;
   TransactionTypeEnum: TransactionTypeEnum;
   UserAgentType: ResolverTypeWrapper<UserAgentType>;
   UserType: ResolverTypeWrapper<UserType>;
-  currency: Currency;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput;
+  BalanceTransferenceInput: BalanceTransferenceInput;
   Boolean: Scalars['Boolean'];
   BoxTransactionType: BoxTransactionType;
+  BudgetBoxCurrencyType: BudgetBoxCurrencyType;
   BudgetBoxType: BudgetBoxType;
-  CalculationType: CalculationType;
   ChangeBudgetBoxNameInput: ChangeBudgetBoxNameInput;
   ChangeBudgetBoxPercentageInput: ChangeBudgetBoxPercentageInput;
   ChangeReasonDescriptionBoxInput: ChangeReasonDescriptionBoxInput;
@@ -419,6 +451,7 @@ export type ResolversParentTypes = {
   SignupInput: SignupInput;
   String: Scalars['String'];
   TermType: TermType;
+  TransactionCalculationType: TransactionCalculationType;
   UserAgentType: UserAgentType;
   UserType: UserType;
 };
@@ -431,7 +464,7 @@ export type BoxTransactionTypeResolvers<ContextType = any, ParentType extends Re
   paymentDate?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   reason?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   totalValue?: Resolver<ResolversTypes['CurrencyType'], ParentType, ContextType>;
-  transactionCalculations?: Resolver<Array<ResolversTypes['CalculationType']>, ParentType, ContextType>;
+  transactionCalculations?: Resolver<Array<ResolversTypes['TransactionCalculationType']>, ParentType, ContextType>;
   transactionStatus?: Resolver<ResolversTypes['TransactionStatusEnum'], ParentType, ContextType>;
   transactionType?: Resolver<ResolversTypes['TransactionTypeEnum'], ParentType, ContextType>;
   updatedAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
@@ -439,8 +472,14 @@ export type BoxTransactionTypeResolvers<ContextType = any, ParentType extends Re
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type BudgetBoxCurrencyTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['BudgetBoxCurrencyType'] = ResolversParentTypes['BudgetBoxCurrencyType']> = {
+  currency?: Resolver<ResolversTypes['BudgetBoxCurrencies'], ParentType, ContextType>;
+  value?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type BudgetBoxTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['BudgetBoxType'] = ResolversParentTypes['BudgetBoxType']> = {
-  balanceAvailable?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  balanceAvailable?: Resolver<ResolversTypes['BudgetBoxCurrencyType'], ParentType, ContextType>;
   budgetPercentage?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -451,15 +490,8 @@ export type BudgetBoxTypeResolvers<ContextType = any, ParentType extends Resolve
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type CalculationTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['CalculationType'] = ResolversParentTypes['CalculationType']> = {
-  budgetBoxId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  budgetBoxName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  currency?: Resolver<ResolversTypes['CurrencyType'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
 export type CurrencyTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['CurrencyType'] = ResolversParentTypes['CurrencyType']> = {
-  currency?: Resolver<ResolversTypes['currency'], ParentType, ContextType>;
+  currency?: Resolver<ResolversTypes['TransactionCurrencies'], ParentType, ContextType>;
   value?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -485,6 +517,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   removeReasonFromBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveReasonFromBudgetBoxArgs, 'RemoveReasonFromBudgetBoxInput'>>;
   signin?: Resolver<ResolversTypes['JwtPayloadType'], ParentType, ContextType, RequireFields<MutationSigninArgs, 'SigninInput'>>;
   signup?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSignupArgs, 'SignupInput'>>;
+  transferBalance?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationTransferBalanceArgs, 'BalanceTransferenceInput'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -510,6 +543,13 @@ export type TermTypeResolvers<ContextType = any, ParentType extends ResolversPar
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type TransactionCalculationTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['TransactionCalculationType'] = ResolversParentTypes['TransactionCalculationType']> = {
+  budgetBoxId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  budgetBoxName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  currency?: Resolver<ResolversTypes['CurrencyType'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type UserAgentTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserAgentType'] = ResolversParentTypes['UserAgentType']> = {
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   os?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -527,8 +567,8 @@ export type UserTypeResolvers<ContextType = any, ParentType extends ResolversPar
 
 export type Resolvers<ContextType = any> = {
   BoxTransactionType?: BoxTransactionTypeResolvers<ContextType>;
+  BudgetBoxCurrencyType?: BudgetBoxCurrencyTypeResolvers<ContextType>;
   BudgetBoxType?: BudgetBoxTypeResolvers<ContextType>;
-  CalculationType?: CalculationTypeResolvers<ContextType>;
   CurrencyType?: CurrencyTypeResolvers<ContextType>;
   DateTime?: GraphQLScalarType;
   JwtPayloadType?: JwtPayloadTypeResolvers<ContextType>;
@@ -536,6 +576,7 @@ export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   ReasonType?: ReasonTypeResolvers<ContextType>;
   TermType?: TermTypeResolvers<ContextType>;
+  TransactionCalculationType?: TransactionCalculationTypeResolvers<ContextType>;
   UserAgentType?: UserAgentTypeResolvers<ContextType>;
   UserType?: UserTypeResolvers<ContextType>;
 };

@@ -1,5 +1,6 @@
 import UserMock from "@modules/user/domain/tests/mock/user.mock";
 import { IUserQueryService } from "@modules/user/infra/services/queries/user-query.interface";
+import userQueryServiceMock from "@modules/user/application/mocks/user-query-service.mock";
 import GetUserByIdUseCase from "./get-user-by-id.use-case";
 
 describe('get-user-by-id.use-case', () => {
@@ -8,9 +9,7 @@ describe('get-user-by-id.use-case', () => {
 	let fakeQueryService: IUserQueryService;
 
 	beforeAll(() => {
-		fakeQueryService = {
-			getUserById: jest.fn()
-		};
+		fakeQueryService = userQueryServiceMock;
 	});
 
 	

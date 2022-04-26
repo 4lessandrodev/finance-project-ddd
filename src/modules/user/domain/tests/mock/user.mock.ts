@@ -80,11 +80,13 @@ export class UserMock implements IMockEntity<UserAggregate, IUser> {
 			createdAt: props?.createdAt ?? new Date('2022-01-01 00:00:00'),
 			email: props?.email ?? 'valid_email@domain.com',
 			password: props?.password ?? 'valid_password',
+			isDeleted: props?.isDeleted ?? false,
 			updatedAt: props?.updatedAt ?? new Date('2022-01-01 00:00:00'),
 			terms: props?.terms ?? [
 				{
 					ip: '127.0.0.1',
 					acceptedAt: new Date('2022-01-01 00:00:00'),
+					isAccepted: true,
 					userAgent: {
 						name: 'firefox',
 						os: 'linux',

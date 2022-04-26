@@ -76,11 +76,13 @@ Object {
   "createdAt": 2022-01-01T00:00:00.000Z,
   "email": "valid_email@domain.com",
   "id": "provided_id",
+  "isDeleted": false,
   "password": "valid_password",
   "terms": Array [
     Object {
       "acceptedAt": 2022-01-01T00:00:00.000Z,
       "ip": "127.0.0.1",
+      "isAccepted": true,
       "userAgent": Object {
         "name": "firefox",
         "os": "linux",

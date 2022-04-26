@@ -1,19 +1,15 @@
 import { IUserRepository } from '@modules/user/domain/interfaces/user.repository.interface';
+import userRepositoryMock from '@modules/user/application/mocks/user-repository.mock';
 import { SignUpDto } from './signup.dto';
 import { SignUpUseCase } from './signup.use-case';
 
 describe('signup.use-case', () => {
 
-	let userRepo: IUserRepository;
+	let userRepo: IUserRepository = userRepositoryMock;
 
 	beforeEach(() => {
-		userRepo = {
-			delete: jest.fn(),
-			exists: jest.fn(),
-			find: jest.fn(),
-			findOne: jest.fn(),
-			save: jest.fn(),
-		};
+		userRepo = userRepositoryMock;
+		jest.spyOn(userRepo, 'exists').mockClear();
 	});
 	//
 
@@ -85,6 +81,19 @@ describe('signup.use-case', () => {
 		expect(saved).toBeCalled();
 	});
 
+	it('should fail use case throws', async () => {
+		jest.spyOn(userRepo, 'exists').mockImplementation(async () => {
+			throw new Error("internal server error");
+		});
+
+		const useCase = new SignUpUseCase(userRepo);
+
+		const result = await useCase.execute(makeDto({}));
+
+		expect(result.isFailure).toBe(true);
+		expect(result.error).toBe('Internal Server Error on Signup Use Case');
+	});
+
 	it('should fail if provide an invalid email', async () => {
 		jest.spyOn(userRepo, 'exists').mockResolvedValueOnce(false);
 
@@ -95,19 +104,6 @@ describe('signup.use-case', () => {
 		));
 
 		expect(result.isFailure).toBe(true);
-	});
-
-	it('should fail use case throws', async () => {
-		jest.spyOn(userRepo, 'exists').mockImplementationOnce(async () => {
-			throw new Error("internal server error");
-		});
-
-		const useCase = new SignUpUseCase(userRepo);
-
-		const result = await useCase.execute(makeDto({}));
-
-		expect(result.isFailure).toBe(true);
-		expect(result.error).toBe('Internal Server Error on Signup Use Case');
 	});
 
 });

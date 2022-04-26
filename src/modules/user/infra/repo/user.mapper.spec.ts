@@ -3,7 +3,7 @@ import { IpValueObject } from '@modules/user/domain/ip.value-object';
 import { TermValueObject } from '@modules/user/domain/term.value-object';
 import { DateValueObject, DomainId, EmailValueObject, PasswordValueObject } from 'types-ddd';
 import { User } from '../entities/user.schema';
-import { UserMapper } from './user.mapper';
+import { UserToDomainMapper } from './user.mapper';
 
 describe('user.mapper', () => {
 	//
@@ -43,10 +43,12 @@ describe('user.mapper', () => {
 			email: 'valid_mail@domain.com',
 			id: 'valid_id',
 			password: 'valid_password',
+			isDeleted: false,
 			terms: [
 				{
 					ip: '45.192.110.42',
 					acceptedAt: currentDate,
+					isAccepted: true,
 					userAgent: {
 						name: 'firefox',
 						os: 'LINUX',
@@ -60,20 +62,19 @@ describe('user.mapper', () => {
 	});
 	//
 	it('should be defined', () => {
-		const mapper = new UserMapper();
+		const mapper = new UserToDomainMapper();
 		expect(mapper).toBeDefined();
 	});
 
 	it('should convert object from persistence to domain', () => {
-		const mapper = new UserMapper();
-		const result = mapper.toDomain(persistence);
-		expect(result).toEqual(domain);
+		const mapper = new UserToDomainMapper();
+		const result = mapper.map(persistence);
+		expect(result.getResult()).toEqual(domain);
 	});
 
 	it('should convert object from domain to persistence', () => {
-		const mapper = new UserMapper();
-		const result = mapper.toPersistence(domain);
-		expect(domain.toObject()).toMatchSnapshot();
+		const result = domain.toObject();
 		expect(result).toEqual(persistence);
+		expect(domain.toObject()).toMatchSnapshot();
 	});
 });
