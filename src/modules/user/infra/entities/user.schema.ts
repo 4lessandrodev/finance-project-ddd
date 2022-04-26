@@ -23,6 +23,9 @@ export class User implements IUser {
 
 	@Prop({ type: Date, required: true, default: new Date() })
 	updatedAt!: Date;
+
+	@Prop({ type: Boolean, default: false })
+	isDeleted?: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

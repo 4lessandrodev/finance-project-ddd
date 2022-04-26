@@ -4,7 +4,7 @@ import { SignUpUseCase } from '@modules/user/application/use-cases/signup/signup
 import { UserResolver } from "./resolver/user.resolver";
 import { UserService } from './user.service';
 import { UserRepository } from './repo/user.repository';
-import { UserMapper } from './repo/user.mapper';
+import { UserToDomainMapper } from './repo/user.mapper';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserQueryService } from "@modules/user/infra/services/queries/user-query.service";
 import { SigninUseCase } from "@modules/user/application/use-cases/signin/signin.use-case";
@@ -30,7 +30,7 @@ import { JWT_SECRET } from "@config/env";
 		})
 	],
 	providers: [
-		UserMapper,
+		UserToDomainMapper,
 		{
 			provide: 'UserRepository',
 			useClass: UserRepository

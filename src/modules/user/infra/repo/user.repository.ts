@@ -1,5 +1,5 @@
 import { Filter } from 'types-ddd';
-import { UserMapper } from './user.mapper';
+import { UserToDomainMapper } from './user.mapper';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from '../entities/user.schema';
 import { Model } from 'mongoose';
@@ -10,7 +10,7 @@ import { IUserRepository } from '@modules/user/domain/interfaces/user.repository
 export class UserRepository implements IUserRepository {
 	// Inject mapper and connection
 	constructor (
-		@Inject(UserMapper) private readonly mapper: UserMapper,
+		@Inject(UserToDomainMapper) private readonly mapper: UserToDomainMapper,
 		@InjectModel(User.name) private readonly conn: Model<UserDocument>,
 	) { }
 	//
@@ -26,7 +26,7 @@ export class UserRepository implements IUserRepository {
 			return null;
 		}
 
-		return this.mapper.toDomain(foundUser);
+		return this.mapper.map(foundUser).getResult();
 	}
 	//
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -40,7 +40,7 @@ export class UserRepository implements IUserRepository {
 	}
 
 	async save (target: UserAggregate): Promise<void> {
-		const schema = this.mapper.toPersistence(target);
+		const schema = target.toObject();
 		const user = new this.conn(schema);
 		await user.save();
 	}
