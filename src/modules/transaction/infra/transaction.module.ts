@@ -18,6 +18,8 @@ import CreateExpenseUseCase from "@modules/transaction/application/use-cases/cre
 import CanCreateExpense from "@modules/transaction/domain/services/can-create-expense.proxy";
 import AfterTransactionCreated from "@modules/transaction/domain/subscriptions/after-transaction-created.subscription";
 import GetTransactionByIdUseCase from "@modules/transaction/application/use-cases/get-transaction-by-id/get-transaction-by-id.use-case";
+import CanTransfer from "@modules/transaction/domain/services/can-transfer.proxy";
+import BalanceTransferenceUseCase from "modules/transaction/application/use-cases/balance-transference/balance-transference.use-case";
 
 @Module({
 	imports: [
@@ -55,7 +57,9 @@ import GetTransactionByIdUseCase from "@modules/transaction/application/use-case
 		GetTransactionByIdUseCase,
 		CanCreateBenefit,
 		CanCreateExpense,
-		AfterTransactionCreated
+		AfterTransactionCreated,
+		CanTransfer,
+		BalanceTransferenceUseCase
 	]
 })
 export class TransactionModule { }

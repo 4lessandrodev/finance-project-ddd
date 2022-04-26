@@ -9,6 +9,7 @@ import { ITransaction } from "@modules/shared";
 import PostingToBenefitInput from "@modules/transaction/infra/inputs/posting-to-benefit.input";
 import CreateExpenseInput from "@modules/transaction/infra/inputs/create-expense.input";
 import GetTransactionByIdInput from "@modules/transaction/infra/inputs/get-transaction-by-id.input";
+import BalanceTransferenceInput from "@modules/transaction/infra/inputs/balance-transference.input";
 
 @Resolver(() => BoxTransactionType)
 export class TransactionResolver { 
@@ -72,6 +73,19 @@ export class TransactionResolver {
 		@Args(GetTransactionByIdInput.name) args: GetTransactionByIdInput
 	): Promise<ITransaction> {
 		return this.transactionService.getTransactionById({ ...args, userId });
+	}
+
+	@Mutation(() => Boolean)
+	@UseGuards(JwtAuthGuard)
+	async transferBalance (
+		@GetUserId() userId: string,
+		@Args(BalanceTransferenceInput.name) args: BalanceTransferenceInput
+	): Promise<boolean> {
+		const isSuccess = true;
+		
+		await this.transactionService.balanceTransference({ ...args, userId });
+
+		return isSuccess;
 	}
 }
 

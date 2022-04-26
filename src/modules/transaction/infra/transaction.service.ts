@@ -14,6 +14,9 @@ import CreateExpenseDto from "@modules/transaction/application/use-cases/create-
 import CanCreateExpense from "@modules/transaction/domain/services/can-create-expense.proxy";
 import GetTransactionByIdUseCase from "@modules/transaction/application/use-cases/get-transaction-by-id/get-transaction-by-id.use-case";
 import GetTransactionByIdDto from "@modules/transaction/application/use-cases/get-transaction-by-id/get-transaction-by-id.dto";
+import CanTransfer from "@modules/transaction/domain/services/can-transfer.proxy";
+import BalanceTransferenceUseCase from "@modules/transaction/application/use-cases/balance-transference/balance-transference.use-case";
+import BalanceTransferenceDto from "@modules/transaction/application/use-cases/balance-transference/balance-transference.dto";
 
 @Injectable()
 export class TransactionService {
@@ -41,7 +44,13 @@ export class TransactionService {
 		private readonly canCreateExpense: CanCreateExpense,
 
 		@Inject(GetTransactionByIdUseCase)
-		private readonly getTransactionByIdUseCase: GetTransactionByIdUseCase
+		private readonly getTransactionByIdUseCase: GetTransactionByIdUseCase,
+
+		@Inject(CanTransfer)
+		private readonly canTransfer: CanTransfer,
+
+		@Inject(BalanceTransferenceUseCase)
+		private readonly balanceTransferenceUseCase: BalanceTransferenceUseCase
 	){}
 
 	async percentageCapitalInflowPosting (dto: PercentageCapitalInflowPostingDto): Promise<void> {
@@ -76,6 +85,12 @@ export class TransactionService {
 		const result = await this.getTransactionByIdUseCase.execute(dto);
 		CheckResultInterceptor(result);
 		return result.getResult();
+	}
+
+	async balanceTransference (dto: BalanceTransferenceDto): Promise<void> {
+		const proxy = new BaseProxy(this.canTransfer, this.balanceTransferenceUseCase);
+		const result = await proxy.execute(dto);
+		CheckResultInterceptor(result);
 	}
 }
 

@@ -13,26 +13,32 @@ export class CanCreateTransactionDomainService implements IDomainService<Dto, Re
 		private readonly connection: IBudgetBoxConnection
 	) { }
 	async execute ({ userId: ownerId }: Dto): Promise<Result<boolean>> {
-		const maxPercentage = 100;
-		const initialValue = 0;
-		
-		const budgetBoxes = await this.connection.findBudgetBoxesByUserId(ownerId);
+		try {
 
-		const totalPercentageAllocated = budgetBoxes.reduce((total, budgetBox) => {
-			if (budgetBox.isPercentage) {
-				return total + budgetBox.budgetPercentage;
+			const maxPercentage = 100;
+			const initialValue = 0;
+		
+			const budgetBoxes = await this.connection.findBudgetBoxesByUserId(ownerId);
+
+			const totalPercentageAllocated = budgetBoxes.reduce((total, budgetBox) => {
+				if (budgetBox.isPercentage) {
+					return total + budgetBox.budgetPercentage;
+				}
+				return total;
+			}, initialValue);
+		
+			const canCreateTransaction = totalPercentageAllocated === maxPercentage;
+		
+			if (canCreateTransaction) {
+				return Result.ok(canCreateTransaction);
 			}
-			return total;
-		}, initialValue);
 		
-		const canCreateTransaction = totalPercentageAllocated === maxPercentage;
-		
-		if (canCreateTransaction) {
-			return Result.ok(canCreateTransaction);
+			const available = maxPercentage - totalPercentageAllocated;
+			return Result.fail(`You must allocate 100% on budget boxes. ${available}% not allocated`);
+						
+		} catch (error) {
+			return Result.fail(`Internal Server Error On CanCreateTransaction Proxy`, 'INTERNAL_SERVER_ERROR');
 		}
-		
-		const available = maxPercentage - totalPercentageAllocated;
-		return Result.fail(`You must allocate 100% on budget boxes. ${available}% not allocated`);
 	}
 }
 
