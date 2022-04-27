@@ -11,4 +11,7 @@ export interface IBudgetBoxConnection {
 	findBudgetBoxByIdAndUserId(filter: IFilter): Promise<IBudgetBox | null>;
 	updateBudgetBoxesBalance(data: IBudgetBox[]): Promise<boolean>;
 	getBudgetBoxesByIds(ids: string[]): Promise<IBudgetBox[]>;
+	deleteBudgetBoxByUserId(userId: string): Promise<boolean>;
 }
+
+export default IBudgetBoxConnection;

@@ -20,6 +20,11 @@ export const BUDGET_BOX_COLLECTION_NAME = envVar.get('BUDGET_BOX_COLLECTION_NAME
 	.required()
 	.asString();
 
+export const TRANSACTION_COLLECTION_NAME = envVar.get('TRANSACTION_COLLECTION_NAME')
+	.default('transactions')
+	.required()
+	.asString();
+
 export const MONGO_PASSWORD = envVar.get('MONGO_PASSWORD')
 	.default('mongo')
 	.required()

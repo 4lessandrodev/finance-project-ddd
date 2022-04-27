@@ -15,9 +15,11 @@ import { JwtModule } from "@nestjs/jwt";
 import { JWT_SECRET } from "@config/env";
 import DeleteAccountUseCase from "@modules/user/application/use-cases/delete-account/delete-account.use-case";
 import AfterDeleteUserAccount from "@modules/user/domain/subscriptions/after-delete-user-account.subscription";
+import { SharedModule } from "@modules/shared";
 
 @Module({
 	imports: [
+		SharedModule,
 		MongooseModule.forFeature([
 			{ name: User.name, schema: UserSchema }
 		]),

@@ -50,7 +50,14 @@ export class BudgetBoxConnection implements IBudgetBoxConnection {
 			.collection(BUDGET_BOX_COLLECTION_NAME).find<IBudgetBox>({ ownerId }).toArray();
 		
 		return result;
-	}	
+	}
+
+	async deleteBudgetBoxByUserId (ownerId: string): Promise<boolean> {
+		const result = await this.connection.db(DB_NAME)
+			.collection(BUDGET_BOX_COLLECTION_NAME).deleteMany({ ownerId });
+		
+		return !!result.acknowledged;
+	}
 }
 
 export default BudgetBoxConnection;
