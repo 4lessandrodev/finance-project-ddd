@@ -13,6 +13,8 @@ import { User, UserSchema } from '@modules/user/infra/entities/user.schema';
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
 import { JWT_SECRET } from "@config/env";
+import DeleteAccountUseCase from "@modules/user/application/use-cases/delete-account/delete-account.use-case";
+import AfterDeleteUserAccount from "@modules/user/domain/subscriptions/after-delete-user-account.subscription";
 
 @Module({
 	imports: [
@@ -47,7 +49,9 @@ import { JWT_SECRET } from "@config/env";
 		JwtStrategy,
 		PassportModule,
 		JwtModule,
-		UserQueryService
+		UserQueryService,
+		DeleteAccountUseCase,
+		AfterDeleteUserAccount
 	],
 	exports: [PassportModule, JwtModule]
 })

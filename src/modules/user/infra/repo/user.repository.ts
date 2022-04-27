@@ -8,15 +8,14 @@ import { UserAggregate } from '@modules/user/domain';
 import { IUserRepository } from '@modules/user/domain/interfaces/user.repository.interface';
 
 export class UserRepository implements IUserRepository {
-	// Inject mapper and connection
+
 	constructor (
 		@Inject(UserToDomainMapper) private readonly mapper: UserToDomainMapper,
 		@InjectModel(User.name) private readonly conn: Model<UserDocument>,
 	) { }
-	//
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	find (filter: Filter): Promise<UserAggregate[] | null> {
-		throw new Error(`Method not implemented for ${filter}`);
+	
+	async find (filter: Filter): Promise<UserAggregate[]> {
+		return await this.conn.find({ ...filter });
 	}
 	
 	async findOne (filter: Filter): Promise<UserAggregate | null> {
@@ -28,10 +27,13 @@ export class UserRepository implements IUserRepository {
 
 		return this.mapper.map(foundUser).getResult();
 	}
-	//
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	delete (filter: Filter): Promise<void> {
-		throw new Error(`Method not implemented for ${filter}`);
+	
+	async delete (filter: Filter): Promise<void> {
+		const document = await this.conn.findOne({ ...filter });
+
+		if (!document) return;
+
+		await document.remove();
 	}
 
 	async exists (filter: Filter): Promise<boolean> {
@@ -45,3 +47,5 @@ export class UserRepository implements IUserRepository {
 		await user.save();
 	}
 }
+
+export default UserRepository;

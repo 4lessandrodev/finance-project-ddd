@@ -1,6 +1,7 @@
 import { IUser, ITerm } from '@shared/index';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { DomainEvents, DomainId } from 'types-ddd';
 
 export type UserDocument = User & Document;
 @Schema({ autoCreate: true, timestamps: true, autoIndex: true })
@@ -29,3 +30,10 @@ export class User implements IUser {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+
+
+// execute hooks on delete user account
+UserSchema.post('remove', function (doc: IUser){
+	const id = DomainId.create(doc.id);
+	DomainEvents.dispatchEventsForAggregate(id.value);
+});
