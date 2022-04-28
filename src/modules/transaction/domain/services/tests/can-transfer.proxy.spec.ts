@@ -65,4 +65,21 @@ describe('can-transfer.proxy', () => {
 		expect(result.isFailure).toBeTruthy();
 		expect(result.error).toBe('Budget Box Does Not Exists');
 	});
+
+	it('should fails if connection throws', async () => {
+		
+		jest.spyOn(connection, 'findBudgetBoxByIdAndUserId').mockImplementationOnce(async () => {
+			throw new Error("error");
+		});
+
+		const result = await service.execute({
+			destinationBoxId: 'valid_id',
+			sourceBoxId: 'valid_id',
+			total: 70,
+			userId: 'valid_id'
+		});
+		
+		expect(result.isFailure).toBeTruthy();
+		expect(result.error).toBe('Internal Server Error On CanTransfer Proxy');
+	});
 });

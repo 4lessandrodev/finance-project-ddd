@@ -109,6 +109,10 @@ export type CurrencyType = {
   value: Scalars['Float'];
 };
 
+export type DeleteUserAccountInput = {
+  password: Scalars['String'];
+};
+
 export type GetBudgetBoxByIdInput = {
   budgetBoxId: Scalars['String'];
 };
@@ -130,6 +134,7 @@ export type Mutation = {
   changeReasonDescription: Scalars['Boolean'];
   createBudgetBox: Scalars['Boolean'];
   createExpense: Scalars['Boolean'];
+  deleteUserAccount: Scalars['Boolean'];
   percentageCapitalInflowPosting: Scalars['Boolean'];
   postingToBenefit: Scalars['Boolean'];
   removeReasonFromBudgetBox: Scalars['Boolean'];
@@ -166,6 +171,11 @@ export type MutationCreateBudgetBoxArgs = {
 
 export type MutationCreateExpenseArgs = {
   CreateExpenseInput: CreateExpenseInput;
+};
+
+
+export type MutationDeleteUserAccountArgs = {
+  DeleteUserAccountInput: DeleteUserAccountInput;
 };
 
 
@@ -397,6 +407,7 @@ export type ResolversTypes = {
   CreateExpenseInput: CreateExpenseInput;
   CurrencyType: ResolverTypeWrapper<CurrencyType>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
+  DeleteUserAccountInput: DeleteUserAccountInput;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   GetBudgetBoxByIdInput: GetBudgetBoxByIdInput;
   GetTransactionByIdInput: GetTransactionByIdInput;
@@ -436,6 +447,7 @@ export type ResolversParentTypes = {
   CreateExpenseInput: CreateExpenseInput;
   CurrencyType: CurrencyType;
   DateTime: Scalars['DateTime'];
+  DeleteUserAccountInput: DeleteUserAccountInput;
   Float: Scalars['Float'];
   GetBudgetBoxByIdInput: GetBudgetBoxByIdInput;
   GetTransactionByIdInput: GetTransactionByIdInput;
@@ -512,6 +524,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   changeReasonDescription?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationChangeReasonDescriptionArgs, 'ChangeReasonDescriptionBoxInput'>>;
   createBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationCreateBudgetBoxArgs, 'CreateBudgetBoxInput'>>;
   createExpense?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationCreateExpenseArgs, 'CreateExpenseInput'>>;
+  deleteUserAccount?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationDeleteUserAccountArgs, 'DeleteUserAccountInput'>>;
   percentageCapitalInflowPosting?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationPercentageCapitalInflowPostingArgs, 'PercentageCapitalInflowPostingInput'>>;
   postingToBenefit?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationPostingToBenefitArgs, 'PostingToBenefitInput'>>;
   removeReasonFromBudgetBox?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationRemoveReasonFromBudgetBoxArgs, 'RemoveReasonFromBudgetBoxInput'>>;

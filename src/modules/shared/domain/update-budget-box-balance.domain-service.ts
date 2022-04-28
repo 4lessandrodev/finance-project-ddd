@@ -2,7 +2,7 @@ import { CurrencyValueObject, DomainId, Result } from "types-ddd";
 import IDomainService from "@shared/interfaces/domain-service.interface";
 import { Inject } from "@nestjs/common";
 import { IBudgetBoxConnection } from "./budget-box-connection.interface";
-import { CURRENCY } from "@config/env";
+import CalculateValueToUpdate from "../utils/calculate";
 
 export interface IBoxes {
 	budgetBoxId: DomainId;
@@ -19,7 +19,10 @@ export interface UpdateBudgetBoxBalanceDto {
 export class UpdateBudgetBoxBalanceDomainService implements IDomainService<UpdateBudgetBoxBalanceDto, Result<void>>{
 	constructor (
 		@Inject('BudgetBoxConnection')
-		private readonly connection: IBudgetBoxConnection
+		private readonly connection: IBudgetBoxConnection,
+
+		@Inject(CalculateValueToUpdate)
+		private readonly calculator: CalculateValueToUpdate
 	){}
 	async execute ({ budgetBoxes, operationType }: UpdateBudgetBoxBalanceDto): Promise<Result<void, string>> {
 		try {
@@ -28,34 +31,15 @@ export class UpdateBudgetBoxBalanceDomainService implements IDomainService<Updat
 
 			const ids = budgetBoxes.map((box) => box.budgetBoxId.uid);
 
-			const budgetBoxesDocuments = await this.connection.getBudgetBoxesByIds(ids);
+			const budgetBoxFromDataBase = await this.connection.getBudgetBoxesByIds(ids);
 
-			const calculateValueToApply = (currentDocumentValue: number, eventValue: CurrencyValueObject): number => {
-				const currency = CurrencyValueObject
-					.create({ value: currentDocumentValue, currency: CURRENCY })
-					.getResult();
-				
-				if (operationType === 'SUM') {
-					return currency.add(eventValue.value).getResult().value;
-
-				} else if (operationType === 'SUBTRACT') {
-					return currency.subtractBy(eventValue.value).getResult().value;
-
-				}
-				return currentDocumentValue;
-			};
-
-			const documentToUpdate = budgetBoxesDocuments.map((model) => {
-				const eventData = budgetBoxes.find((box) => box.budgetBoxId.uid === model.id);
-				if (!eventData) {
-					return model;
-				}
-				const totalToApply = calculateValueToApply(model.balanceAvailable.value, eventData.value);
-				const balanceAvailable = { ...model.balanceAvailable, value: totalToApply };
-				return Object.assign({}, model, { balanceAvailable });
+			const documentsToUpdate = this.calculator.calc({
+				budgetBoxFromDataBase,
+				operationType,
+				budgetBoxesDto: budgetBoxes
 			});
 			
-			const isSuccess = await this.connection.updateBudgetBoxesBalance(documentToUpdate);
+			const isSuccess = await this.connection.updateBudgetBoxesBalance(documentsToUpdate);
 
 			if (isSuccess) {
 				return Result.success();

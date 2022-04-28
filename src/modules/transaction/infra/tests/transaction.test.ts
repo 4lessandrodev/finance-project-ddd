@@ -11,12 +11,14 @@ import { BudgetBoxSchema } from "@modules/budget-box/infra/entities/budget-box.s
 import { TransactionSchema } from "@modules/transaction/infra/entities/transaction.schema";
 import { BudgetBoxMock } from "@modules/budget-box/domain/tests/mock/budget-box.mock";
 import UserMock from "@modules/user/domain/tests/mock/user.mock";
-import { Mutation, MutationCreateBudgetBoxArgs, MutationCreateExpenseArgs, MutationPercentageCapitalInflowPostingArgs, MutationPostingToBenefitArgs, MutationSigninArgs, Query, QueryGetTransactionByIdArgs, TransactionStatus } from "@app/types/code-gen.types";
+import {
+	Mutation, MutationCreateBudgetBoxArgs, MutationCreateExpenseArgs, MutationPercentageCapitalInflowPostingArgs, MutationPostingToBenefitArgs, MutationSigninArgs, Query, QueryGetTransactionByIdArgs, TransactionStatus
+} from "@app/types/code-gen.types";
 import { IBudgetBox } from "@modules/shared";
 import {
 	CREATE_BENEFIT_TRANSACTION, CREATE_EXPENSE_TRANSACTION, CREATE_PERCENTAGE_TRANSACTION
 } from "./transaction.mutation";
-import { GET_TRANSACTIONS, GET_TRANSACTION_BY_ID } from "./transation.query";
+import { GET_TRANSACTIONS, GET_TRANSACTION_BY_ID } from "./transaction.query";
 
 describe('transaction.test', () => {
 

@@ -57,16 +57,20 @@ describe('balance-transference.use-case.ts', () => {
 		const repositorySpy = jest.spyOn(repository, 'save');
 
 		const useCase = new BalanceTransferenceUseCase(repository, service);
+		
+		const invalidReason = 'invalid_reason'.repeat(10);
 
 		const result = await useCase.execute({
 			destinationBoxId: 'valid_destination_id',
-			reason: 'valid_reason',
+			reason: invalidReason,
 			sourceBoxId: 'valid_source_id',
 			userId: 'valid_user_id',
 			total: 200
 		});
-
+		
 		expect(result.isFailure).toBeTruthy();
+
+		expect(result.error).toBe('Invalid reason description length, must have min 3 and max 50 characters');
 
 		expect(repositorySpy).not.toHaveBeenCalled();
 
@@ -114,6 +118,66 @@ describe('balance-transference.use-case.ts', () => {
 		expect(result.isFailure).toBeTruthy();
 
 		expect(repositorySpy).not.toHaveBeenCalled();
+
+	});
+
+	it('should fails if provide long description as note', async () => {
+
+		const calculation = TransactionCalculationValueObject.create({
+			budgetBoxId: DomainId.create('valid_id'),
+			budgetBoxName: TransactionBudgetBoxNameValueObject.create('valid_name').getResult(),
+			currency: CurrencyValueObject.create({ value: 100, currency: CURRENCY }).getResult()
+		}).getResult();
+
+		const repositorySpy = jest.spyOn(repository, 'save');
+		jest.spyOn(service, 'execute').mockResolvedValue(calculation);
+		
+		const useCase = new BalanceTransferenceUseCase(repository, service);
+
+		const invalidNote = 'invalid_note_description'.repeat(50);
+
+		const result = await useCase.execute({
+			destinationBoxId: 'valid_destination_id',
+			reason: 'valid_reason',
+			sourceBoxId: 'valid_source_id',
+			userId: 'valid_user_id',
+			total: 200,
+			note: invalidNote
+		});
+
+		expect(result.isFailure).toBeTruthy();
+
+		expect(repositorySpy).not.toHaveBeenCalledTimes(2);
+
+	});
+
+	it('should fails if provide an invalid attachment url', async () => {
+
+		const calculation = TransactionCalculationValueObject.create({
+			budgetBoxId: DomainId.create('valid_id'),
+			budgetBoxName: TransactionBudgetBoxNameValueObject.create('valid_name').getResult(),
+			currency: CurrencyValueObject.create({ value: 100, currency: CURRENCY }).getResult()
+		}).getResult();
+
+		const repositorySpy = jest.spyOn(repository, 'save');
+		jest.spyOn(service, 'execute').mockResolvedValue(calculation);
+		
+		const useCase = new BalanceTransferenceUseCase(repository, service);
+
+		const invalidAttach = 'invalid_attach'.repeat(50);
+
+		const result = await useCase.execute({
+			destinationBoxId: 'valid_destination_id',
+			reason: 'valid_reason',
+			sourceBoxId: 'valid_source_id',
+			userId: 'valid_user_id',
+			total: 200,
+			attachment: invalidAttach
+		});
+
+		expect(result.isFailure).toBeTruthy();
+
+		expect(repositorySpy).not.toHaveBeenCalledTimes(2);
 
 	});
 });

@@ -82,6 +82,7 @@ export class CreateExpenseUseCase implements IUseCase<CreateExpenseDto, Result<v
 
 			return Result.success();
 		} catch (error) {
+			
 			return Result.fail('Internal Server Error On Create Expense Use Case', 'INTERNAL_SERVER_ERROR');
 		}
 	};

@@ -19,7 +19,7 @@ import CanCreateExpense from "@modules/transaction/domain/services/can-create-ex
 import AfterTransactionCreated from "@modules/transaction/domain/subscriptions/after-transaction-created.subscription";
 import GetTransactionByIdUseCase from "@modules/transaction/application/use-cases/get-transaction-by-id/get-transaction-by-id.use-case";
 import CanTransfer from "@modules/transaction/domain/services/can-transfer.proxy";
-import BalanceTransferenceUseCase from "modules/transaction/application/use-cases/balance-transference/balance-transference.use-case";
+import BalanceTransferenceUseCase from "@modules/transaction/application/use-cases/balance-transference/balance-transference.use-case";
 
 @Module({
 	imports: [

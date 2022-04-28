@@ -7,6 +7,7 @@ import { BaseConnection } from "./connections/connection";
 import DeleteTransactionsByUserIdDomainService from "../domain/delete-transactions-by-user-id.domain-service";
 import DeleteBudgetBoxByUserIdDomainService from "../domain/delete-budget-box-by-user-id.domain-service";
 import TransactionConnection from "./connections/transaction-connection";
+import CalculateValueToUpdate from "../utils/calculate";
 
 @Module({
 	imports: [],
@@ -36,7 +37,8 @@ import TransactionConnection from "./connections/transaction-connection";
 		CanCreateTransactionDomainService,
 		UpdateBudgetBoxBalanceDomainService,
 		DeleteTransactionsByUserIdDomainService,
-		DeleteBudgetBoxByUserIdDomainService
+		DeleteBudgetBoxByUserIdDomainService,
+		CalculateValueToUpdate
 	],
 	exports: [
 		BaseConnection,
@@ -46,7 +48,8 @@ import TransactionConnection from "./connections/transaction-connection";
 		CanCreateTransactionDomainService,
 		UpdateBudgetBoxBalanceDomainService,
 		DeleteTransactionsByUserIdDomainService,
-		DeleteBudgetBoxByUserIdDomainService
+		DeleteBudgetBoxByUserIdDomainService,
+		CalculateValueToUpdate
 	]
 })
 export class SharedModule { }

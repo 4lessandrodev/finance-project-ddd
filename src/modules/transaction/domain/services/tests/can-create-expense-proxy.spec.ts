@@ -65,4 +65,20 @@ describe('can-create-expense.proxy', () => {
 		expect(result.isFailure).toBeTruthy();
 		expect(result.error).toBe('Budget Box Does Not Exists');
 	});
+
+	it('should fails if connection throws', async () => {
+		
+		jest.spyOn(connection, 'findBudgetBoxByIdAndUserId').mockImplementationOnce(async () => {
+			throw new Error("error");
+		});
+
+		const result = await service.execute({
+			budgetBoxId: 'valid_id',
+			userId: 'valid_id',
+			total: 10
+		});
+		
+		expect(result.isFailure).toBeTruthy();
+		expect(result.error).toBe('Internal Server Error On CanCreateExpense Proxy');
+	});
 });

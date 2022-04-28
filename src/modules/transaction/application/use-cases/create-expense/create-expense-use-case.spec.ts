@@ -93,7 +93,7 @@ describe('create-expense.use-case', () => {
 		jest.spyOn(fakeDomainService, 'execute').mockResolvedValueOnce(undefined as any);
 
 		const result = await useCase.execute(validDto);
-
+		
 		expect(result.isFailure).toBeTruthy();
 		expect(saveSpy).not.toHaveBeenCalled();
 	});
