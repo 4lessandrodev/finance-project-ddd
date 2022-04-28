@@ -11,6 +11,7 @@ import { UserType } from "@modules/user/infra/types/user.type";
 import { UserService } from '@modules/user/infra/user.service';
 import { GetUserId } from '@modules/user/infra/services/decorators/get-user.decorator';
 import { GetUserIp } from '@modules/user/infra/services/decorators/get-ip.decorator';
+import DeleteUserAccountInput from '@modules/user/infra/inputs/delete-account.input';
 
 @Resolver(() => UserType)
 export class UserResolver {
@@ -21,7 +22,9 @@ export class UserResolver {
 
 	@Query(() => UserType, { nullable: true })
 	@UseGuards(JwtAuthGuard)
-	async whoAmI (@GetUserId() userId: string): Promise<UserType | null> {
+	async whoAmI (
+		@GetUserId() userId: string
+	): Promise<UserType | null> {
 		
 		const user = await this.userService.getAuthUser(userId);
 
@@ -53,6 +56,19 @@ export class UserResolver {
 		@Args(SigninInput.name) args: SigninInput
 	): Promise<JWTPayload>{
 		return this.userService.signin(args);
+	}
+
+	@Mutation(() => Boolean)
+	@UseGuards(JwtAuthGuard)
+	async deleteUserAccount (
+		@GetUserId() userId: string,
+		@Args(DeleteUserAccountInput.name) args: DeleteUserAccountInput
+	): Promise<boolean>{
+		const isSuccess = true;
+		
+		await this.userService.deleteAccount({ ...args, userId });
+
+		return isSuccess;
 	}
 }
 

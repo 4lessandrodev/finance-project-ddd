@@ -9,6 +9,7 @@ export interface ITerm {
 	ip: string;
 	acceptedAt: Date;
 	userAgent: IUserAgent;
+	isAccepted: boolean;
 }
 
 export interface IUser {
@@ -23,6 +24,8 @@ export interface IUser {
 	createdAt: Date;
 
 	updatedAt: Date;
+
+	isDeleted?: boolean;
 }
 
 export default IUser;

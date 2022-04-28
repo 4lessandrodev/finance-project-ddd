@@ -125,6 +125,7 @@ input GetTransactionByIdInput {
 type Mutation {
   signup(SignupInput: SignupInput!): Boolean!
   signin(SigninInput: SigninInput!): JwtPayloadType!
+  deleteUserAccount(DeleteUserAccountInput: DeleteUserAccountInput!): Boolean!
   createBudgetBox(CreateBudgetBoxInput: CreateBudgetBoxInput!): Boolean!
   addReasonToBudgetBox(AddReasonToBudgetBoxInput: AddReasonToBudgetBoxInput!): Boolean!
   removeReasonFromBudgetBox(RemoveReasonFromBudgetBoxInput: RemoveReasonFromBudgetBoxInput!): Boolean!
@@ -145,6 +146,10 @@ input SignupInput {
 
 input SigninInput {
   email: String!
+  password: String!
+}
+
+input DeleteUserAccountInput {
   password: String!
 }
 

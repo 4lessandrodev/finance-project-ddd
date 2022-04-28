@@ -5,10 +5,12 @@ import { IBudgetBoxConnection } from "@shared/domain/budget-box-connection.inter
 import UpdateBudgetBoxBalanceDomainService,
 { UpdateBudgetBoxBalanceDto } from "@shared/domain/update-budget-box-balance.domain-service";
 import budgetBoxConnectionMock from "./mocks/budget-box-connection.mock";
+import CalculateValueToUpdate from "@modules/shared/utils/calculate";
 
 describe('update-budget-box-balance.domain-service', () => {
 
 	let fakeConnection: IBudgetBoxConnection;
+	const calculator = new CalculateValueToUpdate();
 
 	beforeEach(() => {
 		fakeConnection = budgetBoxConnectionMock;
@@ -22,7 +24,7 @@ describe('update-budget-box-balance.domain-service', () => {
 			throw new Error("error");
 		});
 
-		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection);
+		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection,calculator);
 
 		const dto: UpdateBudgetBoxBalanceDto = {
 			operationType: 'SUBTRACT',
@@ -61,7 +63,51 @@ describe('update-budget-box-balance.domain-service', () => {
 			}
 		}));
 
-		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection);
+		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection,calculator);
+
+		const dto: UpdateBudgetBoxBalanceDto = {
+			operationType: 'SUM',
+			budgetBoxes: data
+		};
+
+		jest.spyOn(fakeConnection, 'getBudgetBoxesByIds').mockResolvedValueOnce(models as IBudgetBox[]);
+		const saveSpy = jest.spyOn(fakeConnection, 'updateBudgetBoxesBalance');
+		jest.spyOn(fakeConnection, 'updateBudgetBoxesBalance').mockResolvedValueOnce(true);
+
+		const result = await service.execute(dto);
+		
+		expect(result.isSuccess).toBeTruthy();
+		expect(saveSpy).toHaveBeenCalledWith(expectedModels);
+	});
+
+	it('should return model if it does not exists', async () => {
+
+		const makeObject = (value: number) => ({
+			value: CurrencyValueObject.create({ currency: CURRENCY, value }).getResult(),
+			budgetBoxId: DomainId.create(`id-${value}`)
+		});
+
+		const data = [10, 20, 30, 40].map((value) => (makeObject(value)));
+
+		const models = data.map((model) => ({
+			id: model.budgetBoxId.uid,
+			balanceAvailable: {
+				currency: CURRENCY,
+				value: model.value.value,
+			}
+		}));
+		
+		data.unshift(makeObject(1));
+
+		const expectedModels = models.map((model) => ({
+			id: model.id,
+			balanceAvailable: {
+				currency: CURRENCY,
+				value: model.balanceAvailable.value + model.balanceAvailable.value,
+			}
+		}));
+
+		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection,calculator);
 
 		const dto: UpdateBudgetBoxBalanceDto = {
 			operationType: 'SUM',
@@ -103,7 +149,7 @@ describe('update-budget-box-balance.domain-service', () => {
 			}
 		}));
 
-		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection);
+		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection,calculator);
 
 		const dto: UpdateBudgetBoxBalanceDto = {
 			operationType: 'SUBTRACT',
@@ -144,7 +190,7 @@ describe('update-budget-box-balance.domain-service', () => {
 			}
 		}));
 
-		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection);
+		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection,calculator);
 
 		const dto: UpdateBudgetBoxBalanceDto = {
 			operationType: 'INVALID' as any,
@@ -170,7 +216,7 @@ describe('update-budget-box-balance.domain-service', () => {
 			budgetBoxes: []
 		};
 
-		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection);
+		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection,calculator);
 		const result = await service.execute(dto);
 
 		expect(result.isSuccess).toBeTruthy();
@@ -197,7 +243,7 @@ describe('update-budget-box-balance.domain-service', () => {
 		jest.spyOn(fakeConnection, 'getBudgetBoxesByIds').mockResolvedValueOnce(models as IBudgetBox[]);
 		jest.spyOn(fakeConnection, 'updateBudgetBoxesBalance').mockResolvedValueOnce(false);
 
-		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection);
+		const service = new UpdateBudgetBoxBalanceDomainService(fakeConnection,calculator);
 
 		const dto: UpdateBudgetBoxBalanceDto = {
 			operationType: 'SUBTRACT',

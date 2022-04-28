@@ -93,7 +93,6 @@ export class BalanceTransferenceUseCase implements IUseCase<Dto, Result<void>>{
 			return Result.success();
 
 		} catch (error) {
-			
 			return Result.fail(
 				'Internal Server Error On Balance Transference Use Case',
 				'INTERNAL_SERVER_ERROR'

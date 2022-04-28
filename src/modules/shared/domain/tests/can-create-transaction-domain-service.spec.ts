@@ -56,4 +56,17 @@ describe('can-create-transaction.domain-service', () => {
 		expect(result.isFailure).toBeTruthy();
 		expect(result.error).toBe('You must allocate 100% on budget boxes. 100% not allocated');
 	});
+
+	it('should returns fails if connection throws', async () => {
+
+		jest.spyOn(fakeConnection, 'findBudgetBoxesByUserId').mockImplementationOnce(async () => {
+			throw new Error("error");
+		});
+
+		const canCreateService = new CanCreateTransactionDomainService(fakeConnection);
+
+		const result = await canCreateService.execute({ userId: 'valid_id' });
+
+		expect(result.isFailure).toBeTruthy();
+	});
 });

@@ -94,7 +94,10 @@ export class TransactionAggregate extends AggregateRoot<TransactionAggregateProp
 	}
 
 	public static isValid (props: TransactionAggregateProps): boolean {
-		return props.transactionCalculations.length > 0;
+		const transactions = props.transactionCalculations;
+		const hasTransaction = transactions.length > 0;
+		const isTransaction = transactions[0] instanceof TransactionCalculationValueObject;
+		return hasTransaction && isTransaction;
 	}
 
 	public static create (

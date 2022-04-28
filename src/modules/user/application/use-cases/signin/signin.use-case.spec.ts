@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { IUserRepository } from '@modules/user/domain/interfaces/user.repository.interface';
 import { UserAggregate } from '@modules/user/domain';
 import UserMock from '@modules/user/domain/tests/mock/user.mock';
+import userRepositoryMock from '@modules/user/application/mocks/user-repository.mock';
 
 
 describe('signin.use-case', () => {
@@ -27,13 +28,7 @@ describe('signin.use-case', () => {
 
 	beforeEach(() => {
 
-		userRepo = {
-			delete: jest.fn(),
-			exists: jest.fn(),
-			find: jest.fn(),
-			findOne: jest.fn(),
-			save: jest.fn(),
-		};
+		userRepo = userRepositoryMock;
 
 		useCase = new SigninUseCase(userRepo, fakeJwt);
 

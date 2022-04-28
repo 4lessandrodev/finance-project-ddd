@@ -6,6 +6,7 @@ import {
 	PasswordValueObject,
 	Result
 } from 'types-ddd';
+import UserAccountDeletedEvent from './events/delete-user-account.event';
 
 export interface UserAggregateProps extends BaseDomainEntity {
 	email: EmailValueObject;
@@ -37,6 +38,12 @@ export class UserAggregate extends AggregateRoot<UserAggregateProps> {
 
 	get deletedAt (): Date | undefined {
 		return this.props.deletedAt;
+	}
+
+	deleteAccount (): void {
+		this.props.isDeleted = true;
+		this.props.deletedAt = new Date();
+		this.addDomainEvent(new UserAccountDeletedEvent(this));
 	}
 
 	public static create (

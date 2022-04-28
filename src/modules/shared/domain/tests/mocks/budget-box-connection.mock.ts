@@ -5,6 +5,7 @@ export const budgetBoxConnectionMock: IBudgetBoxConnection = {
 	findBudgetBoxByIdAndUserId: jest.fn(),
 	getBudgetBoxesByIds: jest.fn(),
 	updateBudgetBoxesBalance: jest.fn(),
+	deleteBudgetBoxByUserId: jest.fn()
 };
 
 export default budgetBoxConnectionMock;

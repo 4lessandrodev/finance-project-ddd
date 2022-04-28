@@ -55,4 +55,19 @@ describe('can-create-benefit.proxy', () => {
 		expect(result.isFailure).toBeTruthy();
 		expect(result.error).toBe('Budget Box Does Not Exists');
 	});
+
+	it('should fails if connection throws', async () => {
+		
+		jest.spyOn(connection, 'findBudgetBoxByIdAndUserId').mockImplementationOnce(async () => {
+			throw new Error("error");
+		});
+
+		const result = await service.execute({
+			budgetBoxId: 'valid_id',
+			userId: 'valid_id'
+		});
+		
+		expect(result.isFailure).toBeTruthy();
+		expect(result.error).toBe('Internal Server Error On CanCreateBenefit Proxy');
+	});
 });

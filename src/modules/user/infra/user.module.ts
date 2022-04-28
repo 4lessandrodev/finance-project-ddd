@@ -4,7 +4,7 @@ import { SignUpUseCase } from '@modules/user/application/use-cases/signup/signup
 import { UserResolver } from "./resolver/user.resolver";
 import { UserService } from './user.service';
 import { UserRepository } from './repo/user.repository';
-import { UserMapper } from './repo/user.mapper';
+import { UserToDomainMapper } from './repo/user.mapper';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserQueryService } from "@modules/user/infra/services/queries/user-query.service";
 import { SigninUseCase } from "@modules/user/application/use-cases/signin/signin.use-case";
@@ -13,9 +13,13 @@ import { User, UserSchema } from '@modules/user/infra/entities/user.schema';
 import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from "@nestjs/jwt";
 import { JWT_SECRET } from "@config/env";
+import DeleteAccountUseCase from "@modules/user/application/use-cases/delete-account/delete-account.use-case";
+import AfterDeleteUserAccount from "@modules/user/domain/subscriptions/after-delete-user-account.subscription";
+import { SharedModule } from "@modules/shared";
 
 @Module({
 	imports: [
+		SharedModule,
 		MongooseModule.forFeature([
 			{ name: User.name, schema: UserSchema }
 		]),
@@ -30,7 +34,7 @@ import { JWT_SECRET } from "@config/env";
 		})
 	],
 	providers: [
-		UserMapper,
+		UserToDomainMapper,
 		{
 			provide: 'UserRepository',
 			useClass: UserRepository
@@ -47,7 +51,9 @@ import { JWT_SECRET } from "@config/env";
 		JwtStrategy,
 		PassportModule,
 		JwtModule,
-		UserQueryService
+		UserQueryService,
+		DeleteAccountUseCase,
+		AfterDeleteUserAccount
 	],
 	exports: [PassportModule, JwtModule]
 })

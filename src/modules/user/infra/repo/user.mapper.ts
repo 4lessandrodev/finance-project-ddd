@@ -1,11 +1,11 @@
 import { UserAggregate } from '@modules/user/domain';
 import { IpValueObject } from '@modules/user/domain/ip.value-object';
 import { TermValueObject } from '@modules/user/domain/term.value-object';
-import { IMapper, DomainId, EmailValueObject, PasswordValueObject, DateValueObject } from 'types-ddd';
+import { TMapper, DomainId, EmailValueObject, PasswordValueObject, DateValueObject, Result } from 'types-ddd';
 import { User } from '../entities/user.schema';
 
-export class UserMapper implements IMapper<UserAggregate, User> {
-	toDomain (target: User): UserAggregate {
+export class UserToDomainMapper implements TMapper<User, UserAggregate> {
+	map (target: User): Result<UserAggregate> {
 		return UserAggregate.create(
 			{
 				ID: DomainId.create(target.id),
@@ -27,21 +27,7 @@ export class UserMapper implements IMapper<UserAggregate, User> {
 				createdAt: target.createdAt,
 				updatedAt: target.updatedAt,
 			}
-		).getResult();
-	}
-	//
-	toPersistence (target: UserAggregate): User {
-		return {
-			id: target.id.value.toString(),
-			email: target.email.value,
-			password: target.password.value,
-			createdAt: target.createdAt,
-			updatedAt: target.updatedAt,
-			terms: target.terms.map(({ acceptedAt, ip, userAgent }) => ({
-				ip: ip.value,
-				acceptedAt: acceptedAt.value,
-				userAgent: userAgent,
-			})),
-		};
+		);
 	}
 }
+export default UserToDomainMapper;
