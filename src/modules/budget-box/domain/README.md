@@ -49,3 +49,8 @@ exemplo:
 - budget-percentage: Value Object - Ok
 - reason: Entity - Ok
 - reason-id: Value Object - Ok
+
+## Fluxos
+#### Excluir um caixa financeiro
+
+<img src="../../../../readme/excluir-caixa.jpg" alt="imagem" width="100%">

@@ -32,3 +32,9 @@ bem como controla o acesso e define o proprietário de cada registro.
 - password: Value Object - Ok
 - terms: Value Object - Ok
 - ip: Value Object - Ok
+
+### Fluxos
+
+#### Excluir uma conta de usuário
+
+<img src="../../../../readme/excluir-usuario.jpg" alt="imagem" width="100%">
