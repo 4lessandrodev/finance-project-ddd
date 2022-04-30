@@ -6,5 +6,5 @@ export const MongoDbConfig: MongooseModuleOptions = {
 	useUnifiedTopology: true,
 	dbName: DB_NAME,
 };
-
-export const MongoURI = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}`;
+const PREFIX = process.env.NODE_ENV === 'production' ? 'mongodb+srv' : 'mongodb';
+export const MongoURI = `${PREFIX}://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}`;

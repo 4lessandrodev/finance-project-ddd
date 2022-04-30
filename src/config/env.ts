@@ -59,4 +59,3 @@ export const TESTING_HOST = envVar.get('TESTING_HOST')
 	.default('http://localhost:3000/graphql')
 	.required()
 	.asUrlString();
-	
