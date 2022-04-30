@@ -7,7 +7,7 @@ import {
 	PercentageValueObject
 } from './percentage.value-object';
 import ReasonDescriptionValueObject from './reason-description.value-object';
-
+import BudgetBoxDeletedEvent from './events/budget-box-deleted.event';
 
 export interface BudgetAggregateProps extends BaseDomainEntity {
 	ownerId: DomainId;
@@ -113,6 +113,12 @@ export class BudgetBoxAggregate extends AggregateRoot<BudgetAggregateProps> {
 		}
 
 		return exists;
+	}
+
+	delete (): void {
+		this.props.deletedAt = new Date();
+		this.props.isDeleted = true;
+		this.addDomainEvent(new BudgetBoxDeletedEvent(this));
 	}
 
 	public static create (

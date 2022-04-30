@@ -35,8 +35,14 @@ export class BudgetBoxRepository implements IBudgetBoxRepository {
 		return aggregate.getResult();
 	};
 
-	delete (filter: Filter<Partial<IBudgetBox>>) : Promise<void> {
-		throw new Error(`Method not implemented, ${filter}`);
+	async delete (filter: Filter<Partial<IBudgetBox>>) : Promise<void> {
+		const document = await this.conn.findOne({ ...filter });
+		
+		if (!document) {
+			return;
+		}
+
+		await document.remove();
 	};
 
 	async exists (filter: Filter<Partial<IBudgetBox>>) : Promise<boolean> {

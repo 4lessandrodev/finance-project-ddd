@@ -19,6 +19,8 @@ import ChangeBudgetBoxPercentageUseCase from "@modules/budget-box/application/us
 import ChangeBudgetBoxNameUseCase from "@modules/budget-box/application/use-cases/change-budget-box-name/change-budget-box-name.use-case";
 import CanAllocatePercentageToBudgetBoxDomainService from "@modules/budget-box/domain/services/can-allocate-percentage-to-budget-box.domain-service";
 import CanChangeBudgetBoxPercentageDomainService from "@modules/budget-box/domain/services/can-change-budget-box-percentage.domain-service";
+import AfterBudgetBoxDeleted from "@modules/budget-box/domain/subscription/after-budget-box-deleted.subscription";
+import DeleteBudgetBoxUseCase from "@modules/budget-box/application/use-cases/delete-budget-box/delete-budget-box.use-case";
 
 @Module({
 	imports: [
@@ -51,7 +53,9 @@ import CanChangeBudgetBoxPercentageDomainService from "@modules/budget-box/domai
 			useClass: BudgetBoxQueryService
 		},
 		CanAllocatePercentageToBudgetBoxDomainService,
-		CanChangeBudgetBoxPercentageDomainService
+		CanChangeBudgetBoxPercentageDomainService,
+		DeleteBudgetBoxUseCase,
+		AfterBudgetBoxDeleted
 	],
 	exports: []
 })
