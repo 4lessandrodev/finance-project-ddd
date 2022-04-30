@@ -255,3 +255,211 @@ Deixo como sugestão a Arquitetura Limpa
 <a href="./readme/clean-architecture.pdf"><img src="./readme/arch-img.png" alt="imagem" width="100%"></a>
 
  > creditos da imagem em pdf [Junior Grossi](https://www.linkedin.com/in/juniorgrossi/)
+
+### Api Documentation 
+
+Available mutation and queries
+
+```js
+
+mutation CreateUser {
+  signup(SignupInput:{
+    email:"valid_email20@gmail.com"
+    password:"pass1234"
+    acceptedTerms: true
+  })
+}
+
+mutation Login { 
+	signin(SigninInput:{
+    email:"valid_email20@gmail.com"
+    password:"pass1234"
+  }){
+    token
+  }
+}
+
+query WhoAmI {
+  whoAmI {
+    id
+    email
+    terms {
+      ip
+      acceptedAt
+      userAgent {
+        name
+        os
+      }
+    }
+  }
+}
+
+query GetBudgetBoxes {
+  getBudgetBoxes {
+    id
+    description
+    balanceAvailable {
+      value
+      currency
+    }
+    isPercentage
+    isPercentage
+    budgetPercentage
+    reasons {
+      id
+      description
+    }
+    createdAt
+    updatedAt
+  }
+}
+
+
+mutation CreateBudgetBox {
+  createBudgetBox(CreateBudgetBoxInput:{
+    description:"lazer"
+    isPercentage: true
+    budgetPercentage: 20
+  })
+}
+
+query GetBudgetBoxById {
+  getBudgetBoxById(GetBudgetBoxByIdInput:{
+    budgetBoxId: "2a056263-0c73-4791-af25-1820343eeb6a"
+  }){
+    id
+    description
+    balanceAvailable {
+      value
+      currency
+    }
+    isPercentage
+    budgetPercentage
+    reasons {
+      id
+      description
+    }
+  }
+}
+
+mutation AddReasonToBudgetBox {
+  addReasonToBudgetBox(AddReasonToBudgetBoxInput:{
+    reasonDescription:"NoVa Descrição"
+    budgetBoxId:"2a056263-0c73-4791-af25-1820343eeb6a"
+  })
+}
+
+mutation RemoveReasonFromBudgetBox {
+  removeReasonFromBudgetBox(RemoveReasonFromBudgetBoxInput:{
+    reasonId:"c61512e5-479d-4ab3-bc6a-78bf36a2f348"
+    budgetBoxId:"2a056263-0c73-4791-af25-1820343eeb6a"
+  })
+}
+
+mutation ChangeReasonDescription {
+  changeReasonDescription(ChangeReasonDescriptionBoxInput:{
+    reasonDescription: "dividendos"
+    reasonId:"8732d2fd-66df-401c-ae36-a9bb5240ca5f"
+    budgetBoxId:"2a056263-0c73-4791-af25-1820343eeb6a"
+  })
+}
+
+mutation ChangeBudgetBoxPercentage {
+  changeBudgetPercentage(ChangeBudgetBoxPercentageInput:{
+    budgetBoxId:"2a056263-0c73-4791-af25-1820343eeb6a"
+    budgetPercentage:25
+  })
+}
+
+mutation ChangeBudgetBoxName {
+  changeBudgetName(ChangeBudgetBoxNameInput:{
+    budgetBoxId:"2a056263-0c73-4791-af25-1820343eeb6a"
+    description:"Educação"
+  })
+}
+
+mutation PostCapitalAsPercentage {
+  percentageCapitalInflowPosting(PercentageCapitalInflowPostingInput:{
+    total: 700
+    reason: "adiantamento"
+    status: CONCLUIDO
+    note: "vale "
+    paymentDate: "2022-01-01 00:00:00"
+  })
+}
+
+mutation PostCapitalAsBenefit {
+  postingToBenefit(PostingToBenefitInput:{
+    total: 600
+    reason: "benefício de março"
+    status: CONCLUIDO
+    note: "some description"
+    paymentDate: "2022-01-01 00:00:00"
+    budgetBoxId: "d177df4c-35ee-4cd4-87a8-935448ebf615"
+  })
+}
+
+query GetTransactions {
+  getTransactions {
+    id
+    userId
+    reason
+    paymentDate
+    totalValue {
+      value
+      currency
+    }
+    transactionType
+    createdAt
+  }
+}
+
+query GetTransactionById {
+  getTransactionById(GetTransactionByIdInput:{
+    transactionId: "5ffa345f-2375-4d0e-94f3-c45ab0162e74"
+  }){
+    id
+    userId
+    reason
+    transactionType
+    totalValue {
+      value
+      currency
+    }
+    note
+    attachment
+  }
+}
+
+mutation CreateExpense {
+  createExpense(CreateExpenseInput:{
+    total: 30
+    reason: "comprar ouro"
+    note:"investimento em ouro"
+    budgetBoxId: "d177df4c-35ee-4cd4-87a8-935448ebf615"
+    status: CONCLUIDO
+  })
+}
+
+mutation TransferBalance {
+  transferBalance(BalanceTransferenceInput:{
+    total: 200
+    reason: "ajuste de caixa"
+    sourceBoxId: "5f54fb75-6bef-4bea-b168-16069a18f2a0"
+    destinationBoxId: "59888bb0-70a3-47c0-8823-53413a5f7475"
+  })
+}
+
+mutation DeleteMyAccount {
+  deleteUserAccount(DeleteUserAccountInput:{
+    password:"pass1234"
+  })
+}
+
+mutation DeleteBudgetBox {
+  deleteBudgetBox(DeleteBudgetBoxInput:{
+    budgetBoxId:"1089c98b-8e19-4559-b59f-a507578d85fe"
+  })
+}
+
+```
