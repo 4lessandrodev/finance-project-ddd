@@ -6,5 +6,8 @@ export const MongoDbConfig: MongooseModuleOptions = {
 	useUnifiedTopology: true,
 	dbName: DB_NAME,
 };
-const PREFIX = process.env.NODE_ENV === 'production' ? 'mongodb+srv' : 'mongodb';
-export const MongoURI = `${PREFIX}://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}`;
+
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+const PREFIX = IS_PRODUCTION ? 'mongodb+srv' : 'mongodb';
+const PARAMS = IS_PRODUCTION ? `/${DB_NAME}?retryWrites=true&w=majority` : `:${MONGO_PORT}`;
+export const MongoURI = `${PREFIX}://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}${PARAMS}`;
