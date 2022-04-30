@@ -132,6 +132,7 @@ type Mutation {
   changeReasonDescription(ChangeReasonDescriptionBoxInput: ChangeReasonDescriptionBoxInput!): Boolean!
   changeBudgetPercentage(ChangeBudgetBoxPercentageInput: ChangeBudgetBoxPercentageInput!): Boolean!
   changeBudgetName(ChangeBudgetBoxNameInput: ChangeBudgetBoxNameInput!): Boolean!
+  deleteBudgetBox(DeleteBudgetBoxInput: DeleteBudgetBoxInput!): Boolean!
   percentageCapitalInflowPosting(PercentageCapitalInflowPostingInput: PercentageCapitalInflowPostingInput!): Boolean!
   postingToBenefit(PostingToBenefitInput: PostingToBenefitInput!): Boolean!
   createExpense(CreateExpenseInput: CreateExpenseInput!): Boolean!
@@ -183,6 +184,10 @@ input ChangeBudgetBoxPercentageInput {
 input ChangeBudgetBoxNameInput {
   budgetBoxId: String!
   description: String!
+}
+
+input DeleteBudgetBoxInput {
+  budgetBoxId: String!
 }
 
 input PercentageCapitalInflowPostingInput {

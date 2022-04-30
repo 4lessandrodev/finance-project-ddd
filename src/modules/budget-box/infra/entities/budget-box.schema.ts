@@ -1,6 +1,7 @@
 import { IBudgetBox, ICurrency, IReason } from "@shared/index";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
+import { DomainEvents, DomainId } from "types-ddd";
 
 export type BudgetBoxDocument = BudgetBox & Document;
 
@@ -36,3 +37,9 @@ export class BudgetBox implements IBudgetBox {
 }
 
 export const BudgetBoxSchema = SchemaFactory.createForClass(BudgetBox);
+
+// calls domain events
+BudgetBoxSchema.post('remove', function (doc: IBudgetBox) {
+	const id = DomainId.create(doc.id);
+	DomainEvents.dispatchEventsForAggregate(id.value);
+});
