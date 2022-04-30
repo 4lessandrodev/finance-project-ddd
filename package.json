@@ -1,17 +1,25 @@
 {
 	"name": "finance-project",
 	"version": "1.0.0",
-	"description": "",
+	"description": "api de uma aplicação de controle financeiro",
 	"author": "Alessandro L. Menezes",
 	"private": true,
 	"license": "MIT",
+	"keywords": [
+		"domain-driven-design",
+		"api",
+		"finance",
+		"tdd",
+		"graphql",
+		"event"
+	],
 	"scripts": {
 		"prestart:dev": "./scripts/pre-start-dev.sh",
 		"postinstall": "./scripts/post-install.sh",
 		"prebuild": "rimraf dist",
 		"build": "nest build",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-		"start": "nest start",
+		"start": "node ./dist/main.js",
 		"start:dev": "env-cmd nest start --watch",
 		"start:debug": "nest start --debug --watch",
 		"start:prod": "NODE_ENV=production node dist/main",
