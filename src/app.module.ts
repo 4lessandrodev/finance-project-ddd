@@ -7,10 +7,12 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
 import { MongoDbConfig, MongoURI } from './config/mongo.config';
+import { HealthCheckModule } from './health-check/health-check.module';
 
 
 @Module({
 	imports: [
+		HealthCheckModule,
 		SharedModule,
 		UserModule,
 		BudgetBoxModule,
