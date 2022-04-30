@@ -56,7 +56,8 @@
 		"types-ddd": "^2.12.0",
 		"ua-parser-js": "^0.7.31",
 		"uuid": "^8.3.2",
-		"validator": "^13.7.0"
+		"validator": "^13.7.0",
+		"@nestjs/cli": "^8.2.5"
 	},
 	"@types/date-fns": "^2.6.0",
 	"devDependencies": {
@@ -64,7 +65,6 @@
 		"@graphql-codegen/typescript": "^2.4.8",
 		"@graphql-codegen/typescript-resolvers": "^2.6.1",
 		"@microsoft/tsdoc": "^0.13.2",
-		"@nestjs/cli": "^8.2.5",
 		"@nestjs/schematics": "^8.0.10",
 		"@nestjs/testing": "^8.4.4",
 		"@types/bcrypt": "^5.0.0",
