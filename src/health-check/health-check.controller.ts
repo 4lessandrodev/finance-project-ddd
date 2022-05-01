@@ -1,12 +1,13 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Ip } from "@nestjs/common";
 
-@Controller('/')
+@Controller('/health-check')
 export default class HealthCheckController {
-	@Get('')
-	async check (): Promise<any> {
+	@Get('/')
+	async check (@Ip() ip: string): Promise<any> {
 		return {
 			status: 'Ok',
 			time: new Date(),
+			ip: ip
 		}; 
 	}
 }

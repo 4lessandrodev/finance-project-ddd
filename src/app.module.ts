@@ -7,11 +7,13 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
 import { MongoDbConfig, MongoURI } from './config/mongo.config';
+import { DocModule } from './docs/doc.module';
 import { HealthCheckModule } from './health-check/health-check.module';
 
 
 @Module({
 	imports: [
+		DocModule,
 		HealthCheckModule,
 		SharedModule,
 		UserModule,
@@ -19,7 +21,8 @@ import { HealthCheckModule } from './health-check/health-check.module';
 		TransactionModule,
 		MongooseModule.forRoot(MongoURI, MongoDbConfig),
 		GraphQLModule.forRoot({
-			autoSchemaFile: join(process.cwd(), 'src/types/schema.gql')
+			autoSchemaFile: join(process.cwd(), 'src/types/schema.gql'),
+			introspection: true
 		})
 	],
 })

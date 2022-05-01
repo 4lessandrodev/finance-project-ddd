@@ -38,6 +38,7 @@
 	},
 	"dependencies": {
 		"@apollo/gateway": "^0.34.0",
+		"@nestjs/cli": "^8.2.5",
 		"@nestjs/common": "^8.4.4",
 		"@nestjs/core": "^8.4.4",
 		"@nestjs/graphql": "^8.0.2",
@@ -45,9 +46,11 @@
 		"@nestjs/mongoose": "^8.0.1",
 		"@nestjs/passport": "^8.2.1",
 		"@nestjs/platform-express": "^8.4.4",
+		"@nestjs/serve-static": "^2.2.2",
 		"apollo-server-express": "^2.25.2",
 		"bcrypt": "^5.0.1",
 		"date-fns": "^2.28.0",
+		"ejs": "^3.1.7",
 		"env-cmd": "^10.1.0",
 		"env-var": "^7.1.1",
 		"graphql": "^15.8.0",
@@ -64,8 +67,7 @@
 		"types-ddd": "^2.12.0",
 		"ua-parser-js": "^0.7.31",
 		"uuid": "^8.3.2",
-		"validator": "^13.7.0",
-		"@nestjs/cli": "^8.2.5"
+		"validator": "^13.7.0"
 	},
 	"@types/date-fns": "^2.6.0",
 	"devDependencies": {
