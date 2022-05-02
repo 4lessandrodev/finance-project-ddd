@@ -10,7 +10,7 @@ info:
     'Documentação da api controle financeiro'
   contact:
     name: Alessandro Dev
-    url: https://stepzen.com/docs
+    url: finance-api-ddd.herokuapp.com
     email: alessandroadm@live.com
 
 servers:
