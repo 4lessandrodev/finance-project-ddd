@@ -1,0 +1,19 @@
+spectaql:
+  logoFile: ./public/favicon-96x96.png
+
+introspection:
+  url: 'http://localhost:3000/graphql'
+
+info:
+  title: Documentação
+  description:
+    'Documentação da api controle financeiro'
+  contact:
+    name: Alessandro Dev
+    url: https://stepzen.com/docs
+    email: alessandroadm@live.com
+
+servers:
+  - url: 'http://localhost:3000/graphql'
+    description: Production
+    production: true
