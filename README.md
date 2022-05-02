@@ -3,7 +3,7 @@
 Neste projeto financeiro para controle de finanças foi aplicado domain-driven-design
 
 ### Documentação da Api
-Disponível [no link](finance-api-ddd.herokuapp.com/doc)
+Disponível [no link](https://finance-api-ddd.herokuapp.com/doc)
 
 ### Cobertura de tests
 
