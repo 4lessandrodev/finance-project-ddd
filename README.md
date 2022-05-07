@@ -48,8 +48,11 @@ Para rodar o projeto local em sua máquina utilizando docker
 
 ### Rodar os testes
 
-- yarn test
+```sh
+ 
+ $ yarn test
 
+```
 
 ### Cobertura de tests
 
