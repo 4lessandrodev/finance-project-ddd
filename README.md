@@ -43,7 +43,7 @@ Para rodar o projeto local em sua máquina utilizando docker
 
 ```
 
-- Acesse a api em `http://localhost:3000/graphql
+- Acesse a api em `http://localhost:3000/graphql`
 
 
 ### Rodar os testes
