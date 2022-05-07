@@ -5,6 +5,52 @@ Neste projeto financeiro para controle de finanças foi aplicado domain-driven-d
 ### Documentação da Api
 Disponível [no link](https://finance-api-ddd.herokuapp.com/doc)
 
+### Como rodar esse projeto
+
+Para rodar o projeto local em sua máquina utilizando docker
+
+- Realize o clone deste projeto para sua máquina.
+
+```sh
+ 
+ $ git clone https://github.com/4lessandrodev/finance-project-ddd.git
+
+```
+
+- Crie seu arquivo .env utilizando como exemplo o arquivo .env.example
+
+- Execute o docker
+
+```sh
+ 
+ $ docker-compose up -d
+
+```
+
+- Instale as dependências 
+
+```sh
+ 
+ $ yarn
+
+```
+
+- Execute o projeto 
+
+```sh
+ 
+ $ yarn start:dev
+
+```
+
+- Acesse a api em `http://localhost:3000/graphql
+
+
+### Rodar os testes
+
+- yarn test
+
+
 ### Cobertura de tests
 
 <img src="./readme/test-cov.png" alt="imagem" width="100%">
