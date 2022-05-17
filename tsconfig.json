@@ -10,10 +10,11 @@
 		"target": "ES2019",
 		"sourceMap": true,
 		"outDir": "./dist",
-		"incremental": true,
+		"incremental": false,
 		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
+		"skipDefaultLibCheck": true,
 		"baseUrl": "src",
 		"paths": {
 			"@modules/*": [

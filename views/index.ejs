@@ -18,7 +18,7 @@
             <div class="card-body">
               <h3 class="card-title">Organograma</h3>
               <p class="card-text">Detalhes dos schemas e como eles se relacionam entre si. Também é possível visualizar  as queries disponíveis.</p>
-              <a href="/doc" class="btn btn-primary" id="organography-url">Acessar organograma</a>
+              <a href="/voyager" class="btn btn-primary" id="organography-url">Acessar organograma</a>
             </div>
           </div>
         </div>
@@ -35,25 +35,5 @@
 
 		</nav>
 	</main>
-  <script>
-    
-    var organographyUrl = document.getElementById('organography-url');
-    var hostName = location.hostname;
-    var url = organographyUrl.href;
-
-    function checkEnvironmentByHostName(hostName) {
-      const result = Boolean(hostName === 'localhost') || Boolean(hostName === '127.0.0.1');
-      return result;
-    }
-
-    const isLocal = checkEnvironmentByHostName(hostName);
-
-    if (isLocal){
-      organographyUrl.href = `${url}/local`;
-    } else {
-      organographyUrl.href = `${url}/remote`;
-    }
-
-  </script>
 </body>
 </html>
