@@ -1,8 +1,11 @@
-# Controle Financeiro
+# API - Controle Financeiro
+
 ## Um projeto aplicando os principais conceitos de DDD
+
 Neste projeto financeiro para controle de finanças foi aplicado domain-driven-design
 
 ### Documentação da Api
+
 Disponível [no link](https://finance-api-ddd.herokuapp.com/doc)
 
 ### Como rodar esse projeto
@@ -17,7 +20,7 @@ Para rodar o projeto local em sua máquina utilizando docker
 
 ```
 
-- Crie seu arquivo .env utilizando como exemplo o arquivo .env.example
+- Crie seu arquivo `.env` utilizando como exemplo o arquivo `.env.example`
 
 - Execute o docker
 
@@ -43,13 +46,16 @@ Para rodar o projeto local em sua máquina utilizando docker
 
 ```
 
-- Acesse a api em `http://localhost:3000/graphql
+- Acesse a api em `http://localhost:3000/graphql`
 
 
 ### Rodar os testes
 
-- yarn test
+```sh
+ 
+ $ yarn test
 
+```
 
 ### Cobertura de tests
 
