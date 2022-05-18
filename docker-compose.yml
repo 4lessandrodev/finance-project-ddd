@@ -3,7 +3,7 @@ version: '3'
 services:
   mongo:
     container_name: finance_api
-    image: mongo:4.0.22
+    image: mongo:4.4-focal
     volumes: 
       - ./data:/data/db
     ports:
