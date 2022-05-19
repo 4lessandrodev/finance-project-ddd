@@ -8,16 +8,4 @@ export default class DocController {
 	async handle (): Promise<any> {
 		return { status: 'ok' };
 	}
-
-	@Get('/local')
-	@Render('local')
-	async localHandle (): Promise<any> {
-		return { status: 'ok' };
-	}
-
-	@Get('/remote')
-	@Render('remote')
-	async remoteHandle (): Promise<any> {
-		return { status: 'ok' };
-	}
 }
