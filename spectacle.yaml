@@ -1,5 +1,5 @@
 spectaql:
-  logoFile: ./public/favicon-96x96.png
+  logoFile: ./public/images/logo.png
 
 introspection:
   url: 'http://localhost:3000/graphql'
@@ -7,13 +7,13 @@ introspection:
 info:
   title: Documentação
   description:
-    'Documentação da api controle financeiro. A api tem como o objetivo garantir o controle financeiro do usuário, registrando entradas e saídas de capital e organizando cada entrada em caixas financeiros conforme o planejamento do usuário. Construída em graphql. Aqui está documentado as queries e mutations. O endpoint local é o exibido ao lado, o endpoint de produção é https://finance-api-ddd.herokuapp.com/graphql'
+    'Documentação da api controle financeiro. A api tem como o objetivo garantir o controle financeiro do usuário, registrando entradas e saídas de capital e organizando cada entrada em caixas financeiros conforme o planejamento do usuário. Construída em graphql. Aqui está documentado as queries e mutations. Você pode interagir com a api através do playground no link: https://lucasconstantino.github.io/graphiql-online/ alterando o endpoint para https://finance-api-ddd.herokuapp.com/graphql'
   contact:
     name: Alessandro Dev
     url: finance-api-ddd.herokuapp.com
     email: alessandroadm@live.com
 
 servers:
-  - url: 'http://localhost:3000/graphql'
+  - url: 'https://finance-api-ddd.herokuapp.com/graphql'
     description: Production
     production: true
