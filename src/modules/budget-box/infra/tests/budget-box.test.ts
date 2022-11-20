@@ -71,7 +71,7 @@ describe('budget-box.test', () => {
 			credentials: 'include'
 		});
 
-		conn = await mongoose.createConnection(MongoURI, MongoDbConfig);
+		conn = await mongoose.createConnection(MongoURI, MongoDbConfig).asPromise();
 		const budgetModel = conn.model('BudgetBox', BudgetBoxSchema);
 		const userModel = conn.model('User', UserSchema);
 

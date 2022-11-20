@@ -30,7 +30,7 @@
 		"test:watch": "jest --watch -c ./jest.unit.config.js",
 		"test:cov": "TYPES_DDD_LOGS=off jest --coverage --runInBand -c ./jest.unit.config.js",
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand -c ./jest.unit.config.js",
-		"test:e2e": "TYPES_DDD_LOGS=off jest -c ./jest.e2e.config.js --runInBand --detectOpenHandles --forceExit",
+		"test:e2e": "TYPES_DDD_LOGS=off env-cmd jest -c ./jest.e2e.config.js --runInBand --detectOpenHandles --forceExit",
 		"generate:gql": "graphql-codegen --config ./code-gen.yml",
 		"check:deps": "npm run check:prod-deps && npm run check:dev-deps",
 		"check:dev-deps": "./scripts/check-dev-deps.sh",

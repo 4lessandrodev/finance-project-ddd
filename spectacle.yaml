@@ -7,7 +7,7 @@ introspection:
 info:
   title: Documentação
   description:
-    'Documentação da api controle financeiro. A api tem como o objetivo garantir o controle financeiro do usuário, registrando entradas e saídas de capital e organizando cada entrada em caixas financeiros conforme o planejamento do usuário. Construída em graphql. Aqui está documentado as queries e mutations. Você pode interagir com a api através do playground no link: https://lucasconstantino.github.io/graphiql-online/ alterando o endpoint para https://finance-api-ddd.herokuapp.com/graphql'
+    'Documentação da api controle financeiro. A api tem como o objetivo garantir o controle financeiro do usuário, registrando entradas e saídas de capital e organizando cada entrada em caixas financeiros conforme o planejamento do usuário. Construída em graphql. Aqui está documentado as queries e mutations. Você pode interagir com a api através do playground no link: https://www.graphqlbin.com/v2/new alterando o endpoint para https://finance-api-ddd.herokuapp.com/graphql'
   contact:
     name: Alessandro Dev
     url: finance-api-ddd.herokuapp.com

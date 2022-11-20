@@ -59,7 +59,7 @@ describe('transaction.test', () => {
 			credentials: 'include'
 		});
 
-		conn = await mongoose.createConnection(MongoURI, MongoDbConfig);
+		conn = await mongoose.createConnection(MongoURI, MongoDbConfig).asPromise();
 		const userModel = conn.model('User', UserSchema);
 		const budgetBoxModel = conn.model('BudgetBox', BudgetBoxSchema);
 		const transactionModel = conn.model('Transaction', TransactionSchema);
@@ -136,8 +136,8 @@ describe('transaction.test', () => {
 		const budgetBoxPercentage = await budgetBoxModel.findOne<IBudgetBox>({ ownerId: user.id, isPercentage: true });
 		const budgetBoxBenefit = await budgetBoxModel.findOne<IBudgetBox>({ ownerId: user.id, isPercentage: false });
 
-		percentageBudgetBoxId = budgetBoxPercentage.id;
-		benefitBudgetBoxId = budgetBoxBenefit.id;
+		percentageBudgetBoxId = budgetBoxPercentage?.id as string;
+		benefitBudgetBoxId = budgetBoxBenefit?.id as string;
 
 	});
 
@@ -231,7 +231,7 @@ describe('transaction.test', () => {
 
 		const variables: QueryGetTransactionByIdArgs = {
 			GetTransactionByIdInput: {
-				transactionId: transaction.id
+				transactionId: transaction?.id as string
 			}
 		};
 

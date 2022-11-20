@@ -31,7 +31,7 @@ describe('user.test', () => {
 			credentials: 'include'
 		});
 
-		conn = await mongoose.createConnection(MongoURI, MongoDbConfig);
+		conn = await mongoose.createConnection(MongoURI, MongoDbConfig).asPromise();
 		const model = conn.model('User', UserSchema);
 
 		await model.deleteMany({});

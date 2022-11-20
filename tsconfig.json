@@ -15,6 +15,7 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"skipDefaultLibCheck": true,
+		"skipLibCheck": true,
 		"baseUrl": "src",
 		"paths": {
 			"@modules/*": [
